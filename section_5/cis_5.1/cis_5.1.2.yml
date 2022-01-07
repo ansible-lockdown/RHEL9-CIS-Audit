@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_rule_5_1_2 }}
+file:
+  /etc/crontab:
+    title: 5.1.2 | L1 | Ensure permissions on /etc/crontab are configured
+    exists: true
+    owner: root
+    group: root    
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}
+
+

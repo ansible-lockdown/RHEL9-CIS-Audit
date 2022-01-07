@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_5_7 }}
+file:
+  /etc/pam.d/su:
+    title: 5.7 | L1 | Ensure access to the su command is restricted
+    exists: true
+    contains:
+      {{ if eq .Vars.rhel9cis_sugroup "wheel" }}
+      - '/^auth.*required.*pam_wheel.so\suse_uid/'
+      {{ else }}
+      - '/^auth.*required.*pam_wheel.so\suse_uid$\sgroup={{ .Vars.rhel9cis_sugroup }}/'
+      {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.7
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/group:
+    title: 5.7 | L1 | Ensure access to the su command is restricted
+    exists: true
+    contains:
+    - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:{{ .Vars.rhel9cis_sugroup_users }}/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.7
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

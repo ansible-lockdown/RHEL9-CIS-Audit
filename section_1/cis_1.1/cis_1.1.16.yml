@@ -1,0 +1,21 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_16 }}
+mount:
+  /dev/shm:
+    title: 1.1.16 | L1 | Ensure nosuid option set on /dev/shm partition
+    exists: true
+    opts:
+    - nosuid
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.16
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

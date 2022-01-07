@@ -1,0 +1,128 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if not .Vars.rhel9cis_selinux_disable }}
+package:
+  {{ if  .Vars.rhel9cis_rule_1_7_1_1 }}
+  libselinux:
+    title: 1.7.1.1 | L2 | Ensure SELinux is installed
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.1
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+
+command:
+  {{ if .Vars.rhel9cis_rule_1_7_1_2 }}
+  selinux_disabled_boot:
+    title: 1.7.1.2 | L2 | Ensure SELinux is not disabled in bootloader configuration
+    exit-status: 1
+    exec: 'grep "^\s*linux" /boot/grub2/grubenv | grep -E "(selinux=0|enforcing=0)"'
+    # looking for it not to return anything
+    # will error if anything is returned
+    stdout: ['!/./']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.2
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+
+  {{ if .Vars.rhel9cis_rule_1_7_1_3 }}
+  selinux_policy:
+    title: 1.7.1.3 | L2 | Ensure SELinux policy is configured | config
+    exit-status: 0
+    exec: 'grep SELINUXTYPE= /etc/selinux/config'
+    stdout:
+    - SELINUXTYPE=targeted
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.3
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  selinux_sestatus:
+    title: 1.7.1.3 | L2 | Ensure SELinux policy is configured | sestatus
+    exit-status: 0
+    exec: "sestatus | grep 'Loaded policy'"
+    stdout:
+    - "Loaded policy name:             targeted"
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.3
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+
+  {{ if .Vars.rhel9cis_rule_1_7_1_4 }}
+  selinux_run_enforcing:
+    title: (L2) 1.7.1.4 | L2 | Ensure the SELinux mode is enforcing | running
+    exit-status: 0
+    exec: "getenforce"
+    stdout: 
+    - "Enforcing"
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.4
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  selinux_config_enforcing:
+    title: (L2) 1.7.1.4 | L2 | Ensure the SELinux mode is enforcing | config
+    exit-status: 0
+    exec: 'grep -Ei "^\s*SELINUX=[Ee]nforcing" /etc/selinux/config'
+    stdout:
+    - SELINUX=enforcing
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.4
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_7_1_5 }}
+  selinux_unconfined:
+    title: 1.7.1.5 | L2 | Ensure no unconfined services exist
+    exit-status: 1
+    exec: "ps -eZ | grep unconfined_service_t"
+    stdout: ['!/./']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.7.1.5
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

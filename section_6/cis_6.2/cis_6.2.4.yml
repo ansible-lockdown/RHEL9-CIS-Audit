@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_4 }}
+file:
+  /etc/shadow:
+    title: 6.2.4 | L1 | Ensure no legacy "+" entries exist in /etc/shadow
+    exists: true
+    contains:
+    - '!/^\+:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}
+

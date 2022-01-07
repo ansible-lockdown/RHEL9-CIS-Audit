@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_2 }}
+file:
+  /etc/passwd:
+    title: 6.2.2 | L1 | Ensure no legacy "+" entries exist in /etc/passwd
+    exists: true
+    contains:
+    - '!/^\+:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}
+

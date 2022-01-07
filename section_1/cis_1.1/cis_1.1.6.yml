@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_1_6 }}
+mount:
+  /var:
+    title: 1.1.6 | L2 | Ensure separate partition exists for /var
+    exists: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.1.6
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

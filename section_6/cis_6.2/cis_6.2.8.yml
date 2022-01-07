@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_8 }}
+command:
+  home_dirs_owned:
+    title: 6.2.8 | L1 | Ensure users own their home directories
+    exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $7 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.8
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

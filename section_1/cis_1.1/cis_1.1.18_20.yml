@@ -1,0 +1,103 @@
+{{ if .Vars.rhel9cis_level_1 }}
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_18 }}
+  floppy_noexec:
+    title: 1.1.18 | L1 | Check for removeable media nodev
+    exit-status: 0
+    exec: "if [ `grep -c -i floppy /etc/fstab` = 1 ] ; then if [ `grep -c -E 'floppy.*nodev' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.18
+      CISv8: 
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  cdrom_noexec:
+    title: 1.1.18 | L1 | Check for removeable media nodev
+    exit-status: 0
+    exec: "if [ `grep -c -i cdrom /etc/fstab` = 1 ] ; then if [ `grep -c -E 'cdrom.*nodev' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.18
+      CISv8: 
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_19 }}
+  floppy_nodev:
+    title: 1.1.19 | L1 | Check for removeable media nosuid
+    exit-status: 0
+    exec: "if [ `grep -c -i floppy /etc/fstab` = 1 ] ; then if [ `grep -c -E 'floppy.*no.suid' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.19
+      CISv8: 
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  cdrom_nodev:
+    title: 1.1.19 | L1 | Check for removeable media nosuid
+    exit-status: 0
+    exec: "if [ `grep -c -i cdrom /etc/fstab` = 1 ] ; then if [ `grep -c -E 'cdrom.*nosuid' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check 
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.19
+      CISv8: 
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_20 }}
+  floppy_nosuid:
+    title: 1.1.20 | L1 | Check for removeable media noexec
+    exit-status: 0
+    exec: "if [ `grep -c -i floppy /etc/fstab` = 1 ] ; then if [ `grep -c -E 'floppy.*noexec' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check 
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.20
+      CISv8: 
+      - 2.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  cdrom_nosuid:
+    title: 1.1.20 | L1 | Check for removeable media noexec
+    exit-status: 0
+    exec: "if [ `grep -c -i cdrom /etc/fstab` = 1 ] ; then if [ `grep -c -E 'cdrom.*noexec' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.20
+      CISv8: 
+      - 2.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

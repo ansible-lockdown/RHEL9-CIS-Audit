@@ -1,0 +1,30 @@
+{{ if not .Vars.rhel9cis_is_router }}
+  {{ if .Vars.rhel9cis_rule_3_1_1 }}
+kernel-param:
+  net.ipv4.ip_forward:
+    title: 3.1.1 | L1 | Ensure IP forwarding is disabled
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.1.1
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+
+  net.ipv6.conf.all.forwarding:
+    title: 3.1.1 | L1 | Ensure IP forwarding is disabled
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.1.1
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,0 +1,19 @@
+{{ if not .Vars.rhel9cis_rpc_server }} 
+  {{ if .Vars.rhel9cis_rule_2_2_13 }}
+service:
+  rpcbind:
+    title: 2.2.13 | L1 | Ensure rpcbind is not enabled
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.13
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

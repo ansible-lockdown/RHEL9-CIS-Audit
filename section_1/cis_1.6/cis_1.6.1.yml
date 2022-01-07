@@ -1,0 +1,81 @@
+{{ if .Vars.rhel9cis_rule_1_6_1 }}
+command:
+  core_dumps_limits:
+    title: 1.6.1 | L1 | Ensure core dumps are restricted | security_limits
+    exit-status: 0
+    exec: 'grep -Es "^\s*\*\s+hard\s+core" /etc/security/limits.conf /etc/security/limits.d/* | cut -f2 -d":"'
+    stdout: 
+    - '/^\*.*hard.*core.*0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  suid_dumpable_2:
+    title: 1.6.1 | L1 | Ensure core dumps are restricted | suid_sysctl
+    exit-status: 0
+    exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout: 
+    - fs.suid_dumpable=0
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+kernel-param:
+  fs.suid_dumpable:
+    title: 1.6.1 | L1 | Ensure core dumps are restricted | fsuid_sysctl
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+file:
+  /etc/systemd/coredump.conf:
+    title: 1.6.1 | L1 | Ensure core dumps are restricted | systemd conf
+    exists: true
+    contains:
+    - '/Storage=none/'
+    - '/ProcessSizeMax=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+service:
+  coredump:
+    enabled: false
+    running: false
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

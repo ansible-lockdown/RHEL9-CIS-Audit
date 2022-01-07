@@ -1,0 +1,85 @@
+file:
+  {{ if .Vars.rhel9cis_rule_1_8_1_1 }}
+  /etc/motd:
+    title: | 
+          1.8.1.1 | L1 | Ensure message of the day is configured properly
+          1.8.1.4 | L1 | Ensure permissions on /etc/motd are configured 
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contains:
+      - "![Cc]ent[Oo][Ss]"
+      - "![Rr]hel"
+      - "![Rr]ed[Hh]at"
+      - "!x86_64"
+      - "![Ll]inux"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.1.1
+      - 1.8.1.4
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_8_1_2 }}
+  /etc/issue:
+    title: |
+          1.8.1.2 | L1 | Ensure local login warning banner is configured properly
+          1.8.1.5 | L1 | Ensure permissions on /etc/issue are configured
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contains:
+    - "![Cc]ent[Oo][Ss]"
+    - "![Rr]hel"
+    - "![Rr]ed[Hh]at"
+    - "!x86_64"
+    - "![Ll]inux"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.1.2
+      - 1.8.1.5
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_8_1_3 }}
+  /etc/issue.net:
+    title: |
+         1.8.1.3 | L1 | Ensure remote login warning banner is configured properly
+         1.8.1.6 | L1 | Ensure permissions on /etc/issue.net are configured
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contains:
+    - "![Cc]ent[Oo][Ss]"
+    - "![Rr]hel"
+    - "![Rr]ed[Hh]at"
+    - "!x86_64"
+    - "![Ll]inux"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.1.3
+      - 1.8.1.6
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}

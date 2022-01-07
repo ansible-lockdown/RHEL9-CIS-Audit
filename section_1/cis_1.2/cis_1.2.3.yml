@@ -1,0 +1,20 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_rule_1_2_3 }}
+command:
+  gpg_keys:
+    title: 1.2.3 | L1 | Ensure GPG keys are configured
+    exit-status: 0
+    exec: "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.2.3
+      CISv8: 
+      - 7.3
+      - 7.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

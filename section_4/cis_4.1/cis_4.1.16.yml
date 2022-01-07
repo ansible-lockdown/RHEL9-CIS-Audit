@@ -1,0 +1,33 @@
+{{ if .Vars.rhel9cis_rule_4_1_16 }}
+command:
+  auditd_sudolog_cnf:
+    title: 4.1.16 | L2 | Ensure system administrator actions (sudolog) are collected | conf check
+    exec: grep '^-w \/var\/log\/sudo.log -p wa -k actions$' /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /var/log/sudo.log -p wa -k actions'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.16
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_sudolog_live:
+    title: 4.1.16 | L2 | Ensure system administrator actions (sudolog) are collected | running
+    exec: auditctl -l | grep actions 
+    exit-status: 0
+    stdout:
+    - '-w /var/log/sudo.log -p wa -k actions'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.16
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,38 @@
+{{ if eq .Vars.rhel9cis_firewall "firewalld" }}
+  {{ if .Vars.rhel9cis_rule_3_4_2_3 }}
+service:
+  nftables:
+    title: 3.4.2.3 | L1 | Ensure nftables is not enabled with firewalld
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.2.3
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  nftables_masked:
+    title: 3.4.2.3 | L1 | Ensure iptables is not enabled with firewalld
+    exec: "systemctl is-enabled nftables"
+    exit-status: 0
+    stdout:
+    - '/^(masked|disabled)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.2.3
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

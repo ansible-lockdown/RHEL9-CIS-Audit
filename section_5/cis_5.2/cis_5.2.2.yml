@@ -1,0 +1,21 @@
+{{ if .Vars.rhel9cis_rule_5_2_2 }}
+  {{ if .Vars.rhel9cis_sshd_limited }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.2.2 | L1 | Ensure SSH access is limited 
+    exists: true
+    contains:
+    {{ range .Vars.rhel9cis_sshd_access }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

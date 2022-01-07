@@ -1,0 +1,57 @@
+{{ if .Vars.rhel9cis_rule_5_1_8 }}
+file:
+  /etc/cron.deny:
+    title: 5.1.8 | L1 | Ensure cron is restricted to authorized users
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.8
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/cron.allow:
+    title: 5.1.8 | L1 | Ensure cron is restricted to authorized users
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.8
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/at.deny:
+    title: 5.1.8 | L1 | Ensure at is restricted to authorized users
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.8
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/at.allow:
+    title: 5.1.8 | L1 | Ensure at is restricted to authorized users
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.8
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

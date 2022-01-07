@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_4_1_17 }}
+command:
+  auditd_immutable:
+    title: 4.1.17 | L2 | Ensure the audit configuration is immutable
+    exec: 'grep "-e 2" /etc/audit/rules.d/*.rules | tail -1'
+    exit-status: 0
+    stdout:
+    - '-e 2'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.17
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

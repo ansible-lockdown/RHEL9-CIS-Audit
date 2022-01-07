@@ -1,0 +1,18 @@
+{{ if not .Vars.rhel9cis_xwindows_required }}
+  {{ if .Vars.rhel9cis_rule_2_2_2 }}
+package:
+  xorgs-x11-server:
+    title: 2.2.2 | L1 | Ensure X11 Server components are not installed 
+    installed: false
+    meta:
+      server: 1
+      workstation: NA
+      CIS_ID: 
+      - 2.2.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

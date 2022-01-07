@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_20 }}
+command:
+  home_dirs_exist:
+    title: 6.2.20 | L1 | Ensure all users' home directories exist
+    exec: pwck -r
+    exit-status: 1
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.20
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

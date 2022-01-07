@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="goss" errors="0" tests="230" failures="46" skipped="10" time="7.755" timestamp="2020-12-18T16:48:25Z">
+<testcase name="Command gpg_check_repo exit-status" time="0.017">
+<system-out>Command: gpg_check_repo: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command vfat exit-status" time="0.028">
+<system-out>Command: vfat: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command vfat stdout" time="0.000">
+<system-out>Command: vfat: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command fat exit-status" time="0.045">
+<system-out>Command: fat: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command fat stdout" time="0.000">
+<system-out>Command: fat: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command secure_system_LK exit-status" time="0.048">
+<system-out>Command: secure_system_LK: exit-status: matches expectation: [1]</system-out>
+</testcase>
+<testcase name="Command secure_system_LK stdout" time="0.000">
+<system-out>Command: secure_system_LK: stdout: all expectations found: [0]</system-out>
+</testcase>
+<testcase name="Command aslr_enabled_2 exit-status" time="0.059">
+<system-err>Command: aslr_enabled_2: exit-status: doesn&#39;t match, expect: [0] found: [1]</system-err>
+<failure>Command: aslr_enabled_2: exit-status: doesn&#39;t match, expect: [0] found: [1]</failure>
+</testcase>
+<testcase name="Command aslr_enabled_2 stdout" time="0.000">
+<system-err>Command: aslr_enabled_2: stdout: patterns not found: [kernel.randomize_va_space = 2]</system-err>
+<failure>Command: aslr_enabled_2: stdout: patterns not found: [kernel.randomize_va_space = 2]</failure>
+</testcase>
+<testcase name="Command inactive_passwd exit-status" time="0.060">
+<system-out>Command: inactive_passwd: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command inactive_passwd stdout" time="0.000">
+<system-out>Command: inactive_passwd: stdout: all expectations found: [/^INACTIVE=[1-30]/]</system-out>
+</testcase>
+<testcase name="Command check_timeout exit-status" time="0.044">
+<system-err>Command: check_timeout: exit-status: doesn&#39;t match, expect: [0] found: [2]</system-err>
+<failure>Command: check_timeout: exit-status: doesn&#39;t match, expect: [0] found: [2]</failure>
+</testcase>
+<testcase name="Command check_timeout stdout" time="0.000">
+<system-out>Command: check_timeout: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Command cdrom_noexec exit-status" time="0.104">
+<system-out>Command: cdrom_noexec: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command cdrom_noexec stdout" time="0.000">
+<system-out>Command: cdrom_noexec: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command squashfs exit-status" time="0.105">
+<system-out>Command: squashfs: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command squashfs stdout" time="0.000">
+<system-out>Command: squashfs: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command gpg_check_global exit-status" time="0.114">
+<system-out>Command: gpg_check_global: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command inactive_users exit-status" time="0.076">
+<system-out>Command: inactive_users: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command inactive_users stdout" time="0.000">
+<system-err>Command: inactive_users: stdout: patterns not found: [!/./]</system-err>
+<failure>Command: inactive_users: stdout: patterns not found: [!/./]</failure>
+</testcase>
+<testcase name="Command auditd_grub exit-status" time="0.157">
+<system-out>Command: auditd_grub: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command auditd_grub stdout" time="0.000">
+<system-err>Command: auditd_grub: stdout: patterns not found: [!/./]</system-err>
+<failure>Command: auditd_grub: stdout: patterns not found: [!/./]</failure>
+</testcase>
+<testcase name="Command pty_sudoers_d exit-status" time="0.116">
+<system-out>Command: pty_sudoers_d: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command pty_sudoers_d stdout" time="0.000">
+<system-out>Command: pty_sudoers_d: stdout: all expectations found: [/[1-99]/]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_user exit-status" time="0.220">
+<system-out>Command: /etc/ssh/ssh_host_key_user: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_user stdout" time="0.000">
+<system-out>Command: /etc/ssh/ssh_host_key_user: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Command single_user_2 exit-status" time="0.108">
+<system-out>Command: single_user_2: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command aslr_enabled_1 exit-status" time="0.096">
+<system-out>Command: aslr_enabled_1: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command aslr_enabled_1 stdout" time="0.000">
+<system-out>Command: aslr_enabled_1: stdout: all expectations found: [kernel.randomize_va_space = 2]</system-out>
+</testcase>
+<testcase name="Command gpg_keys exit-status" time="0.127">
+<system-out>Command: gpg_keys: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command iwconfig exit-status" time="0.032">
+<system-out>Command: iwconfig: exit-status: matches expectation: [127]</system-out>
+</testcase>
+<testcase name="Command mta_installed exit-status" time="0.057">
+<system-out>Command: mta_installed: exit-status: matches expectation: [1]</system-out>
+</testcase>
+<testcase name="Command mta_installed stdout" time="0.000">
+<system-out>Command: mta_installed: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_group exit-status" time="0.244">
+<system-out>Command: /etc/ssh/ssh_host_key_group: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_group stdout" time="0.000">
+<system-out>Command: /etc/ssh/ssh_host_key_group: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Command fat_live exit-status" time="0.084">
+<system-out>Command: fat_live: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command fat_live stdout" time="0.000">
+<system-out>Command: fat_live: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command cramfs exit-status" time="0.081">
+<system-out>Command: cramfs: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command cramfs stdout" time="0.000">
+<system-out>Command: cramfs: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command passwd_chg_past exit-status" time="0.079">
+<system-out>Command: passwd_chg_past: exit-status: matches expectation: [1]</system-out>
+</testcase>
+<testcase name="Command passwd_chg_past stdout" time="0.000">
+<system-out>Command: passwd_chg_past: stdout: all expectations found: [!Failed]</system-out>
+</testcase>
+<testcase name="Command modprobe_sctp exit-status" time="0.106">
+<system-out>Command: modprobe_sctp: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command modprobe_sctp stdout" time="0.000">
+<system-err>Command: modprobe_sctp: stdout: patterns not found: [install /bin/true]</system-err>
+<failure>Command: modprobe_sctp: stdout: patterns not found: [install /bin/true]</failure>
+</testcase>
+<testcase name="Command suid_dumpable_2 exit-status" time="0.083">
+<system-err>Command: suid_dumpable_2: exit-status: doesn&#39;t match, expect: [0] found: [1]</system-err>
+<failure>Command: suid_dumpable_2: exit-status: doesn&#39;t match, expect: [0] found: [1]</failure>
+</testcase>
+<testcase name="Command suid_dumpable_2 stdout" time="0.000">
+<system-err>Command: suid_dumpable_2: stdout: patterns not found: [fs.suid_dumpable = 0]</system-err>
+<failure>Command: suid_dumpable_2: stdout: patterns not found: [fs.suid_dumpable = 0]</failure>
+</testcase>
+<testcase name="Command floppy_noexec exit-status" time="0.113">
+<system-out>Command: floppy_noexec: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command floppy_noexec stdout" time="0.000">
+<system-out>Command: floppy_noexec: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command suid_dumpable_1 exit-status" time="0.083">
+<system-out>Command: suid_dumpable_1: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command suid_dumpable_1 stdout" time="0.000">
+<system-out>Command: suid_dumpable_1: stdout: all expectations found: [fs.suid_dumpable = 0]</system-out>
+</testcase>
+<testcase name="Command single_user_1 exit-status" time="0.093">
+<system-out>Command: single_user_1: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command secure_system_accts exit-status" time="0.132">
+<system-out>Command: secure_system_accts: exit-status: matches expectation: [1]</system-out>
+</testcase>
+<testcase name="Command secure_system_accts stdout" time="0.000">
+<system-out>Command: secure_system_accts: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Command floppy_nosuid exit-status" time="0.117">
+<system-out>Command: floppy_nosuid: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command floppy_nosuid stdout" time="0.000">
+<system-out>Command: floppy_nosuid: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command cdrom_nodev exit-status" time="0.104">
+<system-out>Command: cdrom_nodev: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command cdrom_nodev stdout" time="0.000">
+<system-out>Command: cdrom_nodev: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command log_sudoers_d exit-status" time="0.116">
+<system-out>Command: log_sudoers_d: exit-status: matches expectation: [{&#34;lt&#34;:3}]</system-out>
+</testcase>
+<testcase name="Command log_sudoers_d stdout" time="0.000">
+<system-out>Command: log_sudoers_d: stdout: all expectations found: [/[1:99]/]</system-out>
+</testcase>
+<testcase name="Command modprobe_dccp exit-status" time="0.085">
+<system-out>Command: modprobe_dccp: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command modprobe_dccp stdout" time="0.000">
+<system-err>Command: modprobe_dccp: stdout: patterns not found: [install /bin/true]</system-err>
+<failure>Command: modprobe_dccp: stdout: patterns not found: [install /bin/true]</failure>
+</testcase>
+<testcase name="Command logfile_configured exit-status" time="0.396">
+<system-out>Command: logfile_configured: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command logfile_configured stdout" time="0.000">
+<system-err>Command: logfile_configured: stdout: patterns not found: [!/./]</system-err>
+<failure>Command: logfile_configured: stdout: patterns not found: [!/./]</failure>
+</testcase>
+<testcase name="Command subscription exit-status" time="0.116">
+<system-out>Command: subscription: exit-status: matches expectation: [{&#34;or&#34;:[0,127]}]</system-out>
+</testcase>
+<testcase name="Command subscription stderr" time="0.000">
+<system-out>Command: subscription: stderr: all expectations found: [command not found]</system-out>
+</testcase>
+<testcase name="Command msdos exit-status" time="0.160">
+<system-out>Command: msdos: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command msdos stdout" time="0.000">
+<system-out>Command: msdos: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command cdrom_nosuid exit-status" time="0.188">
+<system-out>Command: cdrom_nosuid: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command cdrom_nosuid stdout" time="0.000">
+<system-out>Command: cdrom_nosuid: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Command core_dumps_limits exit-status" time="0.087">
+<system-err>Command: core_dumps_limits: exit-status: doesn&#39;t match, expect: [0] found: [1]</system-err>
+<failure>Command: core_dumps_limits: exit-status: doesn&#39;t match, expect: [0] found: [1]</failure>
+</testcase>
+<testcase name="Command core_dumps_limits stdout" time="0.000">
+<system-err>Command: core_dumps_limits: stdout: patterns not found: [* hard core 0]</system-err>
+<failure>Command: core_dumps_limits: stdout: patterns not found: [* hard core 0]</failure>
+</testcase>
+<testcase name="Command udf exit-status" time="0.150">
+<system-out>Command: udf: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command udf stdout" time="0.000">
+<system-out>Command: udf: stdout: all expectations found: [install /bin/true]</system-out>
+</testcase>
+<testcase name="Command floppy_nodev exit-status" time="0.172">
+<system-out>Command: floppy_nodev: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command floppy_nodev stdout" time="0.000">
+<system-out>Command: floppy_nodev: stdout: all expectations found: [Passed_Check]</system-out>
+</testcase>
+<testcase name="Package rsh installed" time="0.264">
+<system-out>Package: rsh: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_perms exit-status" time="0.390">
+<system-out>Command: /etc/ssh/ssh_host_key_perms: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command /etc/ssh/ssh_host_key_perms stdout" time="0.000">
+<system-out>Command: /etc/ssh/ssh_host_key_perms: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Package net-snmp installed" time="0.370">
+<system-out>Package: net-snmp: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package crond installed" time="0.399">
+<system-err>Package: crond: installed: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>Package: crond: installed: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="Package telnet installed" time="0.246">
+<system-out>Package: telnet: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package ypbind installed" time="0.235">
+<system-out>Package: ypbind: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package squid installed" time="0.264">
+<system-out>Package: squid: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package avahi installed" time="0.361">
+<system-out>Package: avahi: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package xorgs-x11-servers installed" time="0.258">
+<system-out>Package: xorgs-x11-servers: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package auditd installed" time="0.237">
+<system-err>Package: auditd: installed: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>Package: auditd: installed: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="Package chrony installed" time="0.291">
+<system-out>Package: chrony: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package setroubleshoot installed" time="0.183">
+<system-out>Package: setroubleshoot: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package cups installed" time="0.203">
+<system-out>Package: cups: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Command kernel_nx exit-status" time="1.766">
+<system-out>Command: kernel_nx: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command kernel_nx stdout" time="0.000">
+<system-out>Command: kernel_nx: stdout: all expectations found: [kernel: NX (Execute Disable) protection: active]</system-out>
+</testcase>
+<testcase name="Package mcstrans installed" time="0.302">
+<system-out>Package: mcstrans: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package iptables installed" time="0.232">
+<system-out>Package: iptables: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package ypserver installed" time="0.234">
+<system-out>Package: ypserver: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Command default_zone exit-status" time="1.787">
+<system-out>Command: default_zone: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command default_zone stdout" time="0.000">
+<system-out>Command: default_zone: stdout: all expectations found: [public]</system-out>
+</testcase>
+<testcase name="Package xinetd installed" time="0.283">
+<system-out>Package: xinetd: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package audit-libs installed" time="0.289">
+<system-out>Package: audit-libs: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package telnet-server installed" time="0.259">
+<system-out>Package: telnet-server: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package bind installed" time="0.232">
+<system-out>Package: bind: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package firewalld installed" time="0.236">
+<system-out>Package: firewalld: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package sudo installed" time="0.299">
+<system-out>Package: sudo: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package prelink installed" time="0.284">
+<system-out>Package: prelink: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package rsyslog installed" time="0.153">
+<system-out>Package: rsyslog: installed: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Package samba installed" time="0.267">
+<system-out>Package: samba: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package vsftpd installed" time="0.307">
+<system-out>Package: vsftpd: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package openldap-servers installed" time="0.261">
+<system-out>Package: openldap-servers: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package httpd installed" time="0.199">
+<system-out>Package: httpd: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package talk installed" time="0.260">
+<system-out>Package: talk: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package openldap-clients installed" time="0.209">
+<system-out>Package: openldap-clients: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package dovecot installed" time="0.264">
+<system-out>Package: dovecot: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Package dhcp installed" time="0.228">
+<system-out>Package: dhcp: installed: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service rsyslog enabled" time="0.082">
+<system-out>Service: rsyslog: enabled: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service rsyslog running" time="0.088">
+<system-out>Service: rsyslog: running: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service crond enabled" time="0.095">
+<system-out>Service: crond: enabled: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service crond running" time="0.125">
+<system-out>Service: crond: running: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/rsyslog.conf exists" time="0.000">
+<system-out>File: /etc/rsyslog.conf: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/rsyslog.conf contains" time="0.000">
+<system-err>File: /etc/rsyslog.conf: contains: patterns not found: [$FileCreateMode 06[0:4]0]</system-err>
+<failure>File: /etc/rsyslog.conf: contains: patterns not found: [$FileCreateMode 06[0:4]0]</failure>
+</testcase>
+<testcase name="File /etc/security/pwquality.conf exists" time="0.001">
+<system-out>File: /etc/security/pwquality.conf: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/security/pwquality.conf contains" time="0.000">
+<system-err>File: /etc/security/pwquality.conf: contains: patterns not found: [dcredit = -1, ucredit = -1, lcredit = -1, ocredit = -1]</system-err>
+<failure>File: /etc/security/pwquality.conf: contains: patterns not found: [dcredit = -1, ucredit = -1, lcredit = -1, ocredit = -1]</failure>
+</testcase>
+<testcase name="File /etc/login.defs exists" time="0.000">
+<system-out>File: /etc/login.defs: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/login.defs contains" time="0.000">
+<system-out>File: /etc/login.defs: contains: all expectations found: [/^PASS_WARN_AGE\s*7/, !/^PASS_WARN_AGE\s*[1-6]/]</system-out>
+</testcase>
+<testcase name="File /etc/chrony.conf exists" time="0.000">
+<system-out>File: /etc/chrony.conf: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/chrony.conf contains" time="0.000">
+<system-out>File: /etc/chrony.conf: contains: all expectations found: [server]</system-out>
+</testcase>
+<testcase name="File /etc/ssh/sshd_config exists" time="0.000">
+<system-out>File: /etc/ssh/sshd_config: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/ssh/sshd_config contains" time="0.000">
+<system-out>File: /etc/ssh/sshd_config: contains: all expectations found: [HostbasedAuthentication no, !/^HostbasedAuthentication yes/]</system-out>
+</testcase>
+<testcase name="File /etc/pam.d/password-auth exists" time="0.000">
+<system-out>File: /etc/pam.d/password-auth: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/pam.d/password-auth contains" time="0.000">
+<system-err>File: /etc/pam.d/password-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]</system-err>
+<failure>File: /etc/pam.d/password-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]</failure>
+</testcase>
+<testcase name="File /etc/sudoers exists" time="0.000">
+<system-out>File: /etc/sudoers: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/sudoers contains" time="0.000">
+<system-err>File: /etc/sudoers: contains: patterns not found: [/^Defaults logfile=/var/log//, !/^#Defaults logfile=/]</system-err>
+<failure>File: /etc/sudoers: contains: patterns not found: [/^Defaults logfile=/var/log//, !/^#Defaults logfile=/]</failure>
+</testcase>
+<testcase name="File /etc/cron.d exists" time="0.000">
+<system-out>File: /etc/cron.d: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/cron.d mode" time="0.000">
+<system-err>File: /etc/cron.d: mode: doesn&#39;t match, expect: [&#34;0700&#34;] found: [&#34;0755&#34;]</system-err>
+<failure>File: /etc/cron.d: mode: doesn&#39;t match, expect: [&#34;0700&#34;] found: [&#34;0755&#34;]</failure>
+</testcase>
+<testcase name="File /etc/cron.d owner" time="0.000">
+<system-out>File: /etc/cron.d: owner: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/cron.d group" time="0.000">
+<system-out>File: /etc/cron.d: group: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/systemd/journald.conf exists" time="0.000">
+<system-out>File: /etc/systemd/journald.conf: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/systemd/journald.conf contains" time="0.000">
+<system-err>File: /etc/systemd/journald.conf: contains: patterns not found: [Storage=persistent]</system-err>
+<failure>File: /etc/systemd/journald.conf: contains: patterns not found: [Storage=persistent]</failure>
+</testcase>
+<testcase name="File /etc/crontab exists" time="0.002">
+<system-out>File: /etc/crontab: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/crontab mode" time="0.000">
+<system-out>File: /etc/crontab: mode: matches expectation: [&#34;0644&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/crontab owner" time="0.000">
+<system-out>File: /etc/crontab: owner: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/crontab group" time="0.035">
+<system-out>File: /etc/crontab: group: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue exists" time="0.000">
+<system-out>File: /etc/issue: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/issue mode" time="0.000">
+<system-out>File: /etc/issue: mode: matches expectation: [&#34;0644&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue owner" time="0.000">
+<system-out>File: /etc/issue: owner: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue group" time="0.000">
+<system-out>File: /etc/issue: group: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue contains" time="0.000">
+<system-out>File: /etc/issue: contains: all expectations found: [![Cc]ent[Oo][Ss], ![Rr]hel, ![Rr]ed[Hh]at, !x86_64, ![Ll]inux]</system-out>
+</testcase>
+<testcase name="File /etc/sysconfig/chronyd exists" time="0.000">
+<system-out>File: /etc/sysconfig/chronyd: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/sysconfig/chronyd contains" time="0.000">
+<system-out>File: /etc/sysconfig/chronyd: contains: all expectations found: [OPTIONS=&#34;-u chrony&#34;]</system-out>
+</testcase>
+<testcase name="File /boot/grub2/user.cfg exists" time="0.000">
+<system-err>File: /boot/grub2/user.cfg: exists: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>File: /boot/grub2/user.cfg: exists: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="File /boot/grub2/user.cfg mode" time="0.000">
+<skipped/><system-out>File: /boot/grub2/user.cfg: mode: skipped</system-out>
+</testcase>
+<testcase name="File /boot/grub2/user.cfg owner" time="0.000">
+<skipped/><system-out>File: /boot/grub2/user.cfg: owner: skipped</system-out>
+</testcase>
+<testcase name="File /boot/grub2/user.cfg group" time="0.000">
+<skipped/><system-out>File: /boot/grub2/user.cfg: group: skipped</system-out>
+</testcase>
+<testcase name="File /etc/pam.d/system-auth exists" time="0.000">
+<system-out>File: /etc/pam.d/system-auth: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/pam.d/system-auth contains" time="0.000">
+<system-err>File: /etc/pam.d/system-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]</system-err>
+<failure>File: /etc/pam.d/system-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]</failure>
+</testcase>
+<testcase name="File /etc/issue.net exists" time="0.000">
+<system-out>File: /etc/issue.net: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/issue.net mode" time="0.000">
+<system-out>File: /etc/issue.net: mode: matches expectation: [&#34;0644&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue.net owner" time="0.000">
+<system-out>File: /etc/issue.net: owner: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue.net group" time="0.000">
+<system-out>File: /etc/issue.net: group: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/issue.net contains" time="0.000">
+<system-out>File: /etc/issue.net: contains: all expectations found: [![Cc]ent[Oo][Ss], ![Rr]hel, ![Rr]ed[Hh]at, !x86_64, ![Ll]inux]</system-out>
+</testcase>
+<testcase name="File /etc/rsyslog.d/*.conf exists" time="0.000">
+<system-err>File: /etc/rsyslog.d/*.conf: exists: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>File: /etc/rsyslog.d/*.conf: exists: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="File /etc/rsyslog.d/*.conf contains" time="0.000">
+<skipped/><system-out>File: /etc/rsyslog.d/*.conf: contains: skipped</system-out>
+</testcase>
+<testcase name="File /etc/motd exists" time="0.000">
+<system-out>File: /etc/motd: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/motd mode" time="0.000">
+<system-out>File: /etc/motd: mode: matches expectation: [&#34;0644&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/motd owner" time="0.000">
+<system-out>File: /etc/motd: owner: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/motd group" time="0.000">
+<system-out>File: /etc/motd: group: matches expectation: [&#34;root&#34;]</system-out>
+</testcase>
+<testcase name="File /etc/motd contains" time="0.000">
+<system-out>File: /etc/motd: contains: all expectations found: [![Cc]ent[Oo][Ss], ![Rr]hel, ![Rr]ed[Hh]at, !x86_64, ![Ll]inux]</system-out>
+</testcase>
+<testcase name="File /etc/profile exists" time="0.000">
+<system-out>File: /etc/profile: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/profile contains" time="0.000">
+<system-out>File: /etc/profile: contains: all expectations found: [/^TMOUT=([1-8][0-9]{0,2}|900)/, /^readonly TMOUT/]</system-out>
+</testcase>
+<testcase name="File /etc/at.allow exists" time="0.000">
+<system-err>File: /etc/at.allow: exists: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>File: /etc/at.allow: exists: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="File /etc/at.allow mode" time="0.000">
+<skipped/><system-out>File: /etc/at.allow: mode: skipped</system-out>
+</testcase>
+<testcase name="File /etc/at.allow owner" time="0.000">
+<skipped/><system-out>File: /etc/at.allow: owner: skipped</system-out>
+</testcase>
+<testcase name="File /etc/at.allow group" time="0.000">
+<skipped/><system-out>File: /etc/at.allow: group: skipped</system-out>
+</testcase>
+<testcase name="File /etc/at.deny exists" time="0.000">
+<system-err>File: /etc/at.deny: exists: doesn&#39;t match, expect: [false] found: [true]</system-err>
+<failure>File: /etc/at.deny: exists: doesn&#39;t match, expect: [false] found: [true]</failure>
+</testcase>
+<testcase name="File /boot/grub2/grub.cfg exists" time="0.000">
+<system-out>File: /boot/grub2/grub.cfg: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /boot/grub2/grub.cfg contains" time="0.000">
+<system-err>File: /boot/grub2/grub.cfg: contains: patterns not found: [GRUB_CMDLINE_LINUX=&#34;audit_backlog_limit=2048&#34;]</system-err>
+<failure>File: /boot/grub2/grub.cfg: contains: patterns not found: [GRUB_CMDLINE_LINUX=&#34;audit_backlog_limit=2048&#34;]</failure>
+</testcase>
+<testcase name="File /etc/audit/auditd.conf exists" time="0.000">
+<system-out>File: /etc/audit/auditd.conf: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/audit/auditd.conf contains" time="0.000">
+<system-err>File: /etc/audit/auditd.conf: contains: patterns not found: [space_left_action = email, /^admin_space_left_action = halt/]</system-err>
+<failure>File: /etc/audit/auditd.conf: contains: patterns not found: [space_left_action = email, /^admin_space_left_action = halt/]</failure>
+</testcase>
+<testcase name="File /etc/bashrc exists" time="0.000">
+<system-out>File: /etc/bashrc: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="File /etc/bashrc contains" time="0.000">
+<system-err>File: /etc/bashrc: contains: patterns not found: [/^TMOUT=([1-8][0-9]{0,2}|900)/, /^readonly TMOUT/]</system-err>
+<failure>File: /etc/bashrc: contains: patterns not found: [/^TMOUT=([1-8][0-9]{0,2}|900)/, /^readonly TMOUT/]</failure>
+</testcase>
+<testcase name="User root exists" time="0.000">
+<system-err>root: exists: Error: Missing Required Attribute</system-err>
+<failure>root: exists: Error: Missing Required Attribute</failure>
+</testcase>
+<testcase name="User root uid" time="0.000">
+<skipped/><system-out>User: root: uid: skipped</system-out>
+</testcase>
+<testcase name="User root gid" time="0.000">
+<skipped/><system-out>User: root: gid: skipped</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.log_martians value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.all.log_martians: value: doesn&#39;t match, expect: [&#34;1&#34;] found: [&#34;0&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.all.log_martians: value: doesn&#39;t match, expect: [&#34;1&#34;] found: [&#34;0&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.send_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.all.send_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.all.send_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.default.send_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.default.send_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.default.send_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.secure_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.all.secure_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.all.secure_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.accept_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.all.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.all.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.all.accept_ra value" time="0.000">
+<system-err>KernelParam: net.ipv6.conf.all.accept_ra: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv6.conf.all.accept_ra: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.default.log_martians value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.default.log_martians: value: doesn&#39;t match, expect: [&#34;1&#34;] found: [&#34;0&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.default.log_martians: value: doesn&#39;t match, expect: [&#34;1&#34;] found: [&#34;0&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.tcp_syncookies value" time="0.000">
+<system-out>KernelParam: net.ipv4.tcp_syncookies: value: matches expectation: [&#34;1&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.icmp_echo_ignore_broadcasts value" time="0.000">
+<system-out>KernelParam: net.ipv4.icmp_echo_ignore_broadcasts: value: matches expectation: [&#34;1&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.default.accept_source_route value" time="0.000">
+<system-out>KernelParam: net.ipv6.conf.default.accept_source_route: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.all.forwarding value" time="0.000">
+<system-out>KernelParam: net.ipv6.conf.all.forwarding: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.accept_source_route value" time="0.000">
+<system-out>KernelParam: net.ipv4.conf.all.accept_source_route: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.default.accept_source_route value" time="0.000">
+<system-out>KernelParam: net.ipv4.conf.default.accept_source_route: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.default.secure_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.default.secure_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.default.secure_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.all.accept_source_route value" time="0.000">
+<system-out>KernelParam: net.ipv6.conf.all.accept_source_route: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.all.accept_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv6.conf.all.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv6.conf.all.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv4.icmp_ignore_bogus_error_responses value" time="0.000">
+<system-out>KernelParam: net.ipv4.icmp_ignore_bogus_error_responses: value: matches expectation: [&#34;1&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.all.rp_filter value" time="0.000">
+<system-out>KernelParam: net.ipv4.conf.all.rp_filter: value: matches expectation: [&#34;1&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.ip_forward value" time="0.000">
+<system-out>KernelParam: net.ipv4.ip_forward: value: matches expectation: [&#34;0&#34;]</system-out>
+</testcase>
+<testcase name="KernelParam net.ipv4.conf.default.accept_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv4.conf.default.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv4.conf.default.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.default.accept_redirects value" time="0.000">
+<system-err>KernelParam: net.ipv6.conf.default.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv6.conf.default.accept_redirects: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="KernelParam net.ipv6.conf.default.accept_ra value" time="0.000">
+<system-err>KernelParam: net.ipv6.conf.default.accept_ra: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</system-err>
+<failure>KernelParam: net.ipv6.conf.default.accept_ra: value: doesn&#39;t match, expect: [&#34;0&#34;] found: [&#34;1&#34;]</failure>
+</testcase>
+<testcase name="Mount /tmp exists" time="0.001">
+<system-out>Mount: /tmp: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Mount /tmp opts" time="0.000">
+<system-err>Mount: /tmp: opts: doesn&#39;t match, expect: [[&#34;noexec&#34;,&#34;nodev&#34;,&#34;nosuid&#34;]] found: [[&#34;rw&#34;,&#34;nodev&#34;,&#34;noexec&#34;,&#34;relatime&#34;]]</system-err>
+<failure>Mount: /tmp: opts: doesn&#39;t match, expect: [[&#34;noexec&#34;,&#34;nodev&#34;,&#34;nosuid&#34;]] found: [[&#34;rw&#34;,&#34;nodev&#34;,&#34;noexec&#34;,&#34;relatime&#34;]]</failure>
+</testcase>
+<testcase name="Mount /dev/shm exists" time="0.000">
+<system-out>Mount: /dev/shm: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Mount /dev/shm opts" time="0.000">
+<system-err>Mount: /dev/shm: opts: doesn&#39;t match, expect: [[&#34;noexec&#34;,&#34;nodev&#34;,&#34;nosuid&#34;]] found: [[&#34;rw&#34;,&#34;nosuid&#34;,&#34;nodev&#34;]]</system-err>
+<failure>Mount: /dev/shm: opts: doesn&#39;t match, expect: [[&#34;noexec&#34;,&#34;nodev&#34;,&#34;nosuid&#34;]] found: [[&#34;rw&#34;,&#34;nosuid&#34;,&#34;nodev&#34;]]</failure>
+</testcase>
+<testcase name="Mount /var exists" time="0.001">
+<system-out>Mount: /var: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Mount /var/tmp exists" time="0.001">
+<system-err>Mount: /var/tmp: exists: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>Mount: /var/tmp: exists: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="Mount /var/tmp opts" time="0.000">
+<skipped/><system-out>Mount: /var/tmp: opts: skipped</system-out>
+</testcase>
+<testcase name="Mount /var/log exists" time="0.000">
+<system-out>Mount: /var/log: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Mount /var/log/audit exists" time="0.000">
+<system-err>Mount: /var/log/audit: exists: doesn&#39;t match, expect: [true] found: [false]</system-err>
+<failure>Mount: /var/log/audit: exists: doesn&#39;t match, expect: [true] found: [false]</failure>
+</testcase>
+<testcase name="Mount /home exists" time="0.000">
+<system-out>Mount: /home: exists: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Mount /home opts" time="0.000">
+<system-out>Mount: /home: opts: matches expectation: [[&#34;nodev&#34;]]</system-out>
+</testcase>
+<testcase name="Command sticky_bit exit-status" time="2.783">
+<system-out>Command: sticky_bit: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command sticky_bit stdout" time="0.000">
+<system-out>Command: sticky_bit: stdout: all expectations found: [!/./]</system-out>
+</testcase>
+<testcase name="Service autofs enabled" time="0.103">
+<system-out>Service: autofs: enabled: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service autofs running" time="0.165">
+<system-out>Service: autofs: running: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service rhnsd enabled" time="0.075">
+<system-out>Service: rhnsd: enabled: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service rhnsd running" time="0.151">
+<system-out>Service: rhnsd: running: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service coredump enabled" time="0.086">
+<system-out>Service: coredump: enabled: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service coredump running" time="0.176">
+<system-out>Service: coredump: running: matches expectation: [false]</system-out>
+</testcase>
+<testcase name="Service firewalld enabled" time="0.176">
+<system-out>Service: firewalld: enabled: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service firewalld running" time="0.049">
+<system-out>Service: firewalld: running: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service auditd enabled" time="0.204">
+<system-out>Service: auditd: enabled: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Service auditd running" time="0.021">
+<system-out>Service: auditd: running: matches expectation: [true]</system-out>
+</testcase>
+<testcase name="Command repos_configured exit-status" time="3.214">
+<system-out>Command: repos_configured: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command nic_assigned exit-status" time="3.294">
+<system-out>Command: nic_assigned: exit-status: matches expectation: [0]</system-out>
+</testcase>
+<testcase name="Command nic_assigned stdout" time="0.000">
+<system-out>Command: nic_assigned: stdout: all expectations found: [ens192]</system-out>
+</testcase>
+<testcase name="Command security-updates exit-status" time="7.054">
+<system-err>Command: security-updates: exit-status: doesn&#39;t match, expect: [0] found: [100]</system-err>
+<failure>Command: security-updates: exit-status: doesn&#39;t match, expect: [0] found: [100]</failure>
+</testcase>
+<testcase name="Command security-updates stdout" time="0.000">
+<system-out>Command: security-updates: stdout: all expectations found: [![0-9].* packages available]</system-out>
+</testcase>
+</testsuite>

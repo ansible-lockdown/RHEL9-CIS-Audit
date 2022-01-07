@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if not .Vars.rhel9cis_ipv6_required }}
+file:
+  {{ if .Vars.rhel9cis_rule_3_6 }}
+  /boot/grub2/grubenv:
+    title: 3.6 | Disable IPv6_running_check
+    exists: true
+    contains:
+    - '/(?=\S+\s(ipv6\.disable=1.*)$)kernelopts=/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.6
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/default/grub:
+    title: 3.6 | Disable IPv6_boottime
+    exists: true
+    contains:
+    - '/(?=\S+\s(ipv6\.disable=1.*)$)^GRUB_CMDLINE_LINUX="/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.6
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

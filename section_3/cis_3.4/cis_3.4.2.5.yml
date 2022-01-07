@@ -1,0 +1,22 @@
+{{ if eq .Vars.rhel9cis_firewall "firewalld" }}
+  {{ if .Vars.rhel9cis_rule_3_4_2_5 }}
+command:
+  nic_assigned:
+    title: 3.4.2.5 | L1 | Ensure network interfaces are assigned to appropriate zone
+    exec:  "nmcli -t connection show | awk -F ':' '{if($4){print $4}}' | while read INT; do firewall-cmd --get-active-zones | grep -B1 $INT; done"
+    exit-status: 0
+    stdout:
+    {{ range .Vars.rhel9cis_firewall_interface }}
+    - '{{ . }}'
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.2.5
+      CISv8: 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

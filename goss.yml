@@ -1,0 +1,42 @@
+gossfile:
+  {{ if .Vars.rhel9cis_section1 }}
+  section_1/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section2 }}
+  section_2/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section3 }}
+  section_3/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section4 }}
+  # Auditd and level 2
+    {{ if .Vars.rhel9cis_level_2 }}
+      {{ if .Vars.rhel9cis_auditd }}
+  section_4/cis_4.1/*.yml: {}
+      {{ end }}
+    {{ end }}
+  section_4/cis_4.2/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section5 }}
+  section_5/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section6 }}
+  section_6/*/*.yml: {}
+  {{ end }}
+
+command:
+  benchmark_meta:
+    title: Benchmark MetaData
+    exec: echo BenchMark MetaData
+    exit-status: 0
+    meta:
+      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
+      benchmark_epoch: {{ .Vars.epoch }}
+      benchmark_os_locale: {{ .Vars.os_locale }}
+      benchmark_os_release: {{ .Vars.os_release }}
+      benchmark_type: {{ .Vars.benchmark }}
+      benchmark_os_distribution: {{ .Vars.os_distribution }}
+      benchmark_automation_group: {{ .Vars.auto_group }}
+      benchmark_hostname: {{ .Vars.os_hostname }}
+      benchmark_version: {{ .Vars.benchmark_version }}
+      benchmark_system_type: {{ .Vars.system_type }}

@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_3_3_1 }}
+command:
+  modprobe_dccp:
+    title: 3.3.1 | L2 | Ensure DCCP is disabled (Automated)
+    exit-status: 0
+    exec: 'modprobe -n -v dccp'
+    stdout: ['install /bin/true']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.3.1
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

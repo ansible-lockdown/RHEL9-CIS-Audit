@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_2_1_3 }}
+command:
+  perms_rsyslog_d:
+    title: 4.2.1.3 | L1 | Ensure rsyslog default file permissions configured
+    exec: 'grep -s ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf | cut -f2 -d:'
+    exit-status: 0
+    stdout:
+    - '/\$FileCreateMode 06[0:4]0/'
+    - '!/\$FileCreateMode 06[6:7][0:7]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_5_2_1 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.2.1 | L1 | Ensure permissions on /etc/ssh/sshd_config are configured
+    exists: true
+    mode: "0600"
+    owner: root
+    group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

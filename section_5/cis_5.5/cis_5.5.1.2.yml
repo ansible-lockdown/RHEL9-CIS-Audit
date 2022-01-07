@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_5_5_1_2 }}
+file:
+  /etc/login.defs:
+    title: 5.5.1.2 | L1 | Ensure minimum days between password changes is configured
+    exists: true
+    contains:
+    - '/^PASS_MIN_DAYS\s{{ .Vars.rhel9cis_pass.min_days }}/'
+    - '!/^PASS_MIN_DAYS\s[0-6]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.1.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

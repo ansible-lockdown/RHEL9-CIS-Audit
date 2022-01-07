@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_5_2_15 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.2.15 | L1 | Ensure SSH warning banner configured
+    exists: true
+    contains:
+    - '/^Banner /etc/issue.net/'
+    - '!/^Banner none/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.15
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

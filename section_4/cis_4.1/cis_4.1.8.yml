@@ -1,0 +1,43 @@
+{{ if .Vars.rhel9cis_rule_4_1_8 }}
+command:
+  auditd_locale_cnf:
+    title: 4.1.8 | L2 | Ensure events that modify the system's network environment are collected | conf check
+    exec: grep system-locale /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' 
+    - '-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale'
+    - '-w /etc/issue -p wa -k system-locale'
+    - '-w /etc/issue.net -p wa -k system-locale'
+    - '-w /etc/hosts -p wa -k system-locale'
+    - '-w /etc/sysconfig/network -p wa -k system-locale'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.8
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_locale_live:
+    title: 4.1.8 | L2 | Ensure events that modify the system's network environment are collected | running
+    exec: auditctl -l | grep system-locale
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S sethostname,setdomainname -F key=system-locale'
+    - '-a always,exit -F arch=b32 -S sethostname,setdomainname -F key=system-locale'
+    - '-w /etc/issue -p wa -k system-locale'
+    - '-w /etc/issue.net -p wa -k system-locale'
+    - '-w /etc/hosts -p wa -k system-locale'
+    - '-w /etc/sysconfig/network -p wa -k system-locale'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.8
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

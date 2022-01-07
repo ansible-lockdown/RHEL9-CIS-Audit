@@ -1,0 +1,31 @@
+{{ if .Vars.rhel9cis_rule_4_1_1_4 }}
+file:
+  /boot/grub2/grubenv:
+    title: 4.1.1.4 | L2 | Ensure audit_backlog_limit is sufficient
+    exists:  true
+    contains: 
+    - '/^kernelopts.*\saudit_backlog_limit=8192.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.4
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/default/grub:
+    title: 4.1.1.4 | L2 | Ensure audit_backlog_limit is sufficient
+    exists:  true
+    contains: 
+    - '/^GRUB_CMDLINE_LINUX=.*\saudit_backlog_limit=8192.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.4
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

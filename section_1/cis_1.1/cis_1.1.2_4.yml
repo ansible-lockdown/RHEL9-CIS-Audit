@@ -1,0 +1,29 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_2 }}
+mount:
+  /tmp:
+    title: | 
+          1.1.2 | L1 | Ensure /tmp is configured
+          1.1.3 | L1 | Ensure nodev option set on /tmp partition
+          1.1.4 | L1 | Ensure suid option set on /tmp partition
+    exists: true
+    opts:
+      {{ if .Vars.rhel9cis_rule_1_1_3 }}
+    - nodev
+      {{ end }}
+      {{ if .Vars.rhel9cis_rule_1_1_4 }}
+    - nosuid
+      {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.2
+      - 1.1.3
+      - 1.1.4
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

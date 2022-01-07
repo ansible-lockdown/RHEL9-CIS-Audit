@@ -1,0 +1,39 @@
+{{ if .Vars.rhel9cis_rule_4_1_15 }}
+command:
+  auditd_module_cnf:
+    title: 4.1.15 | L2 | Ensure kernel module loading and unloading is collected | conf check
+    exec: grep modules /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /usr/sbin/insmod -p x -k modules'
+    - '-w /usr/sbin/rmmod -p x -k modules'
+    - '-w /usr/sbin/modprobe -p x -k modules'
+    - '-a always,exit -F arch=b64 -S init_module -S delete_module -k modules'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.15
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_admin_module_live:
+    title: 4.1.15 | L2 | Ensure kernel module loading and unloading is collected | running
+    exec: auditctl -l | grep modules
+    exit-status: 0
+    stdout:
+    - '-w /usr/sbin/insmod -p x -k modules'
+    - '-w /usr/sbin/rmmod -p x -k modules'
+    - '-w /usr/sbin/modprobe -p x -k modules'
+    - '-a always,exit -F arch=b64 -S init_module,delete_module -F key=modules'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.15
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

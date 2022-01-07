@@ -1,0 +1,52 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_1_11 }}
+mount:
+  /var/log:
+    title: 1.1.11 | L2 | Ensure separate partition exists for /var/log
+    exists: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.1.11
+      CISv8: 
+      - 4.1
+      - 8.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_12 }}
+  /var/log/audit:
+    title: 1.1.12 | L2 | Ensure separate partition exists for /var/log/audit
+    exists: true
+    {{ if not .Vars.rhel9cis_auditd }}
+    skip: true
+    {{ end }}
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.1.12
+      CISv8: 
+      - 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_13 }}
+  /home:
+    title: 1.1.13 | L2 | Ensure separate partition exists for /home
+    exists: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.1.13
+      CISv8: 
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

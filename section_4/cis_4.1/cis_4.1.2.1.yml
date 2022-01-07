@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_rule_4_1_2_1 }}
+file:
+  /etc/audit/auditd.conf:
+    exists: true
+    title: 4.1.2.1 | L2 | Ensure audit log storage size is configured
+    contains:
+    - '/^max_log_file = \d+/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.2.1
+      CISv8: 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

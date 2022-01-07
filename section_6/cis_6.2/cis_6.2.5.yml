@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_5 }}
+file:
+  /etc/group:
+    title: 6.2.5 | L1 | Ensure no legacy "+" entries exist in /etc/group
+    exists: true
+    contains:
+    - '!/^\+:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.5
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}
+

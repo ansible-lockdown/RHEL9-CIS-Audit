@@ -1,0 +1,23 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_rule_1_9 }}
+command:
+  security-updates:
+    title: 1.9 | L1 | Ensure updates, patches, and additional security software are installed 
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    exec: yum check-update
+    stdout: 
+    - "![0-9].* packages available"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.9
+      CISv8:
+      - 7.3
+      - 7.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

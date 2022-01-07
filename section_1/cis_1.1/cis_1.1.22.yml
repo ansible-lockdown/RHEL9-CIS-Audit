@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_22 }}
+service:
+  autofs:
+    title: 1.1.22 | L1 | Disable Automounting
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.1.22
+      CISv8: 
+      - 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

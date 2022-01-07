@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_1_10 }}
+file:
+  /etc/crypto-policies/config:
+    title: 1.10 | L1 | Ensure system-wide crypto policy is not legacy
+    exists: true
+    contains: 
+    - '/^\s*{{ .Vars.rhel9cis_crypto_policy }}/'
+    - '!/^\s*LEGACY/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.10
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,4574 @@
+{
+    "results": [
+        {
+            "duration": 19350122,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "squashfs",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: squashfs: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.2 Ensure mounting of squashfs filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 14383,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "squashfs",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: squashfs: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.2 Ensure mounting of squashfs filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 29190338,
+            "err": null,
+            "expected": [
+                "{\"or\":[0,127]}"
+            ],
+            "found": [
+                "127"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "subscription",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: subscription: exit-status: matches expectation: [{\"or\":[0,127]}]",
+            "test-type": 0,
+            "title": "1.2.4 Ensure Redhat Subscription Manager connection configured"
+        },
+        {
+            "duration": 12009,
+            "err": null,
+            "expected": [
+                "command not found"
+            ],
+            "found": [
+                "command not found"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stderr",
+            "resource-id": "subscription",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: subscription: stderr: matches expectation: [command not found]",
+            "test-type": 2,
+            "title": "1.2.4 Ensure Redhat Subscription Manager connection configured"
+        },
+        {
+            "duration": 45894018,
+            "err": null,
+            "expected": [
+                "1"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "passwd_chg_past",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: passwd_chg_past: exit-status: matches expectation: [1]",
+            "test-type": 0,
+            "title": "5.4.1.5 Ensure all users last password change date is in the past"
+        },
+        {
+            "duration": 7480,
+            "err": null,
+            "expected": [
+                "!Failed"
+            ],
+            "found": [
+                "!Failed"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "passwd_chg_past",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: passwd_chg_past: stdout: matches expectation: [!Failed]",
+            "test-type": 2,
+            "title": "5.4.1.5 Ensure all users last password change date is in the past"
+        },
+        {
+            "duration": 27282309,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "cdrom_nodev",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_nodev: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.20 Check for removeable media nodev"
+        },
+        {
+            "duration": 5272,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "cdrom_nodev",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_nodev: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.20 Check for removeable media nodev"
+        },
+        {
+            "duration": 74189737,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "gpg_keys",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: gpg_keys: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.2.1 Ensure GPG keys are configured"
+        },
+        {
+            "duration": 104422788,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "single_user_2",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: single_user_2: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.5.3 Ensure authentication required for single user mode (Automated)"
+        },
+        {
+            "duration": 123842529,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "inactive_users",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: inactive_users: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "5.4.1.4 Ensure inactive password lock is 30 days or less"
+        },
+        {
+            "duration": 33276,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "inactive_users",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: inactive_users: stdout: patterns not found: [!/./]",
+            "test-type": 2,
+            "title": "5.4.1.4 Ensure inactive password lock is 30 days or less"
+        },
+        {
+            "duration": 122801231,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "Expected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "suid_dumpable_2",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: suid_dumpable_2: exit-status:\nExpected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "test-type": 0,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_sysctl"
+        },
+        {
+            "duration": 5796,
+            "err": null,
+            "expected": [
+                "fs.suid_dumpable = 0"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "suid_dumpable_2",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: suid_dumpable_2: stdout: patterns not found: [fs.suid_dumpable = 0]",
+            "test-type": 2,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_sysctl"
+        },
+        {
+            "duration": 77798433,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "gpg_check_repo",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: gpg_check_repo: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.2.3 Ensure gpgcheck is globally active"
+        },
+        {
+            "duration": 77647694,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "aslr_enabled_1",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: aslr_enabled_1: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.6.3 Ensure address space layout randomization (ASLR) is enabled (Automated)"
+        },
+        {
+            "duration": 3666,
+            "err": null,
+            "expected": [
+                "kernel.randomize_va_space = 2"
+            ],
+            "found": [
+                "kernel.randomize_va_space = 2"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "aslr_enabled_1",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: aslr_enabled_1: stdout: matches expectation: [kernel.randomize_va_space = 2]",
+            "test-type": 2,
+            "title": "1.6.3 Ensure address space layout randomization (ASLR) is enabled (Automated)"
+        },
+        {
+            "duration": 22431729,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "Expected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "core_dumps_limits",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: core_dumps_limits: exit-status:\nExpected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "test-type": 0,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_security_limits"
+        },
+        {
+            "duration": 12207,
+            "err": null,
+            "expected": [
+                "* hard core 0"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "core_dumps_limits",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: core_dumps_limits: stdout: patterns not found: [* hard core 0]",
+            "test-type": 2,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_security_limits"
+        },
+        {
+            "duration": 56496602,
+            "err": null,
+            "expected": [
+                "{\"lt\":3}"
+            ],
+            "found": [
+                "2"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "log_sudoers_d",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: log_sudoers_d: exit-status: matches expectation: [{\"lt\":3}]",
+            "test-type": 0,
+            "title": "1.3.3 Ensure sudo log file exists (Automated)_sudoers.d"
+        },
+        {
+            "duration": 34661,
+            "err": null,
+            "expected": [
+                "/[1:99]/"
+            ],
+            "found": [
+                "/[1:99]/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "log_sudoers_d",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: log_sudoers_d: stdout: matches expectation: [/[1:99]/]",
+            "test-type": 2,
+            "title": "1.3.3 Ensure sudo log file exists (Automated)_sudoers.d"
+        },
+        {
+            "duration": 140204913,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "floppy_noexec",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_noexec: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.19 Check for removeable media noexec"
+        },
+        {
+            "duration": 15930,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "floppy_noexec",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_noexec: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.19 Check for removeable media noexec"
+        },
+        {
+            "duration": 27160570,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "msdos",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: msdos: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 7224,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "msdos",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: msdos: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 42225374,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "Expected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "aslr_enabled_2",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: aslr_enabled_2: exit-status:\nExpected\n    \u003cint\u003e: 1\nto equal\n    \u003cint\u003e: 0",
+            "test-type": 0,
+            "title": "1.6.3 Ensure address space layout randomization (ASLR) is enabled (Automated)"
+        },
+        {
+            "duration": 13083,
+            "err": null,
+            "expected": [
+                "kernel.randomize_va_space = 2"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "aslr_enabled_2",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: aslr_enabled_2: stdout: patterns not found: [kernel.randomize_va_space = 2]",
+            "test-type": 2,
+            "title": "1.6.3 Ensure address space layout randomization (ASLR) is enabled (Automated)"
+        },
+        {
+            "duration": 48835881,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "cramfs",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cramfs: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 7198,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "cramfs",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cramfs: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 62024575,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "modprobe_sctp",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: modprobe_sctp: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "3.4.2 Ensure SCTP is disabled (Automated)"
+        },
+        {
+            "duration": 6605,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "modprobe_sctp",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: modprobe_sctp: stdout: patterns not found: [install /bin/true]",
+            "test-type": 2,
+            "title": "3.4.2 Ensure SCTP is disabled (Automated)"
+        },
+        {
+            "duration": 63731109,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "cdrom_noexec",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_noexec: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.19 Check for removeable media noexec"
+        },
+        {
+            "duration": 27236,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "cdrom_noexec",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_noexec: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.19 Check for removeable media noexec"
+        },
+        {
+            "duration": 205492397,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "/etc/ssh/ssh_host_key_perms",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_perms: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "5.2.3 Ensure permissions on SSH private host key files are configured_user"
+        },
+        {
+            "duration": 14811,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "/etc/ssh/ssh_host_key_perms",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_perms: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "5.2.3 Ensure permissions on SSH private host key files are configured_user"
+        },
+        {
+            "duration": 40235480,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "pty_sudoers_d",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: pty_sudoers_d: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.3.2 Ensure sudo commands use pty (Automated)"
+        },
+        {
+            "duration": 29347,
+            "err": null,
+            "expected": [
+                "/[1-99]/"
+            ],
+            "found": [
+                "/[1-99]/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "pty_sudoers_d",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: pty_sudoers_d: stdout: matches expectation: [/[1-99]/]",
+            "test-type": 2,
+            "title": "1.3.2 Ensure sudo commands use pty (Automated)"
+        },
+        {
+            "duration": 88864885,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "floppy_nosuid",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_nosuid: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.21 Check for removeable media nosuid"
+        },
+        {
+            "duration": 14227,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "floppy_nosuid",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_nosuid: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.21 Check for removeable media nosuid"
+        },
+        {
+            "duration": 60412062,
+            "err": null,
+            "expected": [
+                "127"
+            ],
+            "found": [
+                "127"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "iwconfig",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: iwconfig: exit-status: matches expectation: [127]",
+            "test-type": 0,
+            "title": "3.1.2 Ensure wireless interfaces are disabled (Manual)"
+        },
+        {
+            "duration": 109364944,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "auditd_grub",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: auditd_grub: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "(L2) 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Automated)"
+        },
+        {
+            "duration": 18515,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "auditd_grub",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: auditd_grub: stdout: patterns not found: [!/./]",
+            "test-type": 2,
+            "title": "(L2) 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Automated)"
+        },
+        {
+            "duration": 127729537,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "fat_live",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: fat_live: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 7929,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "fat_live",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: fat_live: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 91797975,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "vfat",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: vfat: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 3403,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "vfat",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: vfat: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 109775822,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "modprobe_dccp",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: modprobe_dccp: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "3.4.1 Ensure DCCP is disabled (Automated)"
+        },
+        {
+            "duration": 20347,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "modprobe_dccp",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: modprobe_dccp: stdout: patterns not found: [install /bin/true]",
+            "test-type": 2,
+            "title": "3.4.1 Ensure DCCP is disabled (Automated)"
+        },
+        {
+            "duration": 97478095,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "2"
+            ],
+            "human": "Expected\n    \u003cint\u003e: 2\nto equal\n    \u003cint\u003e: 0",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "check_timeout",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: check_timeout: exit-status:\nExpected\n    \u003cint\u003e: 2\nto equal\n    \u003cint\u003e: 0",
+            "test-type": 0,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-profile.d"
+        },
+        {
+            "duration": 14804,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "check_timeout",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: check_timeout: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-profile.d"
+        },
+        {
+            "duration": 100545804,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "gpg_check_global",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: gpg_check_global: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.2.3 Ensure gpgcheck is globally active"
+        },
+        {
+            "duration": 364608079,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "logfile_configured",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: logfile_configured: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "4.2.3 Ensure permissions on all logfiles are configured"
+        },
+        {
+            "duration": 16907,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "logfile_configured",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: logfile_configured: stdout: patterns not found: [!/./]",
+            "test-type": 2,
+            "title": "4.2.3 Ensure permissions on all logfiles are configured"
+        },
+        {
+            "duration": 150071709,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "floppy_nodev",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_nodev: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.20 Check for removeable media nodev"
+        },
+        {
+            "duration": 13555,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "floppy_nodev",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: floppy_nodev: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.20 Check for removeable media nodev"
+        },
+        {
+            "duration": 286618343,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "/etc/ssh/ssh_host_key_group",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_group: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "5.2.3 Ensure permissions on SSH private host key files are configured_group"
+        },
+        {
+            "duration": 49199,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "/etc/ssh/ssh_host_key_group",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_group: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "5.2.3 Ensure permissions on SSH private host key files are configured_group"
+        },
+        {
+            "duration": 133096472,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "fat",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: fat: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 13854,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "fat",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: fat: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.4 Ensure mounting of fat filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 143816865,
+            "err": null,
+            "expected": [
+                "1"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "secure_system_LK",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: secure_system_LK: exit-status: matches expectation: [1]",
+            "test-type": 0,
+            "title": ""
+        },
+        {
+            "duration": 6381,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "secure_system_LK",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: secure_system_LK: stdout: matches expectation: [0]",
+            "test-type": 2,
+            "title": ""
+        },
+        {
+            "duration": 162780781,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "cdrom_nosuid",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_nosuid: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.21 Check for removeable media nosuid"
+        },
+        {
+            "duration": 13377,
+            "err": null,
+            "expected": [
+                "Passed_Check"
+            ],
+            "found": [
+                "Passed_Check"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "cdrom_nosuid",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: cdrom_nosuid: stdout: matches expectation: [Passed_Check]",
+            "test-type": 2,
+            "title": "1.1.21 Check for removeable media nosuid"
+        },
+        {
+            "duration": 74180338,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "suid_dumpable_1",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: suid_dumpable_1: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_sysctl"
+        },
+        {
+            "duration": 6148,
+            "err": null,
+            "expected": [
+                "fs.suid_dumpable = 0"
+            ],
+            "found": [
+                "fs.suid_dumpable = 0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "suid_dumpable_1",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: suid_dumpable_1: stdout: matches expectation: [fs.suid_dumpable = 0]",
+            "test-type": 2,
+            "title": "1.6.1 Ensure core dumps are restricted (Automated)_sysctl"
+        },
+        {
+            "duration": 156278297,
+            "err": null,
+            "expected": [
+                "1"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "secure_system_accts",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: secure_system_accts: exit-status: matches expectation: [1]",
+            "test-type": 0,
+            "title": "5.4.2 Ensure system accounts are secured (Automated)"
+        },
+        {
+            "duration": 13725,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "secure_system_accts",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: secure_system_accts: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "5.4.2 Ensure system accounts are secured (Automated)"
+        },
+        {
+            "duration": 253339319,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "/etc/ssh/ssh_host_key_user",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_user: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "5.2.3 Ensure permissions on SSH pub host key files are configured_user"
+        },
+        {
+            "duration": 22843,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "/etc/ssh/ssh_host_key_user",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: /etc/ssh/ssh_host_key_user: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "5.2.3 Ensure permissions on SSH pub host key files are configured_user"
+        },
+        {
+            "duration": 74077262,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "udf",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: udf: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.1.3 Ensure mounting of udf filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 7060,
+            "err": null,
+            "expected": [
+                "install /bin/true"
+            ],
+            "found": [
+                "install /bin/true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "udf",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: udf: stdout: matches expectation: [install /bin/true]",
+            "test-type": 2,
+            "title": "1.1.1.3 Ensure mounting of udf filesystems is disabled (Automated)"
+        },
+        {
+            "duration": 47330192,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "single_user_1",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: single_user_1: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.5.3 Ensure authentication required for single user mode (Automated)"
+        },
+        {
+            "duration": 127949910,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "inactive_passwd",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: inactive_passwd: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "5.4.1.4 Ensure inactive password lock is 30 days or less"
+        },
+        {
+            "duration": 93174,
+            "err": null,
+            "expected": [
+                "/^INACTIVE=[1-30]/"
+            ],
+            "found": [
+                "/^INACTIVE=[1-30]/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "inactive_passwd",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: inactive_passwd: stdout: matches expectation: [/^INACTIVE=[1-30]/]",
+            "test-type": 2,
+            "title": "5.4.1.4 Ensure inactive password lock is 30 days or less"
+        },
+        {
+            "duration": 128491231,
+            "err": null,
+            "expected": [
+                "1"
+            ],
+            "found": [
+                "1"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "mta_installed",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: mta_installed: exit-status: matches expectation: [1]",
+            "test-type": 0,
+            "title": "2.2.16 Ensure mail transfer agent is configured for local-only mode (Automated)"
+        },
+        {
+            "duration": 14930,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "mta_installed",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: mta_installed: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "2.2.16 Ensure mail transfer agent is configured for local-only mode (Automated)"
+        },
+        {
+            "duration": 152079102,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "squid",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: squid: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.14 Ensure http proxy Server is not installed (Automated)"
+        },
+        {
+            "duration": 327230364,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "telnet-server",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: telnet-server: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.19 Ensure telnet-server is not installed (Automated)"
+        },
+        {
+            "duration": 303501908,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "net-snmp",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: net-snmp: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.15 Ensure net-snmp is not installed (Automated)"
+        },
+        {
+            "duration": 899594513,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "kernel_nx",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: kernel_nx: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.6.2 Ensure XD/NX support is enabled (Automated)"
+        },
+        {
+            "duration": 9021,
+            "err": null,
+            "expected": [
+                "kernel: NX (Execute Disable) protection: active"
+            ],
+            "found": [
+                "kernel: NX (Execute Disable) protection: active"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "kernel_nx",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: kernel_nx: stdout: matches expectation: [kernel: NX (Execute Disable) protection: active]",
+            "test-type": 2,
+            "title": "1.6.2 Ensure XD/NX support is enabled (Automated)"
+        },
+        {
+            "duration": 399523762,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "rsyslog",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: rsyslog: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.2.1.1 Ensure rsyslog is installed (Automated)"
+        },
+        {
+            "duration": 277768235,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "cups",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: cups: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.4 Ensure CUPS is not installed (Automated)"
+        },
+        {
+            "duration": 157164796,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "bind",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: bind: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.9 Ensure DNS Server is not installed (Automated)"
+        },
+        {
+            "duration": 178466017,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "ypbind",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: ypbind: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.3.1 Ensure NIS Client is not installed (Automated)"
+        },
+        {
+            "duration": 216603471,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "sudo",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: sudo: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.3.1 Ensure sudo is installed (Automated)"
+        },
+        {
+            "duration": 250685318,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "vsftpd",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: vsftpd: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.10 Ensure FTP Server is not installed (Automated)"
+        },
+        {
+            "duration": 274718142,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "xorgs-x11-servers",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: xorgs-x11-servers: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.2 Ensure X11 Server components are not installed (Automated)"
+        },
+        {
+            "duration": 290326594,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "mcstrans",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: mcstrans: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.7.1.8 Ensure the MCS Translation Service (mcstrans) is not installed"
+        },
+        {
+            "duration": 275775171,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "httpd",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: httpd: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.11 Ensure HTTP Server is not installed (Automated)"
+        },
+        {
+            "duration": 248513947,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "avahi",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: avahi: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.3 Ensure Avahi Server is not installed (Automated)"
+        },
+        {
+            "duration": 249915118,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "chrony",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: chrony: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "2.2.1.1 Ensure time synchronization is in use (Manual)_chrony"
+        },
+        {
+            "duration": 235686387,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "talk",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: talk: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.3.3 Ensure talk client is not installed (Automated)"
+        },
+        {
+            "duration": 285104141,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "crond",
+            "resource-type": "Package",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Package: crond: installed:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "5.1.1 Ensure cron daemon is enabled and running (Automated)"
+        },
+        {
+            "duration": 237764908,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "telnet",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: telnet: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.3.4 Ensure telnet client is not installed (Automated)"
+        },
+        {
+            "duration": 214189434,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "xinetd",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: xinetd: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.1 Ensure xinetd is not installed (Automated)"
+        },
+        {
+            "duration": 270472323,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "audit-libs",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: audit-libs: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.1.1.1 Ensure auditd is installed (Automated)"
+        },
+        {
+            "duration": 162968285,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "dhcp",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: dhcp: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.5 Ensure DHCP Server is not installed (Automated)"
+        },
+        {
+            "duration": 201956206,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "samba",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: samba: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.13 Ensure Samba is not installed (Automated)"
+        },
+        {
+            "duration": 250538765,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "auditd",
+            "resource-type": "Package",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Package: auditd: installed:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "(L2) 4.1.1.1 Ensure auditd is installed (Automated)"
+        },
+        {
+            "duration": 252885067,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "ypserver",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: ypserver: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.18 Ensure NIS server is not installed (Automated)"
+        },
+        {
+            "duration": 264943890,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "firewalld",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: firewalld: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "3.5.1.1 Ensure FirewallD is installed (Automated)"
+        },
+        {
+            "duration": 256015590,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "dovecot",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: dovecot: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.12 Ensure IMAP and POP3 Server is not installed (Automated)"
+        },
+        {
+            "duration": 277109662,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "openldap-servers",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: openldap-servers: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.2.6 Ensure LDAP server is not installed (Automated)"
+        },
+        {
+            "duration": 283187562,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "rsh",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: rsh: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.3.2 Ensure rsh client is not installed (Automated)"
+        },
+        {
+            "duration": 175519662,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "iptables",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: iptables: installed: matches expectation: [true]",
+            "test-type": 0,
+            "title": "3.5.1.1 Ensure FirewallD is installed (Automated)"
+        },
+        {
+            "duration": 198093037,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "openldap-clients",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: openldap-clients: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "2.3.5 Ensure LDAP client is not installed (Automated)"
+        },
+        {
+            "duration": 185811593,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "prelink",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: prelink: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.6.4 Ensure prelink is disabled (Automated)"
+        },
+        {
+            "duration": 70254033,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "coredump",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: coredump: enabled: matches expectation: [false]",
+            "test-type": 0,
+            "title": ""
+        },
+        {
+            "duration": 78113233,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "coredump",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: coredump: running: matches expectation: [false]",
+            "test-type": 0,
+            "title": ""
+        },
+        {
+            "duration": 162973629,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "installed",
+            "resource-id": "setroubleshoot",
+            "resource-type": "Package",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Package: setroubleshoot: installed: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.7.1.7 Ensure SETroubleshoot is not installed (Automated)"
+        },
+        {
+            "duration": 23988931,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "auditd",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: auditd: enabled: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 4.1.1.2 Ensure auditd service is enabled and running (Automated)"
+        },
+        {
+            "duration": 103020195,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "auditd",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: auditd: running: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 4.1.1.2 Ensure auditd service is enabled and running (Automated)"
+        },
+        {
+            "duration": 55153284,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "rsyslog",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: rsyslog: enabled: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.2.1.2 Ensure rsyslog Service is enabled and running (Automated)"
+        },
+        {
+            "duration": 107979781,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "rsyslog",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: rsyslog: running: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.2.1.2 Ensure rsyslog Service is enabled and running (Automated)"
+        },
+        {
+            "duration": 263840,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/pam.d/system-auth",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/pam.d/system-auth: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.3.4 Ensure password reuse is limited"
+        },
+        {
+            "duration": 80233,
+            "err": null,
+            "expected": [
+                "/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/pam.d/system-auth",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/pam.d/system-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]",
+            "test-type": 2,
+            "title": "5.3.4 Ensure password reuse is limited"
+        },
+        {
+            "duration": 12770,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/ssh/sshd_config",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/ssh/sshd_config: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.2.9 Ensure SSH HostbasedAuthentication is disabled"
+        },
+        {
+            "duration": 65744,
+            "err": null,
+            "expected": [
+                "HostbasedAuthentication no",
+                "!/^HostbasedAuthentication yes/"
+            ],
+            "found": [
+                "HostbasedAuthentication no",
+                "!/^HostbasedAuthentication yes/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/ssh/sshd_config",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/ssh/sshd_config: contains: matches expectation: [HostbasedAuthentication no !/^HostbasedAuthentication yes/]",
+            "test-type": 2,
+            "title": "5.2.9 Ensure SSH HostbasedAuthentication is disabled"
+        },
+        {
+            "duration": 11516,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/systemd/journald.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/systemd/journald.conf: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.2.2.3 Ensure journald is configured to write logfiles to persistent disk"
+        },
+        {
+            "duration": 22378,
+            "err": null,
+            "expected": [
+                "Storage=persistent"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/systemd/journald.conf",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/systemd/journald.conf: contains: patterns not found: [Storage=persistent]",
+            "test-type": 2,
+            "title": "4.2.2.3 Ensure journald is configured to write logfiles to persistent disk"
+        },
+        {
+            "duration": 15164,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/at.allow",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/at.allow: exists:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "5.1.9 Ensure at is restricted to authorized users"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/at.allow",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /etc/at.allow: mode: skipped",
+            "test-type": 1,
+            "title": "5.1.9 Ensure at is restricted to authorized users"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/at.allow",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /etc/at.allow: owner: skipped",
+            "test-type": 1,
+            "title": "5.1.9 Ensure at is restricted to authorized users"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/at.allow",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /etc/at.allow: group: skipped",
+            "test-type": 1,
+            "title": "5.1.9 Ensure at is restricted to authorized users"
+        },
+        {
+            "duration": 43818,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/issue",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.8.1.2 \u0026 5 Ensure local login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 18381,
+            "err": null,
+            "expected": [
+                "\"0644\""
+            ],
+            "found": [
+                "\"0644\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/issue",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue: mode: matches expectation: [\"0644\"]",
+            "test-type": 0,
+            "title": "1.8.1.2 \u0026 5 Ensure local login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 55905,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/issue",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue: owner: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.2 \u0026 5 Ensure local login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 44437,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/issue",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue: group: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.2 \u0026 5 Ensure local login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 19392,
+            "err": null,
+            "expected": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "found": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/issue",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue: contains: matches expectation: [![Cc]ent[Oo][Ss] ![Rr]hel ![Rr]ed[Hh]at !x86_64 ![Ll]inux]",
+            "test-type": 2,
+            "title": "1.8.1.2 \u0026 5 Ensure local login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 9401,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/pam.d/password-auth",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/pam.d/password-auth: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.3.4 Ensure password reuse is limited"
+        },
+        {
+            "duration": 48925,
+            "err": null,
+            "expected": [
+                "/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/pam.d/password-auth",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/pam.d/password-auth: contains: patterns not found: [/^password sufficient pam_unix.so sha512 shadow nullok try_first_pass remember=5 user_authtok/]",
+            "test-type": 2,
+            "title": "5.3.4 Ensure password reuse is limited"
+        },
+        {
+            "duration": 7182,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/login.defs",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/login.defs: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.4.1.3 Ensure password expiration warning days is 7 or more"
+        },
+        {
+            "duration": 62333,
+            "err": null,
+            "expected": [
+                "/^PASS_WARN_AGE\\s*7/",
+                "!/^PASS_WARN_AGE\\s*[1-6]/"
+            ],
+            "found": [
+                "/^PASS_WARN_AGE\\s*7/",
+                "!/^PASS_WARN_AGE\\s*[1-6]/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/login.defs",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/login.defs: contains: matches expectation: [/^PASS_WARN_AGE\\s*7/ !/^PASS_WARN_AGE\\s*[1-6]/]",
+            "test-type": 2,
+            "title": "5.4.1.3 Ensure password expiration warning days is 7 or more"
+        },
+        {
+            "duration": 8932,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/profile",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/profile: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-profile"
+        },
+        {
+            "duration": 147380,
+            "err": null,
+            "expected": [
+                "/^TMOUT=([1-8][0-9]{0,2}|900)/",
+                "/^readonly TMOUT/"
+            ],
+            "found": [
+                "/^TMOUT=([1-8][0-9]{0,2}|900)/",
+                "/^readonly TMOUT/"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/profile",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/profile: contains: matches expectation: [/^TMOUT=([1-8][0-9]{0,2}|900)/ /^readonly TMOUT/]",
+            "test-type": 2,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-profile"
+        },
+        {
+            "duration": 9404,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/rsyslog.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/rsyslog.conf: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "4.2.1.3 Ensure rsyslog default file permissions configured"
+        },
+        {
+            "duration": 36904,
+            "err": null,
+            "expected": [
+                "$FileCreateMode 06[0:4]0",
+                "!$FileCreateMode 06[6:7][0:7]"
+            ],
+            "found": [
+                "!$FileCreateMode 06[6:7][0:7]"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/rsyslog.conf",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/rsyslog.conf: contains: patterns not found: [$FileCreateMode 06[0:4]0]",
+            "test-type": 2,
+            "title": "4.2.1.3 Ensure rsyslog default file permissions configured"
+        },
+        {
+            "duration": 8021,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/audit/auditd.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/audit/auditd.conf: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 4.1.2.3 Ensure system is disabled when audit logs are full (Automated)"
+        },
+        {
+            "duration": 36969,
+            "err": null,
+            "expected": [
+                "space_left_action = email",
+                "action_mail_acct = root",
+                "/^admin_space_left_action = halt/"
+            ],
+            "found": [
+                "action_mail_acct = root"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/audit/auditd.conf",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/audit/auditd.conf: contains: patterns not found: [space_left_action = email, /^admin_space_left_action = halt/]",
+            "test-type": 2,
+            "title": "(L2) 4.1.2.3 Ensure system is disabled when audit logs are full (Automated)"
+        },
+        {
+            "duration": 300471,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/boot/grub2/user.cfg",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /boot/grub2/user.cfg: exists:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "1.5.1 Ensure bootloader password is set (Automated) and permissions"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/boot/grub2/user.cfg",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /boot/grub2/user.cfg: mode: skipped",
+            "test-type": 1,
+            "title": "1.5.1 Ensure bootloader password is set (Automated) and permissions"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/boot/grub2/user.cfg",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /boot/grub2/user.cfg: owner: skipped",
+            "test-type": 1,
+            "title": "1.5.1 Ensure bootloader password is set (Automated) and permissions"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/boot/grub2/user.cfg",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /boot/grub2/user.cfg: group: skipped",
+            "test-type": 1,
+            "title": "1.5.1 Ensure bootloader password is set (Automated) and permissions"
+        },
+        {
+            "duration": 10331,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/cron.d",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/cron.d: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.1.7 Ensure permissions on /etc/cron.d are configured"
+        },
+        {
+            "duration": 21630,
+            "err": null,
+            "expected": [
+                "\"0700\""
+            ],
+            "found": [
+                "\"0755\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 0755\nto equal\n    \u003cstring\u003e: 0700",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/cron.d",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/cron.d: mode:\nExpected\n    \u003cstring\u003e: 0755\nto equal\n    \u003cstring\u003e: 0700",
+            "test-type": 0,
+            "title": "5.1.7 Ensure permissions on /etc/cron.d are configured"
+        },
+        {
+            "duration": 53975,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/cron.d",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/cron.d: owner: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "5.1.7 Ensure permissions on /etc/cron.d are configured"
+        },
+        {
+            "duration": 41925,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/cron.d",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/cron.d: group: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "5.1.7 Ensure permissions on /etc/cron.d are configured"
+        },
+        {
+            "duration": 57375,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: true\nto equal\n    \u003cbool\u003e: false",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/at.deny",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/at.deny: exists:\nExpected\n    \u003cbool\u003e: true\nto equal\n    \u003cbool\u003e: false",
+            "test-type": 0,
+            "title": "5.1.9 Ensure at is restricted to authorized users"
+        },
+        {
+            "duration": 9277,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/issue.net",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue.net: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.8.1.3 \u0026 6 Ensure remote login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 6509,
+            "err": null,
+            "expected": [
+                "\"0644\""
+            ],
+            "found": [
+                "\"0644\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/issue.net",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue.net: mode: matches expectation: [\"0644\"]",
+            "test-type": 0,
+            "title": "1.8.1.3 \u0026 6 Ensure remote login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 44601,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/issue.net",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue.net: owner: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.3 \u0026 6 Ensure remote login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 39996,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/issue.net",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue.net: group: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.3 \u0026 6 Ensure remote login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 19828,
+            "err": null,
+            "expected": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "found": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/issue.net",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/issue.net: contains: matches expectation: [![Cc]ent[Oo][Ss] ![Rr]hel ![Rr]ed[Hh]at !x86_64 ![Ll]inux]",
+            "test-type": 2,
+            "title": "1.8.1.3 \u0026 6 Ensure remote login warning banner is configured properly (Automated)"
+        },
+        {
+            "duration": 9988,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/security/pwquality.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/security/pwquality.conf: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.3.1 Ensure password creation requirements are configured"
+        },
+        {
+            "duration": 31292,
+            "err": null,
+            "expected": [
+                "dcredit = -1",
+                "ucredit = -1",
+                "lcredit = -1",
+                "ocredit = -1"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/security/pwquality.conf",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/security/pwquality.conf: contains: patterns not found: [dcredit = -1, ucredit = -1, lcredit = -1, ocredit = -1]",
+            "test-type": 2,
+            "title": "5.3.1 Ensure password creation requirements are configured"
+        },
+        {
+            "duration": 7304,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/sysconfig/chronyd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/sysconfig/chronyd: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "2.2.1.2 Ensure chrony is configured (Automated)_sysconf"
+        },
+        {
+            "duration": 13842,
+            "err": null,
+            "expected": [
+                "OPTIONS=\"-u chrony\""
+            ],
+            "found": [
+                "OPTIONS=\"-u chrony\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/sysconfig/chronyd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/sysconfig/chronyd: contains: matches expectation: [OPTIONS=\"-u chrony\"]",
+            "test-type": 2,
+            "title": "2.2.1.2 Ensure chrony is configured (Automated)_sysconf"
+        },
+        {
+            "duration": 8191,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/sudoers",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/sudoers: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.3.3 Ensure sudo log file exists (Automated)"
+        },
+        {
+            "duration": 78516,
+            "err": null,
+            "expected": [
+                "/^Defaults logfile=/var/log//",
+                "!/^#Defaults logfile=/"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/sudoers",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/sudoers: contains: patterns not found: [/^Defaults logfile=/var/log//, !/^#Defaults logfile=/]",
+            "test-type": 2,
+            "title": "1.3.3 Ensure sudo log file exists (Automated)"
+        },
+        {
+            "duration": 8542,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/crontab",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/crontab: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.1.2 Ensure permissions on /etc/crontab are configured"
+        },
+        {
+            "duration": 7103,
+            "err": null,
+            "expected": [
+                "\"0644\""
+            ],
+            "found": [
+                "\"0644\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/crontab",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/crontab: mode: matches expectation: [\"0644\"]",
+            "test-type": 0,
+            "title": "5.1.2 Ensure permissions on /etc/crontab are configured"
+        },
+        {
+            "duration": 41507,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/crontab",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/crontab: owner: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "5.1.2 Ensure permissions on /etc/crontab are configured"
+        },
+        {
+            "duration": 38463,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/crontab",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/crontab: group: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "5.1.2 Ensure permissions on /etc/crontab are configured"
+        },
+        {
+            "duration": 5782,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/bashrc",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/bashrc: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-bashrc"
+        },
+        {
+            "duration": 145156,
+            "err": null,
+            "expected": [
+                "/^TMOUT=([1-8][0-9]{0,2}|900)/",
+                "/^readonly TMOUT/"
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/bashrc",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/bashrc: contains: patterns not found: [/^TMOUT=([1-8][0-9]{0,2}|900)/, /^readonly TMOUT/]",
+            "test-type": 2,
+            "title": "5.4.4 Ensure default user shell timeout is configured (Automated)-bashrc"
+        },
+        {
+            "duration": 8644,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/motd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/motd: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.8.1.1 \u0026 4 Ensure message of the day is configured properly (Automated)"
+        },
+        {
+            "duration": 6431,
+            "err": null,
+            "expected": [
+                "\"0644\""
+            ],
+            "found": [
+                "\"0644\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "mode",
+            "resource-id": "/etc/motd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/motd: mode: matches expectation: [\"0644\"]",
+            "test-type": 0,
+            "title": "1.8.1.1 \u0026 4 Ensure message of the day is configured properly (Automated)"
+        },
+        {
+            "duration": 40323,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "owner",
+            "resource-id": "/etc/motd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/motd: owner: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.1 \u0026 4 Ensure message of the day is configured properly (Automated)"
+        },
+        {
+            "duration": 42004,
+            "err": null,
+            "expected": [
+                "\"root\""
+            ],
+            "found": [
+                "\"root\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "group",
+            "resource-id": "/etc/motd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/motd: group: matches expectation: [\"root\"]",
+            "test-type": 0,
+            "title": "1.8.1.1 \u0026 4 Ensure message of the day is configured properly (Automated)"
+        },
+        {
+            "duration": 13713,
+            "err": null,
+            "expected": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "found": [
+                "![Cc]ent[Oo][Ss]",
+                "![Rr]hel",
+                "![Rr]ed[Hh]at",
+                "!x86_64",
+                "![Ll]inux"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/motd",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/motd: contains: matches expectation: [![Cc]ent[Oo][Ss] ![Rr]hel ![Rr]ed[Hh]at !x86_64 ![Ll]inux]",
+            "test-type": 2,
+            "title": "1.8.1.1 \u0026 4 Ensure message of the day is configured properly (Automated)"
+        },
+        {
+            "duration": 7773,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/chrony.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/chrony.conf: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "2.2.1.2 Ensure chrony is configured (Automated)_conf"
+        },
+        {
+            "duration": 15053,
+            "err": null,
+            "expected": [
+                "server"
+            ],
+            "found": [
+                "server"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/chrony.conf",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /etc/chrony.conf: contains: matches expectation: [server]",
+            "test-type": 2,
+            "title": "2.2.1.2 Ensure chrony is configured (Automated)_conf"
+        },
+        {
+            "duration": 13411,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/etc/rsyslog.d/*.conf",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /etc/rsyslog.d/*.conf: exists:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "4.2.1.3 Ensure rsyslog default file permissions configured"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/etc/rsyslog.d/*.conf",
+            "resource-type": "File",
+            "result": 2,
+            "successful": true,
+            "summary-line": "File: /etc/rsyslog.d/*.conf: contains: skipped",
+            "test-type": 1,
+            "title": "4.2.1.3 Ensure rsyslog default file permissions configured"
+        },
+        {
+            "duration": 12090,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/boot/grub2/grub.cfg",
+            "resource-type": "File",
+            "result": 0,
+            "successful": true,
+            "summary-line": "File: /boot/grub2/grub.cfg: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 4.1.2.4  Ensure audit_backlog_limit is sufficient (Automated)"
+        },
+        {
+            "duration": 38803,
+            "err": null,
+            "expected": [
+                "GRUB_CMDLINE_LINUX=\"audit_backlog_limit=2048\""
+            ],
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "contains",
+            "resource-id": "/boot/grub2/grub.cfg",
+            "resource-type": "File",
+            "result": 1,
+            "successful": false,
+            "summary-line": "File: /boot/grub2/grub.cfg: contains: patterns not found: [GRUB_CMDLINE_LINUX=\"audit_backlog_limit=2048\"]",
+            "test-type": 2,
+            "title": "(L2) 4.1.2.4  Ensure audit_backlog_limit is sufficient (Automated)"
+        },
+        {
+            "duration": 39736,
+            "err": {},
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "root",
+            "resource-type": "User",
+            "result": 1,
+            "successful": false,
+            "summary-line": "root: exists: Error: Missing Required Attribute",
+            "test-type": 1,
+            "title": "5.4.3 Ensure default group for the root account is GID 0 (Automated)"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "uid",
+            "resource-id": "root",
+            "resource-type": "User",
+            "result": 2,
+            "successful": true,
+            "summary-line": "User: root: uid: skipped",
+            "test-type": 1,
+            "title": "5.4.3 Ensure default group for the root account is GID 0 (Automated)"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "gid",
+            "resource-id": "root",
+            "resource-type": "User",
+            "result": 2,
+            "successful": true,
+            "summary-line": "User: root: gid: skipped",
+            "test-type": 1,
+            "title": "5.4.3 Ensure default group for the root account is GID 0 (Automated)"
+        },
+        {
+            "duration": 146221,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.all.accept_source_route",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv6.conf.all.accept_source_route: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.3.1 Ensure source routed packets are not accepted (Automated)_ipv6_all"
+        },
+        {
+            "duration": 35834,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.tcp_syncookies",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.tcp_syncookies: value: matches expectation: [\"1\"]",
+            "test-type": 0,
+            "title": "3.3.8 Ensure TCP SYN Cookies is enabled (Automated)"
+        },
+        {
+            "duration": 28430,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.ip_forward",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.ip_forward: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.2.1 Ensure IP forwarding is disabled (Automated)_ipv4"
+        },
+        {
+            "duration": 26146,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.all.forwarding",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv6.conf.all.forwarding: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.2.1 Ensure IP forwarding is disabled (Automated)_ipv6"
+        },
+        {
+            "duration": 40895,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.default.accept_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.default.accept_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.2 Ensure ICMP redirects are not accepted (Automated)_ipv4_def"
+        },
+        {
+            "duration": 31004,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.icmp_echo_ignore_broadcasts",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.icmp_echo_ignore_broadcasts: value: matches expectation: [\"1\"]",
+            "test-type": 0,
+            "title": "3.3.5 Ensure broadcast ICMP requests are ignored (Automated)"
+        },
+        {
+            "duration": 30061,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 0\nto equal\n    \u003cstring\u003e: 1",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.log_martians",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.all.log_martians: value:\nExpected\n    \u003cstring\u003e: 0\nto equal\n    \u003cstring\u003e: 1",
+            "test-type": 0,
+            "title": "3.3.4 Ensure suspicious packets are logged (Automated)_all"
+        },
+        {
+            "duration": 35644,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.all.accept_ra",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv6.conf.all.accept_ra: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.9 Ensure IPv6 router advertisements are not accepted (Automated)"
+        },
+        {
+            "duration": 34265,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.send_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.all.send_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.2.2 Ensure packet redirect sending is disabled (Automated)_all"
+        },
+        {
+            "duration": 32728,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.default.secure_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.default.secure_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.3 Ensure secure ICMP redirects are not accepted (Automated)_def"
+        },
+        {
+            "duration": 34928,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.all.accept_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv6.conf.all.accept_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.2 Ensure ICMP redirects are not accepted (Automated)_ipv6"
+        },
+        {
+            "duration": 35097,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.default.accept_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv6.conf.default.accept_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.2 Ensure ICMP redirects are not accepted (Automated)_ipv6_def"
+        },
+        {
+            "duration": 62206,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.default.send_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.default.send_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.2.2 Ensure packet redirect sending is disabled (Automated)_default"
+        },
+        {
+            "duration": 30527,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.rp_filter",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.conf.all.rp_filter: value: matches expectation: [\"1\"]",
+            "test-type": 0,
+            "title": "3.3.7 Ensure Reverse Path Filtering is enabled (Automated)_def"
+        },
+        {
+            "duration": 31363,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.default.accept_source_route",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.conf.default.accept_source_route: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.3.1 Ensure source routed packets are not accepted (Automated)_ipv4_default"
+        },
+        {
+            "duration": 31824,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.accept_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.all.accept_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.2 Ensure ICMP redirects are not accepted (Automated)_ipv4"
+        },
+        {
+            "duration": 28096,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.icmp_ignore_bogus_error_responses",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.icmp_ignore_bogus_error_responses: value: matches expectation: [\"1\"]",
+            "test-type": 0,
+            "title": "3.3.6 Ensure bogus ICMP responses are ignored (Automated)"
+        },
+        {
+            "duration": 27227,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.accept_source_route",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv4.conf.all.accept_source_route: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.3.1 Ensure source routed packets are not accepted (Automated)_ipv4_all"
+        },
+        {
+            "duration": 27479,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.all.secure_redirects",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.all.secure_redirects: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.3 Ensure secure ICMP redirects are not accepted (Automated)_all"
+        },
+        {
+            "duration": 40485,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"1\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.default.accept_ra",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv6.conf.default.accept_ra: value:\nExpected\n    \u003cstring\u003e: 1\nto equal\n    \u003cstring\u003e: 0",
+            "test-type": 0,
+            "title": "3.3.9 Ensure IPv6 router advertisements are not accepted (Automated)"
+        },
+        {
+            "duration": 28895,
+            "err": null,
+            "expected": [
+                "\"0\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv6.conf.default.accept_source_route",
+            "resource-type": "KernelParam",
+            "result": 0,
+            "successful": true,
+            "summary-line": "KernelParam: net.ipv6.conf.default.accept_source_route: value: matches expectation: [\"0\"]",
+            "test-type": 0,
+            "title": "3.3.1 Ensure source routed packets are not accepted (Automated)_ipv6_default"
+        },
+        {
+            "duration": 28051,
+            "err": null,
+            "expected": [
+                "\"1\""
+            ],
+            "found": [
+                "\"0\""
+            ],
+            "human": "Expected\n    \u003cstring\u003e: 0\nto equal\n    \u003cstring\u003e: 1",
+            "meta": null,
+            "property": "value",
+            "resource-id": "net.ipv4.conf.default.log_martians",
+            "resource-type": "KernelParam",
+            "result": 1,
+            "successful": false,
+            "summary-line": "KernelParam: net.ipv4.conf.default.log_martians: value:\nExpected\n    \u003cstring\u003e: 0\nto equal\n    \u003cstring\u003e: 1",
+            "test-type": 0,
+            "title": "3.3.4 Ensure suspicious packets are logged (Automated)_def"
+        },
+        {
+            "duration": 551385,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/var/tmp",
+            "resource-type": "Mount",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Mount: /var/tmp: exists:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "(L2) 1.1.11_14 Ensure separate partition exists for /var/tmp (Automated)"
+        },
+        {
+            "duration": 0,
+            "err": null,
+            "expected": null,
+            "found": null,
+            "human": "",
+            "meta": null,
+            "property": "opts",
+            "resource-id": "/var/tmp",
+            "resource-type": "Mount",
+            "result": 2,
+            "successful": true,
+            "summary-line": "Mount: /var/tmp: opts: skipped",
+            "test-type": 1,
+            "title": "(L2) 1.1.11_14 Ensure separate partition exists for /var/tmp (Automated)"
+        },
+        {
+            "duration": 510512,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/var/log",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /var/log: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 1.1.15 Ensure separate partition exists for /var/log (Automated)"
+        },
+        {
+            "duration": 436484,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "Expected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/var/log/audit",
+            "resource-type": "Mount",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Mount: /var/log/audit: exists:\nExpected\n    \u003cbool\u003e: false\nto equal\n    \u003cbool\u003e: true",
+            "test-type": 0,
+            "title": "(L2) 1.1.16  Ensure separate partition exists for /var/log/audit (Automated)"
+        },
+        {
+            "duration": 426644,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/home",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /home: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.1.17 Ensure separate partition exists for /home (Automated)"
+        },
+        {
+            "duration": 16622,
+            "err": null,
+            "expected": [
+                "[\"nodev\"]"
+            ],
+            "found": [
+                "[\"rw\",\"nodev\",\"relatime\"]"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "opts",
+            "resource-id": "/home",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /home: opts: matches expectation: [[\"nodev\"]]",
+            "test-type": 0,
+            "title": "1.1.17 Ensure separate partition exists for /home (Automated)"
+        },
+        {
+            "duration": 439157,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/tmp",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /tmp: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.1.2_5 Ensure /tmp is configured (Automated) with mount options"
+        },
+        {
+            "duration": 24128,
+            "err": null,
+            "expected": [
+                "[\"noexec\",\"nodev\",\"nosuid\"]"
+            ],
+            "found": [
+                "[\"rw\",\"nodev\",\"noexec\",\"relatime\"]"
+            ],
+            "human": "Expected\n    \u003c[]string | len:4, cap:4\u003e: [\"rw\", \"nodev\", \"noexec\", \"relatime\"]\nto contain element matching\n    \u003cstring\u003e: nosuid",
+            "meta": null,
+            "property": "opts",
+            "resource-id": "/tmp",
+            "resource-type": "Mount",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Mount: /tmp: opts:\nExpected\n    \u003c[]string | len:4, cap:4\u003e: [\"rw\", \"nodev\", \"noexec\", \"relatime\"]\nto contain element matching\n    \u003cstring\u003e: nosuid",
+            "test-type": 0,
+            "title": "1.1.2_5 Ensure /tmp is configured (Automated) with mount options"
+        },
+        {
+            "duration": 454465,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/dev/shm",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /dev/shm: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "1.1.6_9 Ensure /dev/shm is configured"
+        },
+        {
+            "duration": 15540,
+            "err": null,
+            "expected": [
+                "[\"noexec\",\"nodev\",\"nosuid\"]"
+            ],
+            "found": [
+                "[\"rw\",\"nosuid\",\"nodev\"]"
+            ],
+            "human": "Expected\n    \u003c[]string | len:3, cap:3\u003e: [\"rw\", \"nosuid\", \"nodev\"]\nto contain element matching\n    \u003cstring\u003e: noexec",
+            "meta": null,
+            "property": "opts",
+            "resource-id": "/dev/shm",
+            "resource-type": "Mount",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Mount: /dev/shm: opts:\nExpected\n    \u003c[]string | len:3, cap:3\u003e: [\"rw\", \"nosuid\", \"nodev\"]\nto contain element matching\n    \u003cstring\u003e: noexec",
+            "test-type": 0,
+            "title": "1.1.6_9 Ensure /dev/shm is configured"
+        },
+        {
+            "duration": 472648,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exists",
+            "resource-id": "/var",
+            "resource-type": "Mount",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Mount: /var: exists: matches expectation: [true]",
+            "test-type": 0,
+            "title": "(L2) 1.1.10 Ensure separate partition exists for /var (Automated)"
+        },
+        {
+            "duration": 113497121,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "firewalld",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: firewalld: enabled: matches expectation: [true]",
+            "test-type": 0,
+            "title": "3.5.1.4 Ensure firewalld service is enabled and running (Automated)"
+        },
+        {
+            "duration": 118406116,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "firewalld",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: firewalld: running: matches expectation: [true]",
+            "test-type": 0,
+            "title": "3.5.1.4 Ensure firewalld service is enabled and running (Automated)"
+        },
+        {
+            "duration": 73204752,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "crond",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: crond: enabled: matches expectation: [true]",
+            "test-type": 0,
+            "title": ""
+        },
+        {
+            "duration": 67859216,
+            "err": null,
+            "expected": [
+                "true"
+            ],
+            "found": [
+                "true"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "crond",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: crond: running: matches expectation: [true]",
+            "test-type": 0,
+            "title": ""
+        },
+        {
+            "duration": 91479763,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "autofs",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: autofs: enabled: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.1.23 Disable Automounting"
+        },
+        {
+            "duration": 56958007,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "autofs",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: autofs: running: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.1.23 Disable Automounting"
+        },
+        {
+            "duration": 79686835,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "enabled",
+            "resource-id": "rhnsd",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: rhnsd: enabled: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.2.5 Disable the rhnsd Daemon (Manual)"
+        },
+        {
+            "duration": 45688929,
+            "err": null,
+            "expected": [
+                "false"
+            ],
+            "found": [
+                "false"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "running",
+            "resource-id": "rhnsd",
+            "resource-type": "Service",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Service: rhnsd: running: matches expectation: [false]",
+            "test-type": 0,
+            "title": "1.2.5 Disable the rhnsd Daemon (Manual)"
+        },
+        {
+            "duration": 2021013020,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "sticky_bit",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: sticky_bit: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.1.22 Ensure sticky bit is set on all world-writable directories"
+        },
+        {
+            "duration": 22749,
+            "err": null,
+            "expected": [
+                "!/./"
+            ],
+            "found": [
+                "!/./"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "sticky_bit",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: sticky_bit: stdout: matches expectation: [!/./]",
+            "test-type": 2,
+            "title": "1.1.22 Ensure sticky bit is set on all world-writable directories"
+        },
+        {
+            "duration": 2515682961,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "default_zone",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: default_zone: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "3.5.1.5 Ensure default zone is set (Automated)"
+        },
+        {
+            "duration": 6205,
+            "err": null,
+            "expected": [
+                "public"
+            ],
+            "found": [
+                "public"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "default_zone",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: default_zone: stdout: matches expectation: [public]",
+            "test-type": 2,
+            "title": "3.5.1.5 Ensure default zone is set (Automated)"
+        },
+        {
+            "duration": 3152274841,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "nic_assigned",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: nic_assigned: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "3.5.1.6 Ensure network interfaces are assigned to appropriate zone"
+        },
+        {
+            "duration": 15230,
+            "err": null,
+            "expected": [
+                "ens192"
+            ],
+            "found": [
+                "ens192"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "nic_assigned",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: nic_assigned: stdout: matches expectation: [ens192]",
+            "test-type": 2,
+            "title": "3.5.1.6 Ensure network interfaces are assigned to appropriate zone"
+        },
+        {
+            "duration": 5345698737,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "100"
+            ],
+            "human": "Expected\n    \u003cint\u003e: 100\nto equal\n    \u003cint\u003e: 0",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "security-updates",
+            "resource-type": "Command",
+            "result": 1,
+            "successful": false,
+            "summary-line": "Command: security-updates: exit-status:\nExpected\n    \u003cint\u003e: 100\nto equal\n    \u003cint\u003e: 0",
+            "test-type": 0,
+            "title": "1.9 Ensure updates, patches, and additional security software are installed (Automated)"
+        },
+        {
+            "duration": 37753,
+            "err": null,
+            "expected": [
+                "![0-9].* packages available"
+            ],
+            "found": [
+                "![0-9].* packages available"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "stdout",
+            "resource-id": "security-updates",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: security-updates: stdout: matches expectation: [![0-9].* packages available]",
+            "test-type": 2,
+            "title": "1.9 Ensure updates, patches, and additional security software are installed (Automated)"
+        },
+        {
+            "duration": 6063846272,
+            "err": null,
+            "expected": [
+                "0"
+            ],
+            "found": [
+                "0"
+            ],
+            "human": "",
+            "meta": null,
+            "property": "exit-status",
+            "resource-id": "repos_configured",
+            "resource-type": "Command",
+            "result": 0,
+            "successful": true,
+            "summary-line": "Command: repos_configured: exit-status: matches expectation: [0]",
+            "test-type": 0,
+            "title": "1.2.2 Ensure Package manager repositories are configured"
+        }
+    ],
+    "summary": {
+        "failed-count": 46,
+        "summary-line": "Count: 230, Failed: 46, Duration: 6.675s",
+        "test-count": 230,
+        "total-duration": 6674737386
+    }
+}

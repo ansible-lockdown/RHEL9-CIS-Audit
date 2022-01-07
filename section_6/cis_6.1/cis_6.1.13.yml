@@ -1,0 +1,21 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_rule_6_1_13 }}
+command:
+  audit_suid_exec:
+    title: 6.1.13 | L1 | Audit SUID executables
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -4000"
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.13
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

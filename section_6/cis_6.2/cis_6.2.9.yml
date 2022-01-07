@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_9 }}
+command:
+  dot_file_perms:
+    title: 6.2.9 | L1 | Ensure users dot files are not group or world writable
+    exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
+    exit-status: 0
+    stdout: 
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.9
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

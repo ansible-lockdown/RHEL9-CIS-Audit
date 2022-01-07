@@ -1,0 +1,22 @@
+{{ if .Vars.rhel9cis_level_2 }}
+{{ if .Vars.rhel9cis_rule_1_11 }}
+  {{ if eq .Vars.rhel9cis_crypto_policy "DEFAULT" }}
+file:
+  /etc/crypto-policies/config:
+    title: 1.11 | L2 | Ensure system-wide crypto policy is FUTURE or FIPS
+    exists: true
+    contains: 
+    - '/^\s{{ .Vars.rhel9cis_crypto_policy }}\s*(\s+#.*)?$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.11
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}
+{{ end }}

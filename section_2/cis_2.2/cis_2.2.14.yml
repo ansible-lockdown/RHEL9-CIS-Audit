@@ -1,0 +1,19 @@
+{{ if not .Vars.rhel9cis_ldap_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_14 }}
+service:
+  slapd:
+    title: 2.2.14 | L1 | Ensure LDAP server is not enabled
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.14
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

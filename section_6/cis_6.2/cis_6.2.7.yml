@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_7 }}
+command:
+  home_dirs_restrict:
+    title: 6.2.7 | L1 | Ensure all users' home directories permissions are 750 or more restrictive
+    exec: "for i in `getent passwd {1000..60000} |  awk '{split($0,a,\":\");print a[6]}'`; do stat -c \"%a %n\" $i ; done"
+    exit-status: 0
+    stdout:
+    - '/7[0,5]0\s/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.7
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_rule_6_2_1 }}
+file:
+  /etc/shadow:
+    title: 6.2.1 | L1 | Ensure /etc/shadow password fields are not empty
+    exists: true
+    contains:
+    - '!/^.*:(\$|\!|\*).*:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

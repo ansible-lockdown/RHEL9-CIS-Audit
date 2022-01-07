@@ -1,0 +1,23 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_level_1 }}
+    {{ if .Vars.rhel9cis_rule_1_1_21 }}
+command:
+  sticky_bit:
+    title: 1.1.21 | L1 | Ensure sticky bit is set on all world-writable directories
+    exit-status: 0
+    exec: "df --local -P 2> /dev/null | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
+    timeout: {{ .Vars.timeout_ms }}
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.21
+      CISv8: 
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

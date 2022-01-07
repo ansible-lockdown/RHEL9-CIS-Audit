@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_6_2_15 }}
+command:
+  no_dup_uid:
+    title: 6.2.15 | L1 | Ensure no duplicate UIDs exist
+    exec: "cat /etc/passwd | cut -d: -f3 | uniq -d"
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.15
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

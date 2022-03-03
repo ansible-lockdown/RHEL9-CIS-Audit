@@ -6,6 +6,8 @@
 #             - added vars options for bespoke vars file
 #             - Ability to run as script from remediation role increased consistency
 # 17 Dec 2021 - Added system_type variable - default Server will change to workstations with -w switch
+# 02 Mar 2022 - Updated benchmark variable naming
+
 
 #!/bin/bash
 
@@ -13,11 +15,18 @@
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
-# Goss Variables
-BENCHMARK=CIS  # Benchmark Name aligns to the audit
+# Goss host Variables
 AUDIT_BIN=/usr/local/bin/goss  # location of the goss executable
 AUDIT_FILE=goss.yml  # the default goss file used by the audit provided by the audit configuration
 AUDIT_CONTENT_LOCATION=/var/tmp  # Location of the audit configuration file as available to the OS
+
+
+# Goss benchmark variables (these should not need changing unless new release)
+BENCHMARK=CIS  # Benchmark Name aligns to the audit
+BENCHMARK_VER=notofficial
+BENCHMARK_OS=RHEL9
+
+
 
 # help output
 Help()
@@ -37,7 +46,7 @@ Help()
 
 
 # Default vars that can be set
-system_type=Server
+host_system_type=Server
 
 ## option statement
 while getopts g:o:v::wh option; do
@@ -45,7 +54,7 @@ while getopts g:o:v::wh option; do
         g ) GROUP=${OPTARG} ;;
         o ) OUTFILE=${OPTARG} ;;
         v ) VARS_PATH=${OPTARG} ;;
-        w ) system_type=Workstation ;;
+        w ) host_system_type=Workstation ;;
         h ) # display Help
             Help
             exit;;
@@ -104,23 +113,23 @@ fi
 
 ## System variables captured for metadata
 
-machine_uuid=`if [ ! -z /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi`
-epoch=`date +%s`
-os_locale=`date +%Z`
-os_name=`grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d ' ' -f1`
-os_version=`grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2`
-os_hostname=`hostname`
+host_machine_uuid=`if [ ! -z /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi`
+host_epoch=`date +%s`
+host_os_locale=`date +%Z`
+host_os_name=`grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d ' ' -f1`
+host_os_version=`grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2`
+host_os_hostname=`hostname`
 
 ## Set variable audit_out
 if [ -z $OUTFILE ]; then
-  export audit_out=$AUDIT_CONTENT_LOCATION/audit_$os_hostname_$epoch.json
+  export audit_out=$AUDIT_CONTENT_LOCATION/audit_${host_os_hostname}_${host_epoch}.json
 else
   export audit_out=$OUTFILE
 fi
 
 
 ## Set the AUDIT json string
-audit_json_vars='{"benchmark":"'"$BENCHMARK"'","machine_uuid":"'"$machine_uuid"'","epoch":"'"$epoch"'","os_locale":"'"$os_locale"'","os_release":"'"$os_version"'","os_distribution":"'"$os_name"'","os_hostname":"'"$os_hostname"'","auto_group":"'"$auto_group"'","system_type":"'"$system_type"'"}'
+audit_json_vars='{"benchmark_type":"'"$BENCHMARK"'","benchmark_os":"'"$BENCHMARK_OS"'","benchmark_version":"'"$BENCHMARK_VER"'","machine_uuid":"'"$host_machine_uuid"'","epoch":"'"$host_epoch"'","os_locale":"'"$host_os_locale"'","os_release":"'"$host_os_version"'","os_distribution":"'"$host_os_name"'","os_hostname":"'"$host_os_hostname"'","auto_group":"'"$host_auto_group"'","system_type":"'"$host_system_type"'"}'
 
 ## Run pre checks
 

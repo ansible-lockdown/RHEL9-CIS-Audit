@@ -30,13 +30,14 @@ command:
     exec: echo BenchMark MetaData
     exit-status: 0
     meta:
-      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
-      benchmark_epoch: {{ .Vars.epoch }}
-      benchmark_os_locale: {{ .Vars.os_locale }}
-      benchmark_os_release: {{ .Vars.os_release }}
-      benchmark_type: {{ .Vars.benchmark }}
-      benchmark_os_distribution: {{ .Vars.os_distribution }}
-      benchmark_automation_group: {{ .Vars.auto_group }}
-      benchmark_hostname: {{ .Vars.os_hostname }}
+      host_machine_uuid: {{ .Vars.machine_uuid }}
+      host_epoch: {{ .Vars.epoch }}
+      host_os_locale: {{ .Vars.os_locale }}
+      host_os_release: {{ .Vars.os_release }}
+      host_os_distribution: {{ .Vars.os_distribution }}
+      host_automation_group: {{ .Vars.auto_group }}
+      host_hostname: {{ .Vars.os_hostname }}
+      host_system_type: {{ .Vars.system_type }}
+      benchmark_type: {{ .Vars.benchmark_type }}
       benchmark_version: {{ .Vars.benchmark_version }}
-      benchmark_system_type: {{ .Vars.system_type }}
+      benchmark_os: {{ .Vars.benchmark_os }}

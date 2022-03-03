@@ -282,7 +282,6 @@ script variables
 example:
 
 ```sh
-BENCHMARK=CIS  # Benchmark Name aligns to the audit
 AUDIT_BIN=/usr/local/bin/goss  # location of the goss executable
 AUDIT_FILE=goss.yml  # the default goss file used by the audit provided by the audit configuration
 AUDIT_CONTENT_LOCATION=/var/tmp  # Location of the audit configuration file as available to the OS
@@ -293,12 +292,13 @@ script help
 ```sh
 Script to run the goss audit
 
-Syntax:  ./run_audit.sh [-g|-o|-v| -h]
+Syntax: ./run_audit.sh [-g|-o|-v|-w|-h]
 options:
-  -g     optional - Add a group that the server should be grouped with (default value = ungrouped)
-  -o     optional - file to output audit data
-  -v     optional - relative path to thevars file to load (default e.g. $AUDIT_CONTENT_LOCATION/RHEL7-$BENCHMARK/vars/$BENCHMARK.yml)
-  -h     Print this Help.
+-g     optional - Add a group that the server should be grouped with (default value = ungrouped)
+-o     optional - file to output audit data
+-v     optional - relative path to thevars file to load (default e.g. /var/tmp/RHEL7-CIS/vars/CIS.yml)
+-w     optional - Sets the system_type to workstation (Default - Server)
+-h     Print this Help.
 
 Other options can be assigned in the script itself
 ```
@@ -308,7 +308,6 @@ Other options can be assigned in the script itself
 Similar to the Linux variables that can be set within the script
 
 ```sh
-$BENCHMARK = "CIS"
 $AUDIT_BIN = "C:\vagrant\goss.exe"
 $AUDIT_FILE = "goss.yml"
 $AUDIT_VARS = "vars\$BENCHMARK.yml"

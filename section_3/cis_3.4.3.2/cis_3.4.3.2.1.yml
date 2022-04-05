@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_2_1 }}
+command:
+  ipt_loopback:
+    title: 3.4.3.2.1 | Ensure iptables loopback traffic is configured
+    exec: echo "Manual - Please confirm iptables loopback connections are configured and matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.2.1
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

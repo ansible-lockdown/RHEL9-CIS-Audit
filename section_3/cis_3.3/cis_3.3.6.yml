@@ -1,13 +1,13 @@
-{{ if .Vars.rhel9cis_rule_3_2_5 }}
+{{ if .Vars.rhel9cis_rule_3_3_6 }}
 kernel-param:
-  net.ipv4.icmp_echo_ignore_broadcasts:
-    title: 3.2.5 | L1 | Ensure broadcast ICMP requests are ignored
+  net.ipv4.icmp_ignore_bogus_error_responses:
+    title: 3.3.6 | Ensure bogus ICMP responses are ignored
     value: '1'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.2.5
+      - 3.3.6
       CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true

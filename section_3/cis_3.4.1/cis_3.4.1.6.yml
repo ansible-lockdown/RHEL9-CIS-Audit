@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_3_4_1_6 }}
+command:
+  nic_assigned:
+    title: 3.4.1.6 | Ensure network interfaces are assigned to appropriate zone
+    exec: echo "Warning - Ensure correct interfaces are assigned to firewall rules as per site policy"
+    exit-status: 0
+    stdout:
+    - '!/Warning/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.6
+      CISv8: 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

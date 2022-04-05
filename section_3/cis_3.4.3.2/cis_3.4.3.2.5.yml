@@ -1,0 +1,34 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_2_5 }}
+file:
+  /etc/sysconfig/iptables:
+    title: 3.4.3.2.5 | Ensure iptables rules are saved | file exists
+    exists: true
+    mode: '0640'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.2.5
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  ipt_rules_saved:
+    title: 3.4.3.2.5 | Ensure iptables rules are saved | file content
+    exec: echo "Manual - Please confirm iptables saved file matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.2.5
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_3_4 }}
+command:
+  ipt6_def_deny:
+    title: 3.4.3.3.4 | Ensure ip6tables default deny firewall policy
+    exec: echo "Manual - Please confirm ip6tables default denies are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.3.4
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

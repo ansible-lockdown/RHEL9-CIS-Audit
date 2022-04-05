@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_1_2 }}
+package:
+  nftables:
+    title: 3.4.3.1.2 | Ensure nftables is not installed with iptables
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.1.2
+      CISv8: 
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

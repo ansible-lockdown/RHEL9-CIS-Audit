@@ -1,0 +1,16 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_3_6 }}
+service:
+  i6ptables:
+    title: 3.4.3.3.6 | Ensure ip6tables is enabled and active
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.3.3.6
+      CISv8: 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

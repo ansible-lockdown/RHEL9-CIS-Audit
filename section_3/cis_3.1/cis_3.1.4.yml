@@ -1,14 +1,14 @@
-{{ if .Vars.rhel9cis_rule_3_5 }}
+{{ if .Vars.rhel9cis_rule_3_1_4 }}
 command:
   wireless_disabled:
-    title: 3.5 | L1 | Ensure wireless interfaces are disabled (Manual)
+    title: 3.1.4 | Ensure wireless interfaces are disabled
     exit-status: 0
     exec: 'nmcli radio all | tail -1'
     stdout:
     - '/^(enabled|disabled)\s\s(disabled)\s\s(enabled|disabled)\s\s(disabled)/'
     meta:
       server: 1
-      workstation: 2
+      workstation: NA
       CIS_ID:
       - 3.5
       CISv8: 4.8
@@ -16,4 +16,3 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

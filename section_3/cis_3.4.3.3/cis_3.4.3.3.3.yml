@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_3_4_3_3_3 }}
+command:
+  ipt6_open_ports:
+    title: 3.4.3.3.3 | Ensure ip6tables firewall rules exist for all open ports
+    exec: echo "Manual - Please confirm ip6tables rules for open ports configured and matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.3.3
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

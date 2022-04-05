@@ -1,17 +1,17 @@
 {{ if .Vars.rhel9cis_rule_6_2_10 }}
 command:
-  dot_forward_files:
-    title: 6.2.10 | L1 | Ensure no users have .forward files
-    exec: 'find /home/ -name .forward'
+  home_dirs_owned:
+    title: 6.2.10 | Ensure users own their home directories
+    exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $6 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
     exit-status: 0
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.10
-      CISv8: 4.1
+      CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

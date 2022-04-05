@@ -1,9 +1,9 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_6_1_13 }}
 command:
-  audit_suid_exec:
-    title: 6.1.13 | L1 | Audit SUID executables
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -4000"
+  no_ungrouped:
+    title: 6.1.13 | Ensure no ungrouped files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

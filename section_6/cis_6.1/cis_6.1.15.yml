@@ -1,18 +1,18 @@
 {{ if .Vars.run_heavy_tests }}
-  {{ if .Vars.rhel9cis_rule_6_1_14 }}
+  {{ if .Vars.rhel9cis_rule_6_1_15 }}
 command:
-  audit_suid_exec:
-    title: 6.1.14 | Audit SUID executables
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -4000"
-    exit-status: 0
+  audit_sgid:
+    title: 6.1.15 | Audit SGID executables
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000"
     timeout: {{ .Vars.timeout_ms }}
+    exit-status: 0
     stdout:
     - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 6.1.14
+      - 6.1.15
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true

@@ -1,9 +1,9 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_6_1_12 }}
 command:
-  no_ungrouped:
-    title: 6.1.12 | L1 | Ensure no ungrouped files or directories exist
-    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
+  unowned_dirs:
+    title: 6.1.12 | Ensure no unowned files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

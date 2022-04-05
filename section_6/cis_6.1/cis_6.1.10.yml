@@ -1,13 +1,11 @@
-{{ if .Vars.run_heavy_tests }}
-command:
-  {{ if .Vars.rhel9cis_rule_6_1_10 }}
-  world_writable:
-    title: 6.1.10 | L1 | Ensure no world writable files exist
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002"
-    exit-status: 0
-    timeout: {{ .Vars.timeout_ms }}
-    stdout:
-    - '!/./'
+{{ if .Vars.rhel9cis_rule_6_1_10 }}
+file:
+  /etc/gshadow-:
+    title: 6.1.10 | Ensure permissions on /etc/gshadow- are configured
+    exists: true
+    mode: "0000"
+    owner: root
+    group: root
     meta:
       server: 1
       workstation: 1
@@ -17,5 +15,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
 {{ end }}
+

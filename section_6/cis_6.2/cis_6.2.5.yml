@@ -1,10 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_2_5 }}
-file:
-  /etc/group:
-    title: 6.2.5 | L1 | Ensure no legacy "+" entries exist in /etc/group
-    exists: true
-    contains:
-    - '!/^\+:/'
+command:
+  no_dup_username:
+    title: 6.2.5 | Ensure no duplicate user names exist
+    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
+    exit-status: 0
+    stdout:
+    - '!/./'
     meta:
       server: 1
       workstation: 1
@@ -15,4 +16,3 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

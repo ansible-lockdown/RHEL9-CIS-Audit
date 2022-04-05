@@ -1,22 +1,22 @@
-{{ if .Vars.rhel9cis_rule_5_5_1_4 }}
+{{ if .Vars.rhel9cis_rule_5_6_1_4 }}
 command:
   inactive_passwd:
-    title: 5.5.1.4 | L1 | Ensure inactive password lock is 30 days or less
+    title: 5.6.1.4 | Ensure inactive password lock is 30 days or less
     exec: useradd -D | grep INACTIVE
     exit-status: 0
     stdout:
-    - '/^INACTIVE=[0-2][0-9]|INACTIVE=30/'
+    - '/^INACTIVE=([1-9]|[0-2][0-9]|30)/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 5.5.1.4
-      CISv8: 4.1
+      - 5.6.1.4
+      CISv8: 5.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   inactive_users:
-    title: 5.5.1.4 | L1 | Ensure inactive password lock is 30 days or less
+    title: 5.6.1.4 | Ensure inactive password lock is 30 days or less
     exec: 'grep -E ^[^:]+:[^\!*] /etc/shadow | grep -vw root | cut -d : -f1,7'
     stdout:
     - '!/.//'
@@ -25,8 +25,8 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 5.5.1.4
-      CISv8: 4.1
+      - 5.6.1.4
+      CISv8: 5.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

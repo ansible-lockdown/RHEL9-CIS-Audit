@@ -1,18 +1,18 @@
 {{ if .Vars.rhel9cis_rule_5_2_16 }}
 file:
   /etc/ssh/sshd_config:
-    title: 5.2.16 | L1 | Ensure SSH PAM is enabled
+    title: 5.2.16 | Ensure SSH MaxAuthTries is set to 4 or less
     exists: true
     contains:
-    - '/^UsePAM yes/'
-    - '!/^UsePAM no/'
+    - "/^MaxAuthTries [1:4]/"
+    - "!/^MaxAuthTries [5:9]/"
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.16
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}

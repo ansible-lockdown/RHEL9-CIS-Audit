@@ -1,14 +1,10 @@
 {{ if .Vars.rhel9cis_rule_1_5_2 }}
-  {{ if .Vars.rhel9cis_set_boot_pass }}
-  /boot/grub2/user.cfg:
-    title: 1.5.2 | L1 | Ensure bootloader password is set and permissions
+file:
+  /etc/systemd/coredump.conf:
+    title: 1.5.2 | Ensure core dump backtraces are disabled
     exists: true
-    owner: root
-    group: root
-    mode: "0600"
-    {{ if .Vars.rhel9cis_set_boot_pass }}
-    contains: [GRUB2_PASSWORD=<encrypted-password>]
-    {{ end }}
+    contains:
+    - '/ProcessSizeMax=0/'
     meta:
       server: 1
       workstation: 1
@@ -19,5 +15,4 @@
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
 {{ end }}

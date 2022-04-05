@@ -1,0 +1,20 @@
+{{ if not .Vars.rhel9cis_selinux_disable }}
+  {{ if .Vars.rhel9cis_rule_1_6_1_6 }}
+command:
+  selinux_unconfined:
+    title: 1.6.1.6 | Ensure no unconfined services exist
+    exit-status: 1
+    exec: "ps -eZ | grep unconfined_service_t"
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.6
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

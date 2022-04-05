@@ -1,0 +1,18 @@
+{{ if not .Vars.rhel9cis_selinux_disable }}
+package:
+  {{ if  .Vars.rhel9cis_rule_1_6_1_1 }}
+  libselinux:
+    title: 1.6.1.1 | Ensure SELinux is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.1
+      CISv8: 
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

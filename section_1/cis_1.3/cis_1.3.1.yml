@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_1_3_1 }}
 package:
-  sudo:
-    title: 1.3.1 | L1 | Ensure sudo is installed (Automated)
+  aide:
+    title: 1.3.1 | Ensure AIDE is installed
     installed: true
     meta:
       server: 1
@@ -9,8 +9,8 @@ package:
       CIS_ID: 
       - 1.3.1
       CISv8: 
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
+      - 13.4
+      CISv8_IG1: false
+      CISv8_IG2: false
       CISv8_IG3: true
 {{ end }}

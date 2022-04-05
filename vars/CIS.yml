@@ -1,12 +1,15 @@
 ## metadata for benchmark
 
 ## metadata for Audit benchmark
-benchmark_version: '1.0'
+benchmark_version: '2.0.0'
+
+# Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
+# If run via script this is discovered and set
+host_os_distribution: RedHat
 
 # Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
 is_redhat_os: true
 
-rhel9cis_os_distribution: redhat  # ensure this is changed accordingly for centos/rocky
 
 #  timeout for each command to run where set - default = 10seconds/10000ms
 timeout_ms: 30000

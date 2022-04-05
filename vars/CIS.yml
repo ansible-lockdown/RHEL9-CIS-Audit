@@ -14,8 +14,8 @@ timeout_ms: 60000
 # Taken from LE rhel9-cis
 rhel9cis_section1: true
 rhel9cis_section2: true
-rhel9cis_section3: false
-rhel9cis_section4: false
+rhel9cis_section3: true
+rhel9cis_section4: true
 rhel9cis_section5: false
 rhel9cis_section6: false
 
@@ -160,46 +160,63 @@ rhel9cis_rule_2_3_5: true
 rhel9cis_rule_2_4: true # todo
 
 # Section 3 rules
+# 3.1 Disable unused network protocols and devices
 rhel9cis_rule_3_1_1: true
 rhel9cis_rule_3_1_2: true
+rhel9cis_rule_3_1_3: true
+rhel9cis_rule_3_1_4: true
+# 3.2 Network Parameters (Host Only)
 rhel9cis_rule_3_2_1: true
 rhel9cis_rule_3_2_2: true
-rhel9cis_rule_3_2_3: true
-rhel9cis_rule_3_2_4: true
-rhel9cis_rule_3_2_5: true
-rhel9cis_rule_3_2_6: true
-rhel9cis_rule_3_2_7: true
-rhel9cis_rule_3_2_8: true
-rhel9cis_rule_3_2_9: true
+# 3.3 Network Parameters (Host and Router)
 rhel9cis_rule_3_3_1: true
 rhel9cis_rule_3_3_2: true
 rhel9cis_rule_3_3_3: true
 rhel9cis_rule_3_3_4: true
+rhel9cis_rule_3_3_5: true
+rhel9cis_rule_3_3_6: true
+rhel9cis_rule_3_3_7: true
+rhel9cis_rule_3_3_8: true
+rhel9cis_rule_3_3_9: true
+# 3.4.1 Configure firewalld
 rhel9cis_rule_3_4_1_1: true
+rhel9cis_rule_3_4_1_2: true
+rhel9cis_rule_3_4_1_3: true
+rhel9cis_rule_3_4_1_4: true
+rhel9cis_rule_3_4_1_5: true
+rhel9cis_rule_3_4_1_6: true
+rhel9cis_rule_3_4_1_7: true
+# 3.4.1 Configure nftables
 rhel9cis_rule_3_4_2_1: true
 rhel9cis_rule_3_4_2_2: true
 rhel9cis_rule_3_4_2_3: true
 rhel9cis_rule_3_4_2_4: true
 rhel9cis_rule_3_4_2_5: true
 rhel9cis_rule_3_4_2_6: true
-rhel9cis_rule_3_4_3_1: true
-rhel9cis_rule_3_4_3_2: true
-rhel9cis_rule_3_4_3_3: true
-rhel9cis_rule_3_4_3_4: true
-rhel9cis_rule_3_4_3_5: true
-rhel9cis_rule_3_4_3_6: true
-rhel9cis_rule_3_4_3_7: true
-rhel9cis_rule_3_4_3_8: true
-rhel9cis_rule_3_4_4_1_1: true
-rhel9cis_rule_3_4_4_1_2: true
-rhel9cis_rule_3_4_4_1_3: true
-rhel9cis_rule_3_4_4_1_4: true
-rhel9cis_rule_3_4_4_2_1: true
-rhel9cis_rule_3_4_4_2_2: true
-rhel9cis_rule_3_4_4_2_3: true
-rhel9cis_rule_3_4_4_2_4: true
-rhel9cis_rule_3_5: true
-rhel9cis_rule_3_6: true
+rhel9cis_rule_3_4_2_7: true
+rhel9cis_rule_3_4_2_8: true
+rhel9cis_rule_3_4_2_9: true
+rhel9cis_rule_3_4_2_10: true
+rhel9cis_rule_3_4_2_11: true
+# 3.4.3.1 Configure iptables
+rhel9cis_rule_3_4_3_1_1: true
+rhel9cis_rule_3_4_3_1_2: true
+rhel9cis_rule_3_4_3_1_3: true
+# 3.4.3.2 iptables ipv4
+rhel9cis_rule_3_4_3_2_1: true
+rhel9cis_rule_3_4_3_2_2: true
+rhel9cis_rule_3_4_3_2_3: true
+rhel9cis_rule_3_4_3_2_4: true
+rhel9cis_rule_3_4_3_2_5: true
+rhel9cis_rule_3_4_3_2_6: true
+# 3.4.3.2 iptables ipv6
+rhel9cis_rule_3_4_3_3_1: true
+rhel9cis_rule_3_4_3_3_2: true
+rhel9cis_rule_3_4_3_3_3: true
+rhel9cis_rule_3_4_3_3_4: true
+rhel9cis_rule_3_4_3_3_5: true
+rhel9cis_rule_3_4_3_3_6: true
+
 
 # Section 4 rules
 rhel9cis_rule_4_1_1_1: true
@@ -412,15 +429,23 @@ rhel9cis_telnet_required: false
 rhel9cis_openldap_clients_required: false
 rhel9cis_tftp_client: false
 
+
+# Section 3
+## Section 3.4
+
+### Firewall
 rhel9cis_firewall: firewalld
-# rhel9cis_firewall: iptables
-rhel9cis_default_firewall_zone: public
-rhel9cis_firewall_interface:
-  - ['ens224']
-  - ['ens192']
-rhel9cis_firewall_services:
-  - ssh
-  - dhcpv6-client
+##### firewalld
+rhel9cis_default_zone: public
+rhel9cis_firewalld_nftables_state: masked  # Note if absent removes the firewalld pkg dependancy
+#### nftables
+rhel9cis_nftables_firewalld_state: masked
+rhel9cis_nft_tables_autonewtable: true
+rhel9cis_nft_tables_tablename: filter
+rhel9cis_nft_tables_autochaincreate: true
+
+#### iptables
+rhel9cis_iptables_firewalld_state: masked
 
 ### Section 4
 ## auditd settings

@@ -1,0 +1,33 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_16 }}
+command:
+  auditd_setfacl_cnf:
+    title: 4.1.3.16 | Ensure successful and unsuccessful attempts to use the setfacl command are recorded | config
+    exec: grep setfacl /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=(unset|4294967295) -k perm_chng/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.16
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_setfacl_live:
+    title: 4.1.3.16 |Ensure successful and unsuccessful attempts to use the setfacl command are recorded | running
+    exec: auditctl -l | grep setfacl
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.16
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,16 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_1_3 }}
+service:
+  systemd-journal-upload.service:
+    title: 4.2.2.1.3 | Ensure systemd-journal-remote is enabled
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.1.3
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

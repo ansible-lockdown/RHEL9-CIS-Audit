@@ -1,0 +1,41 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_8 }}
+command:
+  auditd_identity_cnf:
+    title: 4.1.3.8 | Ensure events that modify user/group information are collected | conf check
+    exec: grep identity /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/group -p wa -k identity'
+    - '-w /etc/passwd -p wa -k identity'
+    - '-w /etc/gshadow -p wa -k identity'
+    - '-w /etc/shadow -p wa -k identity'
+    - '-w /etc/security/opasswd -p wa -k identity'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.8
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_identity_live:
+    title: 4.1.3.8 | Ensure events that modify user/group information are collected | running
+    exec: auditctl -l | grep identity
+    exit-status: 0
+    stdout:
+    - '-w /etc/group -p wa -k identity'
+    - '-w /etc/passwd -p wa -k identity'
+    - '-w /etc/gshadow -p wa -k identity'
+    - '-w /etc/shadow -p wa -k identity'
+    - '-w /etc/security/opasswd -p wa -k identity'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.8
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

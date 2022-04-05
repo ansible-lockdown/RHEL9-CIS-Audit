@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_4_1_2_3 }}
 file:
   /etc/audit/auditd.conf:
-    title: 4.1.2.3 | L2 | Ensure system is disabled when audit logs are full
+    title: 4.1.2.3 | Ensure system is disabled when audit logs are full
     exists: true
     contains:
     - space_left_action = email

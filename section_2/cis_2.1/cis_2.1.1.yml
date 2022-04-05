@@ -1,16 +1,16 @@
-{{ if not .Vars.rhel9cis_xinetd_required }}
+{{ if .Vars.rhel8cis_rule_2_1_1 }}
 package:
-  xinetd:
-    title: 2.2.1 | L1 | Ensure xinetd is not installed
-    installed: false
+  chrony:
+    title: 2.1.1 | Ensure time synchronization is in use
+    installed: true
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
       - 2.1.1
       CISv8:
-      - 4.8
+      - 8.4
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-{{ end }}    
+{{ end }}

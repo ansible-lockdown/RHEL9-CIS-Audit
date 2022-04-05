@@ -1,0 +1,53 @@
+{{ if .Vars.rhel8cis_rule_2_2_19 }}
+  {{ if not .Vars.rhel8cis_rpc_server }}
+package:
+  rpcbind:
+    title: 2.2.19 | Ensure rpcbind is not installed or the rpcbind services are masked
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.19
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel8cis_rpc_server }}
+command:
+  rpc_masked:
+    title: 2.2.19 | Ensure rpcbind is not installed or the rpcbind services are masked | rpc_masked
+    exec: systemctl is-enabled rpcbind
+    exit-status: 0
+    stdout:
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.19
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  rpc_socket_masked:
+    title: 2.2.19 | Ensure rpcbind is not installed or the rpcbind services are masked | rpc_socket_masked
+    exec: systemctl is-enabled rpcbind.socket
+    exit-status: 0
+    stdout:
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.19
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

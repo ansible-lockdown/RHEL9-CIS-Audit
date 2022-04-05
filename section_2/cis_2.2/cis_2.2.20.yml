@@ -1,33 +1,33 @@
-{{ if .Vars.rhel8cis_rule_2_2_18 }}
-  {{ if not .Vars.rhel8cis_nfs_server }}
+{{ if .Vars.rhel8cis_rule_2_2_20 }}
+  {{ if not .Vars.rhel8cis_rsyncd_server }}
 package:
-  nfs-utils:
-    title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
+  rsync:
+    title: 2.2.20 Ensure rsync is not installed or the rsyncd service is masked
     installed: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
-      - 2.2.18
+      - 2.2.20
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.rhel8cis_nfs_server }}
+  {{ if .Vars.rhel8cis_rsyncd_server }}
 command:
-  nfs_masked:
-    title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
-    exec: systemctl is-enabled nfs-server
-    exit-status: 0
+  rsyncd masked:
+    title: 2.2.20 Ensure rsync is not installed or the rsyncd service is masked
+    exit-status: 1
+    exec: systemctl is-enabled rsyncd
     stdout:
       - '/^masked/'
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
-      - 2.2.18
+      - 2.2.20
       CISv8:
       - 4.8
       CISv8_IG1: false

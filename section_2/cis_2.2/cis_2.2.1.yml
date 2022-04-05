@@ -1,14 +1,14 @@
-{{ if not .Vars.rhel8cis_nis_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_15 }}
+{{ if not .Vars.rhel8cis_xinetd_required }}
+  {{ if .Vars.rhel8cis_rule_2_2_1 }}
 package:
-  ypserv:
-    title: 2.2.15 | Ensure NIS server is not installed
+  xinetd:
+    title: 2.2.1 | Ensure xinetd is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
-      - 2.2.15
+      - 2.2.1
       CISv8:
       - 4.8
       CISv8_IG1: false

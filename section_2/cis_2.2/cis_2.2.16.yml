@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_cups_server }}
-service:
-  cups:
-  {{ if .Vars.rhel9cis_rule_2_2_16 }}
-    title: 2.2.16 | L1 | Ensure CUPS is not enabled
-    running: false
-    enabled: false
+{{ if not .Vars.rhel8cis_telnet_server }}
+  {{ if .Vars.rhel8cis_rule_2_2_16 }}
+package:
+  telnet-server:
+    title: 2.2.16 | Ensure telnet-server is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

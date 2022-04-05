@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_ldap_server }}
-  {{ if .Vars.rhel9cis_rule_2_2_14 }}
-service:
-  slapd:
-    title: 2.2.14 | L1 | Ensure LDAP server is not enabled
-    running: false
-    enabled: false
+{{ if not .Vars.rhel8cis_snmp_server}}
+  {{ if .Vars.rhel8cis_rule_2_2_14 }}
+package:
+  snmpd:
+    title: 2.2.14 | Ensure net-smp Server is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

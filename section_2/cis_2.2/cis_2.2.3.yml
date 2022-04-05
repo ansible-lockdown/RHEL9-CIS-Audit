@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_avahi_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_3 }}
+{{ if not .Vars.rhel9cis_avahi_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_3 }}
 package:
   avahi:
     title: 2.2.3 | Ensure Avahi Server is not installed | avahi pkg

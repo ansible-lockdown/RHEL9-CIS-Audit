@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_squid_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_13 }}
+{{ if not .Vars.rhel9cis_squid_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_13 }}
 package:
   squid:
     title: 2.2.13 | Ensure HTTP proxy Server is not installed

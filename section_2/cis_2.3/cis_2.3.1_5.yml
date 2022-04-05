@@ -1,6 +1,6 @@
 package:
-  {{ if not .Vars.rhel8cis_ypbind_required }}
-    {{ if .Vars.rhel8cis_rule_2_3_1 }}
+  {{ if not .Vars.rhel9cis_ypbind_required }}
+    {{ if .Vars.rhel9cis_rule_2_3_1 }}
   ypbind:
     title: 2.3.1 |  Ensure NIS Client is not installed
     installed: false
@@ -16,8 +16,8 @@ package:
       CISv8_IG3: true
       {{ end }}
   {{ end }}
-  {{ if not .Vars.rhel8cis_rsh_required }}
-    {{ if .Vars.rhel8cis_rule_2_3_2 }}
+  {{ if not .Vars.rhel9cis_rsh_required }}
+    {{ if .Vars.rhel9cis_rule_2_3_2 }}
   telnet:
     title: 2.3.2 | Ensure rsh client is not installed
     installed: false
@@ -33,8 +33,8 @@ package:
       CISv8_IG3: true
     {{ end }}
   {{ end }}
-  {{ if not .Vars.rhel8cis_talk_required }}
-    {{ if .Vars.rhel8cis_rule_2_3_3 }}
+  {{ if not .Vars.rhel9cis_talk_required }}
+    {{ if .Vars.rhel9cis_rule_2_3_3 }}
   talk:
     title: 2.3.3 | Ensure talk client is not installed
     installed: false
@@ -50,8 +50,8 @@ package:
       CISv8_IG3: true
     {{ end }}
   {{ end }}
-  {{ if not .Vars.rhel8cis_telnet_required }}
-    {{ if .Vars.rhel8cis_rule_2_3_4 }}
+  {{ if not .Vars.rhel9cis_telnet_required }}
+    {{ if .Vars.rhel9cis_rule_2_3_4 }}
   talk:
     title: 2.3.4 | Ensure telnet client is not installed
     installed: false
@@ -67,8 +67,8 @@ package:
       CISv8_IG3: true
     {{ end }}
   {{ end }}
-  {{ if not .Vars.rhel8cis_openldap_clients_required }}
-    {{ if .Vars.rhel8cis_rule_2_3_5}}
+  {{ if not .Vars.rhel9cis_openldap_clients_required }}
+    {{ if .Vars.rhel9cis_rule_2_3_5}}
   openldap-clients:
     title: 2.3.5 | Ensure LDAP client is not installed
     installed: false

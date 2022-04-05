@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_bind }}
-  {{ if .Vars.rhel8cis_rule_2_2_6 }}
+{{ if not .Vars.rhel9cis_bind }}
+  {{ if .Vars.rhel9cis_rule_2_2_6 }}
 package:
   bind:
     title: 2.2.6 | Ensure DNS Server is not installed

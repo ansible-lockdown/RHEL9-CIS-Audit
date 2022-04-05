@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_xwindows_required }}
-  {{ if .Vars.rhel8cis_rule_2_2_2 }}
+{{ if not .Vars.rhel9cis_xwindows_required }}
+  {{ if .Vars.rhel9cis_rule_2_2_2 }}
 package:
   xorg-x11-server-common:
     title: 2.2.2 | Ensure X11 Server components are not installed 

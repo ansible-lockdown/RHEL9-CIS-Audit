@@ -1,4 +1,4 @@
-{{ if .Vars.rhel8cis_rule_2_1_1 }}
+{{ if .Vars.rhel9cis_rule_2_1_1 }}
 package:
   chrony:
     title: 2.1.1 | Ensure time synchronization is in use

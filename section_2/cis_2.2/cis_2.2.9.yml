@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_tftp_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_9 }}
+{{ if not .Vars.rhel9cis_tftp_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_9 }}
 installed:
   tftp-server:
     title: 2.2.8 | Ensure TFTP Server is not installed

@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_httpd_server}}
-  {{ if .Vars.rhel8cis_rule_2_2_10 }}
+{{ if not .Vars.rhel9cis_httpd_server}}
+  {{ if .Vars.rhel9cis_rule_2_2_10 }}
 service:
   httpd:
     title: 2.2.10 | Ensure a web server is not installed | httpd

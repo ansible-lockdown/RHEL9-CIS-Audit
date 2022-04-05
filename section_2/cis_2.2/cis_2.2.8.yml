@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_vsftpd_server}}
-  {{ if .Vars.rhel8cis_rule_2_2_8 }}
+{{ if not .Vars.rhel9cis_vsftpd_server}}
+  {{ if .Vars.rhel9cis_rule_2_2_8 }}
 installed:
   vsftp:
     title: 2.2.8 | Ensure VSFTP Server is not installed

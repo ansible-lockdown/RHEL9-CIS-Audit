@@ -1,5 +1,5 @@
-{{ if .Vars.rhel8cis_rule_2_2_11 }}
-  {{ if not .Vars.rhel8cis_dovecot_server }}
+{{ if .Vars.rhel9cis_rule_2_2_11 }}
+  {{ if not .Vars.rhel9cis_dovecot_server }}
 service:
   dovecot:
     title: 2.2.11 | Ensure IMAP and POP3 Server is not installed | dovecot
@@ -16,7 +16,7 @@ service:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if not .Vars.rhel8cis_imap_server }}
+  {{ if not .Vars.rhel9cis_imap_server }}
   cyrus-imapd:
     title: 2.2.11 | Ensure IMAP and POP3 Server is not installed | imapd
     running: false

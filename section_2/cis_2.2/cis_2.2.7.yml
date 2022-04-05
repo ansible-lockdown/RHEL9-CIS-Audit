@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_ftp_server}}
-  {{ if .Vars.rhel8cis_rule_2_2_7 }}
+{{ if not .Vars.rhel9cis_ftp_server}}
+  {{ if .Vars.rhel9cis_rule_2_2_7 }}
 installed:
   ftp:
     title: 2.2.7 | Ensure FTP Server is not installed

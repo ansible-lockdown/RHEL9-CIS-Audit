@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_smb_server}}
-  {{ if .Vars.rhel8cis_rule_2_2_12 }}
+{{ if not .Vars.rhel9cis_smb_server}}
+  {{ if .Vars.rhel9cis_rule_2_2_12 }}
 package:
   samba:
     title: 2.2.12 | Ensure Samba is not installed

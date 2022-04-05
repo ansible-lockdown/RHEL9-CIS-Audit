@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_xinetd_required }}
-  {{ if .Vars.rhel8cis_rule_2_2_1 }}
+{{ if not .Vars.rhel9cis_xinetd_required }}
+  {{ if .Vars.rhel9cis_rule_2_2_1 }}
 package:
   xinetd:
     title: 2.2.1 | Ensure xinetd is not installed

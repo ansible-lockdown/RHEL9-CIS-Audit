@@ -1,4 +1,4 @@
-{{ if .Vars.rhel8cis_rule_2_1_2 }}
+{{ if .Vars.rhel9cis_rule_2_1_2 }}
 file:
   /etc/chrony.conf:
     title: 2.1.2 | Ensure chrony is configured | server

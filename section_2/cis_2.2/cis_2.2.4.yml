@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_cups_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_4 }}
+{{ if not .Vars.rhel9cis_cups_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_4 }}
 package:
   cups:
     title: 2.2.4 | Ensure CUPS is not installed

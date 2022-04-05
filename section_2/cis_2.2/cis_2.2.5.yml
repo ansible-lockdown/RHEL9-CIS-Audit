@@ -1,5 +1,5 @@
-{{ if not .Vars.rhel8cis_dhcp_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_5 }}
+{{ if not .Vars.rhel9cis_dhcp_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_5 }}
 package:
   dhcp-server:
     title: 2.2.5 | Ensure DHCP Server is not installed

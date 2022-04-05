@@ -1,5 +1,5 @@
-{{ if .Vars.rhel8cis_rule_2_2_19 }}
-  {{ if not .Vars.rhel8cis_rpc_server }}
+{{ if .Vars.rhel9cis_rule_2_2_19 }}
+  {{ if not .Vars.rhel9cis_rpc_server }}
 package:
   rpcbind:
     title: 2.2.19 | Ensure rpcbind is not installed or the rpcbind services are masked
@@ -15,7 +15,7 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.rhel8cis_rpc_server }}
+  {{ if .Vars.rhel9cis_rpc_server }}
 command:
   rpc_masked:
     title: 2.2.19 | Ensure rpcbind is not installed or the rpcbind services are masked | rpc_masked

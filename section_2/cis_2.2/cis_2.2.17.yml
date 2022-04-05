@@ -1,5 +1,5 @@
-{{ if .Vars.rhel8cis_is_mail_server }}
-  {{ if .Vars.rhel8cis_rule_2_2_17 }}
+{{ if .Vars.rhel9cis_is_mail_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_17 }}
 command:
   mta_installed:
     title: 2.2.17 Ensure mail transfer agent is configured for local-only mode

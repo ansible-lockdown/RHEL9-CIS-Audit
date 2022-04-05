@@ -1,5 +1,6 @@
 {{ if .Vars.rhel9cis_rule_2_2_18 }}
-  {{ if not .Vars.rhel9cis_nfs_server }}
+  {{ if not .Vars.rhel9cis_use_nfs_server }}
+    {{ if not .Vars.rhel9cis_use_nfs_service }}
 package:
   nfs-utils:
     title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
@@ -7,15 +8,16 @@ package:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.18
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+    {{ end }}
   {{ end }}
-  {{ if .Vars.rhel9cis_nfs_server }}
+  {{ if .Vars.rhel9cis_use_nfs_service }}
 command:
   nfs_masked:
     title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
@@ -26,7 +28,7 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.18
       CISv8:
       - 4.8

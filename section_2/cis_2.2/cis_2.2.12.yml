@@ -1,4 +1,4 @@
-{{ if not .Vars.rhel9cis_smb_server}}
+{{ if not .Vars.rhel9cis_samba_server}}
   {{ if .Vars.rhel9cis_rule_2_2_12 }}
 package:
   samba:

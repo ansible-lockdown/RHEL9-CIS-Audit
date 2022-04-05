@@ -1,4 +1,4 @@
-{{ if not .Vars.rhel9cis_bind }}
+{{ if not .Vars.rhel9cis_dns_server }}
   {{ if .Vars.rhel9cis_rule_2_2_6 }}
 package:
   bind:

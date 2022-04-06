@@ -1,4 +1,4 @@
-{{ if not .Vars.rhel9cis_xinetd_required }}
+{{ if not .Vars.rhel9cis_xinetd_server }}
   {{ if .Vars.rhel9cis_rule_2_2_1 }}
 package:
   xinetd:

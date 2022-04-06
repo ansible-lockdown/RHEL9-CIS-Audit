@@ -97,14 +97,14 @@ rhel9cis_rule_1_5_1: true
 rhel9cis_rule_1_5_2: true
 rhel9cis_rule_1_5_3: true
 # 1.6 Mandatory Access Control
-rhel9cis_rule_1_6_1: true
-rhel9cis_rule_1_6_2: true
-rhel9cis_rule_1_6_3: true
-rhel9cis_rule_1_6_4: true
-rhel9cis_rule_1_6_5: true
-rhel9cis_rule_1_6_6: true
-rhel9cis_rule_1_6_7: true
-rhel9cis_rule_1_6_8: true
+rhel9cis_rule_1_6_1_1: true
+rhel9cis_rule_1_6_1_2: true
+rhel9cis_rule_1_6_1_3: true
+rhel9cis_rule_1_6_1_4: true
+rhel9cis_rule_1_6_1_5: true
+rhel9cis_rule_1_6_1_6: true
+rhel9cis_rule_1_6_1_7: true
+rhel9cis_rule_1_6_1_8: true
 # 1.7 Command Line Warning Banners
 rhel9cis_rule_1_7_1: true
 rhel9cis_rule_1_7_2: true
@@ -112,7 +112,7 @@ rhel9cis_rule_1_7_3: true
 rhel9cis_rule_1_7_4: true
 rhel9cis_rule_1_7_5: true
 rhel9cis_rule_1_7_6: true
-rhel9cis_rule_1_7_7: true
+# 1.8 Gnome Display Manager
 rhel9cis_rule_1_8_1: true
 rhel9cis_rule_1_8_2: true
 rhel9cis_rule_1_8_3: true
@@ -380,61 +380,29 @@ rhel9cis_rule_6_2_14: true
 rhel9cis_rule_6_2_15: true
 rhel9cis_rule_6_2_16: true
 
+############
+
+# Section 1
+
 # AIDE
 rhel9cis_config_aide: false
 
-# aide setup via - cron, timer
-rhel9_aide_scan: cron
-
-# AIDE cron settings
-rhel9cis_aide_cron:
-  cron_user: root
-  cron_file: /etc/crontab
-  aide_job: '/usr/sbin/aide --check'
-  aide_minute: 0
-  aide_hour: 5
-  aide_day: '*'
-  aide_month: '*'
-  aide_weekday: '*'
-
-# 1.5.1 Bootloader password
-rhel9cis_bootloader_password: random
+# Whether or not to run tasks related to auditing/patching the desktop environment
+rhel9cis_gui: false
 
 # Warning Banner Content (issue, issue.net, motd)
 rhel9cis_warning_banner: Authorized uses only. All activity may be monitored and reported.
 # End Banner
 
+# aide setup via - cron, timer
+rhel9_aide_scan: cron
+
+# Section 2
+## 2.2 Special Purposes
 # Set to 'true' if X Windows is needed in your environment
 rhel9cis_xwindows_required: false
-
-# Whether or not to run tasks related to auditing/patching the desktop environment
-rhel9cis_gui: false
-
-# xinetd required
-rhel9cis_xinetd_required: false
-
-# crypto policy # can be set to DEFAULT, FUTURE or FIPS inline with site policy
-rhel9cis_crypto_policy: FUTURE
-
-# IPv6 required
-rhel9cis_ipv6_required: true
-
-# System network parameters (host only OR host and router)
-rhel9cis_is_router: false
-
-### 2.1 Time Synchronization
-#### 2.1.2 Time Synchronization servers - used in template file chrony.conf.j2
-rhel9cis_time_synchronization_servers:
-    - 0.pool.ntp.org
-    - 1.pool.ntp.org
-    - 2.pool.ntp.org
-    - 3.pool.ntp.org
-rhel9cis_chrony_server_options: "minpoll 8"
-
-### 2.2 Special Purposes
-##### Service configuration booleans set true to keep service
+### Service configuration booleans set true to keep service
 rhel9cis_xinetd_server: false
-rhel9cis_gui: false
 rhel9cis_avahi_server: false
 rhel9cis_cups_server: false
 rhel9cis_dhcp_server: false
@@ -452,6 +420,7 @@ rhel9cis_snmp_server: false
 rhel9cis_nis_server: false
 rhel9cis_telnet_server: false
 rhel9cis_is_mail_server: false
+
 # Note the options
 # Packages are used for client services and Server- only remove if you dont use the client service
 #
@@ -470,10 +439,15 @@ rhel9cis_telnet_required: false
 rhel9cis_openldap_clients_required: false
 rhel9cis_tftp_client: false
 
-
 # Section 3
-## Section 3.4
 
+## IPv6 required
+rhel9cis_ipv6_required: true
+
+## 3.2 System network parameters (host only OR host and router)
+rhel9cis_is_router: false
+
+## Section 3.4
 ### Firewall
 rhel9cis_firewall: firewalld
 ##### firewalld
@@ -484,103 +458,53 @@ rhel9cis_nftables_firewalld_state: masked
 rhel9cis_nft_tables_autonewtable: true
 rhel9cis_nft_tables_tablename: filter
 rhel9cis_nft_tables_autochaincreate: true
-
 #### iptables
 rhel9cis_iptables_firewalld_state: masked
 
-### Section 4
-## auditd settings
-rhel9cis_auditd:
-  admin_space_left_action: halt
-  max_log_file_action: keep_logs
-  auditd_backlog_limit: 2048
+# Section 4
 
 ## syslog
 rhel9_cis_rsyslog: true
 
-### Section 5
+# Section 5
+## 5.2.4 Note the following to understand precedence and layout
 rhel9cis_sshd_limited: false
-# Note the following to understand precedence and layout
 rhel9cis_sshd_access:
   - AllowUser
   - AllowGroup
   - DenyUser
   - DenyGroup
 
-rhel9cis_ssh_strong_ciphers: Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-rhel9cis_ssh_weak_ciphers:
-  - 3des-cbc
-  - aes128-cbc
-  - aes192-cbc
-  - aes256-cbc
-  - arcfour
-  - arcfour128
-  - arcfour256
-  - blowfish-cbc
-  - cast128-cbc
-  - rijndael-cbc@lysator.liu.se
+## 5.3.2 & 5.4.2 Enable automation to select custom profile options, using the settings above
+rhel9cis_authselect_custom_profile_select: false
 
-rhel9cis_ssh_strong_macs: MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
-rhel9cis_ssh_weak_macs:
-  - hmac-md5
-  - hmac-md5-96
-  - hmac-ripemd160
-  - hmac-sha1
-  - hmac-sha1-96
-  - umac-64@openssh.com
-  - umac-128@openssh.com
-  - hmac-md5-etm@openssh.com
-  - hmac-md5-96-etm@openssh.com
-  - hmac-ripemd160-etm@openssh.com
-  - hmac-sha1-etm@openssh.com
-  - hmac-sha1-96-etm@openssh.com
-  - umac-64-etm@openssh.com
-  - umac-128-etm@openssh.com
-
-rhel9cis_ssh_strong_kex: KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
-rhel9cis_ssh_weak_kex:
-  - diffie-hellman-group1-sha1
-  - diffie-hellman-group14-sha1
-  - diffie-hellman-group-exchange-sha1
-
-rhel9cis_ssh_aliveinterval: "900"
-rhel9cis_ssh_countmax: "0"
-
-# Authselect select false if using AD or RHEL ID mgmt
+## 5.3.2 Authselect select false if using AD or RHEL ID mgmt
 rhel9cis_authselect:
   custom_profile_name: custom-profile
   default_file_to_copy: sssd
-  options: with-sudo with-faillock without-nullok
 
-# 5.3.1 Enable automation to creat custom profile settings, using the setings above
+## 5.4.1 Enable automation to create custom profile settings, using the setings above
 rhel9cis_authselect_custom_profile_create: false
 
-# 5.3.2 Enable automation to select custom profile options, using the settings above
-rhel9cis_authselect_custom_profile_select: false
-
+# 5.5.1
 ## PAM
 rhel9cis_pam_password:
   minlen: "14"
   minclass: "4"
-
 rhel9cis_pam_passwd_retry: "3"
 
-# choose one of below
+## 5.5.3 choose one of below
 rhel9cis_pwhistory_so: "14"
-rhel9cis_unix_so: false
 rhel9cis_passwd_remember: "5"
 
-# logins.def password settings
+## 5.6.x login.defs password settings
 rhel9cis_pass:
   max_days: "365"
   min_days: "1"
   warn_age: "7"
 
-# set sugroup if differs from wheel
+## 5.3.7 set sugroup if differs from wheel
 rhel9cis_sugroup: wheel
 
-# sugroup users list
+## 5.3.7 sugroup users list
 rhel9cis_sugroup_users: "root"
-
-# var log location variable
-rhel9cis_varlog_location: "/var/log/sudo.log"

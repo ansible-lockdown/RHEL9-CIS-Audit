@@ -6,7 +6,7 @@
 
 ---
 
-# RHEL 8 Goss config
+# RHEL 9 Goss config
 
 ## Overview
 
@@ -15,8 +15,6 @@ based on RedHat 8 CIS 2.0.0
 Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers
 
 This is configured in a directory structure level.
-
-This could do with further testing but sections 1.x should be complete
 
 Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
 

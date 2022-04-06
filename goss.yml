@@ -16,13 +16,6 @@ gossfile:
     {{ if eq .Vars.rhel9cis_firewall "nftables" }}
   section_3/cis_3.4.2/*.yml: {}
     {{ end }}
-    {{ if eq .Vars.rhel9cis_firewall "iptables" }}
-  section_3/cis_3.4.3.1/*.yml: {}
-  section_3/cis_3.4.3.2/*.yml: {}
-      {{ if .Vars.rhel9cis_ipv6_required }}
-  section_3/cis_3.4.3.2/*.yml: {}
-      {{ end }}
-    {{ end }}
   {{ end }}
   {{ if .Vars.rhel9cis_section4 }}
   # Auditd and level 2

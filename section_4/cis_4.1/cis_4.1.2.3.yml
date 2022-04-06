@@ -6,7 +6,7 @@ file:
     contains:
     - space_left_action = email
     - action_mail_acct = root
-    - '/^admin_space_left_action = {{ .Vars.rhel9cis_auditd.admin_space_left_action }}/'
+    - '/^admin_space_left_action = (halt|single)/'
     meta:
       server: 2
       workstation: 2

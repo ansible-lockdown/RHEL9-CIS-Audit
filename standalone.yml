@@ -27,9 +27,7 @@ gossfile:
   {{ if .Vars.rhel9cis_section4 }}
   # Auditd and level 2
     {{ if .Vars.rhel9cis_level_2 }}
-      {{ if .Vars.rhel9cis_auditd }}
   section_4/cis_4.1/*.yml: {}
-      {{ end }}
     {{ end }}
   section_4/cis_4.2.1/*.yml: {}
   section_4/cis_4.2.2/*.yml: {}

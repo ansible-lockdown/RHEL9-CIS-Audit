@@ -62,6 +62,7 @@ It can be run in two ways:
 
 - RHEL 7
 - RHEL 8
+- RHEL 9 (this is not yet GA as an OS but based on rh8)
 - Ubuntu 20.04
 - Windows 2016 Standalone, Member and Controller (in testing August 21)
 - Windows 2019 Standalone, Member and Controller (in testing August 21)
@@ -292,8 +293,9 @@ script help
 ```sh
 Script to run the goss audit
 
-Syntax: ./run_audit.sh [-g|-o|-v|-w|-h]
+Syntax: ./run_audit.sh [-f|-g|-o|-v|-w|-h]
 options:
+-f     optional - change the format output (default value = json)
 -g     optional - Add a group that the server should be grouped with (default value = ungrouped)
 -o     optional - file to output audit data
 -v     optional - relative path to thevars file to load (default e.g. /var/tmp/RHEL7-CIS/vars/CIS.yml)
@@ -308,12 +310,62 @@ Other options can be assigned in the script itself
 Similar to the Linux variables that can be set within the script
 
 ```sh
-$AUDIT_BIN = "C:\vagrant\goss.exe"
-$AUDIT_FILE = "goss.yml"
-$AUDIT_VARS = "vars\$BENCHMARK.yml"
-$AUDIT_CONTENT_LOCATION = "C:\vagrant"
-$AUDIT_CONTENT_VERSION = "Win2019-$BENCHMARK-Audit"
-$AUDIT_CONTENT_DIR = "$AUDIT_CONTENT_LOCATION\$AUDIT_CONTENT_VERSION"
+NAME
+    C:\remediation_audit_logs\Windows-2019-CIS-Audit\run_audit.ps1
+
+SYNOPSIS
+    Wrapper script to run an audit
+
+
+SYNTAX
+    C:\remediation_audit_logs\Windows-2016-CIS-Audit\run_audit.ps1 [[-auditbin] <String>] [[-auditdir] <String>]
+    [[-varsfile] <String>] [[-group] <String>] [[-outfile] <String>] [<CommonParameters>]
+
+
+DESCRIPTION
+    Wrapper script to run an audit on the system using goss.
+    This allows for bespoke variables to be set
+
+
+PARAMETERS
+    -auditbin <String>
+
+    -auditdir <String>
+        default: $DEFAULT_CONTENT_DIR
+        Ability to change the location of where the content can be found
+        This is where the audit content is stored
+        e.g. c:/windows_audit
+
+    -varsfile <String>
+        default: $DEFAULT_VARS_FILE
+        Ability to set a variable file defined with the settings to match your requirements
+
+    -group <String>
+        default: none
+        Ability to set a group that the system belongs to
+        Can be used when matching similar system in that same group
+
+    -outfile <String>
+        default: $AUDIT_CONTENT_DIR\audit_$host_os_hostname_$host_epoch.json
+        Ability to set an outfile to send the full audit output to
+        Requires path to be set.
+        e.g. c:/windows_audit_reports
+
+    <CommonParameters>
+        This cmdlet supports the common parameters: Verbose, Debug,
+        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+        OutBuffer, PipelineVariable, and OutVariable. For more information, see
+        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+    -------------------------- EXAMPLE 1 --------------------------
+
+    PS C:\>./run_audit.ps1
+
+    ./run_audit.ps1 -auditbin c:\path_to\binary.name
+    ./run_audit.ps1 -auditdir c:\somepath_for _audit_content
+    ./run_audit.ps1 -varsfile myvars.yml
+    ./run_audit.ps1 -outfile path\to\audit\output.json
+    ./run_audit.ps1 -group webserver
 ```
 
 script itself

@@ -104,7 +104,7 @@ rhel9cis_rule_1_6_1_4: true
 rhel9cis_rule_1_6_1_5: true
 rhel9cis_rule_1_6_1_6: true
 rhel9cis_rule_1_6_1_7: true
-rhel9cis_rule_1_6_1_8: true
+
 # 1.7 Command Line Warning Banners
 rhel9cis_rule_1_7_1: true
 rhel9cis_rule_1_7_2: true
@@ -256,7 +256,11 @@ rhel9cis_rule_4_2_2_5: true
 rhel9cis_rule_4_2_2_6: true
 rhel9cis_rule_4_2_2_7: true
 rhel9cis_rule_4_2_3: true
-rhel9cis_rule_4_3: true  # needs work
+
+# 4.3 Logrotate
+rhel9cis_rule_4_3_1: true
+rhel9cis_rule_4_3_2: true
+rhel9cis_rule_4_3_3: true
 
 # Section 5
 #  Authentication and Authorization

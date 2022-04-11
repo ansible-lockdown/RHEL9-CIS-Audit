@@ -1,14 +1,14 @@
 {{ if not .Vars.rhel9cis_selinux_disable }}
 package:
-  {{ if  .Vars.rhel9cis_rule_1_6_1_6 }}
-  setroubleshoot:
-    title: 1.6.1.6 | Ensure SETroubleshoot is not installed
+  {{ if  .Vars.rhel9cis_rule_1_6_1_7 }}
+  mctrans:
+    title: 1.6.1.7 | Ensure the MCS Translation Service (mcstrans) is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
-      - 1.6.1.6
+      - 1.6.1.7
       CISv8: 
       - 4.8
       CISv8_IG1: true

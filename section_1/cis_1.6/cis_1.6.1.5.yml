@@ -1,16 +1,14 @@
 {{ if not .Vars.rhel9cis_selinux_disable }}
-  {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_6_1_5 }}
 command:
-  getenforce_enforcing:
-    title: 1.6.1.5 | Ensure the SELinux mode is enforcing | running
-    exit-status: 0
-    exec: "getenforce"
-    stdout: 
-    - '/^Enforcing/'
+  selinux_unconfined:
+    title: 1.6.1.5 | Ensure no unconfined services exist
+    exit-status: 1
+    exec: "ps -eZ | grep unconfined_service_t"
+    stdout: ['!/./']
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 
       - 1.6.1.5
       CISv8: 
@@ -18,21 +16,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-file:
-  /etc/selinux/config:
-    title: 1.6.1.5 | Ensure the SELinux mode is enforcing | config
-    contains:
-    - '/^SELINUX( |)=( |)enforcing/'
-    meta:
-      server: 2
-      workstation: 2
-      CIS_ID: 
-      - 1.6.1.5
-      CISv8: 
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
   {{ end }}
 {{ end }}

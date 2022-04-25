@@ -1,10 +1,6 @@
 {{ if .Vars.rhel9cis_rule_1_4_2 }}
 file:
-  {{ if .Vars.rhel9cis_legacy_boot }}
-  /boot/grub2/grubenv:
-  {{ else }}
-  /boot/efi/EFI/{{ .Vars.host_os_distribution }}/grubenv:
-  {{ end }}
+  /boot/grub2/grub.cfg
     title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms
     exists: true
     owner: root

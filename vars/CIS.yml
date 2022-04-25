@@ -1,7 +1,7 @@
 ## metadata for benchmark
 
 ## metadata for Audit benchmark
-benchmark_version: '2.0.0'
+benchmark_version: '0.5.0'
 
 # Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
 # If run via script this is discovered and set
@@ -16,8 +16,8 @@ rhel9cis_section1: true
 rhel9cis_section2: true
 rhel9cis_section3: true
 rhel9cis_section4: true
-rhel9cis_section5: false
-rhel9cis_section6: false
+rhel9cis_section5: true
+rhel9cis_section6: true
 
 rhel9cis_level_1: true
 rhel9cis_level_2: true

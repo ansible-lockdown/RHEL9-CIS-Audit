@@ -1,0 +1,18 @@
+{{ if not .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_rule_1_8_1 }}
+package:
+  gdm:
+    title: 1.8.1 | Ensure GNOME Display Manager is removed
+    installed: false
+    meta:
+      server: 2
+      workstation: NA
+      CIS_ID: 
+      - 1.8.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }} 

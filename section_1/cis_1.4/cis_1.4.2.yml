@@ -1,60 +1,54 @@
-{{ if .Vars.rhel9cis_config_aide }}
-  {{ if .Vars.rhel9cis_rule_1_4_1 }}
-    {{ if eq .Vars.rhel9_aide_scan "cron" }}
-command:
-  aide_cron:
-    title: 1.4.2 | L1 | Ensure filesystem integrity is regularly checked
-    exit-status:
-      or:
-      - 0
-      - 2
-    exec: "grep -rs aide /etc/cron.* /etc/crontab /var/spool/cron/*"
-    stdout:
-    - '!/^#/'
-    {{ end }}
+{{ if .Vars.rhel9cis_rule_1_4_2 }}
+file:
+  /boot/grub2/grub.cfg:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.4.2
-      CISv8: 
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
       CISv8_IG3: true
-# Can be enabled if using timer and service files
-service:
-    {{ if eq .Vars.rhel9_aide_scan "timer" }}
-  aidecheck:
-    title: 1.4.2 | L1 | Ensure filesystem integrity is regularly checked
-    enabled: true
-    running: true
-    skip: false
+  {{ if not .Vars.rhel9cis_legacy_boot }}
+  /etc/fstab:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | fstab /boot/efi opts umask
+    exists: true
+    contains:
+    - '/^[^#].*\/boot\/efi.*(umask=0027,fmask=0077,|fmask=0077,umask=0027,)(uid=0,gid=0|gid=0,uid=0)/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.4.2
-      CISv8: 
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
       CISv8_IG3: true
-  aidecheck.timer:
-    title: 1.4.2 | L1 | Ensure filesystem integrity is regularly checked
-    enabled: true
-    running: true
-    skip: false
+mount:
+  /boot/efi:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | /boot/efi opts
+    exists: true
+    opts:
+    - 'uid=0'
+    - 'gid=0'
+    filesystem: vfat
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.4.2
-      CISv8: 
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
       CISv8_IG3: true
-    {{ end }}
   {{ end }}
 {{ end }}

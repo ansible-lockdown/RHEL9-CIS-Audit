@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_1_2 }}
+file:
+  /etc/systemd/journal-upload.conf:
+    title: 4.2.2.1.2 | Ensure systemd-journal-remote is configured
+    exists: true
+    contains:
+    - '/^URL=/'
+    - '/ServerKeyFile=.*.pem'
+    - '/ServerCertificateFile=.*.pem'
+    - '/TrustedCertificateFile=.*.pem'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.1.2
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

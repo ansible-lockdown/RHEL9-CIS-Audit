@@ -1,0 +1,15 @@
+{{ if .Vars.rhel9cis_rule_3_3_8 }}
+kernel-param:
+  net.ipv4.tcp_syncookies:
+    title: 3.3.8 | Ensure TCP SYN Cookies is enabled
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

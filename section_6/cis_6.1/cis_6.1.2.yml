@@ -1,11 +1,16 @@
-{{ if .Vars.rhel9cis_rule_6_1_2 }}
+{{ if .Vars.run_heavy_tests }}
 command:
-  passwd_perms:
-    title: 6.1.2 | L1 | Ensure permissions on /etc/passwd are configured
-    exec:  stat -L -c "%a %U %G" /etc/passwd
-    exit-status: 0
+  {{ if .Vars.rhel9cis_rule_6_1_2 }}
+  world_writable:
+    title: 6.1.2 | Ensure sticky bit is set on all world-writable directories
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
+    exit-status: 
+      or:
+      - 0
+      - 1
+    timeout: {{ .Vars.timeout_ms }}
     stdout:
-    -  '/6[0.4][0,4] root root/'
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1
@@ -15,5 +20,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}
-

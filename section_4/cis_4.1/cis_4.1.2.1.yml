@@ -2,9 +2,9 @@
 file:
   /etc/audit/auditd.conf:
     exists: true
-    title: 4.1.2.1 | L2 | Ensure audit log storage size is configured
+    title: 4.1.2.1 | Ensure audit log storage size is configured
     contains:
-    - '/^max_log_file = \d+/'
+    - '/^max_log_file = \d\d\d\d+/'
     meta:
       server: 2
       workstation: 2

@@ -1,8 +1,9 @@
 {{ if .Vars.rhel9cis_rule_6_2_12 }}
 command:
-  dot_netrc_perms:
-    title: 6.2.12 | L1 | Ensure users .netrc files are not group or word accessible
-    exec: 'find /home/ -name .netrc -perm /g+r,o+r'
+  dot_file_perms:
+    title: 6.2.12 | Ensure users dot files are not group or world writable
+    exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
+    timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout: 
     - '!/./'

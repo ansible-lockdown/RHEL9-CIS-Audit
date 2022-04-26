@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_httpd_server}}
+{{ if not .Vars.rhel9cis_tftp_server }}
   {{ if .Vars.rhel9cis_rule_2_2_9 }}
-service:
-  httpd:
-    title: 2.2.9 | L1 | Ensure HTTP Server is not enabled
-    running: false
-    enabled: false
+installed:
+  tftp-server:
+    title: 2.2.8 | Ensure TFTP Server is not installed
+    installed: {{ false }}
     meta:
       server: 1
       workstation: 1

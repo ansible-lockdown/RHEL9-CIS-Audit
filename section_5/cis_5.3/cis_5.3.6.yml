@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_rule_5_3_6 }}
+command:
+  sudo_timeout: 
+    title: 5.3.6 | Ensure sudo authentication timeout is configured correctly
+    exec: sudo -V | grep "Authentication timestamp timeout:"
+    exit-status: 0
+    stdout:
+    - '!/Authentication timestamp timeout: -1/'
+    - '/Authentication timestamp timeout: ([5-9]|1[0-5])/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.6
+      CISv8:
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

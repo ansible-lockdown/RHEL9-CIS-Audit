@@ -1,9 +1,9 @@
 {{ if .Vars.rhel9cis_rule_4_1_1_3 }}
 file:
   /boot/grub2/grubenv:
-    title: 4.1.1.3 | L2 | Ensure auditing for processes that start prior to auditd is enabled (Automated)
+    title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled
     exists:  true
-    contains: 
+    contains:
     - '/^kernelopts=.*\saudit=1.*/'
     meta:
       server: 2
@@ -15,7 +15,7 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
   /etc/default/grub:
-    title: (L2) 4.1.1.3 | L2 | Ensure auditing for processes that start prior to auditd is enabled (Automated)
+    title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled
     exists:  true
     contains: 
     - '/^GRUB_CMDLINE_LINUX=.*\saudit=1.*/'

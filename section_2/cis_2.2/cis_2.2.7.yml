@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_smb_server}}
+{{ if not .Vars.rhel9cis_ftp_server}}
   {{ if .Vars.rhel9cis_rule_2_2_7 }}
-service:
-  smb:
-    title: 2.2.7 | L1 | Ensure Samba is not enabled
-    running: false
-    enabled: false
+installed:
+  ftp:
+    title: 2.2.7 | Ensure FTP Server is not installed
+    installed: {{ false }}
     meta:
       server: 1
       workstation: 1

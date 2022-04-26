@@ -1,0 +1,36 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_1_4 }}
+service:
+  systemd-journal-remote.socket:
+    title: 4.2.2.1.4 | Ensure journald is not configured to recieve logs from a remote client
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.1.4
+      CISv8: 
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  journald_socket_masked:
+    title: 4.2.2.1.4 | Ensure journald is not configured to recieve logs from a remote client
+    exec: systemctl is-enabled systemd-journal-remote.socket
+    exit-status: 0
+    stdout: 
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.1.4
+      CISv8: 
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

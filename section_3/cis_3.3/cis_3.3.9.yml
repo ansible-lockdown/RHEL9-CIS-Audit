@@ -1,0 +1,29 @@
+{{ if .Vars.rhel9cis_ipv6_required }}
+  {{ if .Vars.rhel9cis_rule_3_3_9 }}
+kernel-param:
+  net.ipv6.conf.all.accept_ra:
+    title: 3.3.9 | Ensure IPv6 router advertisements are not accepted
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.9
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  net.ipv6.conf.default.accept_ra:
+    title: 3.3.9 | Ensure IPv6 router advertisements are not accepted
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.9
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

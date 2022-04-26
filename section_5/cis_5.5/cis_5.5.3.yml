@@ -1,20 +1,20 @@
-{{ if .Vars.rhel9cis_rule_5_5_3 }}
-command:
-  check_timeout:
-    title: 5.5.3 | L1 | Ensure default user shell timeout is configured | profile.d
-    exec: 'grep TMOUT /etc/profile.d/*.sh /etc/profile /etc/bashrc | cut -d ":" -f2'
-    exit-status: 0
-    stdout:
-    - '/^TMOUT=([1-8][0-9]{0,2}|900)/'
-    - '/^readonly TMOUT/'
-    - '/^export TMOUT/'
+{{ if .Vars.rhel9cis_rule_5_5_3 }} 
+  {{ if .Vars.rhel9cis_pwhistory_so }}
+file:
+  /etc/pam.d/system-auth:
+    title: 5.5.3 | Ensure password reuse is limited
+    exists: true
+    contains:
+    - '/^password\s+(sufficient|requisite)\s+pam_pwquality.so\stry_first_pass\slocal_users_only\senforce_for_root\sretry=3\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
+    - '/^password\s+(sufficient|requisite)\s+pam_unix.so\ssha512\sshadow\stry_first_pass\suse_authtok\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.5.3
-      CISv8: 4.3
+      CISv8: 5.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

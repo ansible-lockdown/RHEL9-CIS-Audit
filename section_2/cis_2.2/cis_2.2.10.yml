@@ -1,15 +1,29 @@
-{{ if not .Vars.rhel9cis_vsftpd_server}}
+{{ if not .Vars.rhel9cis_httpd_server}}
   {{ if .Vars.rhel9cis_rule_2_2_10 }}
 service:
-  vsftpd:
-    title: 2.2.10 | L1 | Ensure FTP Server is not enabled
-    enabled: {{ false }}
-    running: {{ false }}
+  httpd:
+    title: 2.2.10 | Ensure a web server is not installed | httpd
+    running: false
+    enabled: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
-      - 2.2.10
+      - 2.2.9
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  nginx:
+    title: 2.2.10 | Ensure a web server is not installed | nginx
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.9
       CISv8:
       - 4.8
       CISv8_IG1: false

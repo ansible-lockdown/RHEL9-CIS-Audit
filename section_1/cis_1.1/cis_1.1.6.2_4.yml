@@ -1,0 +1,32 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_6_1 }}
+mount:
+  /tmp:
+    title: |
+        1.1.6.2 | Ensure nodev option set on /var/log/audit partition
+        1.1.6.3 | Ensure noexec option set on /var/log/audit partition
+        1.1.6.4 | Ensure nosuid option set on /var/log/audit partition
+    exists: true
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_6_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_6_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_6_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.5.2
+      - 1.1.5.3
+      - 1.1.5.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

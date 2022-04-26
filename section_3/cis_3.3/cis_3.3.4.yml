@@ -1,19 +1,27 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_3_3_4 }}
-command:
-  modprobe_sctp:
-    title: 3.3.4 | L2 | Ensure TIPC is disabled (Automated)
-    exit-status: 0
-    exec: 'modprobe -n -v tipc'
-    stdout: ['install /bin/true']
+{{ if .Vars.rhel9cis_rule_3_3_4 }}
+kernel-param:
+  net.ipv4.conf.all.log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged
+    value: '1'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.3.4
-      CISv8: 4.8
+      CISv8: 8.5
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
+  net.ipv4.conf.default.log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
 {{ end }}

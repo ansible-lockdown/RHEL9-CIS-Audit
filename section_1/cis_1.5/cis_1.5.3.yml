@@ -1,31 +1,33 @@
 {{ if .Vars.rhel9cis_rule_1_5_3 }}
-command:
-  single_user_1:
-    title: 1.5.3 | L1 | Ensure authentication required for single user mode
-    exit-status: 0
-    exec: "grep /systemd-sulogin-shell /usr/lib/systemd/system/rescue.service"
+kernel-param:
+  kernel.randomize_va_space:
+    title: 1.5.3 | Ensure address space layout randomization (ASLR) is enabled | running
+    value: '2'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.3
-      CISv8: 
-      - 4.1
-      CISv8_IG1: true
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  single_user_2:
-    title: 1.5.3 | L1 | Ensure authentication required for single user mode
+command:
+  aslr_enabled_2:
+    title: 1.5.3 | Ensure address space layout randomization (ASLR) is enabled | conf
     exit-status: 0
-    exec: "grep /systemd-sulogin-shell /usr/lib/systemd/system/emergency.service"
+    exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:kernel.randomize_va_space( |)=( |)2/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.3
-      CISv8: 
-      - 4.1
-      CISv8_IG1: true
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}

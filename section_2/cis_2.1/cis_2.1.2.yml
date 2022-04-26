@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_2_1_2 }}
+file:
+  /etc/chrony.conf:
+    title: 2.1.2 | Ensure chrony is configured | server
+    exists: true
+    contains:
+    - '/^(server|pool)\s.*/'
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.1.2
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/sysconfig/chronyd:
+    title: 2.1.2 | Ensure chrony is configured | sysconfig
+    exists: true
+    contains:
+    - '/^OPTIONS="-u chrony"/'
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.1.2
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

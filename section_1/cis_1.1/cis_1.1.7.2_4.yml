@@ -1,0 +1,86 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_7_1 }}
+mount:
+  /home:
+    title: |
+        1.1.7.1 | Ensure separate partition exists for /home
+        1.1.7.2 | Ensure nodev option set on /home partition
+        1.1.7.3 | Ensure nosuid option set on /home partition
+    exists: true
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_7_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_7_3 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.7.2
+      - 1.1.7.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+package:
+  quota:
+    title: |
+      1.1.7.4 | Ensure usrquota option set on /home partition | quota pkg installed
+      1.1.7.5 | Ensure grpquota option set on /home partition | quota pkg installed
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.7.4
+      - 1.1.7.5
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  quota_enabled:
+    title: |
+      1.1.7.4 | Ensure usrquota option set on /home partition | quota enabled
+      1.1.7.5 | Ensure grpquota option set on /home partition | quota enabled
+    exec: quotaon -p /home | grep -E (user|group)
+    exit-status: 0
+    stdout:
+    - '!/.*no quota enabled/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.7.4
+      - 1.1.7.5
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  home_quotas:
+    title: |
+      1.1.7.4 | Ensure usrquota option set on /home partition
+      1.1.7.5 | Ensure grpquota option set on /home partition
+    exec: mount -l | grep home
+    exit-status: 0
+    stdout:
+    {{ if .Vars.rhel9cis_rule_1_1_7_4 }}
+    - '/.*\/home .*usrquota.*\)$/'
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_7_5 }}
+    - '/.*\/home .*grpquota.*\)$/'
+    {{ end }}
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.7.4
+      - 1.1.7.5
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

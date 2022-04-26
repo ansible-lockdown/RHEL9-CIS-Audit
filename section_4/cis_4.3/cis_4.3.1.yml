@@ -1,0 +1,15 @@
+{{ if .Vars.rhel9cis_rule_4_3_1 }}
+package:
+  rsyslog-logrotate:
+    title: 4.3.1 | Ensure logrotate is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.3.1
+      CISv8: 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

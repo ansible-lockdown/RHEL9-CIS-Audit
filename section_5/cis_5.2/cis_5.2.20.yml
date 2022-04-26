@@ -1,18 +1,18 @@
 {{ if .Vars.rhel9cis_rule_5_2_20 }}
 file:
-  /etc/sysconfig/sshd:
-    title: 5.2.20 | L1 | Ensure system-wide crypto policy is not overridden
+  /etc/ssh/sshd_config:
+    title: 5.2.20 | Ensure SSH Idle Timeout Interval is configured
     exists: true
     contains:
-    - '!/^CRYPTO_POLICY/'
+    - '/^ClientAliveInterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
+    - '/^ClientAliveCountMax 0/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.20
-      CISv8: 3.10
-      CISv8_IG1: false
+      CISv8: 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

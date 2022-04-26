@@ -1,10 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_2_16 }}
 command:
-  no_dup_gid:
-    title: 6.2.16 | L1 | Ensure no duplicate GIDs exist
-    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+  dot_rhosts_files:
+    title: 6.2.16 | Ensure no users have .rhosts files
+    exec: 'find /home/ -name .rhosts'
+    timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
-    stdout:
+    stdout: 
     - '!/./'
     meta:
       server: 1

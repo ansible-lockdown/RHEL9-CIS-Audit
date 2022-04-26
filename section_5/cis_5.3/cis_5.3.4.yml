@@ -1,0 +1,24 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_5_3_4 }}
+command:
+  nopasswd_sudoers_d: 
+    title: 5.3.4 | Ensure users must provide password for escalation 
+    exec: grep -R NOPASSWD /etc/sudoers /etc/sudoers.d/* | grep -v '.*\:#'
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 5.3.4
+      CISv8:
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_dovecot_server}}
+{{ if not .Vars.rhel9cis_vsftpd_server}}
   {{ if .Vars.rhel9cis_rule_2_2_8 }}
-service:
-  dovecot:
-    title: 2.2.8 | L1 | Ensure IMAP and POP3 Server is not enabled
-    running: false
-    enabled: false
+installed:
+  vsftp:
+    title: 2.2.8 | Ensure VSFTP Server is not installed
+    installed: {{ false }}
     meta:
       server: 1
       workstation: 1

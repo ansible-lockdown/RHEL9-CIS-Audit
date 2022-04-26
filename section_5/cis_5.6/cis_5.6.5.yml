@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_5_6_5 }}
+command:
+  umask_profile_scripts:
+    title: 5.6.5 | Ensure default user umask is 027 or more restrictive
+    exec: 'grep umask /etc/bashrc /etc/profile /etc/profile.d/*.sh | cut -d ":" -f 2'
+    exit-status: 0
+    stdout:
+    - '/umask 0[2-7][7]/'
+    - '!/umask[7][0-1][0-6]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.6.5
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,0 +1,25 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_1 }}
+mount:
+  /tmp:
+    title: |
+        1.1.2.1 | Ensure /tmp is a separate partition
+        1.1.2.2 | Ensure nodev option set on /tmp partition
+    exists: true
+    filesystem: tmpfs
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_2_2 }}
+    - nodev
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.2.1
+      - 1.1.2.2
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

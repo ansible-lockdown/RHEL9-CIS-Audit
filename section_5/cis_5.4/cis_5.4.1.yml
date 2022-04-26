@@ -1,34 +1,20 @@
-{{ if .Vars.rhel9cis_rule_5_4_1 }}
-file:
-  /etc/security/pwquality.conf:
-    title: 5.4.1 | L1 | Ensure password creation requirements are configured 
-    exists: true
-    contains:
-    - {{ .Vars.rhel9cis_pam_password.minlen  }}
-    - {{ .Vars.rhel9cis_pam_password.minclass }}
+{{ if .Vars.rhel9cis_authselect_custom_profile_create }}
+  {{ if .Vars.rhel9cis_rule_5_4_1}}
+command:
+  custom_profile:
+    title: 5.4.1 | Ensure custom authselect profile is used 
+    exec: head -1 /etc/authselect/authselect.conf | grep 'custom/'
+    exit-status: 0
+    stdout:
+    - '/^custom\/{{ .Vars.rhel9cis_authselect.default_file_to_copy }}/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.4.1
-      CISv8: 5.2
-      CISv8_IG1: true
+      CISv8: 16.2
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-command:
-   passwd_create:
-     title: 5.4.1 | L1 | Ensure password creation requirements are configured 
-     exec: 'grep -E "password.*enforce" /etc/pam.d/password-auth /etc/pam.d/system-auth | cut -d ":" -f2'
-     exit-status: 0
-     stdout:
-     - '/^password.*requisite.*pam_pwquality.so\stry_first_pass\slocal_users_only\senforce-for-root\sretry={{ .Vars.rhel9cis_pam_passwd_retry }}/'
-     meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.4.1
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+  {{ end }}
 {{ end }}

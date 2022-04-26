@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_nfs_server }}
+{{ if not .Vars.rhel9cis_samba_server}}
   {{ if .Vars.rhel9cis_rule_2_2_12 }}
-service:
-  nfs:
-    title: 2.2.12 | L1 | Ensure NFS is not enabled
-    running: false
-    enabled: false
+package:
+  samba:
+    title: 2.2.12 | Ensure Samba is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,28 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_1 }}
+mount:
+  /tmp:
+    title: |
+        1.1.2.3 | Ensure noexec option set on /tmp partition
+        1.1.2.4 | Ensure nosuid option set on /tmp partition
+    exists: true
+    filesystem: tmpfs
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_2_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_2_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.2.3
+      - 1.1.2.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

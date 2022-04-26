@@ -1,8 +1,24 @@
-{{ if not .Vars.rhel9cis_bind }}
-  {{ if .Vars.rhel9cis_rule_2_2_11 }}
+{{ if .Vars.rhel9cis_rule_2_2_11 }}
+  {{ if not .Vars.rhel9cis_dovecot_server }}
 service:
-  named:
-    title: 2.2.11 | L1 | Ensure DNS Server is not enabled
+  dovecot:
+    title: 2.2.11 | Ensure IMAP and POP3 Server is not installed | dovecot
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.11
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if not .Vars.rhel9cis_imap_server }}
+  cyrus-imapd:
+    title: 2.2.11 | Ensure IMAP and POP3 Server is not installed | imapd
     running: false
     enabled: false
     meta:

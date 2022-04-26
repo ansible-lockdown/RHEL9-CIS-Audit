@@ -1,0 +1,33 @@
+{{ if .Vars.rhel9cis_rule_5_6_2 }}
+command:
+  secure_system_accts:
+    title: 5.6.2 | Ensure system accounts are secured
+    exec: "/awk -F: '$3<1000' /etc/passwd | egrep -v 'root|sync|halt|shutdown|/sbin/nologin|/bin/false'/"
+    exit-status: 1
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  secure_system_LK:
+    title: 5.6.2 | Ensure system accounts are secured
+    exec: "/awk -F: '$3<1000' /etc/passwd | egrep -wv 'root' | cut -d: -f1 | xargs -I '{}' passwd -S '{}' | egrep -cvw 'LK|L'/"
+    exit-status: 1
+    stdout:
+    - '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.6.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

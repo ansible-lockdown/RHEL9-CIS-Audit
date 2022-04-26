@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_5 }}
+file:
+  /etc/systemd/journald.conf:
+    title: 4.2.2.5 | Ensure journald is not configured to send logs to rsyslog
+    exists: true
+    contains:
+    - '!/^\s*ForwardToSyslog/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.5
+      CISv8: 
+      - 8.2
+      - 8.9
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

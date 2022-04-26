@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_1_7 }}
-command:
-  gshadow-_perms:
-    title: 6.1.7 | L1 | Ensure permissions on /etc/gshadow- are configured
-    exec:  stat -L -c "%a %U %G" /etc/gshadow-
-    exit-status: 0
-    stdout:
-    -  '/0 root root/'
+file:
+  /etc/passwd-:
+    title: 6.1.7 | Ensure permissions on /etc/passwd- are configured
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
     meta:
       server: 1
       workstation: 1

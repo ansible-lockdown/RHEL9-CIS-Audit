@@ -1,12 +1,12 @@
-{{ if .Vars.rhel9cis_rule_2_2_3 }}
-service:
-  rsync:
-    title: 2.2.3 | L1 | Ensure rsync service is not enabled
-    enabled: false
-    running: false
+{{ if not .Vars.rhel9cis_avahi_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_3 }}
+package:
+  avahi:
+    title: 2.2.3 | Ensure Avahi Server is not installed | avahi pkg
+    installed: false
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID: 
       - 2.2.3
       CISv8:
@@ -14,4 +14,18 @@ service:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+  avahi-autoipd:
+    title: 2.2.3 | Ensure Avahi Server is not installed | autoipd pkg
+    installed: false
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 
+      - 2.2.3
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
 {{ end }}

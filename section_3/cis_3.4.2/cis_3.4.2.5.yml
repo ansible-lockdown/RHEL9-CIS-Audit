@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_3_4_2_5 }}
+command:
+  nft_chains:
+    title: 3.4.2.5 | Ensure nftables table exists
+    exec: echo "Manual - Please confirm nfttables tables exists and matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.2.5
+      CISv8:
+      - 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

@@ -1,18 +1,18 @@
 {{ if .Vars.rhel9cis_rule_5_2_7 }}
 file:
   /etc/ssh/sshd_config:
-    title: 5.2.7 | L1 | Ensure SSH MaxAuthTries is set to 4 or less
+    title: 5.2.7 | Ensure SSH root login is disabled
     exists: true
     contains:
-    - "/^MaxAuthTries [1:4]/"
-    - "!/^MaxAuthTries [5:9]/"
+    - '/^PermitRootLogin no/'
+    - '!/^PermitRootLogin yes/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.7
-      CISv8: 8.5
-      CISv8_IG1: false
+      CISv8: 5.4
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}

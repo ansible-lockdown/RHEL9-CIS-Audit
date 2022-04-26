@@ -1,10 +1,12 @@
 {{ if .Vars.rhel9cis_rule_6_2_1 }}
-file:
-  /etc/shadow:
-    title: 6.2.1 | L1 | Ensure /etc/shadow password fields are not empty
-    exists: true
-    contains:
-    - '!/^.*:(\$|\!|\*).*:/'
+command:
+  nopasswd_shadow:
+    title: 6.2.1 | Ensure password fields are not empty
+    exec: cat /etc/shadow | cut -d ':' -f2
+    exit-status: 0
+    stdout:
+    - '/^(\*|\!|\$)/'
+    - '!/^$/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_13 }}
+command:
+  auditd_delete_cnf:
+    title: 4.1.3.13 | Ensure file deletion events by users are collected | conf check
+    exec: grep delete /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -F arch=b32 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=(unset|4294967295) -F key=delete/'
+    - '/-a always,exit -F arch=b32 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=(unset|4294967295) -F key=delete/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.13
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_delete_live:
+    title: 4.1.3.13 | Ensure file deletion events by users are collected | running
+    exec: auditctl -l | grep delete
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete'
+    - '-a always,exit -F arch=b32 -S unlink,rename,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.13
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

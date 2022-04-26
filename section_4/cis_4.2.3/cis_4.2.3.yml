@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_rule_4_2_3 }}
+command:
+  logfile_configured:
+    title: 4.2.3 | Ensure permissions on all logfiles are configured
+    exec: 'find /var/log/ -type f -perm /g+wx,o+rwx -exec ls -l "{}" +'
+    exit-status: 0
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

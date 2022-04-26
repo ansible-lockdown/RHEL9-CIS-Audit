@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_2 }}
+command:
+  auditd_admin_scope_cnf:
+    title: 4.1.3.2 | Ensure actions as another user are always logged | conf_check
+    exec: grep user_emu /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -C euid!=uid -F auid!=unset -S execve -k user_emulation'
+    - '-a always,exit -F arch=b32 -C euid!=uid -F auid!=unset -S execve -k user_emulation'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.2
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_admin_scope_live:
+    title: 4.1.3.2 | Ensure actions as another user are always logged | running
+    exec: auditctl -l | grep user_emu
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S execve -C uid!=euid -F auid!=-1 -F key=user_emulation'
+    - '-a always,exit -F arch=b32 -S execve -C uid!=euid -F auid!=-1 -F key=user_emulation'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.2
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

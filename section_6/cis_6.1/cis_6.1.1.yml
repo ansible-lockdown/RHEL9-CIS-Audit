@@ -3,7 +3,7 @@
     {{ if .Vars.rhel9cis_rule_6_1_1 }}
 command:
   rpm_filecheck:
-    title: 6.1.1 | L2 | Audit system file permissions
+    title: 6.1.1 | Audit system file permissions
     exec: rpm -Va --nomtime --nosize --nomd5 --nolinkto > /tmp/cis_rpmcheck; grep -vcw c /tmp/cis_rpmcheck
     exit-status: 0
     stdout:

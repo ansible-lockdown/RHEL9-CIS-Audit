@@ -2,7 +2,7 @@
 command:
   logfile_configured:
     title: 4.2.3 | Ensure permissions on all logfiles are configured
-    exec: find /var/log/ -type f -perm /g+wx,o+rwx -exec ls -l "{}""+
+    exec: 'find /var/log/ -type f -perm /g+wx,o+rwx -exec ls -l "{}" +'
     exit-status: 0
     stdout: ['!/./']
     meta:

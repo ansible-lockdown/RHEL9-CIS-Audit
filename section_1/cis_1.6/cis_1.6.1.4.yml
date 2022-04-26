@@ -21,6 +21,7 @@ command:
 file:
   /etc/selinux/config:
     title: 1.6.1.4 | Ensure the SELinux mode is enforcing | config
+    exists: true 
     contains:
     - '/^SELINUX( |)=( |)enforcing/'
     meta:

@@ -23,7 +23,7 @@ command:
     exit-status: 0
     exec: "sestatus | grep 'Loaded policy'"
     stdout:
-    - '/Loaded policy name:\s+targeted'
+    - '/Loaded policy name:\s+targeted/'
     meta:
       server: 1
       workstation: 1

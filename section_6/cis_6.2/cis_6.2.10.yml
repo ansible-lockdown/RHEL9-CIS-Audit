@@ -4,6 +4,7 @@ command:
     title: 6.2.10 | Ensure users own their home directories
     exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $6 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
     exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
     stdout:
     - '!/./'
     meta:

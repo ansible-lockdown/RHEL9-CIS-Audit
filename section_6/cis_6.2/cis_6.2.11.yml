@@ -4,6 +4,7 @@ command:
     title: 6.2.11 | Ensure all users' home directories permissions are 750 or more restrictive
     exec: "for i in `getent passwd {1000..60000} |  awk '{split($0,a,\":\");print a[6]}'`; do stat -c \"%a %n\" $i ; done"
     exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
     stdout:
     - '/7[0,5]0\s/'
     meta:

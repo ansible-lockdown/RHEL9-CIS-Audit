@@ -4,6 +4,7 @@ command:
     title: 6.2.13 | Ensure users .netrc files are not group or word accessible
     exec: 'find /home/ -name .netrc -perm /g+r,o+r'
     exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
     stdout: 
     - '!/./'
     meta:

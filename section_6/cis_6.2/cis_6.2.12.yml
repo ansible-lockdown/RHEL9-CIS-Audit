@@ -3,6 +3,7 @@ command:
   dot_file_perms:
     title: 6.2.12 | Ensure users dot files are not group or world writable
     exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
+    timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout: 
     - '!/./'

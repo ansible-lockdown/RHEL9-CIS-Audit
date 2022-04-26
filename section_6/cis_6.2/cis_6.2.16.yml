@@ -3,6 +3,7 @@ command:
   dot_rhosts_files:
     title: 6.2.16 | Ensure no users have .rhosts files
     exec: 'find /home/ -name .rhosts'
+    timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout: 
     - '!/./'

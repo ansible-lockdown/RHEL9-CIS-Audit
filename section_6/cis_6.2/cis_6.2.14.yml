@@ -3,6 +3,7 @@ command:
   dot_forward_files:
     title: 6.2.14 | Ensure no users have .forward files
     exec: 'find /home/ -name .forward'
+    timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout: 
     - '!/./'

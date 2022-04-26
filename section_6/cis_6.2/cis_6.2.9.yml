@@ -3,6 +3,7 @@ command:
   home_dirs_exist:
     title: 6.2.9 | Ensure all users' home directories exist
     exec: pwck -r
+    timeout: {{ .Vars.timeout_ms }}
     exit-status:
       or:
       - 0

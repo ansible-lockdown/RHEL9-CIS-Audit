@@ -133,16 +133,24 @@ Minimal setup -- needs access to github
 
 ## Alternate source options
 
+```audit_run_script_environment```
+
+- Set correct env for the run_audit.sh script from https://github.com/ansible-lockdown/{{ benchmark }}-Audit.git"
+
+```yaml
+audit_run_script_environment:
+  AUDIT_BIN: "{{ audit_bin }}"
+  AUDIT_FILE: 'goss.yml'
+  AUDIT_CONTENT_LOCATION: "{{ audit_out_dir }}"
+```
+
 ```audit_content```
 
-> default: git
-
-- Where the audit content is being retrieved from options include
-  - git:
+> default: git  # where the audit content is being pulled from if running from local
 
 ```audit_file_git```
 
-> default:  ```https://github.com/ansible-lockdown/{{ benchmark }}-Audit.git```
+> default:  https://github.com/ansible-lockdown/{{ benchmark }}-Audit.git
 
 ```audit_git_version```
 
@@ -160,26 +168,29 @@ We have allowed two options using the same variables
 
 - Settings:
 
-  ```audit_conf_copy```
+```audit_conf_copy```
 
-    > default: (change accordingly for your environment)
+  > default: (change accordingly for your environment)
 
-    e.g. Path on the control node to copy path/archive from
+e.g. Path on the control node to copy path/archive from
 
-  ```audit_conf_dir``` (change as required copy as dir or extract archive)
+```audit_conf_dir```
 
-    > Directory on the managed node where the audit conf files will run
-    > from.
-    >
-    > Used for the copy and the running of the audit
+(change as required copy as dir or extract archive)
+
+  > Directory on the managed node where the audit conf files will run
+  > from.
+  > Used for the copy and the running of the audit
 
 Alternate options
 
 ```get_url``` ( to be set according to your requirements)
 
+```yaml
 - {{ audit_file_url }} -- As description
+```
 
-```local or none```
+- local or none
 
   > This assumes content is already on the system and utilises the check
   > that are already there (see audit_conf_dir setting)
@@ -283,9 +294,9 @@ script variables
 example:
 
 ```sh
-AUDIT_BIN=/usr/local/bin/goss  # location of the goss executable
-AUDIT_FILE=goss.yml  # the default goss file used by the audit provided by the audit configuration
-AUDIT_CONTENT_LOCATION=/var/tmp  # Location of the audit configuration file as available to the OS
+AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
+AUDIT_FILE="${AUDIT_FILE:-goss.yml}"  # the default goss file used by the audit provided by the audit configuration
+AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/var/tmp}"  # Location of the audit configuration file as available to the OS
 ```
 
 script help

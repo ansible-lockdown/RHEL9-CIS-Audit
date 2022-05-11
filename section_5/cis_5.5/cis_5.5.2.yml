@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_5_5_2 }}
 file:
   /etc/security/faillock.conf:
-    title: 5.5.2 | Ensure lockout for failed password attempts is configured | post 8.2
+    title: 5.5.2 | Ensure lockout for failed password attempts is configured
     exists: true
     contains:
     - '/^deny = [0-5]/'

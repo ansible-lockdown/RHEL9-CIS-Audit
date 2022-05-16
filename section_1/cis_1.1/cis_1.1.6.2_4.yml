@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_6_1 }}
 mount:
-  /tmp:
+  /var/log/audit:
     title: |
         1.1.6.2 | Ensure nodev option set on /var/log/audit partition
         1.1.6.3 | Ensure noexec option set on /var/log/audit partition

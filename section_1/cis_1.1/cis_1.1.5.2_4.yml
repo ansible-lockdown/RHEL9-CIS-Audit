@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_5_1 }}
 mount:
-  /tmp:
+  /var/log:
     title: |
         1.1.5.2 | Ensure nodev option set on /var/log partition
         1.1.5.3 | Ensure noexec option set on /var/log partition

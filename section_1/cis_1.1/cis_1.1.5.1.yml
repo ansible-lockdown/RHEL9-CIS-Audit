@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_5_1 }}
 mount:
-  /var:
+  /var/log:
     title: 1.1.5.1 | Ensure separate partition exists for /var/log
     exists: true
     opts:

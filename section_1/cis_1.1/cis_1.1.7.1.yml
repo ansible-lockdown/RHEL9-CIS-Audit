@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_7_1 }}
 mount:
-  /var:
+  /home:
     title: 1.1.7.1 | Ensure separate partition exists for /home
     exists: true
     opts:

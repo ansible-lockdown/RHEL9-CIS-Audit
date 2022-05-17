@@ -3,20 +3,20 @@
 mount:
   /var/tmp:
     title: |
-        1.1.4.3 | Ensure nodev option set on /var/tmp partition
-        1.1.4.3 | Ensure noexec option set on /var/tmp partition
-        1.1.4.4 | Ensure nosuid option set on /var/tmp partition
+        1.1.4.2 | Ensure noexec option set on /var/tmp partition
+        1.1.4.3 | Ensure nosuid option set on /var/tmp partition
+        1.1.4.4 | Ensure nodev option set on /var/tmp partition
     exists: true
     opts:
     opts:
     {{ if .Vars.rhel9cis_rule_1_1_4_2 }}
-    - nodev
-    {{ end }}
-    {{ if .Vars.rhel9cis_rule_1_1_4_3 }}
     - noexec
     {{ end }}
-    {{ if .Vars.rhel9cis_rule_1_1_4_4 }}
+    {{ if .Vars.rhel9cis_rule_1_1_4_3 }}
     - nosuid
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_4_4 }}
+    - noexec
     {{ end }}
     meta:
       server: 1
@@ -30,15 +30,15 @@ mount:
       CISv8_IG3: true
 command:
   {{ if .Vars.rhel9cis_rule_1_1_4_2 }}
-  nodev_var_tmp_fstab:
-     title: 1.1.4.2 | Ensure nodev option set on /var/tmp partition | fstab config
-     exec: grep '.*\/var\/tmp\s.*nodev.*$' \/etc\/fstab
+  noexec_var_tmp_fstab:
+     title: 1.1.4.2 | Ensure noexec option set on /var/tmp partition | fstab config
+     exec: grep '.*\/var\/tmp\s.*noexec.*$' \/etc\/fstab
      exit-status:
        or:
        - 0
        - 1
      stdout:
-     - '/.*\/var\/tmp\s.*nodev.*$/'
+     - '/.*\/var\/tmp\s.*noexec.*$/'
      meta:
        server: 1
        workstation: 1
@@ -50,15 +50,15 @@ command:
        CISv8_IG3: true
   {{ end }}
   {{ if .Vars.rhel9cis_rule_1_1_4_3 }}
-  noexec_var_tmp_fstab:
-     title: 1.1.4.3 | Ensure noexec option set on /var/tmp partition | fstab config
+  nosuid_var_tmp_fstab:
+     title: 1.1.4.3 | Ensure nosuid option set on /var/tmp partition | fstab config
      exec: grep '.*\/var\/tmp\s.*noexec.*$' \/etc\/fstab
      exit-status:
        or:
        - 0
        - 1
      stdout:
-     - '/.*\/var\/tmp\s.*noexec.*$/'
+     - '/.*\/var\/tmp\s.*nosuid.*$/'
      meta:
        server: 1
        workstation: 1

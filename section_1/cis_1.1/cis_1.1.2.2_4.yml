@@ -30,7 +30,7 @@ mount:
       CISv8_IG3: true
 command:
   {{ if .Vars.rhel9cis_rule_1_1_2_2 }}
-  noexec_tmp_fstab:
+  nodev_tmp_fstab:
      title: 1.1.2.3 | Ensure nodev option set on /tmp partition | fstab config
      exec: grep '.*\/tmp\s.*nodev.*$' \/etc\/fstab
      exit-status:

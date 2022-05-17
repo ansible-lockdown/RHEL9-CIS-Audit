@@ -41,6 +41,46 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
 command:
+  {{ if .Vars.rhel9cis_rule_1_1_7_2 }}
+  nodev_home_fstab:
+     title: 1.1.7.2 | Ensure nodev option set on /home partition | fstab config
+     exec: grep '.*\home\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/home\s.*nodev.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.7.2
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_7_3 }}
+  nosuid_home_fstab:
+     title: 1.1.7.3 | Ensure nosuid option set on /home partition | fstab config
+     exec: grep '.*\home\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/home\s.*nosuid.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.7.3
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
   quota_enabled:
     title: |
       1.1.7.4 | Ensure usrquota option set on /home partition | quota enabled
@@ -61,8 +101,8 @@ command:
       CISv8_IG3: true
   home_quotas:
     title: |
-      1.1.7.4 | Ensure usrquota option set on /home partition
-      1.1.7.5 | Ensure grpquota option set on /home partition
+      1.1.7.4 | Ensure usrquota option set on /home partition | live mount
+      1.1.7.5 | Ensure grpquota option set on /home partition | live mount
     exec: mount -l | grep home
     exit-status: 0
     stdout:

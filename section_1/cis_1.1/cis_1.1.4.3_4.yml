@@ -16,12 +16,53 @@ mount:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.1.4.3
       - 1.1.4.4
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_4_3 }}
+  noexec_var_tmp_fstab:
+     title: 1.1.4.3 | Ensure noexec option set on /var/tmp partition | fstab config
+     exec: grep '.*\/var\/tmp\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\/tmp\s.*noexec.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.4.3
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_4_4 }}
+  nodev_var_tmp_fstab:
+     title: 1.1.4.4 | Ensure nodev option set on /var/tmp partition | fstab config
+     exec: grep '.*\/var\/tmp\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\/tmp\s.*nodev.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.4.4
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
   {{ end }}
 {{ end }}

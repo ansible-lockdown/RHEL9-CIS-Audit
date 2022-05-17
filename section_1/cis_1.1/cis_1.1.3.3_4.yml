@@ -16,12 +16,53 @@ mount:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.1.3.3
       - 1.1.3.4
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_3_3 }}
+  noexec_var_fstab:
+     title: 1.1.3.3 | Ensure noexec option set on /var partition | fstab config
+     exec: grep '.*\/var\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\s.*noexec.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.3.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_3_4 }}
+  nosuid_var_tmp_fstab:
+     title: 1.1.3.4 | Ensure nosuid option set on /var partition | fstab config
+     exec: grep '.*\/var\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\s.*nosuid.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.3.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
   {{ end }}
 {{ end }}

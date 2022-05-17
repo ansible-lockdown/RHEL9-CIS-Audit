@@ -28,4 +28,65 @@ mount:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_8_1 }}
+  nodev_var_log_audit_fstab:
+     title: 1.1.8.1 | Ensure nodev option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev\/shm\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev\/shm\s.*nodev.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.8.1
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_8_2 }}
+  noexec_var_log_audit_fstab:
+     title: 1.1.8.2 | Ensure noexec option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev\/shm\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev\/shm\s.*noexec.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.8.2
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_8_3 }}
+  nosuid_var_log_audit_fstab:
+     title: 1.1.8.3 | Ensure nosuid option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev\/shm\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev\/shm\s.*nosuid.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.8.3
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
 {{ end }}

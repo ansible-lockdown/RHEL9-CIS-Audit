@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_6_1 }}
 mount:
-  /var:
+  /var/log/audit:
     title: 1.1.6.1 | Ensure separate partition exists for /var/log/audit
     exists: true
     opts:

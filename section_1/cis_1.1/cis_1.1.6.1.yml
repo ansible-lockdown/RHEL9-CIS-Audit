@@ -4,7 +4,6 @@ mount:
   /var/log/audit:
     title: 1.1.6.1 | Ensure separate partition exists for /var/log/audit
     exists: true
-    opts:
     meta:
       server: 2
       workstation: 2

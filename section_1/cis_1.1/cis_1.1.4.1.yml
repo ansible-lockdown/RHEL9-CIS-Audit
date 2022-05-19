@@ -1,16 +1,16 @@
 {{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_1_1_5_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_4_1 }}
 mount:
-  /var/log:
-    title: 1.1.5.1 | Ensure separate partition exists for /var/log
+  /var/tmp:
+    title: 1.1.4.1 | Ensure separate partition exists for /var/tmp
     exists: true
     meta:
       server: 2
       workstation: 2
       CIS_ID:
-      - 1.1.5.1
-      CISv8: 8.3
-      CISv8_IG1: false
+      - 1.1.4.1
+      CISv8: 3.3
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}

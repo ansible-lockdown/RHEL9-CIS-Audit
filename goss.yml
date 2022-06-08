@@ -22,8 +22,12 @@ gossfile:
     {{ if .Vars.rhel9cis_level_2 }}
   section_4/cis_4.1/*.yml: {}
     {{ end }}
+  {{ if eq .Vars.rhel9cis_syslog "rsyslog" }}
   section_4/cis_4.2.1/*.yml: {}
+  {{ end }}
+  {{ if eq .Vars.rhel9cis_syslog "journald" }}
   section_4/cis_4.2.2/*.yml: {}
+  {{ end }}
   section_4/cis_4.2.3/*.yml: {}
   section_4/cis_4.3/*.yml: {}
   {{ end }}

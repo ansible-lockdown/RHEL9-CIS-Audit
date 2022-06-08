@@ -447,7 +447,9 @@ rhel9cis_nft_tables_autochaincreate: true
 # Section 4
 
 ## syslog
-rhel9_cis_rsyslog: true
+## change to rsyslog/ journald or other
+rhel9cis_syslog: rsyslog
+
 
 # Section 5
 ## 5.2.4 Note the following to understand precedence and layout

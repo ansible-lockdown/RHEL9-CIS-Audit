@@ -17,11 +17,13 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ if not .Vars.rhel9cis_legacy_boot }}
-  /etc/fstab:
+command:
+  boot_efi_masked:
     title: 1.4.2 | Ensure permissions on bootloader config are configured | fstab /boot/efi opts umask
-    exists: true
-    contains:
-    - '/^[^#].*\/boot\/efi.*(umask=0027,fmask=0077,|fmask=0077,umask=0027,)(uid=0,gid=0|gid=0,uid=0)/'
+    exec: mount -l | grep -w '/boot/efi'
+    exit-status: 0
+    stdout:
+    - 'dmask=0027'  # note although set in fstab with umask when mounted it become dmask and uid and gid get dropped
     meta:
       server: 1
       workstation: 1

@@ -17,6 +17,22 @@ package:
       CISv8_IG3: true
   {{ end }}
   {{ if eq .Vars.rhel9cis_firewalld_nftables_state "masked" }}
+service:
+  nftables:
+    title: 3.4.1.3 | Ensure nftables either not installed or masked with firewalld | service stopped
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.3
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
 command:
   nftables_masked:
     title: 3.4.1.3 | Ensure nftables is not enabled with firewalld | service masked

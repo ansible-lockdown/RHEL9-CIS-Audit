@@ -2,7 +2,7 @@
 command:
   fw_port_svcs:
     title: 3.4.1.7 | Ensure firewalld drops unnecessary services and ports
-    exec: echo "Warning - Ensure correct interfaces are assigned to firewall rules as per site policy"
+    exec: echo "Warning - Ensure correct unecessary services and ports are dropped from firewalld"
     exit-status: 0
     stdout:
     - '!/Warning/'

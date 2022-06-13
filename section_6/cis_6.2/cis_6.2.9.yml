@@ -2,13 +2,9 @@
 command:
   home_dirs_exist:
     title: 6.2.9 | Ensure all users' home directories exist
-    exec: pwck -r
+    exec: pwck -r | grep -v journal | grep "does not exist"
     timeout: {{ .Vars.timeout_ms }}
-    exit-status:
-      or:
-      - 0
-      - 1
-      - 2
+    exit-status: 1
     stdout:
     - '!/does not exist/'
     meta:

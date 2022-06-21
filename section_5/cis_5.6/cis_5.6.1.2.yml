@@ -22,7 +22,7 @@ command:
     exit-status: 0
     stdout:
     - '/^.*:([7-9]|[1-9][0-9]{1,}])$/'
-    - '!/^.*:1-6]$/'
+    - '!/^.*:[1-6]$/'
     meta:
       server: 1
       workstation: 1

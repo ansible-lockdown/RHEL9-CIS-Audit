@@ -52,7 +52,7 @@ command:
   {{ if .Vars.rhel9cis_rule_1_1_4_3 }}
   nosuid_var_tmp_fstab:
      title: 1.1.4.3 | Ensure nosuid option set on /var/tmp partition | fstab config
-     exec: grep '.*\/var\/tmp\s.*noexec.*$' \/etc\/fstab
+     exec: grep '.*\/var\/tmp\s.*nosuid.*$' \/etc\/fstab
      exit-status:
        or:
        - 0

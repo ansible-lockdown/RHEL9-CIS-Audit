@@ -4,6 +4,8 @@ command:
     title: 1.4.3 | Ensure authentication required for single user mode
     exit-status: 0
     exec: "grep /systemd-sulogin-shell /usr/lib/systemd/system/rescue.service"
+    stdout: 
+      - '/^ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue/'
     meta:
       server: 1
       workstation: 1
@@ -18,6 +20,8 @@ command:
     title: 1.4.3 | Ensure authentication required for single user mode
     exit-status: 0
     exec: "grep /systemd-sulogin-shell /usr/lib/systemd/system/emergency.service"
+    stdout:
+      - '/^ExecStart=-/usr/lib/systemd/systemd-sulogin-shell emergency/'
     meta:
       server: 1
       workstation: 1

@@ -1,6 +1,6 @@
 {{ if .Vars.rhel9cis_rule_4_3_2 }}
 service:
-  logrotated:
+  logrotate.timer:
     title: 4.3.2 | Ensure logrotate is running and enabled
     running: true
     enabled: true

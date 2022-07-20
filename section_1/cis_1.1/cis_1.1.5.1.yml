@@ -1,9 +1,12 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_5_1 }}
-mount:
-  /var/log:
+command:
+  var_log_partition:
     title: 1.1.5.1 | Ensure separate partition exists for /var/log
-    exists: true
+    exec: mount -l | grep -w /var/log
+    exit-status: 0
+    stdout:
+    - '/var/log on /var/log'
     meta:
       server: 2
       workstation: 2

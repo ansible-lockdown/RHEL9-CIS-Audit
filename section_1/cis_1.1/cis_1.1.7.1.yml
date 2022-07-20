@@ -1,10 +1,12 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_7_1 }}
-mount:
-  /home:
+command:
+  home_partition:
     title: 1.1.7.1 | Ensure separate partition exists for /home
-    exists: true
-    opts:
+    exec: mount -l | grep -w /home
+    exit-status: 0
+    stdout:
+    - '/home on /home'
     meta:
       server: 2
       workstation: 2

@@ -16,7 +16,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-   passwd_create:
+  passwd_create:
      title: 5.5.1 |  Ensure password creation requirements are configured | enforce
      exec: 'grep -E "password.*enforce" /etc/pam.d/password-auth /etc/pam.d/system-auth | cut -d ":" -f2'
      exit-status: 0

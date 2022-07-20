@@ -5,7 +5,7 @@ command:
     exec: grep sha512 /etc/pam.d/system-auth
     exit-status: 0
     stdout:
-    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok remember={{ .Vars.rhel8cis_passwd_remember }}/"
+    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok remember={{ .Vars.rhel9cis_passwd_remember }}/"
     meta:
       server: 1
       workstation: 1

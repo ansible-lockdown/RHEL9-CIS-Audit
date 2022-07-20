@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_4_1_2_3 }}
-file:
-  /etc/audit/auditd.conf:
+command:
+  logs_full_auditd_conf:
     title: 4.1.2.3 | Ensure system is disabled when audit logs are full
-    exists: true
-    contains:
+    exec: grep -E "space" /etc/audit/auditd.conf
+    exit-status: 0
+    stdout:
     - space_left_action = email
     - action_mail_acct = root
     - '/^admin_space_left_action = (halt|single)/'

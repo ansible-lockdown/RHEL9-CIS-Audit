@@ -6,7 +6,7 @@ command:
     exit-status: 0
     stdout:
     - '/Compress=yes/'
-    - '/!Compress=[Nn][Oo]/'
+    - '!/Compress=[Nn][Oo]/'
     meta:
       server: 1
       workstation: 1

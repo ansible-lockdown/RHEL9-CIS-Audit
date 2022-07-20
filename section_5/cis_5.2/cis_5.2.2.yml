@@ -1,6 +1,6 @@
 {{ if .Vars.rhel9cis_rule_5_2_2 }}
 command:
-  /etc/ssh/ssh_host_key_user:
+  /etc/ssh/ssh_host_prv_key_user:
     title: 5.2.2 | Ensure permissions on SSH private host key files are configured_user
     exec: "userkeys=$(sudo find /etc/ssh/ -name *_key -type f ! -user root ); echo $userkeys"
     exit-status: 0
@@ -14,7 +14,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/ssh/ssh_host_key_group:
+  /etc/ssh/ssh_host_prv_key_group:
     title: 5.2.2 | Ensure permissions on SSH private host key files are configured_group
     exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key -type f ! -group root ); echo $groupkeys"
     exit-status: 0
@@ -28,7 +28,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/ssh/ssh_host_key_perms:
+  /etc/ssh/ssh_host_prv_key_perms:
     title: 5.2.2 | Ensure permissions on SSH private host key files are configured_user
     exec: "keyperms=$(sudo find /etc/ssh/ -name *_key -type f -perm /137 ); echo $keyperms"
     exit-status: 0

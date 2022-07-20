@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_4_2_2_5 }}
-file:
-  /etc/systemd/journald.conf:
+command:
+  forward_journald_conf:
     title: 4.2.2.5 | Ensure journald is not configured to send logs to rsyslog
-    exists: true
-    contains:
+    exec: grep -i forward /etc/systemd/journald.conf
+    exit-status: 0
+    stdout:
     - '!/^\s*ForwardToSyslog/'
     meta:
       server: 1

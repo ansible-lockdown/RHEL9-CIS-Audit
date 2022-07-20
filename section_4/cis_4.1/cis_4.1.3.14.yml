@@ -6,8 +6,8 @@ command:
     exec: grep MAC-policy /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-w /etc/selinux/ -p wa -k MAC-policy'
-    - '-w /usr/share/selinux/ -p wa -k MAC-policy'
+    - '/.*.rules\:-w /etc/selinux -p wa -k MAC-policy/'
+    - '/.*.rules\:-w /usr/share/selinux -p wa -k MAC-policy/'
     meta:
       server: 2
       workstation: 2

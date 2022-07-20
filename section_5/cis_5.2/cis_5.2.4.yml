@@ -1,10 +1,14 @@
 {{ if .Vars.rhel9cis_rule_5_2_4 }}
   {{ if .Vars.rhel9cis_sshd_limited }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  sshd_access_limited:
     title: 5.2.4 | Ensure SSH access is limited 
-    exists: true
-    contains:
+    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     {{ range .Vars.rhel9cis_sshd_access }}
     - {{ . }}
     {{ end }}

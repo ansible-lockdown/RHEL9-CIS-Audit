@@ -2,13 +2,10 @@
 file:
   /etc/tmpfiles.d/systemd.conf:
     title: 4.2.2.7 | Ensure journald default file permissions are configured
-    exists: true
-    contains:
-    - '/^06(0|4)0/'
-    - '/^SystemKeepFree=/' 
-    - '/^RuntimeMaxUse=/'
-    - '/^RuntimeKeepFree=/' 
-    - '/^MaxFileSec=/'
+    exec: echo "Manual - Please check journald default permissions"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
     meta:
       server: 1
       workstation: 1

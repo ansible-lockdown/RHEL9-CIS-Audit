@@ -1,11 +1,12 @@
 {{ if .Vars.rhel9cis_rule_5_5_3 }} 
   {{ if .Vars.rhel9cis_pwhistory_so }}
-file:
-  /etc/pam.d/system-auth:
+command:
+  pwreuse_pamd_system_auth:
     title: 5.5.3 | Ensure password reuse is limited
-    exists: true
-    contains:
-    - '/^password\s+(sufficient|requisite)\s+pam_pwquality.so\stry_first_pass\slocal_users_only\senforce_for_root\sretry=3\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
+    exec: grep -Ei "^password.*remember" /etc/pam.d/system-auth
+    exit-status: 0
+    stdout:
+    - '/^password\s+(sufficient|requisite)\s+pam_pwhistory.so\stry_first_pass\slocal_users_only\senforce_for_root\sretry=3\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
     - '/^password\s+(sufficient|requisite)\s+pam_unix.so\ssha512\sshadow\stry_first_pass\suse_authtok\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
     meta:
       server: 1

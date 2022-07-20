@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_5_4 }}
-file:
-  /etc/pam.d/system-auth:
+command:
+ pamd_system_auth_sha:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | system-auth
-    exists: true
-    contains:
+    exec: grep sha512 /etc/pam.d/system-auth
+    exit-status: 0
+    stdout:
     - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok remember={{ .Vars.rhel9cis_passwd_remember }}/"
     meta:
       server: 1
@@ -14,6 +15,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+file:
   /etc/pam.d/password-auth:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
     exists: true

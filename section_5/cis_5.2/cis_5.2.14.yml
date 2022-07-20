@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_14 }}
-file:
-  /etc/sysconfig/sshd:
-    title: 5.2.14 | Ensure system-wide crypto policy is not overridden
-    exists: true
-    contains:
+command:
+  sshd_crypto:
+    title: 5.2.14 | Ensure system-wide crypto policy is not over-ridden
+    exec: grep -Ei "^Crypto_policy" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '!/^CRYPTO_POLICY/'
     meta:
       server: 1

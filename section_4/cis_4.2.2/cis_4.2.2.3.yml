@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_4_2_2_3 }}
-file:
-  /etc/systemd/journald.conf:
+command:
+  compress_journald_conf:
     title: 4.2.2.3 | Ensure journald is configured to compress large log files
-    exists: true
-    contains:
+    exec: grep -i compress /etc/systemd/journald.conf
+    exit-status: 0
+    stdout:
     - '/Compress=yes/'
     - '/!Compress=[Nn][Oo]/'
     meta:

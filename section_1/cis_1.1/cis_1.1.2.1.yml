@@ -1,10 +1,12 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_2_1 }}
-mount:
-  /tmp:
+command:
+  tmp_partition:
     title: 1.1.2.1 | Ensure /tmp is a separate partition
-    exists: true
-    filesystem: tmpfs
+    exec: mount -l | grep -w /tmp
+    exit-status: 0
+    stdout:
+    - '/\/tmp on \/tmp type tmpfs/'
     meta:
       server: 1
       workstation: 1

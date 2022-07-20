@@ -19,7 +19,7 @@ command:
   journald_socket_masked:
     title: 4.2.2.1.4 | Ensure journald is not configured to recieve logs from a remote client
     exec: systemctl is-enabled systemd-journal-remote.socket
-    exit-status: 0
+    exit-status: 1
     stdout: 
     - '/^masked/'
     meta:

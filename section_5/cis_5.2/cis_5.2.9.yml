@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_9 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_empty_passwd:
     title: 5.2.9 | Ensure SSH PermitEmptyPasswords is disabled
-    exists: true
-    contains:
+    exec: grep -Ei "permitemptypasswords" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^PermitEmptyPasswords no/'
     - '!/^PermitEmptyPasswords yes/'
     meta:

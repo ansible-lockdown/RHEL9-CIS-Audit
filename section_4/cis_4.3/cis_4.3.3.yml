@@ -2,7 +2,7 @@
 command:
   logrotate_configured:
     title: 4.3.3 | Ensure logrotate is configured
-    exec: echo "Manual - CHeck logrotate files configuration matches site requirements"
+    exec: echo "Manual - Check logrotate files configuration matches site requirements"
     exit-status: 0
     stdout: ['!/Manual/']
     meta:

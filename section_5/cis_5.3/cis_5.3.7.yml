@@ -18,10 +18,12 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/group:
+command:
+  sugroup_etc_group:
     title: 5.3.7 | Ensure access to the su command is restricted
-    exists: true
-    contains:
+    exec: grep {{ .Vars.rhel9cis_sugroup }} /etc/group
+    exit-status: 0
+    stdout:
     - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:{{ .Vars.rhel9cis_sugroup_users }}/'
     meta:
       server: 1

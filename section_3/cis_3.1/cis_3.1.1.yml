@@ -1,10 +1,11 @@
 {{ if not .Vars.rhel9cis_ipv6_required }}
   {{ if .Vars.rhel9cis_rule_3_1_1 }}
-file:
-  /etc/default/grub:
-    title: 3.1.1 | Verify if IPv6 is enabled on the system
-    exists: true
-    contains:
+command:
+  default_grub_ipv6:
+    title: 3.1.1 |Verify if IPv6 is enabled on the system
+    exec: grep ipv6 /etc/default/grub.conf
+    exit-status: 0
+    stdout:
     - '/(?=\S+\s(ipv6\.disable=1.*)$)^GRUB_CMDLINE_LINUX="/'
     meta:
       server: 1
@@ -15,7 +16,6 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-command:
   sysctl_ipv6_disable:
     title: 3.1.1 | Verify if IPv6 is enabled on the system
     exec: grep disable_ipv6 /etc/sysctl.conf /etc/sysctl.d/*

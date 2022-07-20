@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_6 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_usepam:
     title: 5.2.6 | Ensure SSH PAM is enabled
-    exists: true
-    contains:
+    exec: grep -Ei "^usepam" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^UsePAM yes/'
     - '!/^UsePAM no/'
     meta:

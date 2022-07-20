@@ -5,7 +5,7 @@ file:
     exists: true
     contains:
     - '/^ForwardToSyslog=yes/'
-    - '/!ForwardToSyslog=[Nn][Oo]/'
+    - '!/ForwardToSyslog=[Nn][Oo]/'
     meta:
       server: 1
       workstation: 1

@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_10 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_userenv:
     title: 5.2.10 | Ensure SSH PermitUserEnvironment is disabled
-    exists: true
-    contains:
+    exec: grep -Ei "PermitUserEnvironment" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^PermitUserEnvironment no/'
     - '!/^PermitUserEnvironment yes/'
     meta:

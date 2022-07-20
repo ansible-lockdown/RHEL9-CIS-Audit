@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_7 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_permit_root:
     title: 5.2.7 | Ensure SSH root login is disabled
-    exists: true
-    contains:
+    exec: grep -Ei "permitrootlogin" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^PermitRootLogin no/'
     - '!/^PermitRootLogin yes/'
     meta:

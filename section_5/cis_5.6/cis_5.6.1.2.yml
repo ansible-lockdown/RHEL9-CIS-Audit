@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_6_1_2 }}
-file:
-  /etc/login.defs:
+command:
+  login_defs_min_days:
     title: 5.6.1.2 | Ensure minimum days between password changes is 7 or more
-    exists: true
-    contains:
+    exec: grep PASS_MIN_DAYS /etc/login.defs
+    exit-status: 0
+    stdout:
     - '/^PASS_MIN_DAYS\s{{ .Vars.rhel9cis_pass.min_days }}/'
     - '!/^PASS_MIN_DAYS\s[0-6]/'
     meta:
@@ -22,7 +23,7 @@ command:
     exit-status: 0
     stdout:
     - '/^.*:([7-9]|[1-9][0-9]{1,}])$/'
-    - '!/^.*:[1-6]$/'
+    - '!/^.*:1-6]$/'
     meta:
       server: 1
       workstation: 1

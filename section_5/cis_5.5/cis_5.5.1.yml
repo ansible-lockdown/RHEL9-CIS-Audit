@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_5_1 }}
-file:
-  /etc/security/pwquality.conf:
+command:
+  min_pwquality:
     title: 5.5.1 | Ensure password creation requirements are configured | pwquality
-    exists: true
-    contains:
+    exec: cat /etc/security/pwquality
+    exit-status: 0
+    stdout:
     - {{ .Vars.rhel9cis_pam_password.minlen  }}
     - {{ .Vars.rhel9cis_pam_password.minclass }}
     meta:
@@ -15,7 +16,6 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-command:
    passwd_create:
      title: 5.5.1 |  Ensure password creation requirements are configured | enforce
      exec: 'grep -E "password.*enforce" /etc/pam.d/password-auth /etc/pam.d/system-auth | cut -d ":" -f2'

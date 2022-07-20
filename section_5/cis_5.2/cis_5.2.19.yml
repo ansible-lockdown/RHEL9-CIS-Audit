@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_19 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_logingrace:
     title: 5.2.19 | Ensure SSH LoginGraceTime is set to one minute or less
-    exists: true
-    contains:
+    exec: grep -Ei "^logingrace" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^LoginGraceTime ([1-9]|[1-5][0-9]|60)/'
     meta:
       server: 1

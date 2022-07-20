@@ -1,9 +1,13 @@
 {{ if .Vars.rhel9cis_rule_5_2_11 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_rhosts:
     title: 5.2.11 | Ensure SSH IgnoreRhosts is enabled
-    exists: true
-    contains:
+    exec: grep -Ei "Ignorerhosts" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^IgnoreRhosts yes/'
     - '!/^IgnoreRhosts no/'
     meta:

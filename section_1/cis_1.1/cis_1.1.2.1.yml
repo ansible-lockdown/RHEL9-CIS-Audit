@@ -6,7 +6,7 @@ command:
     exec: mount -l | grep -w /tmp
     exit-status: 0
     stdout:
-    - '/on \/tmp type tmpfs/'
+    - '/tmp type'
     meta:
       server: 1
       workstation: 1

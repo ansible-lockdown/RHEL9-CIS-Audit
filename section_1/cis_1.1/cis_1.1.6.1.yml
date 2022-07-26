@@ -6,7 +6,7 @@ command:
     exec: mount -l | grep -w /var/log/audit
     exit-status: 0
     stdout:
-    - '/var/log/audit on /var/log/audit'
+    - 'on /var/log/audit'
     meta:
       server: 2
       workstation: 2

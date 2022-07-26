@@ -1,5 +1,14 @@
 # Changes to RHEL9-CIS-Audit
 
+## 0.3
+
+- many updates and fixes
+  - mountpoint updates
+  - regex and search improvements
+  - greater consistency on control report
+  - tested and working on rockylinux
+
+
 ## 0.2
 
 - not all controls work with rhel8 releases any longer

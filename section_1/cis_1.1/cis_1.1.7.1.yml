@@ -6,7 +6,7 @@ command:
     exec: mount -l | grep -w /home
     exit-status: 0
     stdout:
-    - '/home on /home'
+    - 'on /home'
     meta:
       server: 2
       workstation: 2

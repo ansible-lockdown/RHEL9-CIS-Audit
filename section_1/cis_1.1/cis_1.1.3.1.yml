@@ -6,7 +6,7 @@ command:
     exec: mount -l | grep -w /var
     exit-status: 0
     stdout:
-    - '/var on /var'
+    - 'on /var'
     meta:
       server: 2
       workstation: 2

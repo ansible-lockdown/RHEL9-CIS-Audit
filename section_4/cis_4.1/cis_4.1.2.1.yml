@@ -5,7 +5,7 @@ command:
     exec: grep max_log_file /etc/audit/auditd.conf
     exit-status: 0
     stdout:
-    - '/^max_log_file = \d\d\d\d+/'
+    - '/^max_log_file = \d\d+/'
     meta:
       server: 2
       workstation: 2

@@ -2,7 +2,7 @@
 command:
   logs_full_auditd_conf:
     title: 4.1.2.3 | Ensure system is disabled when audit logs are full
-    exec: grep -E "space" /etc/audit/auditd.conf
+    exec: grep -E "space|mail" /etc/audit/auditd.conf
     exit-status: 0
     stdout:
     - space_left_action = email

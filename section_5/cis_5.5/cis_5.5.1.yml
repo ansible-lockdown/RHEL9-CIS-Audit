@@ -2,10 +2,10 @@
 command:
   min_pwquality:
     title: 5.5.1 | Ensure password creation requirements are configured | pwquality
-    exec: cat /etc/security/pwquality
+    exec: cat /etc/security/pwquality.conf
     exit-status: 0
     stdout:
-    - {{ .Vars.rhel9cis_pam_password.minlen  }}
+    - {{ .Vars.rhel9cis_pam_password.minlen }}
     - {{ .Vars.rhel9cis_pam_password.minclass }}
     meta:
       server: 1

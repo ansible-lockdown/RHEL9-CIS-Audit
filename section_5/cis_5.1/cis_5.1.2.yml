@@ -16,5 +16,3 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-
-

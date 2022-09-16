@@ -84,3 +84,20 @@ package:
       CISv8_IG3: true
     {{ end }}
   {{ end }}
+  {{ if not .Vars.rhel9cis_tftp_client }}
+    {{ if .Vars.rhel9cis_rule_2_3_6}}
+  tftp:
+    title: 2.3.6 | Ensure TFTP client is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: NA
+      CIS_ID: 
+      - 2.3.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}

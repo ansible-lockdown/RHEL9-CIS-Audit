@@ -156,6 +156,7 @@ rhel9cis_rule_2_3_2: true
 rhel9cis_rule_2_3_3: true
 rhel9cis_rule_2_3_4: true
 rhel9cis_rule_2_3_5: true
+rhel9cis_rule_2_3_6: true
 
 rhel9cis_rule_2_4: true # todo
 

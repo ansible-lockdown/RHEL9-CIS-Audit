@@ -6,7 +6,7 @@ command:
     exec: grep ipv6 /etc/default/grub.conf
     exit-status: 0
     stdout:
-    - '/(?=\S+\s(ipv6\.disable=1.*)$)^GRUB_CMDLINE_LINUX="/'
+    - '/^GRUB_CMDLINE_LINUX="(\S+\s)*(ipv6\.disable=1).*$/'
     meta:
       server: 1
       workstation: 1
@@ -20,7 +20,7 @@ command:
     title: 3.1.1 | Verify if IPv6 is enabled on the system
     exec: grep disable_ipv6 /etc/sysctl.conf /etc/sysctl.d/*
     exit-status:
-    or:
+      or:
       - 0
       - 1
     stdout:

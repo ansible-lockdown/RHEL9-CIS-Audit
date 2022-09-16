@@ -10,7 +10,7 @@ file:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.2.1.13
+      - 4.2.1.3
       CISv8: 
       - 8.2
       - 8.9

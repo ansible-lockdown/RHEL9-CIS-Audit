@@ -18,7 +18,7 @@ command:
       CISv8_IG3: true
 file:
   /etc/authselect/authselect.conf:
-    title: 5.3.3 | Ensure authselect includes with-faillock
+    title: 5.4.2 | Ensure authselect includes with-faillock
     exists: true
     contains:
     - '/^with-faillock/'
@@ -26,7 +26,7 @@ file:
       server: 1
       workstation: 1
       CIS_ID:
-      - 5.3.3
+      - 5.4.2
       CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true

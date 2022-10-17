@@ -7,16 +7,26 @@
 ---
 
 ## RHEL 9 Goss config
+# Overview
 
-## Overview
+based on CIS 2.0.0
 
-based on RedHat 8 CIS 2.0.0
+Ability to audit a system using a lightweight binary to check the current state.
 
-Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers
+This is:
 
-This is configured in a directory structure level.
+- very small 11MB
+- lightweight
+- self contained
 
-Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
+It works using a set of configuration files and directories to audit STIG of RHEL/CentOS 7 servers. These files/directories correlate to the STIG Level and STIG_ID
+
+Tested on
+
+- RHEL8
+- CentOS8
+- Rocky8
+- Alma-Linux 8
 
 ## Requirements
 
@@ -38,6 +48,16 @@ Which will:
 - audit
 - remediate
 - audit
+
+## Join us
+
+On our [Discord Server](https://discord.io/ansible-lockdown) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
+
+Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers
+
+This is configured in a directory structure level.
+
+Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
 
 ## further information
 

@@ -4,7 +4,7 @@ command:
   modprobe_sctp:
     title: 3.1.2 | Ensure SCTP is disabled
     exit-status: 0
-    exec: 'modprobe -n -v dccp'
+    exec: 'modprobe -n -v sctp'
     stdout: ['install /bin/true']
     meta:
       server: 2

@@ -1,9 +1,9 @@
 {{ if not .Vars.rhel9cis_vsftpd_server}}
   {{ if .Vars.rhel9cis_rule_2_2_8 }}
-installed:
+package:
   vsftp:
     title: 2.2.8 | Ensure VSFTP Server is not installed
-    installed: {{ false }}
+    installed: false
     meta:
       server: 1
       workstation: 1

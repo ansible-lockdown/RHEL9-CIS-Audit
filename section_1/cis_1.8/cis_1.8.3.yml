@@ -23,9 +23,9 @@ command:
     title: 1.8.3 | Ensure last logged in user display is disabled
     exec: grep "[org/gnome/login-screen]" /etc/dconf/db/gdm.d/* | grep disable-user-list
     exit-status:
-    or:
-    - 0
-    - 1
+      or:
+      - 0
+      - 1
     stdout:
     - '/^disable-user-list=true/'
     - '!/^disable-user-list=false/'

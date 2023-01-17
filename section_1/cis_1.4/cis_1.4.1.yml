@@ -2,20 +2,21 @@
   {{ if .Vars.rhel9cis_set_boot_pass }}
   file:
     /boot/grub2/user.cfg:
-      title: 1.4.1 | Ensure bootloader password is set and permissions
+      title: 1.4.1 | Ensure bootloader password is set
       exists: true
       owner: root
       group: root
       mode: "0600"
       {{ if .Vars.rhel9cis_set_boot_pass }}
-      contains: [GRUB2_PASSWORD=<encrypted-password>]
+      contains: 
+        - '/GRUB2_PASSWORD=grub.pbkdf2.sha512.*/'
       {{ end }}
       meta:
         server: 1
         workstation: 1
-        CIS_ID: 
+        CIS_ID:
         - 1.4.1
-        CISv8: 
+        CISv8:
         - 3.3
         CISv8_IG1: true
         CISv8_IG2: true

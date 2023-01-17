@@ -92,7 +92,7 @@ rhel9cis_rule_1_3_3: true
 # 1.4 Secure Boot Settings
 rhel9cis_rule_1_4_1: true
 rhel9cis_rule_1_4_2: true
-rhel9cis_rule_1_4_3: true
+
 # 1.5 Additional Process Hardening
 rhel9cis_rule_1_5_1: true
 rhel9cis_rule_1_5_2: true

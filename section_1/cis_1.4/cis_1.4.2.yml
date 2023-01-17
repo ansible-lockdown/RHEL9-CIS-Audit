@@ -1,8 +1,23 @@
 {{ if .Vars.rhel9cis_rule_1_4_2 }}
-  {{ if .Vars.rhel9cis_legacy_boot }}
 file:
+  /boot/grub2/grub.cfg:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | grub.cfg
+    exists: true
+    owner: root
+    group: root
+    mode: "0700"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.2
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
   /boot/grub2/grubenv:
-    title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | grubenv
     exists: true
     owner: root
     group: root
@@ -17,16 +32,12 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
-  {{ if not .Vars.rhel9cis_legacy_boot }}
-command:
-  boot_efi_mask:
-    title: 1.4.2 | Ensure permissions on bootloader config are configured | /boot/efi opts
-    exec: mount -l | grep -w '/boot/efi'
-    exit-status: 0
-    stdout:
-    - 'dmask=0027'  # note although set in fstab with umask when mounted it become dmask and uid and gid get dropped
-    - 'fmask=0077'
+  /boot/grub2/user.cfg:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | user.cfg
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
     meta:
       server: 1
       workstation: 1

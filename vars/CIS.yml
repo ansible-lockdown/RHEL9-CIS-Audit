@@ -76,10 +76,10 @@ rhel9cis_rule_1_1_8_1: true
 rhel9cis_rule_1_1_8_2: true
 rhel9cis_rule_1_1_8_3: true
 rhel9cis_rule_1_1_8_4: true
-# 1.9 autofs
-rhel9cis_rule_1_1_9: true
 # 1.10 usb-storage
-rhel9cis_rule_1_1_10: true
+rhel9cis_rule_1_1_9: true
+
+
 # 1.2 Configure Software Updates
 rhel9cis_rule_1_2_1: true  # if this is RHEL # change to False for RHEL derivative
 rhel9cis_rule_1_2_2: true

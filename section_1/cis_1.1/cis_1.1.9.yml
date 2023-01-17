@@ -1,10 +1,12 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_9 }}
-service:
-  autofs:
-    title: 1.1.9 | Disable Automounting | service
-    enabled: false
-    running: false
+command:
+  usb-storage:
+    title: 1.1.9 | Disable USB Storage
+    exit-status: 0
+    exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
+    stdout: 
+    - install /bin/true
     meta:
       server: 1
       workstation: 2
@@ -14,15 +16,36 @@ service:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-package:
-  autofs:
-    title: 1.1.9 | Disable Automounting | pkg
-    installed: false
+  usb-storage-module:
+    title: 1.1.9 | Disable USB Storage
+    exit-status: 
+      or:
+      - 0
+      - 1
+    exec: "lsmod | grep -c usb-storage"
+    stdout: 
+    - '/^0/'
+    - '!/^[1-9]/'
     meta:
       server: 1
       workstation: 2
       CIS_ID: 1.1.9
       CISv8: 
+      - 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  blacklist_usb_storage:
+    title: 1.1.9 | Disable USB Storage | blacklist
+    exit-status: 0
+    exec: grep usb-storage /etc/modprobe.d/blacklist.conf
+    stdout:
+      - '/.*:blacklist usb-storage/'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.1.9
+      CISv8:
       - 10.3
       CISv8_IG1: true
       CISv8_IG2: true

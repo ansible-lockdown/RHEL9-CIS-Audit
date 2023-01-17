@@ -9,10 +9,10 @@ mount:
     exists: true
     opts:
     {{ if .Vars.rhel9cis_rule_1_1_6_2 }}
-    - nodev
+    - noexec
     {{ end }}
     {{ if .Vars.rhel9cis_rule_1_1_6_3 }}
-    - noexec
+    - nodev
     {{ end }}
     {{ if .Vars.rhel9cis_rule_1_1_6_4 }}
     - nosuid

@@ -5,15 +5,16 @@ command:
     exec: grep -i ProcessSizeMax /etc/systemd/coredump.conf
     exit-status: 0
     stdout:
-    - '/ProcessSizeMax=0/'
+    - '/^ProcessSizeMax=0/'
+    - '!/^ProcessSizeMax=[1-9].*/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.2
-      CISv8: 
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      CISv8:
+      - N/A
+      CISv8_IG1: N/A
+      CISv8_IG2: N/A
+      CISv8_IG3: N/A
 {{ end }}

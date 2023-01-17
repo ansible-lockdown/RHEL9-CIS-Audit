@@ -22,6 +22,7 @@ mount:
       server: 1
       workstation: 1
       CIS_ID:
+      - 1.1.4.2
       - 1.1.4.3
       - 1.1.4.4
       CISv8: 3.3

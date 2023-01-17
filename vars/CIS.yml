@@ -105,6 +105,7 @@ rhel9cis_rule_1_6_1_4: true
 rhel9cis_rule_1_6_1_5: true
 rhel9cis_rule_1_6_1_6: true
 rhel9cis_rule_1_6_1_7: true
+rhel9cis_rule_1_6_1_8: true
 
 # 1.7 Command Line Warning Banners
 rhel9cis_rule_1_7_1: true

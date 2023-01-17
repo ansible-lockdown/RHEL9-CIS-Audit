@@ -4,7 +4,7 @@ command:
   selinux_disabled_boot:
     title: 1.6.1.2 | Ensure SELinux is not disabled in bootloader configuration
     exit-status: 1
-    exec: 'grep "^\s*linux" /boot/grub2/grubenv | grep -E "(selinux=0|enforcing=0)"'
+    exec: 'grep "^\s*linux" /boot/grub2/grubenv | grep -E "(selinux|enforcing)=0"'
     stdout: ['!/./']
     meta:
       server: 1

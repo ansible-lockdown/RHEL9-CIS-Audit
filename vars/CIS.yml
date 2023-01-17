@@ -75,6 +75,7 @@ rhel9cis_rule_1_1_7_5: true
 rhel9cis_rule_1_1_8_1: true
 rhel9cis_rule_1_1_8_2: true
 rhel9cis_rule_1_1_8_3: true
+rhel9cis_rule_1_1_8_4: true
 # 1.9 autofs
 rhel9cis_rule_1_1_9: true
 # 1.10 usb-storage

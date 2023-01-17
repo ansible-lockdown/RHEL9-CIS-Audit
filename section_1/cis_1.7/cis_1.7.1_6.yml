@@ -9,13 +9,13 @@ file:
     owner: root
     group: root
     contains:
-      - "![Cc]ent[Oo][Ss]"
-      - "![Rr]hel"
-      - "![Rr]ed[Hh]at"
-      - "![Rr]ocky"
-      - "![Aa]lma"
-      - "!x86_64"
-      - "![Ll]inux"
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
     meta:
       server: 1
       workstation: 1
@@ -39,11 +39,14 @@ file:
     owner: root
     group: root
     contains:
-    - "![Cc]ent[Oo][Ss]"
-    - "![Rr]hel"
-    - "![Rr]ed[Hh]at"
-    - "!x86_64"
-    - "![Ll]inux"
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
+    - '{{ .Vars.rhel9cis_warning_banner }}'
     meta:
       server: 1
       workstation: 1
@@ -67,11 +70,13 @@ file:
     owner: root
     group: root
     contains:
-    - "![Cc]ent[Oo][Ss]"
-    - "![Rr]hel"
-    - "![Rr]ed[Hh]at"
-    - "!x86_64"
-    - "![Ll]inux"
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
     meta:
       server: 1
       workstation: 1

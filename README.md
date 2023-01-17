@@ -1,15 +1,9 @@
-# Development Only
 
-***RHEL 9 CIS (predicted) - ALPHA - CIS baselines or OS not yet GA***
+# RHEL 9 Goss config
 
-***Testing if you have access to the RH developer branches***
+## Overview
 
----
-
-## RHEL 9 Goss config
-# Overview
-
-based on CIS 2.0.0
+based on CIS 1.0.0
 
 Ability to audit a system using a lightweight binary to check the current state.
 
@@ -23,10 +17,9 @@ It works using a set of configuration files and directories to audit STIG of RHE
 
 Tested on
 
-- RHEL8
-- CentOS8
-- Rocky8
-- Alma-Linux 8
+- RHEL9
+- Rocky9
+- AlmaLinux 9
 
 ## Requirements
 

@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_cups_server }}
+{{ if not .Vars.rhel9cis_dhcp_server }}
   {{ if .Vars.rhel9cis_rule_2_2_4 }}
 package:
-  cups:
-    title: 2.2.4 | Ensure CUPS is not installed
+  dhcp-server:
+    title: 2.2.4 | Ensure DHCP Server is not installed
     installed: false
     meta:
       server: 1
-      workstation: NA
-      CIS_ID:
+      workstation: 1
+      CIS_ID:4
       - 2.2.4
       CISv8:
       - 4.8

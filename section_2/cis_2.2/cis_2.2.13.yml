@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_squid_server }}
+{{ if not .Vars.rhel9cis_telnet_server }}
   {{ if .Vars.rhel9cis_rule_2_2_13 }}
 package:
-  squid:
-    title: 2.2.13 | Ensure HTTP proxy Server is not installed
+  telnet-server:
+    title: 2.2.13 | Ensure telnet-server is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID:
+      CIS_ID: 
       - 2.2.13
       CISv8:
       - 4.8

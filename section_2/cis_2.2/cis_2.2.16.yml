@@ -1,13 +1,34 @@
-{{ if not .Vars.rhel9cis_telnet_server }}
-  {{ if .Vars.rhel9cis_rule_2_2_16 }}
+{{ if .Vars.rhel9cis_rule_2_2_16 }}
+  {{ if not .Vars.rhel9cis_use_nfs_server }}
+    {{ if not .Vars.rhel9cis_use_nfs_service }}
 package:
-  telnet-server:
-    title: 2.2.16 | Ensure telnet-server is not installed
+  nfs-utils:
+    title: 2.2.16 | Ensure nfs-utils is not installed or the nfs-server service is masked
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
+      - 2.2.16
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+  {{ if .Vars.rhel9cis_use_nfs_service }}
+command:
+  nfs_masked:
+    title: 2.2.16 | Ensure nfs-utils is not installed or the nfs-server service is masked
+    exec: systemctl is-enabled nfs-server
+    exit-status: 0
+    stdout:
+      - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
       - 2.2.16
       CISv8:
       - 4.8

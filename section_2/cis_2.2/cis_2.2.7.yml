@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_ftp_server}}
+{{ if not .Vars.rhel9cis_tftp_server }}
   {{ if .Vars.rhel9cis_rule_2_2_7 }}
 package:
-  ftp:
-    title: 2.2.7 | Ensure FTP Server is not installed
+  tftp-server:
+    title: 2.2.7 | Ensure TFTP Server is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.7
       CISv8:
       - 4.8

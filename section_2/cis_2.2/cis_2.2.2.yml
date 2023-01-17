@@ -1,13 +1,26 @@
-{{ if not .Vars.rhel9cis_xwindows_required }}
+{{ if not .Vars.rhel9cis_avahi_server }}
   {{ if .Vars.rhel9cis_rule_2_2_2 }}
 package:
-  xorg-x11-server-common:
-    title: 2.2.2 | Ensure X11 Server components are not installed 
+  avahi:
+    title: 2.2.2 | Ensure Avahi Server is not installed | avahi pkg
     installed: false
     meta:
       server: 1
-      workstation: NA
-      CIS_ID: 
+      workstation: 2
+      CIS_ID:
+      - 2.2.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  avahi-autoipd:
+    title: 2.2.2 | Ensure Avahi Server is not installed | autoipd pkg
+    installed: false
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID:
       - 2.2.2
       CISv8:
       - 4.8

@@ -390,12 +390,12 @@ rhel9_aide_scan: cron
 # Set to 'true' if X Windows is needed in your environment
 rhel9cis_xwindows_required: false
 ### Service configuration booleans set true to keep service
-rhel9cis_xinetd_server: false
+rhel9cis_gui: false
 rhel9cis_avahi_server: false
 rhel9cis_cups_server: false
 rhel9cis_dhcp_server: false
 rhel9cis_dns_server: false
-rhel9cis_ftp_server: false
+rhel9cis_dnsmasq_server: false
 rhel9cis_vsftpd_server: false
 rhel9cis_tftp_server: false
 rhel9cis_httpd_server: false
@@ -405,7 +405,6 @@ rhel9cis_imap_server: false
 rhel9cis_samba_server: false
 rhel9cis_squid_server: false
 rhel9cis_snmp_server: false
-rhel9cis_nis_server: false
 rhel9cis_telnet_server: false
 rhel9cis_is_mail_server: false
 
@@ -420,12 +419,10 @@ rhel9cis_use_rsync_server: false
 rhel9cis_use_rsync_service: false
 
 #### 2.3 Service clients
-rhel9cis_ypbind_required: false
-rhel9cis_rsh_required: false
-rhel9cis_talk_required: false
 rhel9cis_telnet_required: false
 rhel9cis_openldap_clients_required: false
 rhel9cis_tftp_client: false
+rhel9cis_ftp_client: false
 
 # Section 3
 

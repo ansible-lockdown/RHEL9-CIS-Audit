@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_samba_server}}
+{{ if not .Vars.rhel9cis_snmp_server}}
   {{ if .Vars.rhel9cis_rule_2_2_12 }}
 package:
-  samba:
-    title: 2.2.12 | Ensure Samba is not installed
+  snmpd:
+    title: 2.2.12 | Ensure net-smp Server is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.12
       CISv8:
       - 4.8

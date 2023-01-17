@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_dns_server }}
+{{ if not .Vars.rhel9cis_vsftpd_server}}
   {{ if .Vars.rhel9cis_rule_2_2_6 }}
 package:
-  bind:
-    title: 2.2.6 | Ensure DNS Server is not installed
+  vsftp:
+    title: 2.2.6 | Ensure VSFTP Server is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.6
       CISv8:
       - 4.8

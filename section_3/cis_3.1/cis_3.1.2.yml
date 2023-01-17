@@ -1,19 +1,18 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_3_1_2 }}
+{{ if .Vars.rhel9cis_rule_3_1_2 }}
 command:
-  modprobe_sctp:
-    title: 3.1.2 | Ensure SCTP is disabled
+  wireless_disabled:
+    title: 3.1.2 | Ensure wireless interfaces are disabled
     exit-status: 0
-    exec: 'modprobe -n -v sctp'
-    stdout: ['install /bin/true']
+    exec: 'nmcli radio all | tail -1'
+    stdout:
+    - '/^(enabled|disabled)\s\s(disabled)\s\s(enabled|disabled)\s\s(disabled)/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: NA
       CIS_ID:
       - 3.1.2
       CISv8: 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
 {{ end }}

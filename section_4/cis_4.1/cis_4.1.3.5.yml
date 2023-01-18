@@ -11,6 +11,7 @@ command:
     - '-w /etc/issue.net -p wa -k system-locale'
     - '-w /etc/hosts -p wa -k system-locale'
     - '-w /etc/sysconfig/network -p wa -k system-locale'
+    - '-w /etc/sysconfig/network-scripts -p wa -k system-locale'
     meta:
       server: 2
       workstation: 2
@@ -31,6 +32,7 @@ command:
     - '-w /etc/issue.net -p wa -k system-locale'
     - '-w /etc/hosts -p wa -k system-locale'
     - '-w /etc/sysconfig/network -p wa -k system-locale'
+    - '-w /etc/sysconfig/network-scripts -p wa -k system-locale'
     meta:
       server: 2
       workstation: 2

@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_4_1_3_6 }}
 command:
   auditd_priv_cmds_cnf:
-    title: 4.1.3.6 | Ensure use of privileged commands is collected
+    title: 4.1.3.6 | Ensure use of privileged commands is collected | Manual Check Required
     exec: echo "Manual - Please investigate privilege commands are collected as per documentation"
     exit-status: 0
     stdout:

@@ -196,7 +196,8 @@ rhel9cis_rule_3_4_2_7: true
 
 
 #  Section 4 rules
-# 4.1 Configure System Accounting
+# 4.1 Configure System Accounting (auditd)
+# 4.1.1 Ensure auditing is enabled
 rhel9cis_rule_4_1_1_1: true
 rhel9cis_rule_4_1_1_2: true
 rhel9cis_rule_4_1_1_3: true

@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_4_1_1_3 }}
 command:
-  audit_default_grub:
-    title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled
-    exec: grep audit= /etc/default/grub
+  audit_backlog_default_grub:
+    title: 4.1.1.3 | Ensure audit_backlog_limit is sufficient | default
+    exec: grep audit_backlog /etc/default/grub
     exit-status: 0
     stdout:
-    - '/^GRUB_CMDLINE_LINUX=.*\saudit=1.*/'
+    - '/^GRUB_CMDLINE_LINUX=.*\saudit_backlog_limit=(8192|819[3-9]|8[2-9]{,2}|9[0-9]{3,9}|[1-9]{5,9}).*/'
     meta:
       server: 2
       workstation: 2

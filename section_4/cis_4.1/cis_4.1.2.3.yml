@@ -13,7 +13,7 @@ command:
       workstation: 2
       CIS_ID:
       - 4.1.2.3
-      CISv8: 
+      CISv8:
       - 8.2
       - 8.3
       CISv8_IG1: true

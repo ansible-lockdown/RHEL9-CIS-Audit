@@ -1,11 +1,9 @@
 {{ if .Vars.rhel9cis_rule_4_1_1_4 }}
-command:
-  audit_backlog_default_grub:
-    title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | default
-    exec: grep audit_backlog /etc/default/grub
-    exit-status: 0
-    stdout:
-    - '/^GRUB_CMDLINE_LINUX=.*\saudit_backlog_limit=(8192|819[3-9]|8[2-9]{,2}|9[0-9]{3,9}|[1-9]{5,9}).*/'
+service:
+  auditd:
+    title: 4.1.1.4 | Ensure auditd service is enabled
+    enabled: true
+    running: true
     meta:
       server: 2
       workstation: 2

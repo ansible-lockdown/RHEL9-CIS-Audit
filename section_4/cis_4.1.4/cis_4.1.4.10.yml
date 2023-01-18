@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_10 }}
+command:
+  audit_tools_group:
+    title: 4.1.4.10 | Ensure audit tools are owned by root
+    exec: stat -c "%n_%G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exit-status: 0
+    stdout:
+    - '/.*_root$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.10
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

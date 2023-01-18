@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_8 }}
+command:
+  audit_tools_perms:
+    title: 4.1.4.8 | Ensure audit tools are 755 or more restrictive
+    exec: stat -c "%n_%a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exit-status: 0
+    stdout:
+    - '/.*_7(0|5)(0|5)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.8
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

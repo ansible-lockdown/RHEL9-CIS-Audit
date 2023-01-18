@@ -231,6 +231,19 @@ rhel9cis_rule_4_1_3_19: true
 rhel9cis_rule_4_1_3_20: true
 rhel9cis_rule_4_1_3_21: true
 
+# 4.1.4 Configure auditd file access
+rhel9cis_rule_4_1_4_1: true
+rhel9cis_rule_4_1_4_2: true
+rhel9cis_rule_4_1_4_3: true
+rhel9cis_rule_4_1_4_4: true
+rhel9cis_rule_4_1_4_5: true
+rhel9cis_rule_4_1_4_6: true
+rhel9cis_rule_4_1_4_7: true
+rhel9cis_rule_4_1_4_8: true
+rhel9cis_rule_4_1_4_9: true
+rhel9cis_rule_4_1_4_10: true
+
+
 # 4.2.1 Configure rsyslog
 rhel9cis_rule_4_2_1_1: true
 rhel9cis_rule_4_2_1_2: true

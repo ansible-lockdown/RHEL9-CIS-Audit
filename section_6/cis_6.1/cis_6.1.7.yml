@@ -1,9 +1,9 @@
 {{ if .Vars.rhel9cis_rule_6_1_7 }}
 file:
-  /etc/passwd-:
-    title: 6.1.7 | Ensure permissions on /etc/passwd- are configured
+  /etc/gshadow:
+    title: 6.1.7 | Ensure permissions on /etc/gshadow are configured
     exists: true
-    mode: "0644"
+    mode: "0000"
     owner: root
     group: root
     meta:

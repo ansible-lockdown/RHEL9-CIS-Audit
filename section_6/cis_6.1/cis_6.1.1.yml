@@ -1,23 +1,18 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_6_1_1 }}
-command:
-  rpm_filecheck:
-    title: 6.1.1 | Audit system file permissions
-    exec: rpm -Va --nomtime --nosize --nomd5 --nolinkto > /tmp/cis_rpmcheck; grep -vcw c /tmp/cis_rpmcheck
-    exit-status: 0
-    stdout:
-    - '0'
-    timeout: {{ .Vars.timeout_ms }}
+{{ if .Vars.rhel9cis_rule_6_1_1 }}
+file:
+  /etc/passwd:
+    title: 6.1.1 | Ensure permissions on /etc/passwd are configured
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 6.1.1
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-    {{ end }}
-  {{ end }}
 {{ end }}

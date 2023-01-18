@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_6_1_6 }}
 file:
-  /etc/gshadow:
-    title: 6.1.6 | Ensure permissions on /etc/gshadow are configured
+  /etc/shadow-:
+    title: 6.1.6 | Ensure permissions on /etc/shadow- are configured
     exists: true
     mode: "0000"
     owner: root

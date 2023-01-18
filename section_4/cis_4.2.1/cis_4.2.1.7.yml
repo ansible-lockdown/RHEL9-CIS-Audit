@@ -2,11 +2,12 @@
 {{ if .Vars.rhel9cis_rule_4_2_1_7 }}
 command:
   local_syslog_module:
-    title: 4.2.1.7 | Ensure rsyslog is not configured to recieve logs from a remote client
-    exec: grep -P -- '^\h*module\(load="imtcp"\)' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    title: 4.2.1.7 | Ensure rsyslog is not configured to recieve logs from a remote client | module
+    exec: grep "imtcp" /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep -Ev ":#|port="
     exit-status:
       or:
       - 0
+      - 1
       - 2
     stdout:
     - '!/.*/'
@@ -22,11 +23,12 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   local_syslog_input:
-    title: 4.2.1.7 | Ensure rsyslog is not configured to recieve logs from a remote client
-    exec: grep -P -- '^\h*input\(type="imtcp" port="514"\)' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    title: 4.2.1.7 | Ensure rsyslog is not configured to recieve logs from a remote client | server/port
+    exec: grep -E "imtcp\" port|InputTCPServerRun" /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep -v ":#"
     exit-status:
       or:
       - 0
+      - 1
       - 2
     stdout:
     - '!/.*/'
@@ -35,7 +37,7 @@ command:
       workstation: 1
       CIS_ID:
       - 4.2.1.7
-      CISv8: 
+      CISv8:
       - 4.8
       - 8.2
       CISv8_IG1: true

@@ -2,7 +2,7 @@
 command:
   log_sudoers_d: 
     title: 5.3.3 | Ensure sudo log file exists | sudoers.d
-    exec: export PTY=`grep -q -Esi '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*; echo $?` && if [[ $PTY == 0 ]];then echo OK ;fi
+    exec: export LOG=`grep -q -Esi '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*; echo $?` && if [[ $LOG == 0 ]];then echo OK ;fi
     exit-status: 0
     stdout:
     - 'OK'

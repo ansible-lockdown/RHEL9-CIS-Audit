@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_5_5_4 }}
 command:
  pamd_system_auth_sha:
-    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | system-auth
-    exec: grep sha512 /etc/pam.d/system-auth
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 or yescrypt | system-auth
+    exec: grep -Ei "sha512|yescrypt" /etc/pam.d/system-auth
     exit-status: 0
     stdout:
-    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok remember={{ .Vars.rhel9cis_passwd_remember }}/"
+    - '/^password\s+(requisite|required|sufficient)\s+pam_unix.so\s.*(sha512|yescrypt)/'
     meta:
       server: 1
       workstation: 1
@@ -17,10 +17,10 @@ command:
       CISv8_IG3: true
 file:
   /etc/pam.d/password-auth:
-    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 or yescrypt | passwd-auth
     exists: true
     contains:
-    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok/"
+    - '/^password\s+(requisite|required|sufficient)\s+pam_unix.so\s.*(sha512|yescrypt)/'
     meta:
       server: 1
       workstation: 1
@@ -34,8 +34,8 @@ file:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
     exists: true
     contains:
-    - '/^crypt_style = sha512/'
-    - '!/^crypt_style = md5/'
+    - '/^crypt_style( |)=( |)(sha512|yescrypt)/'
+    - '!/^crypt_style( |)=( |)md5/'
     meta:
       server: 1
       workstation: 1
@@ -49,7 +49,7 @@ file:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | login.defs
     exists: true
     contains:
-    - '/^ENCRYPT_METHOD SHA512/'
+    - '/^ENCRYPT_METHOD (SHA512|yescrypt)/'
     - '!/^ENCRYPT_METHOD MD5/'
     meta:
       server: 1

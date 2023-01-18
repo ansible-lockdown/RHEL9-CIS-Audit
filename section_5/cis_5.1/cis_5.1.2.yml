@@ -4,7 +4,7 @@ file:
     title: 5.1.2 | Ensure permissions on /etc/crontab are configured
     exists: true
     owner: root
-    group: root    
+    group: root
     mode: "0600"
     meta:
       server: 1

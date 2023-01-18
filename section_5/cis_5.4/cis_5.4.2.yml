@@ -1,12 +1,13 @@
 {{ if .Vars.rhel9cis_authselect_custom_profile_select }}
   {{ if .Vars.rhel9cis_rule_5_4_2 }}
-command:
-  authselect_faillock:
+file:
+  /etc/authselect/password-auth:
     title: 5.4.2 | Ensure authselect includes with-faillock
-    exec: 'authselect current | grep with-faillock'
-    exit-status: 0
-    stdout:
-    - '/^- with-faillock/'
+    exists: true
+    contains:
+    - '/auth\s+required\s+pam_failock.so/'
+    - '/auth\s+required\s+pam_failock.so preauth silent/'
+    - '/auth\s+required\s+pam_failock.so authfail/'
     meta:
       server: 1
       workstation: 1
@@ -16,12 +17,13 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-file:
-  /etc/authselect/authselect.conf:
+   /etc/authselect/system-auth:
     title: 5.4.2 | Ensure authselect includes with-faillock
     exists: true
     contains:
-    - '/^with-faillock/'
+    - '/auth\s+required\s+pam_failock.so/'
+    - '/auth\s+required\s+pam_failock.so preauth silent/'
+    - '/auth\s+required\s+pam_failock.so authfail/'
     meta:
       server: 1
       workstation: 1

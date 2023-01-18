@@ -6,8 +6,7 @@ command:
     exec: grep -Ei "^password.*remember" /etc/pam.d/system-auth
     exit-status: 0
     stdout:
-    - '/^password\s+(sufficient|requisite)\s+pam_pwhistory.so\stry_first_pass\slocal_users_only\senforce_for_root\sretry=3\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
-    - '/^password\s+(sufficient|requisite)\s+pam_unix.so\ssha512\sshadow\stry_first_pass\suse_authtok\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
+    - '/^password\s+(sufficient|requisite)\s+(pam_pwhistory.so|pam_unix.so)\stry_first_pass\s.*\sremember={{ .Vars.rhel9cis_passwd_remember }}/'
     meta:
       server: 1
       workstation: 1

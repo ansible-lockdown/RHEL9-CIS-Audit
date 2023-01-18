@@ -12,4 +12,21 @@ kernel-param:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  ipv4_tcp_syn_cookies:
+    title: 3.3.8 | Ensure TCP SYN Cookies is enabled | live ipv4
+    exec: grep net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.tcp_syncookies( |)=( |)1/'
+    - '!/.*:net.ipv4.tcp_syncookies( |)=( |)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: tru
 {{ end }}

@@ -7,7 +7,7 @@ kernel-param:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.2.1
+      - 3.3.2
       CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -19,7 +19,7 @@ kernel-param:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.2.1
+      - 3.3.2
       CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -39,6 +39,71 @@ kernel-param:
   net.ipv6.conf.default.accept_redirects:
     title: 3.3.2 | Ensure ICMP redirects are not accepted
     value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  ipv4_all_accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | live ipv4 all
+    exec: grep net.ipv4.conf.all.accept_redirects /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.conf.all.accept_redirects( |)=( |)0/'
+    - '!/.*:net.ipv4.conf.all.accept_redirects( |)=( |)1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ipv4_default_accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | live ipv4 default
+    exec: grep net.ipv4.conf.default.accept_redirects /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.conf.default.accept_redirects( |)=( |)0/'
+    - '!/.*:net.ipv4.conf.default.accept_redirects( |)=( |)1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ipv6_all_accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | live ipv6 all
+    exec: grep net.ipv6.conf.all.accept_redirects /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv6.conf.all.accept_redirects( |)=( |)0/'
+    - '!/.*:net.ipv6.conf.all.accept_redirects( |)=( |)1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ipv6_default_accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | live ipv6 default
+    exec: grep net.ipv6.conf.default.accept_redirects /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv6.conf.default.accept_redirects( |)=( |)0/'
+    - '!/.*:net.ipv6.conf.default.accept_redirects( |)=( |)1/'
     meta:
       server: 1
       workstation: 1

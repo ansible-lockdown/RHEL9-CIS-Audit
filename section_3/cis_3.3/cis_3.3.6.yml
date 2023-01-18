@@ -12,4 +12,21 @@ kernel-param:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  ipv4_ignore_bogus:
+    title: 3.3.6 | Ensure bogus ICMP responses are ignored | live ipv4 all
+    exec: grep net.ipv4.icmp_ignore_bogus_error_responses /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.icmp_ignore_bogus_error_responses( |)=( |)1/'
+    - '!/.*:net.ipv4.icmp_ignore_bogus_error_responses( |)=( |)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.6
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
 {{ end }}

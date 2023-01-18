@@ -24,4 +24,37 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  ipv4_all_log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | live ipv4 all
+    exec: grep net.ipv4.conf.all.log_martians /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.conf.all.log_martians( |)=( |)1/'
+    - '!/.*:net.ipv4.conf.all.log_martians( |)=( |)0/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ipv4_default_log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | live ipv4 default
+    exec: grep net.ipv4.conf.default.log_martians /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.conf.default.log_martians( |)=( |)1/'
+    - '!/.*:net.ipv4.conf.default.log_martians( |)=( |)0/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
 {{ end }}

@@ -12,4 +12,21 @@ kernel-param:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
+  ipv4_echo_ignore_broadcasts:
+    title: 3.3.5 | Ensure suspicious packets are logged | live ipv4 all
+    exec: grep Ensure broadcast ICMP requests are ignored /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status: 0
+    stdout:
+    - '/.*:net.ipv4.icmp_echo_ignore_broadcasts( |)=( |)1/'
+    - '!/.*:net.ipv4.icmp_echo_ignore_broadcasts( |)=( |)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
 {{ end }}

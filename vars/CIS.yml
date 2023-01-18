@@ -269,8 +269,7 @@ rhel9cis_rule_4_2_3: true
 
 # 4.3 Logrotate
 rhel9cis_rule_4_3_1: true
-rhel9cis_rule_4_3_2: true
-rhel9cis_rule_4_3_3: true
+
 
 # Section 5
 #  Authentication and Authorization

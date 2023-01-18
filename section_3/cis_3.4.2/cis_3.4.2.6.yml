@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_6 }}
 command:
-  nft_loopback:
-    title: 3.4.2.6 | Ensure nftables base chains exist
-    exec: echo "Manual - Please confirm Ensure nftables base chains exist and matches site policy"
+  firewall_established_conns_manual:
+    title: 3.4.2.6 | Ensure nftables established connections are configured | Manual Check Required
+    exec: echo "Manual test"
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    -'!/Manual test/'
     meta:
       server: 1
       workstation: 1

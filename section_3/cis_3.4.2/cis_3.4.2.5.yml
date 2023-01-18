@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_5 }}
 command:
-  nft_chains:
-    title: 3.4.2.5 | Ensure nftables table exists
-    exec: echo "Manual - Please confirm nfttables tables exists and matches site policy"
+  firewall_drop_unncessary_ports_manual:
+    title: 3.4.2.5 | Ensure firewalld drops unnecessary services and ports | Manual Check Required
+    exec: echo "Manual test"
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    -'!/Manual test/'
     meta:
       server: 1
       workstation: 1

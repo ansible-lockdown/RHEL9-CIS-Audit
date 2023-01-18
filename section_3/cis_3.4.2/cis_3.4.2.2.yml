@@ -1,9 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_2 }}
-  {{ if eq .Vars.rhel9cis_nftables_firewalld_state "absent" }}
-package:
-  firewalld:
-    title: 3.4.2.2 | Ensure firewalld is either not installed or masked with nftables | pkg removed
-    installed: false
+command:
+  nftables_table_list_manual:
+    title: 3.4.2.2 | Ensure at least one nftables table exists | Manual Check Required
+    exec: echo "Manual test"
+    exit-status: 0
+    stdout:
+    -'!/Manual test/'
     meta:
       server: 1
       workstation: 1
@@ -11,33 +13,10 @@ package:
       - 3.4.2.2
       CISv8: 
       - 4.4
-      - 4.8
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if eq .Vars.rhel9cis_nftables_firewalld_state "masked" }}
-command:
-  firewalld_masked:
-    title: 3.4.2.2 | Ensure firewalld is either not installed or masked with nftables | service masked
-    exec: systemctl is-enabled firewalld
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '/^masked/'
-    - '!/true/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 3.4.2.2
-      CISv8: 
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+ 
   {{ end }}
 {{ end }}

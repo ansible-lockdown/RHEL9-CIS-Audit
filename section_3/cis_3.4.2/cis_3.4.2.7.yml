@@ -1,11 +1,12 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_7 }}
+  {{ if eq .Vars.rhel9cis_firewall == "nftables" }}
 command:
-  nft_loopback:
-    title: 3.4.2.7 | Ensure nftables loopback traffic is configured
-    exec: echo "Manual - Please confirm Ensure nftables loopback traffic is configured and matches site policy"
+  nftables_default_deny_input:
+    title: 3.4.2.7 | Ensure nftables default deny firewall policy | nftables
+    exec: systemctl --quiet is-enabled nftables.service && nft list ruleset | grep -E 'hook (input|forward)' | grep -v 'policy drop'
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    - '!/^.*/'
     meta:
       server: 1
       workstation: 1
@@ -16,4 +17,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

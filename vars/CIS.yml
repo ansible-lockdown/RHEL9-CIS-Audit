@@ -181,15 +181,11 @@ rhel9cis_rule_3_3_6: true
 rhel9cis_rule_3_3_7: true
 rhel9cis_rule_3_3_8: true
 rhel9cis_rule_3_3_9: true
-# 3.4.1 Configure firewalld
+# 3.4.1 Configure a firewall utility
 rhel9cis_rule_3_4_1_1: true
 rhel9cis_rule_3_4_1_2: true
-rhel9cis_rule_3_4_1_3: true
-rhel9cis_rule_3_4_1_4: true
-rhel9cis_rule_3_4_1_5: true
-rhel9cis_rule_3_4_1_6: true
-rhel9cis_rule_3_4_1_7: true
-# 3.4.1 Configure nftables
+
+# 3.4.1 Configure firewall rules
 rhel9cis_rule_3_4_2_1: true
 rhel9cis_rule_3_4_2_2: true
 rhel9cis_rule_3_4_2_3: true
@@ -197,10 +193,7 @@ rhel9cis_rule_3_4_2_4: true
 rhel9cis_rule_3_4_2_5: true
 rhel9cis_rule_3_4_2_6: true
 rhel9cis_rule_3_4_2_7: true
-rhel9cis_rule_3_4_2_8: true
-rhel9cis_rule_3_4_2_9: true
-rhel9cis_rule_3_4_2_10: true
-rhel9cis_rule_3_4_2_11: true
+
 
 #  Section 4 rules
 # 4.1 Configure System Accounting

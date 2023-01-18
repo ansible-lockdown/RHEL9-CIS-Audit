@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_2_3 }}
 command:
-  no_dup_uid:
-    title: 6.2.3 | Ensure no duplicate UIDs exist
-    exec: "cat /etc/passwd | cut -d: -f3 | uniq -d"
+  passwd_group_exist:
+    title: 6.2.3 | Ensure all groups in /etc/passwd exist in /etc/group
+    exec: "comm -23 <(awk -F: '{print $4}' /etc/passwd | sort -u) <(awk -F: '{print $3}' /etc/group  | sort -u)"
     exit-status: 0
     stdout:
     - '!/./'

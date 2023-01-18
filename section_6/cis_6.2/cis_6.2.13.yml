@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_2_13 }}
 command:
   dot_netrc_perms:
-    title: 6.2.13 | Ensure users .netrc files are not group or word accessible
-    exec: 'find /home/ -name .netrc -perm /g+r,o+r'
+    title: 6.2.13 | Ensure no local interactive user has .netrc files
+    exec: 'find /home/ -name .netrc'
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout: 

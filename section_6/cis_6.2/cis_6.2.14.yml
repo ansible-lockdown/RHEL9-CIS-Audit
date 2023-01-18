@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_6_2_14 }}
 command:
   dot_forward_files:
-    title: 6.2.14 | Ensure no users have .forward files
+    title: 6.2.14 | Ensure no local interactive user has .forward files
     exec: 'find /home/ -name .forward'
     timeout: {{ .Vars.timeout_ms }}
     exit-status: 0

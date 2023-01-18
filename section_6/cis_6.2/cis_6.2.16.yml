@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_2_16 }}
 command:
-  dot_rhosts_files:
-    title: 6.2.16 | Ensure no users have .rhosts files
-    exec: 'find /home/ -name .rhosts'
+  dot_file_perms:
+    title: 6.2.16 | Ensure local interactive user dot files are not group or world writable
+    exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
     timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout: 
@@ -12,7 +12,7 @@ command:
       workstation: 1
       CIS_ID:
       - 6.2.16
-      CISv8: 4.1
+      CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

@@ -1,12 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_2_9 }}
 command:
-  home_dirs_exist:
-    title: 6.2.9 | Ensure all users' home directories exist
-    exec: pwck -r | grep -v journal | grep "does not exist"
-    timeout: {{ .Vars.timeout_ms }}
-    exit-status: 1
+  uid_0_check:
+    title: 6.2.9 | Ensure root is the only UID 0 account
+    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
+    exit-status: 0
     stdout:
-    - '!/does not exist/'
+    - 'root'
     meta:
       server: 1
       workstation: 1

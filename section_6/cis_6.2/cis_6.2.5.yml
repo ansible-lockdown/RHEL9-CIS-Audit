@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_2_5 }}
 command:
-  no_dup_username:
-    title: 6.2.5 | Ensure no duplicate user names exist
-    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
+  no_dup_gid:
+    title: 6.2.5 | Ensure no duplicate GIDs exist
+    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'

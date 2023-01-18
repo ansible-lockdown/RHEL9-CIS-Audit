@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_2_7 }}
 command:
-  root_path_check:
-    title: 6.2.7 | Ensure root PATH Integrity
-    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
+  no_dup_groupname:
+    title: 6.2.7 | Ensure no duplicate group names exist
+    exec: "cat /etc/group | cut -d: -f1 | uniq -d"
     exit-status: 0
     stdout:
-    - '!/\\./'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

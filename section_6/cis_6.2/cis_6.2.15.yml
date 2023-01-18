@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_2_15 }}
 command:
   dot_netrc_files:
-    title: 6.2.15 | Ensure no users have .netrc files
-    exec: 'find /home/ -name .netrc'
+    title: 6.2.15 | Ensure no local interactive user has .rhosts files
+    exec: 'find /home/ -name .rhosts'
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout: 

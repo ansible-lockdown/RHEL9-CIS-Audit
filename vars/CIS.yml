@@ -453,8 +453,15 @@ rhel9cis_nft_tables_autochaincreate: true
 
 # Section 4
 
-## Set if server is logserver
+## Set if host is a logserver
 rhel9cis_remote_log_server: false
+
+# Log server settings
+rhel9cis_remote_log_host: logagg.example.com
+rhel9cis_remote_log_port: 514
+rhel9cis_remote_log_protocol: tcp
+rhel9cis_remote_log_retrycount: 100
+rhel9cis_remote_log_queuesize: 1000
 
 ## syslog
 ## change to rsyslog/ journald or other

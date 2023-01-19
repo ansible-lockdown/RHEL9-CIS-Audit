@@ -1,5 +1,6 @@
 
 {{ if .Vars.rhel9cis_rule_4_2_1_7 }}
+  {{ if not .Vars.rhel9cis_remote_log_server }}
 command:
   local_syslog_module:
     title: 4.2.1.7 | Ensure rsyslog is not configured to recieve logs from a remote client | module

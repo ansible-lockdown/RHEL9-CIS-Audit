@@ -1,4 +1,4 @@
-{{ if not .Vars.rhel9cis_dnsmasq }}
+{{ if not .Vars.rhel9cis_dnsmasq_server }}
   {{ if .Vars.rhel9cis_rule_2_2_14 }}
 package:
   dnsmasq:

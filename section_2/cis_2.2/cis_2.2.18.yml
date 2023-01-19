@@ -1,4 +1,4 @@
-{{ if .Vars.rhel9cis_rule_2_2_19 }}
+{{ if .Vars.rhel9cis_rule_2_2_18 }}
   {{ if not .Vars.rhel9cis_use_rsync_server }}
     {{ if not .Vars.rhel9cis_use_rsync_service }}
 package:

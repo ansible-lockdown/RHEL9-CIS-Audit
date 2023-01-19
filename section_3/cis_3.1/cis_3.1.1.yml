@@ -25,8 +25,8 @@ command:
       - 0
       - 1
     stdout:
-      - '/.*: net.ipv6.conf.all.disable_ipv6 = 1/'
-      - '/.*: net.ipv6.conf.default.disable_ipv6 = 1/'
+    - '/.*: net.ipv6.conf.all.disable_ipv6 = 1/'
+    - '/.*: net.ipv6.conf.default.disable_ipv6 = 1/'
     meta:
       server: 1
       workstation: 1
@@ -38,7 +38,7 @@ command:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.rhel9cis_ipv6_required }}
-   default_grub_ipv6:
+  default_grub_ipv6:
     title: 3.1.1 | Ensure IPv6 status is identified
     exec: cat /sys/module/ipv6/parameters/disable
     exit-status: 0
@@ -62,8 +62,8 @@ command:
       - 0
       - 1
     stdout:
-      - '!/.*: net.ipv6.conf.all.disable_ipv6 = 1/'
-      - '!/.*: net.ipv6.conf.default.disable_ipv6 = 1/'
+    - '!/.*: net.ipv6.conf.all.disable_ipv6 = 1/'
+    - '!/.*: net.ipv6.conf.default.disable_ipv6 = 1/'
     meta:
       server: 1
       workstation: 1

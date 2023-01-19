@@ -32,7 +32,7 @@ command:
     stdout:
     - '/.*:net.ipv4.conf.all.log_martians( |)=( |)1/'
     - '!/.*:net.ipv4.conf.all.log_martians( |)=( |)0/'
-     meta:
+    meta:
       server: 1
       workstation: 1
       CIS_ID:
@@ -48,7 +48,7 @@ command:
     stdout:
     - '/.*:net.ipv4.conf.default.log_martians( |)=( |)1/'
     - '!/.*:net.ipv4.conf.default.log_martians( |)=( |)0/'
-     meta:
+    meta:
       server: 1
       workstation: 1
       CIS_ID:

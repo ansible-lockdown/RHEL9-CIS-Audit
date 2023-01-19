@@ -1,4 +1,4 @@
-{{ if .Vars.rhel9cis_rule_3_1_2 }}
+{{ if .Vars.rhel9cis_rule_3_2_2 }}
 kernel-param:
   net.ipv4.conf.all.send_redirects:
     title: 3.2.2 | Ensure packet redirect sending is disabled | live 
@@ -30,8 +30,8 @@ command:
     exec: grep send_redirects /etc/sysctl.conf /etc/sysctl.d/*
     exit-status: 0
     stdout:
-    - '/.*: net.ipv4.conf.all.send_redirects( |)=( |)0/'
-    - '!/.*: net.ipv4.conf.all.send_redirects( |)=( |)1/'
+    - '/.*:net.ipv4.conf.all.send_redirects( |)=( |)0/'
+    - '!/.*:net.ipv4.conf.all.send_redirects( |)=( |)1/'
     meta:
       server: 1
       workstation: 1
@@ -46,8 +46,8 @@ command:
     exec: grep send_redirects /etc/sysctl.conf /etc/sysctl.d/*
     exit-status: 0
     stdout:
-    - '/.*: net.ipv4.conf.default.send_redirects( |)=( |)0/'
-    - '!/.*: net.ipv4.conf.default.send_redirects( |)=( |)1/'
+    - '/.*:net.ipv4.conf.default.send_redirects( |)=( |)0/'
+    - '!/.*:net.ipv4.conf.default.send_redirects( |)=( |)1/'
     meta:
       server: 1
       workstation: 1

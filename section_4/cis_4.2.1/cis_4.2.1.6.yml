@@ -1,4 +1,5 @@
 {{ if .Vars.rhel9cis_rule_4_2_1_6 }}
+  {{ if .Vars.rhel9cis_remote_log_server }}
 command:
   remote_syslog:
     title: 4.2.1.6 | Ensure rsyslog is configured to send logs to a remote host
@@ -19,4 +20,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

@@ -43,7 +43,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-   ip6_forward_conf:
+  ip6_forward_conf:
     title: 3.2.1 | Ensure IP forwarding is disabled | ipv6 conf
     exec: grep net.ipv6.conf.all.forwarding /etc/sysctl.conf /etc/sysctl.d/*
     exit-status: 0

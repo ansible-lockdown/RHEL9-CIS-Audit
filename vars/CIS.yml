@@ -268,7 +268,7 @@ rhel9cis_rule_4_2_2_7: true
 rhel9cis_rule_4_2_3: true
 
 # 4.3 Logrotate
-rhel9cis_rule_4_3_1: true
+rhel9cis_rule_4_3: true
 
 
 # Section 5
@@ -452,6 +452,9 @@ rhel9cis_nft_tables_tablename: filter
 rhel9cis_nft_tables_autochaincreate: true
 
 # Section 4
+
+## Set if server is logserver
+rhel9cis_remote_log_server: false
 
 ## syslog
 ## change to rsyslog/ journald or other

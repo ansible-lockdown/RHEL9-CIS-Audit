@@ -2,7 +2,7 @@
 command:
   accts_use_shadowed:
     title: 6.2.1 | Ensure accounts in /etc/passwd use shadowed passwords
-    exec: awk -F\: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}'
+    exec: "awk -F: '($2 != \"x\" ) { print $1 \" is not set to shadowed passwords \"}' /etc/passwd"
     exit-status: 0
     stdout:
     - '!/.*/'
@@ -16,5 +16,3 @@ command:
       CISv8_IG2: NA
       CISv8_IG3: NA
 {{ end }}
-
-awk -F: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}'

@@ -19,7 +19,7 @@ command:
 command:
   check_users_MIN_DAYS:
     title: 5.6.1.2 | Ensure minimum days between password changes is configured | check users
-    exec: "awk -F : '(/^[^:]+:[^!*]/ && \$4 < 1){print $1 " " \$4}' /etc/shadow"
+    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,4"
     exit-status: 0
     stdout:
     - '!/.*/'

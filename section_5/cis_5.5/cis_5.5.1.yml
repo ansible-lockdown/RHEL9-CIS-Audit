@@ -5,10 +5,10 @@ command:
     exec: cat /etc/security/pwquality.conf
     exit-status: 0
     stdout:
-    - 'minlength( |)=( |){{ .Vars.rhel9cis_pam_password.minlen }}'
-    - '!/minlength( |)=( |)([0-9]|1[0-3])/'
-    - minclass( |)=( |){{ .Vars.rhel9cis_pam_password.minclass }}
-    - '!/minclass( |)=( |)[0-3]/'
+    - '/^minlen( |)=( |){{ .Vars.rhel9cis_pam_password.minlen }}/'
+    - '!/^minlen( |)=( |)(^[0-9]|1[0-3])/'
+    - '/^minclass( |)=( |){{ .Vars.rhel9cis_pam_password.minclass }}/'
+    - '!/^minclass( |)=( |)[0-3]/'
     meta:
       server: 1
       workstation: 1

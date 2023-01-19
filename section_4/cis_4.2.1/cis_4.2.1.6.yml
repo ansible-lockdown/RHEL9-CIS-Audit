@@ -9,8 +9,8 @@ command:
         - 0
         - 2
     stdout:
-    - '*.* action(type="omfwd" target="{{ .Var.rhel9cis_remote_log_host }}" port="{{ .Var.rhel9cis_remote_log_port }}"'
-    - protocol="{{ .Var.rhel9cis_remote_log_protocol }}"
+    - '*.* action(type="omfwd" target="{{ .Vars.rhel9cis_remote_log_host }}" port="{{ .Vars.rhel9cis_remote_log_port }}"'
+    - protocol="{{ .Vars.rhel9cis_remote_log_protocol }}"
     meta:
       server: 1
       workstation: 1

@@ -16,7 +16,7 @@ mount:
     - nosuid
     {{ end }}
     {{ if .Vars.rhel9cis_rule_1_1_4_4 }}
-    - noexec
+    - nodev
     {{ end }}
     meta:
       server: 1

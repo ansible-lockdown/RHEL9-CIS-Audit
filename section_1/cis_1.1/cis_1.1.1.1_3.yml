@@ -21,7 +21,7 @@ command:
     exit-status: 0
     exec: grep squashfs /etc/modprobe.d/blacklist.conf
     stdout:
-      - '/.*:blacklist squashfs/'
+      - '/blacklist squashfs/'
     meta:
       server: 2
       workstation: 2
@@ -53,11 +53,11 @@ command:
     exit-status: 0
     exec: grep udf /etc/modprobe.d/blacklist.conf
     stdout:
-      - '/.*:blacklist udf/'
+      - '/blacklist udf/'
     meta:
       server: 2
       workstation: 2
-      CIS_ID: 1.1.1.1
+      CIS_ID: 1.1.1.2
       CISv8:
       - 4.8
       CISv8_IG1: false

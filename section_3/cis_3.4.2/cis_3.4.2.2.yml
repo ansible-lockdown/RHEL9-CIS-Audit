@@ -5,7 +5,7 @@ command:
     exec: echo "Manual test"
     exit-status: 0
     stdout:
-    -'!/Manual test/'
+    - '!/Manual test/'
     meta:
       server: 1
       workstation: 1
@@ -16,7 +16,4 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
- 
-  {{ end }}
 {{ end }}

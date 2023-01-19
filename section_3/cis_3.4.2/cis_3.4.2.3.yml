@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_3 }}
-package:
+command:
   nftables_base_chain_manual:
     title: 3.4.2.3 | Ensure nftables base chains exist | Manual Check Required
     exec: echo "Manual test"
     exit-status: 0
     stdout:
-    -'!/Manual test/'
+    - '!/Manual test/'
     meta:
       server: 1
       workstation: 1

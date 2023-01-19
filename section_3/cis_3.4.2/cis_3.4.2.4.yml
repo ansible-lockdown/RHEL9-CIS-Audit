@@ -5,7 +5,7 @@ command:
     exec: echo "Manual test"
     exit-status: 0
     stdout:
-    -'!/Manual test/'
+    - '!/Manual test/'
     meta:
       server: 1
       workstation: 1

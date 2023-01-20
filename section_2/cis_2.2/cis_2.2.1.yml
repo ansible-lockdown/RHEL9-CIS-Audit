@@ -1,4 +1,4 @@
-{{ if not .Vars.rhel9cis_xwindows_required }}
+{{ if not .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_2_2_1 }}
 package:
   xorg-x11-server-common:

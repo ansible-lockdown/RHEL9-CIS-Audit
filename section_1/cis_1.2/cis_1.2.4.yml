@@ -1,11 +1,17 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_1_2_4 }}
 command:
-  gpg_check_repo_global:
+  repo_gpgcheck_global:
     title: 1.2.4 | Ensure repo_gpgcheck is globally active
-    exit-status: 0
-    exec: "if [ `grep -c -E '^\\s*repo_gpgcheck.*0' /etc/dnf/dnf.conf` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*repo_gpgcheck.*1' /etc/dnf/dnf.conf` -ge 1 ]; then echo Passed_Check;fi"
+    exec: grep -E "^repo_gpgcheck" /etc/dnf/dnf.conf
     timeout: {{ .Vars.timeout_ms }}
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^repo_gpgcheck( |)=( |)1/'
+    - '!/^repo_gpgcheck( |)=( |)0/'
     meta:
       server: 1
       workstation: 1
@@ -16,10 +22,12 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  gpg_check_repo_global:
-    title: 1.2.4 | Ensure gpgcheck is globally active
+  repo_gpgcheck_repo:
+    title: 1.2.4 | Ensure repo_gpgcheck is globally active
     exit-status: 0
-    exec: "if [ `grep -c -E '^\\s*repo_gpgcheck.*0' /etc/yum.repos.d/*.repo` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*repo_gpgcheck.*1' /etc/yum.repos.d/*.repo` -ge 1 ]; then echo Passed_Check;fi"
+    exec: if [ `find . -type f | xargs grep 'repo_gpgcheck*' * | grep -v '=1' | wc -l` -ne 0 ]; then echo FAIL; else echo OK; fi
+    stdout:
+    - 'OK'
     timeout: {{ .Vars.timeout_ms }}
     meta:
       server: 1

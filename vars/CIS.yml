@@ -120,6 +120,12 @@ rhel9cis_rule_1_8_2: true
 rhel9cis_rule_1_8_3: true
 rhel9cis_rule_1_8_4: true
 rhel9cis_rule_1_8_5: true
+rhel9cis_rule_1_8_6: true
+rhel9cis_rule_1_8_7: true
+rhel9cis_rule_1_8_8: true
+rhel9cis_rule_1_8_9: true
+rhel9cis_rule_1_8_10: true
+
 # 1.9 Ensure updates, patches, and additional security software are installed
 rhel9cis_rule_1_9: true
 # Ensure system-wide crypto policy is not legacy

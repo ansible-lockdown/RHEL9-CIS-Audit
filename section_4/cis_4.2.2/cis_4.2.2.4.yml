@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_4 }}
+command:
+  storage_journald_conf:
+    title: 4.2.2.4 | Ensure journald is configured to write logfiles to persistent disk
+    exec: grep -i storage /etc/systemd/journald.conf
+    exit-status: 0
+    stdout:
+    - '/^Storage=persistent/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.4
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

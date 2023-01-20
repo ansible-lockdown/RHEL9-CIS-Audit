@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_rule_1_8_4 }}
+file:
+  /etc/gdm/custom.conf:
+    title: 1.8.4 | Ensure XDMCP is not enabled
+    exists: true
+    contains:
+    - '!/^Enable( |)=( |)true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.4
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

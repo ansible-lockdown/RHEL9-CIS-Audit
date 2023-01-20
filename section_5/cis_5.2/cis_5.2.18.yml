@@ -1,10 +1,15 @@
 {{ if .Vars.rhel9cis_rule_5_2_18 }}
-file:
-  /etc/ssh/sshd_config:
-    title: 5.2.18 | L1 | Ensure SSH MaxStartups is configured
-    exists: true
-    contains:
-    - "MaxStartups 10:30:60"
+command:
+  ssh_maxsessions:
+    title: 5.2.18 | Ensure SSH MaxSessions is limited
+    exec: grep -Ei "^MaxSessions" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^MaxSessions ([1-9]|10)/'
+    - '!/^MaxSessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
     meta:
       server: 1
       workstation: 1

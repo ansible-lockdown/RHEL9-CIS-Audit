@@ -1,18 +1,24 @@
-{{ if .Vars.rhel9cis_rule_5_2_12 }}
-file:
-  /etc/ssh/sshd_config:
-    title: 5.2.12 | L1 | Ensure SSH PermitUserEnvironment is disabled
-    exists: true
-    contains:
-    - '/^PermitUserEnvironment no/'
-    - '!/^PermitUserEnvironment yes/'
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_5_2_12 }}
+command:
+  ssh_x11:
+    title: 5.2.12 | Ensure SSH X11 forwarding is disabled
+    exec: grep -Ei "X11forwarding" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^X11Forwarding no/'
+    - '!/^X11Forwarding yes/'
     meta:
-      server: 1
+      server: 2
       workstation: 1
       CIS_ID:
       - 5.2.12
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 4.8
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

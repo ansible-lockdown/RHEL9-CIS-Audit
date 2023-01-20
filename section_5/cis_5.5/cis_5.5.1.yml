@@ -1,0 +1,34 @@
+{{ if .Vars.rhel9cis_rule_5_5_1 }}
+command:
+  min_pwquality:
+    title: 5.5.1 | Ensure password creation requirements are configured | pwquality
+    exec: cat /etc/security/pwquality.conf
+    exit-status: 0
+    stdout:
+    - {{ .Vars.rhel9cis_pam_password.minlen }}
+    - {{ .Vars.rhel9cis_pam_password.minclass }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  passwd_create:
+     title: 5.5.1 |  Ensure password creation requirements are configured | enforce
+     exec: 'grep -E "password.*enforce" /etc/pam.d/password-auth /etc/pam.d/system-auth | cut -d ":" -f2'
+     exit-status: 0
+     stdout:
+     - '/^password\s+requisite\s+pam_pwquality.so\stry_first_pass\slocal_users_only\senforce_for_root\sretry={{ .Vars.rhel9cis_pam_passwd_retry }}/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

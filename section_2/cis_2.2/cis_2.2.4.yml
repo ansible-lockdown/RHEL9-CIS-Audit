@@ -1,14 +1,13 @@
-{{ if not .Vars.rhel9cis_avahi_server }}
+{{ if not .Vars.rhel9cis_cups_server }}
   {{ if .Vars.rhel9cis_rule_2_2_4 }}
-service:
-  avahi-daemon:
-    title: 2.2.4 | L1 | Ensure Avahi Server is not installed
-    enabled: false
-    running: false
+package:
+  cups:
+    title: 2.2.4 | Ensure CUPS is not installed
+    installed: false
     meta:
       server: 1
-      workstation: 1
-      CIS_ID: 
+      workstation: NA
+      CIS_ID:
       - 2.2.4
       CISv8:
       - 4.8

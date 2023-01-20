@@ -1,11 +1,12 @@
 {{ if .Vars.rhel9cis_rule_1_10 }}
-file:
-  /etc/crypto-policies/config:
-    title: 1.10 | L1 | Ensure system-wide crypto policy is not legacy
-    exists: true
-    contains: 
-    - '/^\s*{{ .Vars.rhel9cis_crypto_policy }}/'
-    - '!/^\s*LEGACY/'
+command:
+  crypto_policies_config:
+    title: 1.10 | Ensure system-wide crypto policy is not legacy
+    exec: cat /etc/crypto-policies/config
+    exit-status: 0
+    stdout:
+    - '/^(|\s+)(DEFAULT|FUTURE|FIPS)/'
+    - '!/^(|\s+)LEGACY/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,15 @@
+{{ if .Vars.rhel9cis_rule_4_2_2_1_1 }}
+package:
+  systemd-journal-remote:
+    title: 4.2.2.1.1 | Ensure systemd-journal-remote is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.1.1
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

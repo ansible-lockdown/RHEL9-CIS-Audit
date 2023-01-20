@@ -1,45 +1,19 @@
 {{ if .Vars.rhel9cis_rule_1_5_1 }}
-file:
-  {{ if .Vars.rhel9cis_legacy_boot }}
-  /boot/grub2/grubenv:
-  {{ else }}
-  /boot/efi/EFI/{{ .Vars.rhel9cis_os_distribution }}/grubenv:
-  {{ end }}
-    title: 1.5.1 | L1 | Ensure permissions on bootloader config are configured | file_perms
-    exists: true
-    owner: root
-    group: root
-    mode: "0600"
+command:
+  storage_coredump_conf:
+    title: 1.5.1 | Ensure core dump storage is disabled
+    exec: grep -i storage /etc/systemd/coredump.conf
+    exit-status: 0
+    stdout:
+    - '/Storage=none/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID:
+      CIS_ID: 
       - 1.5.1
-      CISv8:
+      CISv8: 
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ if not .Vars.rhel9cis_legacy_boot }}
-mount:
-  /boot/efi:
-    title: 1.5.1 | L1 | Ensure permissions on bootloader config are configured | /boot/efi opts
-    exists: true
-    opts:
-    - 'umask=0027'
-    - 'fmask=0077'
-    - 'uid=0'
-    - 'gid=0'
-    filesystem: vfat
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.5.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
 {{ end }}

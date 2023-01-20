@@ -1,0 +1,16 @@
+{{ if .Vars.rhel9cis_rule_4_3_2 }}
+service:
+  logrotate.timer:
+    title: 4.3.2 | Ensure logrotate is running and enabled
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.3.2
+      CISv8: 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

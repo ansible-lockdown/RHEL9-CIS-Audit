@@ -1,18 +1,63 @@
 {{ if .Vars.rhel9cis_rule_5_5_4 }}
-user:
-  root:
-    title: 5.5.4 | L1 | Ensure default group for the root account is GID 0
-    exists: true
-    uid: 0
-    gid: 0
+command:
+ pamd_system_auth_sha:
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | system-auth
+    exec: grep sha512 /etc/pam.d/system-auth
+    exit-status: 0
+    stdout:
+    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok remember={{ .Vars.rhel9cis_passwd_remember }}/"
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.5.4
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 3.11
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+file:
+  /etc/pam.d/password-auth:
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
+    exists: true
+    contains:
+    - "/^password\\s+sufficient\\s+pam_unix.so sha512 shadow try_first_pass use_authtok/"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.4
+      CISv8: 3.11
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/libuser.conf:
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
+    exists: true
+    contains:
+    - '/^crypt_style = sha512/'
+    - '!/^crypt_style = md5/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.4
+      CISv8: 3.11
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  /etc/login.defs:
+    title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | login.defs
+    exists: true
+    contains:
+    - '/^ENCRYPT_METHOD SHA512/'
+    - '!/^ENCRYPT_METHOD MD5/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.4
+      CISv8: 3.11
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

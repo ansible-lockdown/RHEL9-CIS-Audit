@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_5_6_1_5 }}
+command:
+  passwd_chg_past:
+    title: 5.6.1.5 | Ensure all users last password change date is in the past
+    exec: '/for usr in `cut -d: -f1 /etc/shadow`; do [[ $(chage --list $usr | grep "^Last password change" | cut -d: -f2) > $(date) ]] && echo "Failed" ; done/'
+    exit-status: 1
+    stdout:
+    - '!/Failed/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.6.1.5
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

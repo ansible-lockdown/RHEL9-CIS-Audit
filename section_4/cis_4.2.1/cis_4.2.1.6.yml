@@ -1,0 +1,22 @@
+{{ if .Vars.rhel9cis_rule_4_2_1_6 }}
+command:
+  remote_syslog:
+    title: 4.2.1.6 | Ensure rsyslog is configured to send logs to a remote host
+    exec: 'grep -E "action.*omfwd.*target" /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
+    exit-status:
+      or:
+        - 0
+        - 2
+    stdout:
+    - '*.* action(type="omfwd" target="loghost.example.com" port="514"'
+    - protocol="tcp"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.6
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

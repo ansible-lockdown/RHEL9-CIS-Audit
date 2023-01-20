@@ -1,0 +1,37 @@
+{{ if not .Vars.rhel9cis_selinux_disable }} 
+  {{ if .Vars.rhel9cis_rule_4_1_3_14 }}
+command:
+  auditd_MAC_cnf:
+    title: 4.1.3.14 | Ensure events that modify the system's Mandatory Access Controls are collected
+    exec: grep MAC-policy /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/.*.rules\:-w /etc/selinux -p wa -k MAC-policy/'
+    - '/.*.rules\:-w /usr/share/selinux -p wa -k MAC-policy/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.14
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_MAC_live:
+    title: 4.1.3.14 | Ensure events that modify the system's Mandatory Access Controls are collected
+    exec: auditctl -l | grep MAC-policy
+    exit-status: 0
+    stdout:
+    - '-w /etc/selinux -p wa -k MAC-policy'
+    - '-w /usr/share/selinux -p wa -k MAC-policy'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.14
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

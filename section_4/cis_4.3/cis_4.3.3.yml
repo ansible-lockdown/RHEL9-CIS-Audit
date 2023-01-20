@@ -1,0 +1,17 @@
+{{ if .Vars.rhel9cis_rule_4_3_3 }}
+command:
+  logrotate_configured:
+    title: 4.3.3 | Ensure logrotate is configured
+    exec: echo "Manual - Check logrotate files configuration matches site requirements"
+    exit-status: 0
+    stdout: ['!/Manual/']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.3.3
+      CISv8: 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

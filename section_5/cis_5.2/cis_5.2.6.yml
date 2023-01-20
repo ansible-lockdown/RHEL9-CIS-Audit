@@ -1,20 +1,22 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_5_2_6 }}
-file:
-  /etc/ssh/sshd_config:
-    title: 5.2.6 | L2 | Ensure SSH X11 forwarding is disabled
-    exists: true
-    contains:
-    - '/^X11Forwarding no/'
-    - '!/^X11Forwarding yes/'
+{{ if .Vars.rhel9cis_rule_5_2_6 }}
+command:
+  ssh_usepam:
+    title: 5.2.6 | Ensure SSH PAM is enabled
+    exec: grep -Ei "^usepam" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^UsePAM yes/'
+    - '!/^UsePAM no/'
     meta:
-      server: 2
+      server: 1
       workstation: 1
       CIS_ID:
       - 5.2.6
-      CISv8: 4.8
-      CISv8_IG1: false
+      CISv8: 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
 {{ end }}

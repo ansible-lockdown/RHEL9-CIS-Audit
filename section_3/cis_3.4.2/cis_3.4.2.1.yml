@@ -1,0 +1,15 @@
+{{ if .Vars.rhel9cis_rule_3_4_2_1 }}
+package:
+  nftables:
+    title: 3.4.2.1 | Ensure nftables is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.2.1
+      CISv8: 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

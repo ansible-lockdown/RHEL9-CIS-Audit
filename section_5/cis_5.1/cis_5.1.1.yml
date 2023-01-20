@@ -1,20 +1,7 @@
 {{ if .Vars.rhel9cis_rule_5_1_1 }}
-package:
-  cronie:
-    title: 5.1.1 | L1 | Ensure cron daemon is enabled and running
-    installed: true
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
 service:
   crond:
-    title: 5.1.1 | L1 | Ensure cron daemon is enabled and running
+    title: 5.1.1 | Ensure cron daemon is enabled
     running: true
     enabled: true
     meta:
@@ -27,5 +14,3 @@ service:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-
-

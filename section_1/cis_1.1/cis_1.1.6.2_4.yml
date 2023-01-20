@@ -1,0 +1,93 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_6_1 }}
+mount:
+  /var/log/audit:
+    title: |
+        1.1.6.2 | Ensure noexec option set on /var/log/audit partition
+        1.1.6.3 | Ensure nodev option set on /var/log/audit partition
+        1.1.6.4 | Ensure nosuid option set on /var/log/audit partition
+    exists: true
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_6_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_6_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_6_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.6.2
+      - 1.1.6.3
+      - 1.1.6.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_6_2 }}
+  noexec_var_log_audit_fstab:
+     title: 1.1.6.2 | Ensure noexec option set on /var/log/audit partition | fstab config
+     exec: grep '.*\/var\/log\/audit\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\/log\/audit\s.*noexec.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.6.2
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_6_3 }}
+  nodev_var_log_audit_fstab:
+     title: 1.1.6.3 | Ensure nodev option set on /var/log/audit partition | fstab config
+     exec: grep '.*\/var\/log\/audit\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\/log\/audit\s.*nodev.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.6.3
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_6_4 }}
+  nosuid_var_log_audit_fstab:
+     title: 1.1.6.4 | Ensure nosuid option set on /var/log/audit partition | fstab config
+     exec: grep '.*\/var\/log\/audit\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/var\/log\/audit\s.*nosuid.*$/'
+     meta:
+       server: 1
+       workstation: 1
+       CIS_ID:
+       - 1.1.6.4
+       CISv8: 3.3
+       CISv8_IG1: true
+       CISv8_IG2: true
+       CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

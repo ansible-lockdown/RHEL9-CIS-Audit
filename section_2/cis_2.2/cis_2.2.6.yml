@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_squid_server}}
+{{ if not .Vars.rhel9cis_dns_server }}
   {{ if .Vars.rhel9cis_rule_2_2_6 }}
-service:
-  squid:
-    title: 2.2.6 | L1 | Ensure HTTP proxy Server is not enabled
-    running: false
-    enabled: false
+package:
+  bind:
+    title: 2.2.6 | Ensure DNS Server is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

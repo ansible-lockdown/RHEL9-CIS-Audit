@@ -1,0 +1,39 @@
+{{ if .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_rule_1_8_5 }}
+command:
+  gsettings_media:
+    title: 1.8.5 | Ensure automatic mounting of removable media is disabled | live
+    exec: gsettings get org.gnome.desktop.media-handling automount
+    exit-status: 0
+    stdout:
+    - '!/^false'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.5
+      CISv8:
+      - 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+file:
+  /etc/dconf/db/local.d/00-media-automount:
+    title: 1.8.5 | Ensure automatic mounting of removable media is disabled | conf
+    exists: true
+    contains:
+    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^automount=false/'
+    - '/^automount-open=false/'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 
+      - 1.8.5
+      CISv8:
+      - 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

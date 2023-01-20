@@ -6,6 +6,11 @@
 #             - added vars options for bespoke vars file
 #             - Ability to run as script from remediation role increased consistency
 # 17 Dec 2021 - Added system_type variable - default Server will change to workstations with -w switch
+# 02 Mar 2022 - Updated benchmark variable naming
+# 06 Apr 2022 - Added format option in output inline with goss options e.g. json documentation this is for fault finding
+# 03 May 2022 - update for audit variables improvement added by @pavloos - https://github.com/ansible-lockdown/RHEL8-CIS-Audit/pull/29
+# 10 Jun 2022 - added format output for different type - supports json,documentation or rspecish
+
 
 #!/bin/bash
 
@@ -13,11 +18,16 @@
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
-# Goss Variables
+# Goss host Variables
+AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
+AUDIT_FILE="${AUDIT_FILE:-goss.yml}"  # the default goss file used by the audit provided by the audit configuration
+AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audit configuration file as available to the OS
+
+
+# Goss benchmark variables (these should not need changing unless new release)
 BENCHMARK=CIS  # Benchmark Name aligns to the audit
-AUDIT_BIN=/usr/local/bin/goss  # location of the goss executable
-AUDIT_FILE=goss.yml  # the default goss file used by the audit provided by the audit configuration
-AUDIT_CONTENT_LOCATION=/var/tmp  # Location of the audit configuration file as available to the OS
+BENCHMARK_VER=notofficial
+BENCHMARK_OS=RHEL9
 
 # help output
 Help()
@@ -25,8 +35,9 @@ Help()
    # Display Help
    echo "Script to run the goss audit"
    echo
-   echo "Syntax: $0 [-g|-o|-v|-w|-h]"
+   echo "Syntax: $0 [-f|-g|-o|-v|-w|-h]"
    echo "options:"
+   echo "-f     optional - change the format output (default value = json) other working options documentation, rspecish"
    echo "-g     optional - Add a group that the server should be grouped with (default value = ungrouped)"
    echo "-o     optional - file to output audit data"
    echo "-v     optional - relative path to thevars file to load (default e.g. $AUDIT_CONTENT_LOCATION/RHEL7-$BENCHMARK/vars/$BENCHMARK.yml)"
@@ -37,15 +48,16 @@ Help()
 
 
 # Default vars that can be set
-system_type=Server
+host_system_type=Server
 
 ## option statement
-while getopts g:o:v::wh option; do
+while getopts f:g:o:v::wh option; do
    case "${option}" in
+        f ) FORMAT=${OPTARG} ;;
         g ) GROUP=${OPTARG} ;;
         o ) OUTFILE=${OPTARG} ;;
         v ) VARS_PATH=${OPTARG} ;;
-        w ) system_type=Workstation ;;
+        w ) host_system_type=Workstation ;;
         h ) # display Help
             Help
             exit;;
@@ -64,9 +76,7 @@ if [ $(/usr/bin/id -u) -ne 0 ]; then
   exit 1
 fi
 
-
 #### Main Script
-
 
 # Discover OS version aligning with audit
 # Define os_vendor variable
@@ -80,6 +90,13 @@ os_maj_ver=`grep -w VERSION_ID= /etc/os-release | awk -F\" '{print $2}' | cut -d
 audit_content_version=$os_vendor$os_maj_ver-$BENCHMARK-Audit
 audit_content_dir=$AUDIT_CONTENT_LOCATION/$audit_content_version
 audit_vars=vars/${BENCHMARK}.yml
+
+# Set variable for format output
+if [ -z $FORMAT ]; then
+  export format="json"
+else
+  export format=$FORMAT
+fi
 
 # Set variable for autogroup
 if [ -z $GROUP ]; then
@@ -104,23 +121,23 @@ fi
 
 ## System variables captured for metadata
 
-machine_uuid=`if [ ! -z /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi`
-epoch=`date +%s`
-os_locale=`date +%Z`
-os_name=`grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d ' ' -f1`
-os_version=`grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2`
-os_hostname=`hostname`
+host_machine_uuid=`if [ ! -z /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi`
+host_epoch=`date +%s`
+host_os_locale=`date +%Z`
+host_os_name=`grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d ' ' -f1`
+host_os_version=`grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2`
+host_os_hostname=`hostname`
 
 ## Set variable audit_out
 if [ -z $OUTFILE ]; then
-  export audit_out=$AUDIT_CONTENT_LOCATION/audit_$os_hostname_$epoch.json
+  export audit_out=$AUDIT_CONTENT_LOCATION/audit_${host_os_hostname}-${BENCHMARK}-${BENCHMARK_OS}_${host_epoch}.$format
 else
   export audit_out=$OUTFILE
 fi
 
 
 ## Set the AUDIT json string
-audit_json_vars='{"benchmark":"'"$BENCHMARK"'","machine_uuid":"'"$machine_uuid"'","epoch":"'"$epoch"'","os_locale":"'"$os_locale"'","os_release":"'"$os_version"'","os_distribution":"'"$os_name"'","os_hostname":"'"$os_hostname"'","auto_group":"'"$auto_group"'","system_type":"'"$system_type"'"}'
+audit_json_vars='{"benchmark_type":"'"$BENCHMARK"'","benchmark_os":"'"$BENCHMARK_OS"'","benchmark_version":"'"$BENCHMARK_VER"'","machine_uuid":"'"$host_machine_uuid"'","epoch":"'"$host_epoch"'","os_locale":"'"$host_os_locale"'","os_release":"'"$host_os_version"'","os_distribution":"'"$host_os_name"'","os_hostname":"'"$host_os_hostname"'","auto_group":"'"$host_auto_group"'","system_type":"'"$host_system_type"'"}'
 
 ## Run pre checks
 
@@ -151,19 +168,34 @@ else
    echo
 fi
 
+# format output
+#json, rspecish = grep -A 4 \"summary\": $audit_out
+# tap junit no output as no summary
+#documentation = tail -2 $audit_out
+
+# defaults
+output_summary="tail -2 $audit_out"
+format_output="-f $format"
+
+if [ $format = json ]; then
+   format_output="-f json -o pretty"
+   output_summary="grep -A 4 \"summary\": $audit_out"
+elif [ $format = junit ] || [ $format = tap ]; then
+   output_summary=""
+fi
+
+
 
 ## Run commands
 echo "#############"
 echo "Audit Started"
 echo "#############"
 echo
-$AUDIT_BIN -g $audit_content_dir/$AUDIT_FILE --vars $varfile_path  --vars-inline $audit_json_vars v -f json -o pretty > $audit_out
+$AUDIT_BIN -g $audit_content_dir/$AUDIT_FILE --vars $varfile_path  --vars-inline $audit_json_vars v $format_output > $audit_out
 
 # create screen output
-if [ `grep -c $BENCHMARK $audit_out` != 0 ]; then
-echo "
-`tail -7 $audit_out`
-
+if [ `grep -c $BENCHMARK $audit_out` != 0 ] || [ $format = junit ] || [ $format = tap ]; then
+echo " `$output_summary`
 Completed file can be found at $audit_out"
 echo "###############"
 echo "Audit Completed"

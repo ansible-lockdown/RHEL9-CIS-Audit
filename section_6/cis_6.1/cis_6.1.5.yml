@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_1_5 }}
-command:
-  shadow-_perms:
-    title: 6.1.5 | L1 | Ensure permissions on /etc/shadow- are configured
-    exec:  stat -L -c "%a %U %G" /etc/shadow-
-    exit-status: 0
-    stdout:
-    -  '/(0|000) root root/'
+file:
+  /etc/group:
+    title: 6.1.5 | Ensure permissions on /etc/group are configured
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
     meta:
       server: 1
       workstation: 1
@@ -16,4 +16,3 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

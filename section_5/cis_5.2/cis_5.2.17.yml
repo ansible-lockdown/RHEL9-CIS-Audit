@@ -1,20 +1,21 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_5_2_17 }}
-file:
-  /etc/ssh/sshd_config:
-    title: 5.2.17 | L2 | Ensure SSH AllowTcpForwarding is disabled
-    exists: true
-    contains:
-    - '/^AllowTcpForwarding no/'
-    - '!/^AllowTcpForwarding yes/'
+{{ if .Vars.rhel9cis_rule_5_2_17 }}
+command:
+  ssh_maxstartups:
+    title: 5.2.17 | Ensure SSH MaxStartups is configured
+    exec: grep -Ei "^MaxStartups" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - "MaxStartups 10:30:60"
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 5.2.17
       CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
 {{ end }}

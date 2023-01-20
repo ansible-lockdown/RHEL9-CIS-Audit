@@ -1,29 +1,38 @@
-{{ if not .Vars.rhel9cis_is_router }}
+{{ if not .Vars.rhel9cis_ipv6_required }}
   {{ if .Vars.rhel9cis_rule_3_1_1 }}
-kernel-param:
-  net.ipv4.ip_forward:
-    title: 3.1.1 | L1 | Ensure IP forwarding is disabled
-    value: '0'
+command:
+  default_grub_ipv6:
+    title: 3.1.1 |Verify if IPv6 is enabled on the system
+    exec: grep ipv6 /etc/default/grub.conf
+    exit-status: 0
+    stdout:
+    - '/^GRUB_CMDLINE_LINUX="(\S+\s)*(ipv6\.disable=1).*$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 3.1.1
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 4.8
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-
-  net.ipv6.conf.all.forwarding:
-    title: 3.1.1 | L1 | Ensure IP forwarding is disabled
-    value: '0'
+  sysctl_ipv6_disable:
+    title: 3.1.1 | Verify if IPv6 is enabled on the system
+    exec: grep disable_ipv6 /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+      - '/.*: net.ipv6.conf.all.disable_ipv6 = 1/'
+      - '/.*: net.ipv6.conf.default.disable_ipv6 = 1/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 3.1.1
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 4.8
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}

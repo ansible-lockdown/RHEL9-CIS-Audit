@@ -1,19 +1,51 @@
-{{ if .Vars.rhel9cis_level_2 }}
-  {{ if .Vars.rhel9cis_rule_3_3_2 }}
-command:
-  modprobe_sctp:
-    title: 3.3.2 | L2 | Ensure SCTP is disabled (Automated)
-    exit-status: 0
-    exec: 'modprobe -n -v dccp'
-    stdout: ['install /bin/true']
+{{ if .Vars.rhel9cis_rule_3_3_2 }}
+kernel-param:
+  net.ipv4.conf.all.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted
+    value: '0'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
-      - 3.3.2
-      CISv8: 4.8
-      CISv8_IG1: false
+      - 3.2.1
+      CISv8: 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
+  net.ipv4.conf.default.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.1
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  net.ipv6.conf.all.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  net.ipv6.conf.default.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
 {{ end }}

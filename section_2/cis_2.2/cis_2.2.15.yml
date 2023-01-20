@@ -1,10 +1,9 @@
-{{ if not .Vars.rhel9cis_dhcp_server }}
-  {{ if .Vars.rhel9cis_rule_2_2_5 }}
-service:
-  dhcpd:
-    title: 2.2.15 | L1 | Ensure DHCP Server is not enabled
-    running: false
-    enabled: false
+{{ if not .Vars.rhel9cis_nis_server }}
+  {{ if .Vars.rhel9cis_rule_2_2_15 }}
+package:
+  ypserv:
+    title: 2.2.15 | Ensure NIS server is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_1 }}
+command:
+  tmp_partition:
+    title: 1.1.2.1 | Ensure /tmp is a separate partition
+    exec: mount -l | grep -w /tmp
+    exit-status: 0
+    stdout:
+    - '/tmp type'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.2.1
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

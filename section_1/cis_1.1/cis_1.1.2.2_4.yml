@@ -1,0 +1,93 @@
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_1 }}
+mount:
+  /tmp:
+    title: |
+        1.1.2.2 | Ensure nodev option set on /tmp partition
+        1.1.2.3 | Ensure noexec option set on /tmp partition
+        1.1.2.4 | Ensure nosuid option set on /tmp partition
+    exists: true
+    opts:
+    {{ if .Vars.rhel9cis_rule_1_1_2_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_2_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.rhel9cis_rule_1_1_2_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.2
+      - 1.1.2.3
+      - 1.1.2.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  {{ if .Vars.rhel9cis_rule_1_1_2_2 }}
+  nodev_tmp_fstab:
+     title: 1.1.2.3 | Ensure nodev option set on /tmp partition | fstab config
+     exec: grep '.*\/tmp\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/tmp\s.*nodev.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_3 }}
+  noexec_tmp_fstab:
+     title: 1.1.2.3 | Ensure noexec option set on /tmp partition | fstab config
+     exec: grep '.*\/tmp\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/tmp\s.*noexec.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel9cis_rule_1_1_2_4 }}
+  nosuid_tmp_fstab:
+     title: 1.1.2.4 | Ensure nosuid option set on /tmp partition | fstab config
+     exec: grep '.*\/tmp\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/tmp\s.*nosuid.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

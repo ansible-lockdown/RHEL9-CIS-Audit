@@ -1,10 +1,17 @@
 {{ if .Vars.rhel9cis_rule_5_2_4 }}
+  {{ if .Vars.rhel9cis_sshd_limited }}
 command:
-  /etc/ssh/ssh_host_key_user:
-    title: 5.2.4 | L1 | Ensure permissions on SSH pub host key files are configured_user
-    exec: "userkeys=$(sudo find /etc/ssh/ -name *_key.pub -type f ! -user root ); echo $userkeys"
-    exit-status: 0
-    stdout: ['!/./']
+  sshd_access_limited:
+    title: 5.2.4 | Ensure SSH access is limited 
+    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    {{ range .Vars.rhel9cis_sshd_access }}
+    - {{ . }}
+    {{ end }}
     meta:
       server: 1
       workstation: 1
@@ -14,33 +21,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/ssh/ssh_host_key_group:
-    title: 5.2.4 | L1 | Ensure permissions on SSH private host key files are configured_group
-    exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key.pub -type f ! -group root ); echo $groupkeys"
-    exit-status: 0
-    stdout: ['!/./']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.2.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  /etc/ssh/ssh_host_key_perms:
-    title: 5.2.4 | L1 | Ensure permissions on SSH private host key files are configured_user
-    exec: "keysperm=$(sudo find /etc/ssh/ -name *_key.pub -type f  -perm /137 ); echo $keyperms"
-    exit-status: 0
-    stdout: ['!/./']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.2.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+  {{ end }}
 {{ end }}
-

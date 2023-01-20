@@ -1,11 +1,15 @@
 {{ if .Vars.rhel9cis_rule_5_2_11 }}
-file:
-  /etc/ssh/sshd_config:
-    title: 5.2.11 | L1 | Ensure SSH PermitEmptyPasswords is disabled
-    exists: true
-    contains:
-    - '/^PermitEmptyPasswords no/'
-    - '!/^PermitEmptyPasswords yes/'
+command:
+  ssh_rhosts:
+    title: 5.2.11 | Ensure SSH IgnoreRhosts is enabled
+    exec: grep -Ei "Ignorerhosts" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^IgnoreRhosts yes/'
+    - '!/^IgnoreRhosts no/'
     meta:
       server: 1
       workstation: 1

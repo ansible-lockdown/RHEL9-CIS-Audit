@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_1 }}
+command:
+  auditd_admin_scope_cnf:
+    title: 4.1.3.1 | Ensure changes to system administration scope (sudoers) is collected | conf_check
+    exec: grep scope /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/sudoers -p wa -k scope'
+    - '-w /etc/sudoers.d -p wa -k scope'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.1
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_admin_scope_live:
+    title: 4.1.3.1 | Ensure changes to system administration scope (sudoers) is collected | running
+    exec: auditctl -l | grep scope
+    exit-status: 0
+    stdout:
+    - '-w /etc/sudoers -p wa -k scope'
+    - '-w /etc/sudoers.d -p wa -k scope'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.1
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

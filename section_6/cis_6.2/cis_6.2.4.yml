@@ -1,10 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_2_4 }}
-file:
-  /etc/shadow:
-    title: 6.2.4 | L1 | Ensure no legacy "+" entries exist in /etc/shadow
-    exists: true
-    contains:
-    - '!/^\+:/'
+command:
+  no_dup_gid:
+    title: 6.2.4 | Ensure no duplicate GIDs exist
+    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+    exit-status: 0
+    stdout:
+    - '!/./'
     meta:
       server: 1
       workstation: 1
@@ -15,4 +16,3 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
 {{ end }}
-

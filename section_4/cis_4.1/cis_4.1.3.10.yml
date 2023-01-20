@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_4_1_3_10 }}
+command:
+  auditd_mounts_cnf:
+    title: 4.1.3.10 | Ensure successful file system mounts are collected | conf check
+    exec: grep mounts /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -k mounts/'
+    - '/-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -k mounts/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.10
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  auditd_mounts_live:
+    title: 4.1.3.10 | Ensure successful file system mounts are collected | running
+    exec: auditctl -l | grep mounts
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=-1 -F key=mounts'
+    - '-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=-1 -F key=mounts'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.10
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

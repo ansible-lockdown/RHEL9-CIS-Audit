@@ -1,11 +1,11 @@
 {{ if .Vars.rhel9cis_rule_6_1_8 }}
-command:
-  group_perms:
-    title: 6.1.8 | L1 | Ensure permissions on /etc/group are configured
-    exec:  stat -L -c "%a %U %G" /etc/group
-    exit-status: 0
-    stdout:
-    -  '/6[0.4][0,4] root root/'
+file:
+  /etc/shadow-:
+    title: 6.1.8 | Ensure permissions on /etc/shadow- are configured
+    exists: true
+    mode: "0000"
+    owner: root
+    group: root
     meta:
       server: 1
       workstation: 1

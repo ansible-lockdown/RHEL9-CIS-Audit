@@ -1,0 +1,18 @@
+{{ if .Vars.rhel9cis_rule_3_4_1_7 }}
+command:
+  fw_port_svcs:
+    title: 3.4.1.7 | Ensure firewalld drops unnecessary services and ports
+    exec: echo "Warning - Ensure correct unnecessary services and ports are dropped from firewalld"
+    exit-status: 0
+    stdout:
+    - '!/Warning/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.7
+      CISv8: 4.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

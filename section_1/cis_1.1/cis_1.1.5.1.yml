@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_1_5_1 }}
+command:
+  var_log_partition:
+    title: 1.1.5.1 | Ensure separate partition exists for /var/log
+    exec: mount -l | grep -w /var/log
+    exit-status: 0
+    stdout:
+    - 'on /var/log'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.5.1
+      CISv8: 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

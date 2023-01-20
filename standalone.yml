@@ -1,0 +1,35 @@
+gossfile:
+  {{ if .Vars.rhel9cis_section1 }}
+  section_1/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section2 }}
+  section_2/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section3 }}
+  section_3/cis_3.1/*.yml: {}
+  section_3/cis_3.2/*.yml: {}
+  section_3/cis_3.3/*.yml: {}
+## firewall configurations
+    {{ if eq .Vars.rhel9cis_firewall "firewalld" }}
+  section_3/cis_3.4.1/*.yml: {}
+    {{ end }}
+    {{ if eq .Vars.rhel9cis_firewall "nftables" }}
+  section_3/cis_3.4.2/*.yml: {}
+    {{ end }}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section4 }}
+  # Auditd and level 2
+    {{ if .Vars.rhel9cis_level_2 }}
+  section_4/cis_4.1/*.yml: {}
+    {{ end }}
+  section_4/cis_4.2.1/*.yml: {}
+  section_4/cis_4.2.2/*.yml: {}
+  section_4/cis_4.2.3/*.yml: {}
+  section_4/cis_4.3/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section5 }}
+  section_5/*/*.yml: {}
+  {{ end }}
+  {{ if .Vars.rhel9cis_section6 }}
+  section_6/*/*.yml: {}
+  {{ end }}

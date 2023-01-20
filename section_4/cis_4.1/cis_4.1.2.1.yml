@@ -1,10 +1,11 @@
 {{ if .Vars.rhel9cis_rule_4_1_2_1 }}
-file:
-  /etc/audit/auditd.conf:
-    exists: true
-    title: 4.1.2.1 | L2 | Ensure audit log storage size is configured
-    contains:
-    - '/^max_log_file = \d+/'
+command:
+  max_log_auditd_conf:
+    title: 4.1.2.1 | Ensure audit log storage size is configured
+    exec: grep max_log_file /etc/audit/auditd.conf
+    exit-status: 0
+    stdout:
+    - '/^max_log_file = \d\d+/'
     meta:
       server: 2
       workstation: 2

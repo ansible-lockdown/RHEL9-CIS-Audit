@@ -392,6 +392,11 @@ rhel9cis_warning_banner: Authorized uses only. All activity may be monitored and
 # aide setup via - cron, timer
 rhel9_aide_scan: cron
 
+# 1.8 Gnome Desktop
+rhel9cis_dconf_db_name: local
+rhel922cis_screensaver_idle_delay: 900  # Set max value for idle-delay in seconds (between 1 and 900)
+rhel9cis_screensaver_lock_delay: 5  # Set max value for lock-delay in seconds (between 0 and 5)
+
 # Section 2
 ## 2.2 Special Purposes
 # Set to 'true' if X Windows is needed in your environment

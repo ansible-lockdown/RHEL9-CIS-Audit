@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_rule_1_8_9 }}
+file:
+  /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/locks/00-autorun_lock:
+    title: 1.8.9 | Ensure GDM autorun-never is not overridden
+    exists: true
+    contains:
+    - '^/\/org\/gnome\/desktop\/media-handling\/autorun-never/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.9
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

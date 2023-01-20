@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_rule_1_8_8 }}
+file:
+  /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/00-media-autorun:
+    title: 1.8.8 | Ensure GDM autorun-never is enabled
+    exists: true
+    contains:
+    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^autorun-never=true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.8
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

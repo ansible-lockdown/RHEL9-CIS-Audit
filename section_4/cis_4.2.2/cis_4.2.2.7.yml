@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_4_2_2_7 }}
 command:
   /etc/tmpfiles.d/systemd.conf:
-    title: 4.2.2.7 | Ensure journald default file permissions are configured
+    title: 4.2.2.7 | Ensure journald default file permissions are configured | Manual Check Required
     exec: echo "Manual - Please check journald default permissions"
     exit-status: 0
     stdout:

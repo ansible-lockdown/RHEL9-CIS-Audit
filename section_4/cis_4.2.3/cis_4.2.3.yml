@@ -2,9 +2,12 @@
 command:
   logfile_configured:
     title: 4.2.3 | Ensure permissions on all logfiles are configured
-    exec: 'find /var/log/ -type f -perm /g+wx,o+rwx -exec ls -l "{}" +'
-    exit-status: 0
-    stdout: ['!/./']
+    exec: find /var/log/ -type f -perm /g+wx,o+rwx -exec ls -l "{}" + | grep -Ev "[b,u,w]tmp.*|lastllog"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: ['!/.*/']
     meta:
       server: 1
       workstation: 1

@@ -1,5 +1,5 @@
 {{ if .Vars.rhel9cis_config_aide }}
-  {{ if .Vars.rhel9cis_rule_1_3_1 }}
+  {{ if .Vars.rhel9cis_rule_1_3_2 }}
     {{ if eq .Vars.rhel9_aide_scan "cron" }}
 command:
   aide_cron:
@@ -15,9 +15,9 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.3.2
-      CISv8: 
+      CISv8:
       - 3.14
       CISv8_IG1: false
       CISv8_IG2: false
@@ -33,9 +33,9 @@ service:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.3.2
-      CISv8: 
+      CISv8:
       - 3.14
       CISv8_IG1: false
       CISv8_IG2: false

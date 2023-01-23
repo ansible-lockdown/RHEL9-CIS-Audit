@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_4_1_1_1 }}
 package:
   audit:
-    title: 4.1.1.1 | Ensure auditd is installed
+    title: 4.1.1.1 | Ensure auditd is installed | auditd
     installed: true
     meta:
       server: 2
@@ -15,7 +15,7 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
   audit-libs:
-    title: 4.1.1.1 | Ensure auditd is installed
+    title: 4.1.1.1 | Ensure auditd is installed | audit-libs
     installed: true
     meta:
       server: 2
@@ -25,22 +25,6 @@ package:
       CISv8: 
       - 8.2
       - 8.5
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.rhel9cis_rule_4_1_1_2 }}
-service:
-  auditd:
-    title: 4.1.1.2 | Ensure auditd service is enabled and running
-    enabled: true
-    running: true
-    meta:
-      server: 2
-      workstation: 2
-      CIS_ID:
-      - 4.1.1.2
-      CISv8: 8.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

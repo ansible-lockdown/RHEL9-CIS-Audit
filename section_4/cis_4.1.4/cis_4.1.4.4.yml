@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_4 }}
+command:
+  audit_logfile_dir_perms:
+    title: 4.1.4.4 | Ensure the audit log directory is 0750 or more restrictive
+    exec: for dir in `dirname \`grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'\``; do stat -Lc " %n_%a" $dir; done
+    exit-status: 0
+    stdout:
+    - '/.*_7(0|5)0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.4
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

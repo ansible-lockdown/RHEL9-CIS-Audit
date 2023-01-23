@@ -1,24 +1,9 @@
-{{ if not .Vars.rhel9cis_httpd_server}}
+{{ if not .Vars.rhel9cis_samba_server}}
   {{ if .Vars.rhel9cis_rule_2_2_10 }}
-service:
-  httpd:
-    title: 2.2.10 | Ensure a web server is not installed | httpd
-    running: false
-    enabled: false
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID: 
-      - 2.2.10
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-  nginx:
-    title: 2.2.10 | Ensure a web server is not installed | nginx
-    running: false
-    enabled: false
+package:
+  samba:
+    title: 2.2.10 | Ensure Samba is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1

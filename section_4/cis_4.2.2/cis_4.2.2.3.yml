@@ -5,8 +5,8 @@ command:
     exec: grep -i compress /etc/systemd/journald.conf
     exit-status: 0
     stdout:
-    - '/Compress=yes/'
-    - '!/Compress=[Nn][Oo]/'
+    - '/^Compress=yes/'
+    - '!/^Compress=[Nn][Oo]/'
     meta:
       server: 1
       workstation: 1

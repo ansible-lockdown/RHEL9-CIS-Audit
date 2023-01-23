@@ -1,10 +1,17 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_1_2_4 }}
 command:
-  repos_configured:
-    title: 1.2.4 | Ensure Package manager repositories are configured
-    exit-status: 0
-    exec: "yum repolist"
+  repo_gpgcheck_global:
+    title: 1.2.4 | Ensure repo_gpgcheck is globally active
+    exec: grep -E "^repo_gpgcheck" /etc/dnf/dnf.conf
+    timeout: {{ .Vars.timeout_ms }}
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^repo_gpgcheck( |)=( |)1/'
+    - '!/^repo_gpgcheck( |)=( |)0/'
     meta:
       server: 1
       workstation: 1
@@ -12,7 +19,23 @@ command:
       - 1.2.4
       CISv8:
       - 7.3
-      - 7.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  repo_gpgcheck_repo:
+    title: 1.2.4 | Ensure repo_gpgcheck is globally active
+    exit-status: 0
+    exec: if [ `find . -type f | xargs grep 'repo_gpgcheck*' * | grep -v '=1' | wc -l` -ne 0 ]; then echo FAIL; else echo OK; fi
+    stdout:
+    - 'OK'
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.2.4
+      CISv8:
+      - 7.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

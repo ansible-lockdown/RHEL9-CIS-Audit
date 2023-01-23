@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_snmp_server}}
+{{ if not .Vars.rhel9cis_dnsmasq_server }}
   {{ if .Vars.rhel9cis_rule_2_2_14 }}
 package:
-  snmpd:
-    title: 2.2.14 | Ensure net-smp Server is not installed
+  dnsmasq:
+    title: 2.2.14 | Ensure dnsmasq is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 2.2.14
       CISv8:
       - 4.8

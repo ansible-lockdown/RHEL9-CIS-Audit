@@ -1,7 +1,7 @@
 ## metadata for benchmark
 
 ## metadata for Audit benchmark
-benchmark_version: '0.5.0'
+benchmark_version: '1.0.0'
 
 # Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
 # If run via script this is discovered and set
@@ -50,7 +50,6 @@ rhel9cis_rule_1_1_2_4: true
 rhel9cis_rule_1_1_3_1: true
 rhel9cis_rule_1_1_3_2: true
 rhel9cis_rule_1_1_3_3: true
-rhel9cis_rule_1_1_3_4: true
 # 1.1.4 Configure /var/tmp
 rhel9cis_rule_1_1_4_1: true
 rhel9cis_rule_1_1_4_2: true
@@ -76,10 +75,11 @@ rhel9cis_rule_1_1_7_5: true
 rhel9cis_rule_1_1_8_1: true
 rhel9cis_rule_1_1_8_2: true
 rhel9cis_rule_1_1_8_3: true
-# 1.9 autofs
-rhel9cis_rule_1_1_9: true
+rhel9cis_rule_1_1_8_4: true
 # 1.10 usb-storage
-rhel9cis_rule_1_1_10: true
+rhel9cis_rule_1_1_9: true
+
+
 # 1.2 Configure Software Updates
 rhel9cis_rule_1_2_1: true  # if this is RHEL # change to False for RHEL derivative
 rhel9cis_rule_1_2_2: true
@@ -88,10 +88,11 @@ rhel9cis_rule_1_2_4: true
 # 1.3 Filesystem Integrity Checking
 rhel9cis_rule_1_3_1: true
 rhel9cis_rule_1_3_2: true
+rhel9cis_rule_1_3_3: true
 # 1.4 Secure Boot Settings
 rhel9cis_rule_1_4_1: true
 rhel9cis_rule_1_4_2: true
-rhel9cis_rule_1_4_3: true
+
 # 1.5 Additional Process Hardening
 rhel9cis_rule_1_5_1: true
 rhel9cis_rule_1_5_2: true
@@ -104,6 +105,7 @@ rhel9cis_rule_1_6_1_4: true
 rhel9cis_rule_1_6_1_5: true
 rhel9cis_rule_1_6_1_6: true
 rhel9cis_rule_1_6_1_7: true
+rhel9cis_rule_1_6_1_8: true
 
 # 1.7 Command Line Warning Banners
 rhel9cis_rule_1_7_1: true
@@ -118,6 +120,12 @@ rhel9cis_rule_1_8_2: true
 rhel9cis_rule_1_8_3: true
 rhel9cis_rule_1_8_4: true
 rhel9cis_rule_1_8_5: true
+rhel9cis_rule_1_8_6: true
+rhel9cis_rule_1_8_7: true
+rhel9cis_rule_1_8_8: true
+rhel9cis_rule_1_8_9: true
+rhel9cis_rule_1_8_10: true
+
 # 1.9 Ensure updates, patches, and additional security software are installed
 rhel9cis_rule_1_9: true
 # Ensure system-wide crypto policy is not legacy
@@ -179,15 +187,11 @@ rhel9cis_rule_3_3_6: true
 rhel9cis_rule_3_3_7: true
 rhel9cis_rule_3_3_8: true
 rhel9cis_rule_3_3_9: true
-# 3.4.1 Configure firewalld
+# 3.4.1 Configure a firewall utility
 rhel9cis_rule_3_4_1_1: true
 rhel9cis_rule_3_4_1_2: true
-rhel9cis_rule_3_4_1_3: true
-rhel9cis_rule_3_4_1_4: true
-rhel9cis_rule_3_4_1_5: true
-rhel9cis_rule_3_4_1_6: true
-rhel9cis_rule_3_4_1_7: true
-# 3.4.1 Configure nftables
+
+# 3.4.1 Configure firewall rules
 rhel9cis_rule_3_4_2_1: true
 rhel9cis_rule_3_4_2_2: true
 rhel9cis_rule_3_4_2_3: true
@@ -195,13 +199,11 @@ rhel9cis_rule_3_4_2_4: true
 rhel9cis_rule_3_4_2_5: true
 rhel9cis_rule_3_4_2_6: true
 rhel9cis_rule_3_4_2_7: true
-rhel9cis_rule_3_4_2_8: true
-rhel9cis_rule_3_4_2_9: true
-rhel9cis_rule_3_4_2_10: true
-rhel9cis_rule_3_4_2_11: true
+
 
 #  Section 4 rules
-# 4.1 Configure System Accounting
+# 4.1 Configure System Accounting (auditd)
+# 4.1.1 Ensure auditing is enabled
 rhel9cis_rule_4_1_1_1: true
 rhel9cis_rule_4_1_1_2: true
 rhel9cis_rule_4_1_1_3: true
@@ -235,6 +237,19 @@ rhel9cis_rule_4_1_3_19: true
 rhel9cis_rule_4_1_3_20: true
 rhel9cis_rule_4_1_3_21: true
 
+# 4.1.4 Configure auditd file access
+rhel9cis_rule_4_1_4_1: true
+rhel9cis_rule_4_1_4_2: true
+rhel9cis_rule_4_1_4_3: true
+rhel9cis_rule_4_1_4_4: true
+rhel9cis_rule_4_1_4_5: true
+rhel9cis_rule_4_1_4_6: true
+rhel9cis_rule_4_1_4_7: true
+rhel9cis_rule_4_1_4_8: true
+rhel9cis_rule_4_1_4_9: true
+rhel9cis_rule_4_1_4_10: true
+
+
 # 4.2.1 Configure rsyslog
 rhel9cis_rule_4_2_1_1: true
 rhel9cis_rule_4_2_1_2: true
@@ -259,9 +274,8 @@ rhel9cis_rule_4_2_2_7: true
 rhel9cis_rule_4_2_3: true
 
 # 4.3 Logrotate
-rhel9cis_rule_4_3_1: true
-rhel9cis_rule_4_3_2: true
-rhel9cis_rule_4_3_3: true
+rhel9cis_rule_4_3: true
+
 
 # Section 5
 #  Authentication and Authorization
@@ -328,6 +342,7 @@ rhel9cis_rule_5_6_2: true
 rhel9cis_rule_5_6_3: true
 rhel9cis_rule_5_6_4: true
 rhel9cis_rule_5_6_5: true
+rhel9cis_rule_5_6_6: true
 
 # Section 6
 # 6 System Maintenance
@@ -383,17 +398,22 @@ rhel9cis_warning_banner: Authorized uses only. All activity may be monitored and
 # aide setup via - cron, timer
 rhel9_aide_scan: cron
 
+# 1.8 Gnome Desktop
+rhel9cis_dconf_db_name: local
+rhel922cis_screensaver_idle_delay: 900  # Set max value for idle-delay in seconds (between 1 and 900)
+rhel9cis_screensaver_lock_delay: 5  # Set max value for lock-delay in seconds (between 0 and 5)
+
 # Section 2
 ## 2.2 Special Purposes
 # Set to 'true' if X Windows is needed in your environment
 rhel9cis_xwindows_required: false
 ### Service configuration booleans set true to keep service
-rhel9cis_xinetd_server: false
+rhel9cis_gui: false
 rhel9cis_avahi_server: false
 rhel9cis_cups_server: false
 rhel9cis_dhcp_server: false
 rhel9cis_dns_server: false
-rhel9cis_ftp_server: false
+rhel9cis_dnsmasq_server: false
 rhel9cis_vsftpd_server: false
 rhel9cis_tftp_server: false
 rhel9cis_httpd_server: false
@@ -403,7 +423,6 @@ rhel9cis_imap_server: false
 rhel9cis_samba_server: false
 rhel9cis_squid_server: false
 rhel9cis_snmp_server: false
-rhel9cis_nis_server: false
 rhel9cis_telnet_server: false
 rhel9cis_is_mail_server: false
 
@@ -418,12 +437,10 @@ rhel9cis_use_rsync_server: false
 rhel9cis_use_rsync_service: false
 
 #### 2.3 Service clients
-rhel9cis_ypbind_required: false
-rhel9cis_rsh_required: false
-rhel9cis_talk_required: false
 rhel9cis_telnet_required: false
 rhel9cis_openldap_clients_required: false
 rhel9cis_tftp_client: false
+rhel9cis_ftp_client: false
 
 # Section 3
 
@@ -446,6 +463,16 @@ rhel9cis_nft_tables_tablename: filter
 rhel9cis_nft_tables_autochaincreate: true
 
 # Section 4
+
+## Set if host is a logserver
+rhel9cis_remote_log_server: false
+
+# Log server settings
+rhel9cis_remote_log_host: logagg.example.com
+rhel9cis_remote_log_port: 514
+rhel9cis_remote_log_protocol: tcp
+rhel9cis_remote_log_retrycount: 100
+rhel9cis_remote_log_queuesize: 1000
 
 ## syslog
 ## change to rsyslog/ journald or other

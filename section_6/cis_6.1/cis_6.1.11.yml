@@ -1,9 +1,9 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_6_1_11 }}
 command:
-  world_writable:
-    title: 6.1.11 | Ensure no world writable files exist
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002"
+  no_ungrouped:
+    title: 6.1.11 | Ensure no ungrouped files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

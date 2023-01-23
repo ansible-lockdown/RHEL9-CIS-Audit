@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_7 }}
+command:
+  audit_conf_group:
+    title: 4.1.4.7 | Ensure audit configuration files belong to group root
+    exec: for file  in `find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \)`; do stat -Lc " %n_%U" $file; done
+    exit-status: 0
+    stdout:
+    - '/.*_root$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.7
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

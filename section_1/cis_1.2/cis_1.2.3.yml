@@ -1,11 +1,10 @@
 {{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_1_2_3 }}
 command:
-  gpg_check_global:
-    title: 1.2.3 | Ensure gpgcheck is globally active
+  repos_configured:
+    title: 1.2.3 | Ensure Package manager repositories are configured
     exit-status: 0
-    exec: "if [ `grep -c -E '^\\s*gpgcheck.*0' /etc/yum.conf` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*gpgcheck.*1' /etc/yum.conf` -ge 1 ]; then echo Passed_Check;fi"
-    timeout: {{ .Vars.timeout_ms }}
+    exec: "yum repolist"
     meta:
       server: 1
       workstation: 1
@@ -13,21 +12,7 @@ command:
       - 1.2.3
       CISv8:
       - 7.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  gpg_check_repo:
-    title: 1.2.3 | Ensure gpgcheck is globally active
-    exit-status: 0
-    exec: "if [ `grep -c -E '^\\s*gpgcheck.*0' /etc/yum.repos.d/*.repo` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*gpgcheck.*1' /etc/yum.repos.d/*.repo` -ge 1 ]; then echo Passed_Check;fi"
-    timeout: {{ .Vars.timeout_ms }}
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.2.3
-      CISv8:
-      - 7.3
+      - 7.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

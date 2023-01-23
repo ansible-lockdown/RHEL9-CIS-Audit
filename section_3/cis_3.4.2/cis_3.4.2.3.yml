@@ -1,8 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_3 }}
-package:
-  iptables-services:
-    title: 3.4.2.3 | Ensure iptables-services is not installed with nftables
-    installed: false
+command:
+  nftables_base_chain_manual:
+    title: 3.4.2.3 | Ensure nftables base chains exist | Manual Check Required
+    exec: echo "Manual test"
+    exit-status: 0
+    stdout:
+    - '!/Manual test/'
     meta:
       server: 1
       workstation: 1
@@ -10,7 +13,6 @@ package:
       - 3.4.2.3
       CISv8:
       - 4.4
-      - 4.8
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

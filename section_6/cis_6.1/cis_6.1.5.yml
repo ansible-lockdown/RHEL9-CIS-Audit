@@ -1,9 +1,9 @@
 {{ if .Vars.rhel9cis_rule_6_1_5 }}
 file:
-  /etc/group:
-    title: 6.1.5 | Ensure permissions on /etc/group are configured
+  /etc/shadow:
+    title: 6.1.5 | Ensure permissions on /etc/shadow are configured
     exists: true
-    mode: "0644"
+    mode: "0000"
     owner: root
     group: root
     meta:

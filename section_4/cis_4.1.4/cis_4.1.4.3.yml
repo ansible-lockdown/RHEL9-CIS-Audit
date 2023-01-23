@@ -1,0 +1,35 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_3 }}
+command:
+  audit_logfile_group_setting:
+    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files 
+    exec: grep log_group /etc/audit/audit* | awk '{ print $NF}'
+    exit-status: 0
+    stdout:
+    - '/^(adm|root)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.3
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  audit_logfile_group:
+    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files 
+    exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc " %n_%G" $file; done
+    exit-status: 0
+    stdout:
+    - '/.*_(adm|root)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.3
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

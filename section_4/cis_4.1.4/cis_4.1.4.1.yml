@@ -1,0 +1,19 @@
+{{ if .Vars.rhel9cis_rule_4_1_4_1 }}
+command:
+  audit_logfile_perms:
+    title: 4.1.4.1 | Ensure audit log files are mode 0640 or less permissive
+    exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%a" $file; done
+    exit-status: 0
+    stdout:
+    - '/.*_6(0|4)0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

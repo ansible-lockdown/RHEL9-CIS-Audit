@@ -1,33 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_4 }}
 command:
-  flush_iptablesv4:
-    title: 3.4.2.4 | Ensure iptables are flushed with nftables | ipv4
-    exec: iptables -L
-    exit-status:
-      or:
-      - 0
-      - 127
+  firewall_loopback_manual:
+    title: 3.4.2.4 | Ensure host based firewall loopback traffic is configured | Manual Check Required
+    exec: echo "Manual test"
+    exit-status: 0
     stdout:
-    - '!/.*/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 3.4.2.4
-      CISv8:
-      - 4.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  flush_iptablesv6:
-    title: 3.4.2.4 | Ensure iptables are flushed with nftables | ipv6
-    exec: ip6tables -L
-    exit-status: 
-      or:
-      - 0
-      - 127
-    stdout:
-    - '!/.*/'
+    - '!/Manual test/'
     meta:
       server: 1
       workstation: 1

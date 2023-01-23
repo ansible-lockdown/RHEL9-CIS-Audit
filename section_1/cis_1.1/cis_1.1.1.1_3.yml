@@ -1,14 +1,30 @@
 command:
+  {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_1 }}
-  cramfs:
-    title: 1.1.1.1 | Ensure mounting of cramfs filesystems is disabled
+  squashfs:
+    title: 1.1.1.1 | Ensure mounting of squashfs filesystems is disabled | disabled
     exit-status: 0
-    exec: "modprobe -n -v cramfs | grep -E '(cramfs|install)'"
+    exec: "modprobe -n -v squashfs | grep -E '(vfat|install)'"
     stdout:
     - install /bin/true
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  blacklist_squashfs:
+    title: 1.1.1.1 | Ensure mounting of squashfs filesystems is disabled | blacklist
+    exit-status: 0
+    exec: grep squashfs /etc/modprobe.d/blacklist.conf
+    stdout:
+      - '/blacklist squashfs/'
+    meta:
+      server: 2
+      workstation: 2
       CIS_ID: 1.1.1.1
       CISv8:
       - 4.8
@@ -16,12 +32,11 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_2 }}
-  squashfs:
-    title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled
+  udf:
+    title: 1.1.1.2 | Ensure mounting of udf filesystems is disabled
     exit-status: 0
-    exec: "modprobe -n -v squashfs | grep -E '(vfat|install)'"
+    exec: "modprobe -n -v udf | grep -E '(udf|install)'"
     stdout:
     - install /bin/true
     meta:
@@ -33,18 +48,16 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.rhel9cis_rule_1_1_1_3 }}
-  udf:
-    title: 1.1.1.3 | Ensure mounting of udf filesystems is disabled
+  blacklist_udf:
+    title: 1.1.1.2 | Ensure mounting of udf filesystems is disabled | blacklist
     exit-status: 0
-    exec: "modprobe -n -v udf | grep -E '(udf|install)'"
+    exec: grep udf /etc/modprobe.d/blacklist.conf
     stdout:
-    - install /bin/true
+      - '/blacklist udf/'
     meta:
       server: 2
       workstation: 2
-      CIS_ID: 1.1.1.3
+      CIS_ID: 1.1.1.2
       CISv8:
       - 4.8
       CISv8_IG1: false

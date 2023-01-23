@@ -16,12 +16,13 @@ mount:
     - nosuid
     {{ end }}
     {{ if .Vars.rhel9cis_rule_1_1_4_4 }}
-    - noexec
+    - nodev
     {{ end }}
     meta:
       server: 1
       workstation: 1
       CIS_ID:
+      - 1.1.4.2
       - 1.1.4.3
       - 1.1.4.4
       CISv8: 3.3

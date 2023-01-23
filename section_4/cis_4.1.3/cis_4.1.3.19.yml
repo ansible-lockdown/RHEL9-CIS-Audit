@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_rule_4_1_3_19 }}
 command:
   auditd_module_cnf:
-    title: 4.1.3.19 | Ensure kernel module loading and unloading is collected | conf check
+    title: 4.1.3.19 | Ensure kernel module loading unloading and modification is collected | conf check
     exec: grep modules /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -17,7 +17,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   auditd_admin_module_live:
-    title: 4.1.3.19 | Ensure kernel module loading and unloading is collected | running
+    title: 4.1.3.19 | Ensure kernel module loading unloading and modification is collected | running
     exec: auditctl -l | grep modules
     exit-status: 0
     stdout:

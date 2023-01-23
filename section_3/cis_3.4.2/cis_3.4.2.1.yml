@@ -1,8 +1,12 @@
 {{ if .Vars.rhel9cis_rule_3_4_2_1 }}
-package:
-  nftables:
-    title: 3.4.2.1 | Ensure nftables is installed
-    installed: true
+  {{ if eq .Vars.rhel9cis_firewall "firewalld" }}
+command:
+  default_zone:
+    title: 3.4.2.1 | Ensure firewalld default zone is set
+    exec: firewall-cmd --get-default-zone
+    exit-status: 0
+    stdout: 
+    - '{{ .Vars.rhel9cis_default_zone }}'
     meta:
       server: 1
       workstation: 1
@@ -12,4 +16,5 @@ package:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

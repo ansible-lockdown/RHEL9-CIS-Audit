@@ -1,0 +1,28 @@
+{{ if .Vars.rhel9cis_rule_1_3_3 }}
+command:
+  audit_bins_crypto_aide:
+    title: 1.3.3 | Ensure cryptographic mechanisms are used to protect the integrity of audit tools
+    exec: grep /sbin/au /etc/aide.conf
+    exit-status:
+      or:
+        - 0
+        - 2
+    stdout:
+      - '/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512'
+      - '/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512'
+      - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
+      - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
+      - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
+      - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.3.3
+      CISv8:
+      - 3.14
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+{{ end }}
+

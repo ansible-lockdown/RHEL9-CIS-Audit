@@ -1,0 +1,16 @@
+{{ if .Vars.rhel9cis_rule_4_1_1_4 }}
+service:
+  auditd:
+    title: 4.1.1.4 | Ensure auditd service is enabled
+    enabled: true
+    running: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.4
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

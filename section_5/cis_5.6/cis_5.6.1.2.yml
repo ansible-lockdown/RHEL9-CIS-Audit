@@ -1,12 +1,12 @@
 {{ if .Vars.rhel9cis_rule_5_6_1_2 }}
 command:
   login_defs_min_days:
-    title: 5.6.1.2 | Ensure minimum days between password changes is 7 or more
+    title: 5.6.1.2 | Ensure minimum days between password changes is configured
     exec: grep PASS_MIN_DAYS /etc/login.defs
     exit-status: 0
     stdout:
     - '/^PASS_MIN_DAYS\s{{ .Vars.rhel9cis_pass.min_days }}/'
-    - '!/^PASS_MIN_DAYS\s[0-6]/'
+    - '!/^PASS_MIN_DAYS\s0/'
     meta:
       server: 1
       workstation: 1
@@ -18,12 +18,11 @@ command:
       CISv8_IG3: true
 command:
   check_users_MIN_DAYS:
-    title: 5.6.1.2 | Ensure minimum days between password changes is 7 or more | check_users
+    title: 5.6.1.2 | Ensure minimum days between password changes is configured | check users
     exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,4"
     exit-status: 0
     stdout:
-    - '/^.*:([7-9]|[1-9][0-9]{1,}])$/'
-    - '!/^.*:1-6]$/'
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1

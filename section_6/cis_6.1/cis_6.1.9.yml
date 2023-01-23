@@ -1,11 +1,13 @@
-{{ if .Vars.rhel9cis_rule_6_1_9 }}
-file:
-  /etc/group-:
-    title: 6.1.9 | Ensure permissions on /etc/group- are configured
-    exists: true
-    mode: "0644"
-    owner: root
-    group: root
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_rule_6_1_9 }}
+command:
+  world_writable:
+    title: 6.1.9 | Ensure no world writable files exist
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002"
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/./'
     meta:
       server: 1
       workstation: 1
@@ -15,4 +17,5 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

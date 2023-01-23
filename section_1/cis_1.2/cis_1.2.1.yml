@@ -1,19 +1,18 @@
-{{ if eq .Vars.host_os_distribution "RedHat"}}
+{{ if .Vars.run_heavy_tests }}
   {{ if .Vars.rhel9cis_rule_1_2_1 }}
 command:
-  subscription:
-    title: 1.2.1 | Ensure Redhat Subscription Manager connection configured
-    exec: subscription-manager list --consumed | grep -A4 'Roles:\s*Red Hat Enterprise Linux Server'
+  gpg_keys:
+    title: 1.2.1 | Ensure GPG keys are configured
     exit-status: 0
-    stdout:
-    - 'Subscription is current'
+    exec: "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.2.1
       CISv8: 
-      - 3.4
+      - 7.3
+      - 7.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

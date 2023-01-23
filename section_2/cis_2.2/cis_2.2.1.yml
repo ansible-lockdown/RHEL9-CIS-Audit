@@ -1,13 +1,13 @@
-{{ if not .Vars.rhel9cis_xinetd_server }}
+{{ if not .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_2_2_1 }}
 package:
-  xinetd:
-    title: 2.2.1 | Ensure xinetd is not installed
+  xorg-x11-server-common:
+    title: 2.2.1 | Ensure X11 Server components are not installed 
     installed: false
     meta:
       server: 1
-      workstation: 1
-      CIS_ID: 
+      workstation: NA
+      CIS_ID:
       - 2.2.1
       CISv8:
       - 4.8

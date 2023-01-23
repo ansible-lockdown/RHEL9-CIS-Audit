@@ -1,19 +1,22 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_1_8_4 }}
 file:
-  /etc/gdm/custom.conf:
-    title: 1.8.4 | Ensure XDMCP is not enabled
+  /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/00-screensaver:
+    title: 1.8.4 | Ensure GDM screen locks when the user is idle
     exists: true
     contains:
-    - '!/^Enable( |)=( |)true/'
+    - '/^[org/gnome/desktop/session]/'
+    - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
+    - '!/^idle-delay=uint32 (90[1-9]|9[1-9][0-9]|1[0-9]{3,})$/'
+    - '/^lock-delay=uint32 [0-5]$/'
+    - '!/^lock-delay=uint32 ([6-9]|[0-9]{2,})$/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
+      CISv8: 4.3
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}

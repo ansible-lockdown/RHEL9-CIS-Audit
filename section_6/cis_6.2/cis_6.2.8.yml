@@ -1,18 +1,18 @@
 {{ if .Vars.rhel9cis_rule_6_2_8 }}
 command:
-  uid_0_check:
-    title: 6.2.8 | Ensure root is the only UID 0 account
-    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
+  root_path_check:
+    title: 6.2.8 | Ensure root PATH Integrity
+    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
     exit-status: 0
     stdout:
-    - 'root'
+    - '!/\\./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.8
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
 {{ end }}

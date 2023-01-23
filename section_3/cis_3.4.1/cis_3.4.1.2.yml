@@ -1,8 +1,11 @@
 {{ if .Vars.rhel9cis_rule_3_4_1_2 }}
-package:
-  iptables-services:
-    title: 3.4.1.2 | Ensure iptables-service is not installed with firewalld
-    installed: false
+  {{ if eq .Vars.rhel9cis_firewall "nftables" }}
+file:
+  /etc/systemd/system/firewalld.service:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | firewalld masked
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
     meta:
       server: 1
       workstation: 1
@@ -14,4 +17,86 @@ package:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+service:
+  firewalld:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | firewalld service stopped
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.2
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  nftables:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | nftables running
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.2
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if eq .Vars.rhel9cis_firewall "firewalld" }}
+file:
+  /etc/systemd/system/nftables.service:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | nftables masked
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.2
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+service:
+  firewalld:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | firewalld running and enabled
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.2
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  nftables:
+    title: 3.4.1.2 | Ensure a single firewall configuration utility is in use | nftables stopped
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.4.1.2
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
 {{ end }}

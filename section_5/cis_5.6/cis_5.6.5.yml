@@ -22,9 +22,9 @@ file:
     exists: true
     contains:
     - '/^UMASK\s+0[2-7][7]/'
-    - '/^USERGROUPS_ENAB no/'
+    - '/^USERGROUPS_ENAB\s+no/'
     - '!/^UMASK [7][0-1][0-6]/'
-    - '!/^USERGROUPS_ENAB yes/'
+    - '!/^USERGROUPS_ENAB\s+yes/'
     meta:
       server: 1
       workstation: 1

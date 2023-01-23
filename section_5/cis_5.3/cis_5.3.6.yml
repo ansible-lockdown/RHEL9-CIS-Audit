@@ -2,11 +2,11 @@
 command:
   sudo_timeout: 
     title: 5.3.6 | Ensure sudo authentication timeout is configured correctly
-    exec: sudo -V | grep "Authentication timestamp timeout:"
+    exec: grep -rP "timestamp_timeout=\K[0-9]*" /etc/sudoers*
     exit-status: 0
     stdout:
-    - '!/Authentication timestamp timeout: -1/'
-    - '/Authentication timestamp timeout: ([5-9]|1[0-5])/'
+    - '!/timestamp_timeout=(-1|1[6-9]|[2-9][0-9]|[1-9][0-9]{2,})/'
+    - '/timestamp_timeout=([5-9]|1[0-5])/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,20 @@
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_1_8_1 }}
+command:
+  dev_shm_partition:
+    title: 1.1.8.1 | Ensure separate partition exists for /dev/shm
+    exec: mount -l | grep -w /dev/shm
+    exit-status: 0
+    stdout:
+    - 'on /dev/shm'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.8.1
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

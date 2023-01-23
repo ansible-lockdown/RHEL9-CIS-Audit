@@ -17,10 +17,11 @@ command:
       CISv8_IG3: true
   inactive_users:
     title: 5.6.1.4 | Ensure inactive password lock is 30 days or less
-    exec: 'grep -E ^[^:]+:[^\!*] /etc/shadow | grep -vw root | cut -d : -f1,7'
-    stdout:
-    - '!/.//'
+    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f7"
     exit-status: 0
+    stdout:
+    - '!/^(0|3[1-9]|[4-9][0-9]{2,})/'
+    - '/([1-9]|[1-2][0-9]|30)/'
     meta:
       server: 1
       workstation: 1

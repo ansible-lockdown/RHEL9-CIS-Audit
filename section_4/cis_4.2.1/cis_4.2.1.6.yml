@@ -1,4 +1,5 @@
 {{ if .Vars.rhel9cis_rule_4_2_1_6 }}
+  {{ if not .Vars.rhel9cis_remote_log_server }}
 command:
   remote_syslog:
     title: 4.2.1.6 | Ensure rsyslog is configured to send logs to a remote host
@@ -8,8 +9,8 @@ command:
         - 0
         - 2
     stdout:
-    - '*.* action(type="omfwd" target="loghost.example.com" port="514"'
-    - protocol="tcp"
+    - '*.* action(type="omfwd" target="{{ .Vars.rhel9cis_remote_log_host }}" port="{{ .Vars.rhel9cis_remote_log_port }}"'
+    - protocol="{{ .Vars.rhel9cis_remote_log_protocol }}"
     meta:
       server: 1
       workstation: 1
@@ -19,4 +20,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

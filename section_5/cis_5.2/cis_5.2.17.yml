@@ -2,13 +2,31 @@
 command:
   ssh_maxstartups:
     title: 5.2.17 | Ensure SSH MaxStartups is configured
-    exec: grep -Ei "^MaxStartups" /etc/ssh/sshd_config
+    exec: grep -Ei "^MaxStartups" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
       - 1
     stdout:
     - "MaxStartups 10:30:60"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.17
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ssh_maxstartups_live:
+    title: 5.2.17 | Ensure SSH MaxStartups is configured | live
+    exec: sshd -T | grep maxstartups
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - "maxstartups 10:30:60"
     meta:
       server: 1
       workstation: 1

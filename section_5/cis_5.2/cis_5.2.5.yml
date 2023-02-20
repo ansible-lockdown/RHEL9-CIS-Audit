@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_2_5 }}
 command:
   ssh_loglevel:
-    title: 5.2.5 | Ensure SSH LogLevel is appropriate
-    exec: grep -E "^LogLevel" /etc/ssh/sshd_config
+    title: 5.2.5 | Ensure SSH LogLevel is appropriate | config
+    exec: grep -E "^LogLevel" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
@@ -10,6 +10,25 @@ command:
     stdout:
     - '/^LogLevel\s(VERBOSE|INFO)/'
     - '!/^LogLevel DEBUG/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.5
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ssh_loglevel_live:
+    title: 5.2.5 | Ensure SSH LogLevel is appropriate | live
+    exec:  sshd -T | grep loglevel
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^loglevel\s(VERBOSE|INFO)/'
+    - '!/^loglevel DEBUG/'
     meta:
       server: 1
       workstation: 1

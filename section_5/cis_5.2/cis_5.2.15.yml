@@ -2,7 +2,7 @@
 command:
   ssh_banner:
     title: 5.2.15 | Ensure SSH warning banner configured | sshd_default
-    exec: grep -Ei "^banner" /etc/ssh/sshd_config
+    exec: grep -Ei "^banner" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0

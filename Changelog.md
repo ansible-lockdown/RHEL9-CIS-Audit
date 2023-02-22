@@ -1,5 +1,14 @@
 # Changes to RHEL9-CIS-Audit
 
+## 1.0.1 improvements to sshd
+
+Allow option to set sshd_config file
+aligned with remediate
+
+## 1.0 Based upon CIS 1.0.0 official release
+
+aligned with remediate
+
 ## 0.3
 
 - many updates and fixes

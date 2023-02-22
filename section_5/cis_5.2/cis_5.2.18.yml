@@ -2,7 +2,7 @@
 command:
   ssh_maxsessions:
     title: 5.2.18 | Ensure SSH MaxSessions is limited
-    exec: grep -Ei "^MaxSessions" /etc/ssh/sshd_config
+    exec: grep -Ei "^MaxSessions" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
@@ -10,6 +10,25 @@ command:
     stdout:
     - '/^MaxSessions ([1-9]|10)/'
     - '!/^MaxSessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.18
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ssh_maxsessions_live:
+    title: 5.2.18 | Ensure SSH MaxSessions is limited | live
+    exec: sshd -T | grep maxsessions
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^maxsessions ([1-9]|10)/'
+    - '!/^maxsessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
     meta:
       server: 1
       workstation: 1

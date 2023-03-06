@@ -26,7 +26,7 @@ AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audi
 
 # Goss benchmark variables (these should not need changing unless new release)
 BENCHMARK=CIS  # Benchmark Name aligns to the audit
-BENCHMARK_VER=notofficial
+BENCHMARK_VER=v1.0.0
 BENCHMARK_OS=RHEL9
 
 # help output

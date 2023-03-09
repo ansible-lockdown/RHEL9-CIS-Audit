@@ -1,13 +1,16 @@
 # Changes to RHEL9-CIS-Audit
 
-## 0.3
+# 0.4 
+
+- Oracle linux support added
+
+## 0.3 CIS - v1.0.0
 
 - many updates and fixes
   - mountpoint updates
   - regex and search improvements
   - greater consistency on control report
   - tested and working on rockylinux
-
 
 ## 0.2
 

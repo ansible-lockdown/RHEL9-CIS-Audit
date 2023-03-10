@@ -20,7 +20,7 @@ command:
     exec: grubby --info=ALL | grep -Po 'audit=1'
     exit-status: 0
     stdout:
-    - '/^saudit=1/'
+    - '/^audit=1/'
     meta:
       server: 2
       workstation: 2

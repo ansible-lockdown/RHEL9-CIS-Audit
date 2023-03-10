@@ -2,7 +2,7 @@
 command:
   auditd_conf_vs_live:
     title: 4.1.3.21 | Ensure the running and on disk configuration is the same
-    exec: augenrules --check
+    exec: /usr/sbin/augenrules --check
     exit-status: 0
     stdout:
     - '/^\/usr\/sbin\/augenrules: No change/'

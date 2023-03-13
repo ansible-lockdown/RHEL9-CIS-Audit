@@ -288,6 +288,7 @@ rhel9cis_rule_5_1_5: true
 rhel9cis_rule_5_1_6: true
 rhel9cis_rule_5_1_7: true
 rhel9cis_rule_5_1_8: true
+rhel9cis_rule_5_1_9: true
 
 # 5.2 Configure SSH Server
 rhel9cis_rule_5_2_1: true
@@ -517,7 +518,4 @@ rhel9cis_pass:
   warn_age: "7"
 
 ## 5.3.7 set sugroup if differs from wheel
-rhel9cis_sugroup: wheel
-
-## 5.3.7 sugroup users list
-rhel9cis_sugroup_users: "root"
+rhel9cis_sugroup: sugroup

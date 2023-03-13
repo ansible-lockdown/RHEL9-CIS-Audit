@@ -520,7 +520,4 @@ rhel9cis_pass:
   warn_age: "7"
 
 ## 5.3.7 set sugroup if differs from wheel
-rhel9cis_sugroup: wheel
-
-## 5.3.7 sugroup users list
-rhel9cis_sugroup_users: "root"
+rhel9cis_sugroup: sugroup

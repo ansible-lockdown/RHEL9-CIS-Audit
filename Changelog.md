@@ -4,6 +4,8 @@
 
 - Oracle linux support added
 - updates to 5.3.7 sugroup
+- vars 5.1.9 added thanks to @tpaiii3 [#18](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/18)
+  - run_audit typo script resolved
 
 ## 1.0.1 improvements to sshd
 

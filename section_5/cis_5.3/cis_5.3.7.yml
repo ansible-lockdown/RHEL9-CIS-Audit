@@ -4,11 +4,7 @@ file:
     title: 5.3.7 | Ensure access to the su command is restricted
     exists: true
     contains:
-      {{ if eq .Vars.rhel9cis_sugroup "wheel" }}
-      - '/^auth.*required.*pam_wheel.so\suse_uid/'
-      {{ else }}
       - '/^auth.*required.*pam_wheel.so\suse_uid$\sgroup={{ .Vars.rhel9cis_sugroup }}/'
-      {{ end }}
     meta:
       server: 1
       workstation: 1
@@ -24,7 +20,8 @@ command:
     exec: grep {{ .Vars.rhel9cis_sugroup }} /etc/group
     exit-status: 0
     stdout:
-    - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:{{ .Vars.rhel9cis_sugroup_users }}/'
+    - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:$/'
+    - '!/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:.*/'
     meta:
       server: 1
       workstation: 1

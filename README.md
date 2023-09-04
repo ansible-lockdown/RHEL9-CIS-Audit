@@ -20,6 +20,7 @@ Tested on
 - RHEL9
 - Rocky9
 - AlmaLinux 9
+- Oraclelinux 9
 
 ## Requirements
 

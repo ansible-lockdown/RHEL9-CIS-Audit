@@ -5,9 +5,9 @@ command:
     exec: grep PASS_WARN_AGE /etc/login.defs
     exit-status: 0
     stdout:
-    - '/^PASS_WARN_AGE\s*{{ .Vars.rhel9cis_pass.warn_age }}$/'
-    - '/^PASS_WARN_AGE\s*(7|[1-9][0-9]{1,3})$/'
-    - '!/^PASS_WARN_AGE\s*[1-6]$/'
+    - '/^PASS_WARN_AGE\s+{{ .Vars.rhel9cis_pass.warn_age }}$/'
+    - '/^PASS_WARN_AGE\s+(7|[1-9][0-9]{1,3})$/'
+    - '!/^PASS_WARN_AGE\s+[1-6]$/'
     meta:
       server: 1
       workstation: 1
@@ -22,8 +22,8 @@ command:
     exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,6"
     exit-status: 0
     stdout:
-    - '/^.*:([7-9]|[1-9][0-9]{1,}])$/'
-    - '!/^.*:1-6]$/'
+    - '/^.*:([7-9]|[1-9][0-9]{1,})$/'
+    - '!/^.*:[1-6]$/'
     meta:
       server: 1
       workstation: 1

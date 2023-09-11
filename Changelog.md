@@ -1,5 +1,18 @@
 # Changes to RHEL9-CIS-Audit
 
+## 1.0.3 sept23_updates - based on CIS v1.0.0
+
+- [#22](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/22)
+- [#23](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/23)
+- [#24](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/24)
+
+## 1.0.2
+
+- Oracle linux support added
+- updates to 5.3.7 sugroup
+- vars 5.1.9 added thanks to @tpaiii3 [#18](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/18)
+  - run_audit typo script resolved
+
 ## 1.0.1 improvements to sshd
 
 Allow option to set sshd_config file
@@ -9,14 +22,13 @@ aligned with remediate
 
 aligned with remediate
 
-## 0.3
+## 0.3 CIS - v1.0.0
 
 - many updates and fixes
   - mountpoint updates
   - regex and search improvements
   - greater consistency on control report
   - tested and working on rockylinux
-
 
 ## 0.2
 

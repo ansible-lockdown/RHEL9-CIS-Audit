@@ -5,8 +5,8 @@ command:
     exec:  'grep umask /etc/bashrc /etc/profile /etc/profile.d/*.sh | cut -d ":" -f 2'
     exit-status: 0
     stdout:
-    - '/umask 0[2-7][7]/'
-    - '!/umask[7][0-1][0-6]/'
+    - '/umask\s+0[2-7][7]/'
+    - '!/umask\s+[7][0-1][0-6]/'
     meta:
       server: 1
       workstation: 1

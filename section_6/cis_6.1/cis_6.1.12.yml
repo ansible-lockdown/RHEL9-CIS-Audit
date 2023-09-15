@@ -4,7 +4,7 @@ command:
   world_writable:
     title: 6.1.12 | Ensure sticky bit is set on all world-writable directories
     exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1

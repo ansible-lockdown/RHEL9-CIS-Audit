@@ -8,7 +8,7 @@ package:
       workstation: 2
       CIS_ID:
       - 4.1.1.1
-      CISv8: 
+      CISv8:
       - 8.2
       - 8.5
       CISv8_IG1: true
@@ -22,7 +22,7 @@ package:
       workstation: 2
       CIS_ID:
       - 4.1.1.1
-      CISv8: 
+      CISv8:
       - 8.2
       - 8.5
       CISv8_IG1: true

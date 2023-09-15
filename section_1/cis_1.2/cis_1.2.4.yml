@@ -5,7 +5,7 @@ command:
     title: 1.2.4 | Ensure repo_gpgcheck is globally active
     exec: grep -E "^repo_gpgcheck" /etc/dnf/dnf.conf
     timeout: {{ .Vars.timeout_ms }}
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1

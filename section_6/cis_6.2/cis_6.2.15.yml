@@ -5,7 +5,7 @@ command:
     exec: 'find /home/ -name .rhosts'
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1

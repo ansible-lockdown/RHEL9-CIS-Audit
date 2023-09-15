@@ -5,32 +5,32 @@ command:
     title: 1.1.9 | Disable USB Storage
     exit-status: 0
     exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
-    stdout: 
+    stdout:
     - install /bin/true
     meta:
       server: 1
       workstation: 2
       CIS_ID: 1.1.9
-      CISv8: 
+      CISv8:
       - 10.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   usb-storage-module:
     title: 1.1.9 | Disable USB Storage
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1
     exec: "lsmod | grep -c usb-storage"
-    stdout: 
+    stdout:
     - '/^0/'
     - '!/^[1-9]/'
     meta:
       server: 1
       workstation: 2
       CIS_ID: 1.1.9
-      CISv8: 
+      CISv8:
       - 10.3
       CISv8_IG1: true
       CISv8_IG2: true

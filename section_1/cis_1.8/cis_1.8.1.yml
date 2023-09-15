@@ -7,7 +7,7 @@ package:
     meta:
       server: 2
       workstation: NA
-      CIS_ID: 
+      CIS_ID:
       - 1.8.1
       CISv8:
       - 4.8
@@ -15,4 +15,4 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-{{ end }} 
+{{ end }}

@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_2_7 }}
 command:
   ssh_permit_root:
-    title: 5.2.7 | Ensure SSH root login is disabled
-    exec: grep -Ei "permitrootlogin" /etc/ssh/sshd_config
+    title: 5.2.7 | Ensure SSH root login is disabled | config
+    exec: grep -Ei "permitrootlogin" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
@@ -10,6 +10,25 @@ command:
     stdout:
     - '/^PermitRootLogin no/'
     - '!/^PermitRootLogin yes/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.7
+      CISv8: 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ssh_permit_root_live:
+    title: 5.2.7 | Ensure SSH root login is disabled | live
+    exec: sshd -T | grep permitrootlogin
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^permitrootlogin no/'
+    - '!/^permitrootlogin yes/'
     meta:
       server: 1
       workstation: 1

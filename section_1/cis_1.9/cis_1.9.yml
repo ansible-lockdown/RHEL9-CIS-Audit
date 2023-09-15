@@ -6,12 +6,12 @@ command:
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     exec: dnf check-update
-    stdout: 
+    stdout:
     - "![0-9].* packages available"
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.9
       CISv8:
       - 7.3

@@ -3,7 +3,7 @@ file:
   /etc/motd:
     title: |
           1.7.1 | Ensure message of the day is configured properly
-          1.7.4 | Ensure permissions on /etc/motd are configured 
+          1.7.4 | Ensure permissions on /etc/motd are configured
     exists: true
     mode: "0644"
     owner: root
@@ -19,7 +19,7 @@ file:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.7.1
       - 1.7.4
       CISv8:
@@ -80,7 +80,7 @@ file:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.7.3
       - 1.7.6
       CISv8:

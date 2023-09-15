@@ -1,8 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_2_6 }}
 command:
   ssh_usepam:
-    title: 5.2.6 | Ensure SSH PAM is enabled
-    exec: grep -Ei "^usepam" /etc/ssh/sshd_config
+    title: 5.2.6 | Ensure SSH PAM is enabled | config
+    exec: grep -Ei "^usepam" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
@@ -10,6 +10,25 @@ command:
     stdout:
     - '/^UsePAM yes/'
     - '!/^UsePAM no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.6
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  ssh_usepam_live:
+    title: 5.2.6 | Ensure SSH PAM is enabled | live
+    exec: sshd -T | grep usepam
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^usepam yes/'
+    - '!/^usepam no/'
     meta:
       server: 1
       workstation: 1

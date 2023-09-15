@@ -1,5 +1,17 @@
 # Changes to RHEL9-CIS-Audit
 
+## 1.0.4 updates and script
+
+- multiple tests updates
+- linting on spaces
+- update of the run_audit script include version check of goss binary
+
+## 1.0.3 sept23_updates - based on CIS v1.0.0
+
+- [#22](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/22)
+- [#23](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/23)
+- [#24](https://github.com/ansible-lockdown/RHEL9-CIS-Audit/issues/24)
+
 ## 1.0.2
 
 - Oracle linux support added

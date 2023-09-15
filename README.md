@@ -24,7 +24,7 @@ Tested on
 
 ## Requirements
 
-You must have [goss](https://github.com/aelsabbahy/goss/) available to your host you would like to test.
+You must have [goss](https://github.com/goss-org/goss/) available to your host you would like to test.
 
 You must have sudo/root access to the system as some commands require privilege information.
 
@@ -45,7 +45,7 @@ Which will:
 
 ## Join us
 
-On our [Discord Server](https://discord.io/ansible-lockdown) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
+On our [Discord Server](https://www.lockdownenterprise.com/discord) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
 
 Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers
 

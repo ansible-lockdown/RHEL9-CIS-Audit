@@ -2,8 +2,8 @@
   {{ if .Vars.rhel9cis_sshd_limited }}
 command:
   sshd_access_limited:
-    title: 5.2.4 | Ensure SSH access is limited 
-    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
+    title: 5.2.4 | Ensure SSH access is limited | config
+    exec: grep -E "^(Allow|Deny)(User|Group)" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0

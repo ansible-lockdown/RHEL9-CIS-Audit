@@ -2,14 +2,33 @@
 command:
   sshd_authtries:
     title: 5.2.16 | Ensure SSH MaxAuthTries is set to 4 or less
-    exec: grep -Ei "maxauthtries" /etc/ssh/sshd_config
+    exec: grep -Ei "maxauthtries" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - "/^MaxAuthTries [1:4]/"
-    - "!/^MaxAuthTries [5:9]/"
+    - "/^MaxAuthTries [1-4]/"
+    - "!/^MaxAuthTries [5-9]/"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.16
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  sshd_authtries_live:
+    title: 5.2.16 | Ensure SSH MaxAuthTries is set to 4 or less | live
+    exec: sshd -T | grep maxauthtries
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - "/maxauthtries [1-4]/"
+    - "!/^maxauthtries [5-9]/"
     meta:
       server: 1
       workstation: 1

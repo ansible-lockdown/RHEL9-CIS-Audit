@@ -1,6 +1,6 @@
 {{ if .Vars.rhel9cis_rule_5_3_3 }}
 command:
-  log_sudoers_d: 
+  log_sudoers_d:
     title: 5.3.3 | Ensure sudo log file exists | sudoers.d
     exec: export LOG=`grep -q -Esi '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*; echo $?` && if [[ $LOG == 0 ]];then echo OK ;fi
     exit-status: 0

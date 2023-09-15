@@ -2,7 +2,7 @@
 command:
   sshd_clientalive:
     title: 5.2.20 | Ensure SSH Idle Timeout Interval is configured
-    exec: grep -Ei "^ClientAlive" /etc/ssh/sshd_config
+    exec: grep -Ei "^ClientAlive" {{ .Vars.rhel9_cis_sshd_config_file }}
     exit-status:
       or:
       - 0
@@ -10,6 +10,25 @@ command:
     stdout:
     - '/^ClientAliveInterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
     - '/^ClientAliveCountMax 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.20
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  sshd_clientalive_live:
+    title: 5.2.20 | Ensure SSH Idle Timeout Interval is configured | live
+    exec: sshd -T | grep clientalive
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^clientaliveinterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
+    - '/^clientalivecountmax 0/'
     meta:
       server: 1
       workstation: 1

@@ -1,6 +1,6 @@
 {{ if .Vars.rhel9cis_rule_5_3_6 }}
 command:
-  sudo_timeout: 
+  sudo_timeout:
     title: 5.3.6 | Ensure sudo authentication timeout is configured correctly
     exec: grep -rP "timestamp_timeout=\K[0-9]*" /etc/sudoers*
     exit-status: 0

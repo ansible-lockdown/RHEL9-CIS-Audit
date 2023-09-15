@@ -5,7 +5,7 @@ command:
     title: 3.4.2.1 | Ensure firewalld default zone is set
     exec: firewall-cmd --get-default-zone
     exit-status: 0
-    stdout: 
+    stdout:
     - '{{ .Vars.rhel9cis_default_zone }}'
     meta:
       server: 1

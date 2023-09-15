@@ -5,7 +5,7 @@ command:
     exec: 'find /home/ -name .forward'
     timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1

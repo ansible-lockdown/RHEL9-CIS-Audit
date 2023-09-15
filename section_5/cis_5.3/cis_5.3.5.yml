@@ -1,9 +1,9 @@
 {{ if .Vars.rhel9cis_rule_5_3_5 }}
 command:
-  authenticate_sudoers: 
+  authenticate_sudoers:
     title: 5.3.5 | Ensure re-authentication for privilege escalation is not disabled globally
     exec: 'grep -r "^[^#].*\!authenticate" /etc/sudoers*'
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1

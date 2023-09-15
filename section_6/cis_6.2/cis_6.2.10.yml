@@ -1,4 +1,5 @@
-{{ if .Vars.rhel9cis_rule_6_2_10 }}
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.rhel9cis_rule_6_2_10 }}
 command:
   home_dirs_exist:
     title: 6.2.10 | Ensure all users' home directories exist
@@ -16,4 +17,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

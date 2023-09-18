@@ -1,6 +1,6 @@
 # Changes to RHEL9-CIS-Audit
 
-## 1.0.4 updates and script
+## 1.0.4 updates and script - based on CIS v1.0.0
 
 - multiple tests updates
 - linting on spaces

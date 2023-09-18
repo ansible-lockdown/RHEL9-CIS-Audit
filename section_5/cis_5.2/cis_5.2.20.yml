@@ -16,6 +16,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   sshd_clientalive_live:
     title: 5.2.20 | Ensure SSH Idle Timeout Interval is configured | live
     exec: sshd -T | grep clientalive

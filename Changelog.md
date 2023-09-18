@@ -1,5 +1,10 @@
 # Changes to RHEL9-CIS-Audit
 
+## 1.0.5 updated to use goss > 0.4. - based on CIS v1.0.0
+
+- updated ssh config to use more file module
+- all file module test set to use new layout with path
+
 ## 1.0.4 updates and script - based on CIS v1.0.0
 
 - multiple tests updates

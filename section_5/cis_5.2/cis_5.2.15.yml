@@ -1,13 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_2_15 }}
-command:
-  ssh_banner:
+file:
+  sshd_banner:
     title: 5.2.15 | Ensure SSH warning banner configured | sshd_default
-    exec: grep -Ei "^banner" {{ .Vars.rhel9_cis_sshd_config_file }}
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
     - '/^Banner /etc/issue.net/'
     - '!/^Banner none/'
     meta:
@@ -19,6 +16,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_configd_banner:
     title: 5.3.15 | Ensure SSH warning banner configured | conf.d banner settings
     exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf

@@ -1,13 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_2_17 }}
-command:
-  ssh_maxstartups:
+file:
+  sshd_maxstartups:
     title: 5.2.17 | Ensure SSH MaxStartups is configured
-    exec: grep -Ei "^MaxStartups" {{ .Vars.rhel9_cis_sshd_config_file }}
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
     - "MaxStartups 10:30:60"
     meta:
       server: 1
@@ -18,6 +15,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_maxstartups_live:
     title: 5.2.17 | Ensure SSH MaxStartups is configured | live
     exec: sshd -T | grep maxstartups

@@ -4,7 +4,7 @@ file:
   /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/locks/00-automount_lock:
     title: 1.8.7 | Ensure GDM disabling automatic mounting of removable media is not overridden
     exists: true
-    contains:
+    contents:
     - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
     - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
     meta:

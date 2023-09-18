@@ -22,7 +22,7 @@ file:
   /etc/selinux/config:
     title: 1.6.1.5 | Ensure the SELinux mode is enforcing | config
     exists: true
-    contains:
+    contents:
     - '/^SELINUX( |)=( |)enforcing/'
     meta:
       server: 2

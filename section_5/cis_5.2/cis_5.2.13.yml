@@ -1,14 +1,11 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_5_2_13 }}
-command:
+file:
   sshd_tcpforwarding:
     title: 5.2.13 | Ensure SSH AllowTcpForwarding is disabled
-    exec: grep -Ei "^allowtcpforward" {{ .Vars.rhel9_cis_sshd_config_file }}
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
     - '/^AllowTcpForwarding no/'
     - '!/^AllowTcpForwarding yes/'
     meta:
@@ -20,6 +17,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   sshd_tcpforwarding_live:
     title: 5.2.13 | Ensure SSH AllowTcpForwarding is disabled | live
     exec: sshd -T | grep allowtcpforward

@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_1_4_2 }}
 file:
-  /boot/grub2/grub.cfg:
+  grub_bootloaders_perms:
     title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | grub.cfg
+    path: /boot/grub2/grub.cfg
     exists: true
     owner: root
     group: root
@@ -16,8 +17,9 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /boot/grub2/grubenv:
+  grubenv_perms:
     title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | grubenv
+    path: /boot/grub2/grubenv
     exists: true
     owner: root
     group: root
@@ -32,8 +34,9 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /boot/grub2/user.cfg:
+  grub_user_perms:
     title: 1.4.2 | Ensure permissions on bootloader config are configured | file_perms | user.cfg
+    path: /boot/grub2/user.cfg
     exists: true
     owner: root
     group: root

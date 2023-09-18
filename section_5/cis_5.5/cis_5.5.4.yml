@@ -16,10 +16,11 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
 file:
-  /etc/pam.d/password-auth:
+  password_auth_hash_algo:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 or yescrypt | passwd-auth
+    path: /etc/pam.d/password-auth
     exists: true
-    contains:
+    contents:
     - '/^password\s+(requisite|required|sufficient)\s+pam_unix.so\s.*(sha512|yescrypt)/'
     meta:
       server: 1
@@ -30,10 +31,11 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/libuser.conf:
+  libuser_hash_algo:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | passwd-auth
+    path: /etc/libuser.conf
     exists: true
-    contains:
+    contents:
     - '/^crypt_style( |)=( |)(sha512|yescrypt)/'
     - '!/^crypt_style( |)=( |)md5/'
     meta:
@@ -45,10 +47,11 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/login.defs:
+  login_defs_hash_algo:
     title: 5.5.4 | Ensure password hashing algorithm is SHA-512 | login.defs
+    path: /etc/login.defs
     exists: true
-    contains:
+    contents:
     - '/^ENCRYPT_METHOD (SHA512|yescrypt)/'
     - '!/^ENCRYPT_METHOD MD5/'
     meta:

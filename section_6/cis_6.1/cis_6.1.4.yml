@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_1_4 }}
 file:
-  /etc/group-:
+  etcgroup-_perms:
     title: 6.1.4 | Ensure permissions on /etc/group- are configured
+    path: /etc/group-
     exists: true
     mode: "0644"
     owner: root

@@ -1,13 +1,10 @@
 {{ if .Vars.rhel9cis_rule_5_2_8 }}
-command:
+file:
   ssh_hostbased_auth:
     title: 5.2.8 | Ensure SSH HostbasedAuthentication is disabled | config
-    exec: grep -Ei "HostBasedAuth" {{ .Vars.rhel9_cis_sshd_config_file }}
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
     - '/^HostbasedAuthentication no/'
     - '!/^HostbasedAuthentication yes/'
     meta:
@@ -19,6 +16,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_hostbased_auth_live:
     title: 5.2.8 | Ensure SSH HostbasedAuthentication is disabled | live
     exec: sshd -T | grep hostbasedauthentication

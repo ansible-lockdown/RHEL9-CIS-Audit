@@ -17,10 +17,11 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
 file:
-  /etc/postfix/main.conf:
+  postfix_local:
     title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode
+    path: /etc/postfix/main.conf
     exists: true
-    contains:
+    contents:
     - '/^inet_interfaces = loopback-only/'
     - '!/^inet_interfaces = all/'
     - '!/^inet_interfaces = [iI][pP][vV]4/'

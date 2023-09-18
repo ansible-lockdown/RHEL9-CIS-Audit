@@ -3,7 +3,7 @@ file:
   /etc/rsyslog.conf:
     title: 4.2.1.5 | Ensure logging is configured
     exists: true
-    contains:
+    contents:
     - '/^\*.emerg\s+:omusrmsg:\*/'
     - '/auth,authpriv.\*\s+/var/log/secure/'
     - '/^mail.\*\s+-/var/log/mail/'

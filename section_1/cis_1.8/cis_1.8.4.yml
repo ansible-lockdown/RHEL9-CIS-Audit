@@ -4,7 +4,7 @@ file:
   /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/00-screensaver:
     title: 1.8.4 | Ensure GDM screen locks when the user is idle
     exists: true
-    contains:
+    contents:
     - '/^[org/gnome/desktop/session]/'
     - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
     - '!/^idle-delay=uint32 (90[1-9]|9[1-9][0-9]|1[0-9]{3,})$/'

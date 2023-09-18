@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_2_1 }}
 file:
-  /etc/ssh/sshd_config:
+  sshd_config_perms:
     title: 5.2.1 | Ensure permissions on /etc/ssh/sshd_config are configured
+    path: /etc/ssh/sshd_config
     exists: true
     mode: "0600"
     owner: root

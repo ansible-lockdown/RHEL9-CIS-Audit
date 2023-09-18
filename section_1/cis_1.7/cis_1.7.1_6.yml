@@ -1,14 +1,15 @@
 file:
   {{ if .Vars.rhel9cis_rule_1_7_1 }}
-  /etc/motd:
+  motd_config :
     title: |
           1.7.1 | Ensure message of the day is configured properly
           1.7.4 | Ensure permissions on /etc/motd are configured
+    path: /etc/motd
     exists: true
     mode: "0644"
     owner: root
     group: root
-    contains:
+    contents:
     - '!/[Cc]ent[Oo][Ss].*/'
     - '!/[Rr]hel.*/'
     - '!/[Rr]ed[Hh]at.*/'
@@ -30,15 +31,16 @@ file:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.rhel9cis_rule_1_7_2 }}
-  /etc/issue:
+  etc_issue_config:
     title: |
           1.7.2 | Ensure local login warning banner is configured properly
           1.7.5 | Ensure permissions on /etc/issue are configured
+    path: /etc/issue
     exists: true
     mode: "0644"
     owner: root
     group: root
-    contains:
+    contents:
     - '!/[Cc]ent[Oo][Ss].*/'
     - '!/[Rr]hel.*/'
     - '!/[Rr]ed[Hh]at.*/'
@@ -61,15 +63,16 @@ file:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.rhel9cis_rule_1_7_3 }}
-  /etc/issue.net:
+  etc_issue_net_config:
     title: |
          1.7.3 | Ensure remote login warning banner is configured properly
          1.7.6 | Ensure permissions on /etc/issue.net are configured
+    path: /etc/issue.net
     exists: true
     mode: "0644"
     owner: root
     group: root
-    contains:
+    contents:
     - '!/[Cc]ent[Oo][Ss].*/'
     - '!/[Rr]hel.*/'
     - '!/[Rr]ed[Hh]at.*/'

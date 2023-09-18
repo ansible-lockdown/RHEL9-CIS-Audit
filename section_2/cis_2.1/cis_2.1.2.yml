@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_2_1_2 }}
 file:
-  /etc/chrony.conf:
+  chrony_servers_pools:
     title: 2.1.2 | Ensure chrony is configured | server
+    path: /etc/chrony.conf
     exists: true
-    contains:
+    contents:
     - '/^(server|pool)\s.*/'
     skip: false
     meta:
@@ -16,10 +17,11 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/sysconfig/chronyd:
+  chrony_sysconfig:
     title: 2.1.2 | Ensure chrony is configured | sysconfig
+    path: /etc/sysconfig/chronyd
     exists: true
-    contains:
+    contents:
     - '/^OPTIONS="-u chrony"/'
     skip: false
     meta:

@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_1_2 }}
 file:
-  /etc/passwd-:
+  passwd-_perms:
     title: 6.1.2 | Ensure permissions on /etc/passwd- are configured
+    path: /etc/passwd-
     exists: true
     mode: "0644"
     owner: root

@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_1_2 }}
 file:
-  /etc/crontab:
+  crontab_perms:
     title: 5.1.2 | Ensure permissions on /etc/crontab are configured
+    path: /etc/crontab
     exists: true
     owner: root
     group: root

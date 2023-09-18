@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_1_8 }}
 file:
-  /etc/gshadow-:
+  etc_gshadow-_perms:
     title: 6.1.8 | Ensure permissions on /etc/gshadow- are configured
+    path: /etc/gshadow-
     exists: true
     mode: "0000"
     owner: root

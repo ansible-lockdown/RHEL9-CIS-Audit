@@ -4,7 +4,7 @@ file:
   /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/locks/00-screensaver_lock:
     title: 1.8.5 | Ensure GDM screen locks cannot be overridden
     exists: true
-    contains:
+    contents:
     - '^\/org\/gnome\/desktop\/session\/idle-delay/'
     - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
     meta:

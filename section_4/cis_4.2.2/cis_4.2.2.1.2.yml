@@ -1,9 +1,10 @@
 {{ if .Vars.rhel9cis_rule_4_2_2_1_2 }}
 file:
-  /etc/systemd/journal-upload.conf:
+  journald_remote_config:
     title: 4.2.2.1.2 | Ensure systemd-journal-remote is configured
+    path: /etc/systemd/journal-upload.conf
     exists: true
-    contains:
+    contents:
     - '/^URL=/'
     - '/ServerKeyFile=.*.pem'
     - '/ServerCertificateFile=.*.pem'

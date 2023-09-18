@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_6_1_5 }}
 file:
-  /etc/shadow:
+  etc_shadow_perms:
     title: 6.1.5 | Ensure permissions on /etc/shadow are configured
+    path: /etc/shadow
     exists: true
     mode: "0000"
     owner: root

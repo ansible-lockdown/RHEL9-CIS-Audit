@@ -1,14 +1,11 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_5_2_12 }}
-command:
-  ssh_x11:
+file:
+  sshd_x11:
     title: 5.2.12 | Ensure SSH X11 forwarding is disabled | config
-    exec: grep -Ei "X11forwarding" {{ .Vars.rhel9_cis_sshd_config_file }}
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
     - '/^X11Forwarding no/'
     - '!/^X11Forwarding yes/'
     meta:

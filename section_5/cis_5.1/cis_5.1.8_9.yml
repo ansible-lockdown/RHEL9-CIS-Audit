@@ -1,7 +1,8 @@
 {{ if .Vars.rhel9cis_rule_5_1_8 }}
 file:
-  /etc/cron.deny:
+  cron_deny_users:
     title: 5.1.8 | Ensure cron is restricted to authorized users
+    path: /etc/cron.deny
     exists: false
     meta:
       server: 1
@@ -12,8 +13,9 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/cron.allow:
+  cron_allow_users:
     title: 5.1.8 | Ensure cron is restricted to authorized users
+    path: /etc/cron.allow
     exists: true
     owner: root
     group: root
@@ -29,8 +31,9 @@ file:
       CISv8_IG3: true
 {{ end }}
 {{ if .Vars.rhel9cis_rule_5_1_9 }}
-  /etc/at.deny:
+  at_deny_users:
     title: 5.1.9 | Ensure at is restricted to authorized users
+    path: /etc/at.deny
     exists: false
     meta:
       server: 1
@@ -41,8 +44,9 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-  /etc/at.allow:
+  at_allow_users:
     title: 5.1.9 | Ensure at is restricted to authorized users
+    path: /etc/at.allow
     exists: true
     owner: root
     group: root

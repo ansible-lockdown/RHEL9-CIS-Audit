@@ -4,7 +4,7 @@ file:
   /etc/gdm/custom.conf:
     title: 1.8.10 | Ensure XDMCP is not enabled
     exists: true
-    contains:
+    contents:
     - '!/^Enable( |)=( |)true/'
     meta:
       server: 1

@@ -147,20 +147,16 @@ export FAILURE=0
 if [ -s "${AUDIT_BIN}" ]; then
   echo "OK - Audit binary $AUDIT_BIN is available"
   goss_installed_version="$($AUDIT_BIN -v | awk '{print $NF}' | cut -dv -f2)"
-  ver_calc=$(awk 'BEGIN{print $goss_installed_version < $AUDIT_BIN_MIN_VER}')
-  if [ $AUDIT_BIN_MIN_VER = "$goss_installed_version" ] || [ "$ver_calc" = 1 ] ; then
-  echo "OK - Goss is installed and Version is ok";
+  newer_version=$(echo -e "$goss_installed_version\n$AUDIT_BIN_MIN_VER" | sort -V | tail -n 1)
+  if [ "$goss_installed_version" = "$newer_version" ] || [ "$goss_installed_version" = "$AUDIT_BIN_MIN_VER" ]; then
+    echo "OK - Goss is installed and version is ok ($goss_installed_version >= $AUDIT_BIN_MIN_VER)"
   else
-  echo "WARNING - Goss installed = ${goss_installed_version}, does not met minimum of ${AUDIT_BIN_MIN_VER}"; export FAILURE=2
+    echo "WARNING - Goss installed = ${goss_installed_version}, does not met minimum of ${AUDIT_BIN_MIN_VER}"
+    export FAILURE=2
   fi
 else
-  echo "WARNING - The audit binary is not available at $AUDIT_BIN "; export FAILURE=1
-fi
-
-if [ -f "${audit_content_dir}/${AUDIT_FILE}" ]; then
-  echo "OK - ${audit_content_dir}/${AUDIT_FILE} is available"
-else
-  echo "WARNING - the $audit_content_dir/$AUDIT_FILE is not available"; export FAILURE=3
+  echo "WARNING - The audit binary is not available at $AUDIT_BIN "
+  export FAILURE=1
 fi
 
 if [ "${FAILURE}" != 0 ]; then

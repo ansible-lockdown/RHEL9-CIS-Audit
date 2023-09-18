@@ -16,6 +16,7 @@ path:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   sshd_authtries_live:
     title: 5.2.16 | Ensure SSH MaxAuthTries is set to 4 or less | live
     exec: sshd -T | grep maxauthtries

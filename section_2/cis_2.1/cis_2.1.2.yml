@@ -19,7 +19,7 @@ file:
       CISv8_IG3: true
   chrony_sysconfig:
     title: 2.1.2 | Ensure chrony is configured | sysconfig
-    pathj: /etc/sysconfig/chronyd
+    path: /etc/sysconfig/chronyd
     exists: true
     contents:
     - '/^OPTIONS="-u chrony"/'

@@ -15,6 +15,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_maxstartups_live:
     title: 5.2.17 | Ensure SSH MaxStartups is configured | live
     exec: sshd -T | grep maxstartups

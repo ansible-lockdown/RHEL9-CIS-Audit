@@ -17,6 +17,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_x11_live:
     title: 5.2.12 | Ensure SSH X11 forwarding is disabled | live
     exec: sshd -T | grep x11forwarding

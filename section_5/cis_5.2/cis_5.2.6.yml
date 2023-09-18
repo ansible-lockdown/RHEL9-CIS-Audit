@@ -16,6 +16,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_usepam_live:
     title: 5.2.6 | Ensure SSH PAM is enabled | live
     exec: sshd -T | grep usepam

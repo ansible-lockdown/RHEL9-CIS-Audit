@@ -16,6 +16,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+command:
   ssh_configd_banner:
     title: 5.3.15 | Ensure SSH warning banner configured | conf.d banner settings
     exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf

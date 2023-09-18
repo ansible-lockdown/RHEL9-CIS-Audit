@@ -159,6 +159,12 @@ else
   export FAILURE=1
 fi
 
+if [ -f "${audit_content_dir}/${AUDIT_FILE}" ]; then
+  echo "OK - ${audit_content_dir}/${AUDIT_FILE} is available"
+else
+  echo "WARNING - the $audit_content_dir/$AUDIT_FILE is not available"; export FAILURE=3
+fi
+
 if [ "${FAILURE}" != 0 ]; then
   echo "## Pre-checks failed please see output"
   exit 1

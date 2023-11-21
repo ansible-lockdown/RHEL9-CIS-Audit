@@ -1,7 +1,7 @@
 {{ if .Vars.run_heavy_tests }}
 command:
   {{ if .Vars.rhel9cis_rule_6_1_12 }}
-  world_writable:
+  sticky_bit:
     title: 6.1.12 | Ensure sticky bit is set on all world-writable directories
     exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
     exit-status:

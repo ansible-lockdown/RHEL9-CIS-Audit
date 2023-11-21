@@ -16,7 +16,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-command:
   check_users_MIN_DAYS:
     title: 5.6.1.2 | Ensure minimum days between password changes is configured | check users
     exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,4"

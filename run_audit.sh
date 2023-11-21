@@ -26,7 +26,7 @@ BENCHMARK_OS=RHEL9
 
 # Goss host Variables
 AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
-AUDIT_BIN_MIN_VER="0.3.21"
+AUDIT_BIN_MIN_VER="0.4.4"
 AUDIT_FILE="${AUDIT_FILE:-goss.yml}"  # the default goss file used by the audit provided by the audit configuration
 AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audit configuration file as available to the OS
 
@@ -200,7 +200,7 @@ $AUDIT_BIN -g "$audit_content_dir/$AUDIT_FILE" --vars "$varfile_path"  --vars-in
 # create screen output
 if [ "$(grep -c $BENCHMARK "$audit_out")" != 0 ]  || [ "$format" = junit ] || [ "$format" = tap ]; then
   eval $output_summary
-  echo " Completed file can be found at $audit_out"
+  echo "Completed file can be found at $audit_out"
   echo "###############"
   echo "Audit Completed"
   echo "###############"

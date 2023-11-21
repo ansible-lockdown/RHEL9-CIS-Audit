@@ -8,7 +8,6 @@ mount:
         1.1.4.4 | Ensure nodev option set on /var/tmp partition
     exists: true
     opts:
-    opts:
     {{ if .Vars.rhel9cis_rule_1_1_4_2 }}
     - noexec
     {{ end }}

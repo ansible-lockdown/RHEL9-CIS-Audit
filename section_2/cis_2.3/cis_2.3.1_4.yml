@@ -1,9 +1,10 @@
 package:
   {{ if not .Vars.rhel9cis_telnet_required }}
     {{ if .Vars.rhel9cis_rule_2_3_1 }}
-  talk:
+  telnet:
     title: 2.3.1 | Ensure telnet client is not installed
     installed: false
+    name: telnet
     meta:
       server: 1
       workstation: 1
@@ -21,6 +22,7 @@ package:
   openldap-clients:
     title: 2.3.2 | Ensure LDAP client is not installed
     installed: false
+    name: openldap-clients
     meta:
       server: 1
       workstation: NA
@@ -38,6 +40,7 @@ package:
   tftp:
     title: 2.3.3 | Ensure TFTP client is not installed
     installed: false
+    name: tftp
     meta:
       server: 1
       workstation: NA
@@ -52,9 +55,10 @@ package:
   {{ end }}
    {{ if not .Vars.rhel9cis_ftp_client }}
     {{ if .Vars.rhel9cis_rule_2_3_4 }}
-  tftp:
+  vsftp:
     title: 2.3.4 | Ensure FTP client is not installed
     installed: false
+    name: ftp
     meta:
       server: 1
       workstation: NA

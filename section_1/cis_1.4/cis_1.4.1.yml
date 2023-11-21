@@ -8,10 +8,8 @@
       owner: root
       group: root
       mode: "0600"
-      {{ if .Vars.rhel9cis_set_boot_pass }}
       contents:
         - '/GRUB2_PASSWORD=grub.pbkdf2.sha512.*/'
-      {{ end }}
       meta:
         server: 1
         workstation: 1

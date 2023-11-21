@@ -1,6 +1,6 @@
 {{ if .Vars.rhel9cis_rule_4_1_3_3 }}
 command:
-  auditd_admin_scope_cnf:
+  auditd_sudolog_cnf:
     title: 4.1.3.3 | Ensure events that modify the sudo log file are collected | conf_check
     exec: grep sudo_log /etc/audit/rules.d/*.rules
     exit-status: 0
@@ -15,7 +15,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  auditd_admin_scope_live:
+  auditd_sudolog_live:
     title: 4.1.3.3 | Ensure events that modify the sudo log file are collected | running
     exec: auditctl -l | grep sudo_log
     exit-status: 0

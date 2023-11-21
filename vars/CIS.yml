@@ -409,7 +409,6 @@ rhel9cis_screensaver_lock_delay: 5  # Set max value for lock-delay in seconds (b
 # Set to 'true' if X Windows is needed in your environment
 rhel9cis_xwindows_required: false
 ### Service configuration booleans set true to keep service
-rhel9cis_gui: false
 rhel9cis_avahi_server: false
 rhel9cis_cups_server: false
 rhel9cis_dhcp_server: false

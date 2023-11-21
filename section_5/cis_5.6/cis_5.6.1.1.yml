@@ -17,7 +17,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-command:
   check_user_expiry:
     title: 5.6.1.1 | Ensure password expiration is 365 days or less | check_users
     exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,5"

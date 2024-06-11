@@ -18,7 +18,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-   system_auth_faillock:
+  system_auth_faillock:
     title: 5.4.2 | Ensure authselect includes with-faillock
     path: /etc/authselect/system-auth
     exists: true

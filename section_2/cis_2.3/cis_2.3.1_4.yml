@@ -55,7 +55,7 @@ package:
   {{ end }}
    {{ if not .Vars.rhel9cis_ftp_client }}
     {{ if .Vars.rhel9cis_rule_2_3_4 }}
-  vsftp:
+  ftp:
     title: 2.3.4 | Ensure FTP client is not installed
     installed: false
     name: ftp

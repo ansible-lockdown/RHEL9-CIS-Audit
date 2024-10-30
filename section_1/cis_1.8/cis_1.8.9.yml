@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_1_8_9 }}
 file:
-  /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/locks/00-autorun_lock:
+  /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/locks/00-autorun_lock:
     title: 1.8.9 | Ensure GDM autorun-never is not overridden
     exists: true
     contents:

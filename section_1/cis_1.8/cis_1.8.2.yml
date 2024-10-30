@@ -1,3 +1,5 @@
+---
+
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_1_8_2 }}
 command:
@@ -7,9 +9,8 @@ command:
     exit-status: 0
     stdout:
     - '/^user-db:user/'
-    - '/^system-db:user/'
+    - '/^system-db:gdm/'
     - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults/'
-    - "/^banner-message-text=\'{{ .Vars.rhel9cis_warning_banner }}\'/"
     meta:
       server: 1
       workstation: 1
@@ -28,9 +29,9 @@ command:
       - 0
       - 1
     stdout:
-    - '/^banner-message-enable=true/'
-    - '!/^banner-message-enable=false/'
-    - "/^banner-message-text=\'{{ .Vars.rhel9cis_warning_banner }}\'/"
+    - '/.*:banner-message-enable=true/'
+    - '!/.*:banner-message-enable=false/'
+    - '/.*:banner-message-text=.{{ .Vars.rhel9cis_warning_banner }}./'
     meta:
       server: 1
       workstation: 1

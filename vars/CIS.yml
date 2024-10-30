@@ -156,8 +156,6 @@ rhel9cis_rule_2_2_15: true
 rhel9cis_rule_2_2_16: true
 rhel9cis_rule_2_2_17: true
 rhel9cis_rule_2_2_18: true
-rhel9cis_rule_2_2_19: true
-rhel9cis_rule_2_2_20: true
 # 2.3 service clients
 rhel9cis_rule_2_3_1: true
 rhel9cis_rule_2_3_2: true

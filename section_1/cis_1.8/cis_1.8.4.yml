@@ -1,7 +1,7 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_rule_1_8_4 }}
 file:
-  /etc/dconf/db/{ .Vars.rhel9cis_dconf_db_name }.d/00-screensaver:
+  /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/00-screensaver:
     title: 1.8.4 | Ensure GDM screen locks when the user is idle
     exists: true
     contents:

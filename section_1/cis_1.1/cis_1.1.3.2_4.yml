@@ -4,7 +4,7 @@ mount:
   /var:
     title: |
         1.1.3.2 | Ensure nodev option set on /var partition
-        1.1.3.3 | Ensure noexec option set on /var partition
+        1.1.3.3 | Ensure nosuid option set on /var partition
     exists: true
     opts:
     {{ if .Vars.rhel9cis_rule_1_1_3_2 }}

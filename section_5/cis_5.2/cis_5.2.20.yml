@@ -6,7 +6,7 @@ file:
     exists: true
     contents:
     - '/^ClientAliveInterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
-    - '/^ClientAliveCountMax 0/'
+    - '/^ClientAliveCountMax\s+([1-9][0-9]*)$/'
     meta:
       server: 1
       workstation: 1
@@ -26,7 +26,7 @@ command:
       - 1
     stdout:
     - '/^clientaliveinterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
-    - '/^clientalivecountmax 0/'
+    - '/^clientalivecountmax\s+([1-9][0-9]*)$/'
     meta:
       server: 1
       workstation: 1

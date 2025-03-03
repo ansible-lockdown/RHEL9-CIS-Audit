@@ -4,6 +4,7 @@
 package:
   rsync:
     title: 2.2.18 Ensure rsync is not installed or the rsyncd service is masked
+    name: rsync-daemon
     installed: false
     meta:
       server: 1

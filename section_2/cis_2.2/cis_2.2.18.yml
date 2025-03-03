@@ -3,7 +3,7 @@
     {{ if not .Vars.rhel9cis_use_rsync_service }}
 package:
   rsync:
-    title: 2.2.18 Ensure rsync is not installed or the rsyncd service is masked
+    title: 2.2.18 | Ensure rsync-daemon is not installed or the rsyncd service is masked
     name: rsync-daemon
     installed: false
     meta:
@@ -21,7 +21,7 @@ package:
   {{ if .Vars.rhel9cis_use_rsync_service }}
 command:
   rsyncd masked:
-    title: 2.2.18 Ensure rsync is not installed or the rsyncd service is masked
+    title: 2.2.18 | Ensure rsync-daemon is not installed or the rsyncd service is masked
     exit-status: 1
     exec: systemctl is-enabled rsyncd
     stdout:

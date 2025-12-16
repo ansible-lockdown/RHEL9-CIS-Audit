@@ -6,7 +6,7 @@
 command:
   unowned_ungrouped_dirs:
     title: 7.1.12 | Ensure no files or directories without an owner and a group exist
-    exec: df --local -P | awk {'if (NR!=1) print $7'} | xargs -I '{}' find '{}' -xdev {{ .Vars.rhel9cis_exclude_unowned_search_path }}
+    exec: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev {{ .Vars.rhel9cis_exclude_unowned_search_path }}
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

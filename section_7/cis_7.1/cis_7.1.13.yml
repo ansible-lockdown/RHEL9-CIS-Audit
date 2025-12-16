@@ -6,7 +6,7 @@
 command:
   audit_sgid_suid:
     title: 7.1.13 | Ensure SUID and SGID files are reviewed
-    exec: df --local -P | awk '{if (NR!=1) print $7}' | xargs -I '{}' find '{}' -xdev -type f \( -perm -2000 -o -perm -4000 \)
+    exec: df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f \( -perm -2000 -o -perm -4000 \)
     timeout: {{ .Vars.timeout_ms }}
     exit-status: 0
     stdout:

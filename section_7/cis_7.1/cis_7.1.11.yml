@@ -6,7 +6,7 @@
 command:
   sticky_bit:
     title: 7.1.11 | Ensure world writable files and directories are secured
-    exec: "df --local -P | awk '{if (NR!=1) print $7}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
     exit-status:
       or:
       - 0

@@ -571,4 +571,4 @@ rhel9cis_remote_log_retrycount: 100
 rhel9cis_remote_log_queuesize: 1000
 
 # Control 7.1.12
-rhel9cis_exclude_unowned_search_path: \(! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)
+rhel9cis_exclude_unowned_search_path: \( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

@@ -1,5 +1,13 @@
 # Changes to RHEL9-CIS-Audit
 
+## Aug 2026 — QA pass: section 1.8 coverage, gate polarity and value alignment
+
+- 1.8 gui based updates readdressed and fixed
+- 2.4.3.x - seperated tests to a file each
+- 5.3.3.3.3.yml layout fixed
+- 5.1.16.yml updated test module
+- vars updated defaults to match remediation - typos updated
+
 ## June 2026 — QA pass: audit alignment and hygiene fixes
 
 - Fixed LICENSE copyright casing: Mindpoint -> MindPoint

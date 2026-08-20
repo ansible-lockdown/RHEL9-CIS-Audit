@@ -2,7 +2,7 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_16 }}
-path:
+file:
   sshd_authtries:
     title: 5.1.16 | Ensure sshd MaxAuthTries is configured
     path: /etc/ssh/sshd_config

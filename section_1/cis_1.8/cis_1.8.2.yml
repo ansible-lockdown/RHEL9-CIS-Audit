@@ -1,6 +1,6 @@
 ---
 
-{{ if not .Vars.rhel9cis_gui }}
+{{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_2 }}
 command:
@@ -32,7 +32,7 @@ command:
     stdout:
     - '/^banner-message-enable=true/'
     - '!/^banner-message-enable=false/'
-    - '/^banner-message-text=\'{{ .Vars.rhel9cis_warning_banner }}\'/'
+    - "/^banner-message-text='{{ trim .Vars.rhel9cis_warning_banner }}'/"
     meta:
       server: 1
       workstation: 1

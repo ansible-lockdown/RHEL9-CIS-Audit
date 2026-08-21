@@ -421,7 +421,7 @@ rhel9cis_rule_7_2_9: true
 rhel9cis_gui: false
 
 # Warning Banner Content (issue, issue.net, motd)
-rhel9cis_warning_banner: Authorized uses only. All activity may be monitored and reported.
+rhel9cis_warning_banner: Authorized users only. All activity may be monitored and reported.
 # End Banner
 
 # 1.8 Gnome Desktop
@@ -437,7 +437,7 @@ rhel9cis_dconf_db_name: local
 # - false - leaves service in current status
 # - true - sets service name to masked
 rhel9cis_autofs_services: false
-rhel9cis_autofs_mask: true
+rhel9cis_autofs_mask: false
 rhel9cis_avahi_server: false
 rhel9cis_avahi_mask: false
 rhel9cis_dhcp_server: false
@@ -525,7 +525,7 @@ rhel9cis_firewall: firewalld
 rhel9_cis_sshd_config_file: /etc/ssh/sshd_config
 
 ## 5.1.7 Note the following to understand precedence and layout, comma separated
-rhel9cis_sshd_allowusers: vagrant
+rhel9cis_sshd_allowusers: ''
 rhel9cis_sshd_allowgroups:
 rhel9cis_sshd_denyusers: nobody
 rhel9cis_sshd_denygroups:
@@ -540,7 +540,7 @@ rhel9cis_authselect_custom_profile_create: false
 rhel9cis_authselect_custom_profile_select: false
 
 ## 5.3.2.1 Authselect select false if using AD or RHEL ID mgmt
-rhel9cis_authselect_custom_profile_name: mpg_cis
+rhel9cis_authselect_custom_profile_name: cis_example_profile
 
 ## 5.3.3.2.3 Set option used for password complexity
 # either minclass or credits - enabling to check for one option in settings
@@ -576,4 +576,4 @@ rhel9cis_remote_log_retrycount: 100
 rhel9cis_remote_log_queuesize: 1000
 
 # Control 7.1.12
-rhel9cis_exclude_unowned_search_path: \(! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)
+rhel9cis_exclude_unowned_search_path: \( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

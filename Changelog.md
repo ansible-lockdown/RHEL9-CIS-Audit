@@ -7,6 +7,7 @@
 - 5.3.3.3.3.yml layout fixed
 - 5.1.16.yml updated test module
 - vars updated defaults to match remediation - typos updated
+- README updates and updated contributing and contributors
 
 ## June 2026 — QA pass: audit alignment and hygiene fixes
 

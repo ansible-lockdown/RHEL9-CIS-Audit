@@ -1,5 +1,13 @@
 # Changes to RHEL9-CIS-Audit
 
+## Sept 2026 - QA pass
+
+- 1.7.x combined tests now gate on either paired toggle, not just the first
+- 1.7.4, 1.7.5, 1.7.6 titles aligned to the v2.0.0 benchmark wording
+- vars - rhel9cis_pass_min_days 1 -> 7 and rhel9cis_authselect_custom_profile_create false -> true to match remediation defaults
+- 1.2.1.3 gate now matches the remediation gate - rule toggle AND enable_repogpg AND not rhel_default_repo
+- vars - rhel9cis_rhel_default_repo added
+
 ## Aug 2026 — QA pass: section 1.8 coverage, gate polarity and value alignment
 
 - 1.8 gui based updates readdressed and fixed

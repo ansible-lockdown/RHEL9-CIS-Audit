@@ -2,11 +2,11 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
 file:
-  {{ if .Vars.rhel9cis_rule_1_7_1 }}
+  {{ if or .Vars.rhel9cis_rule_1_7_1 .Vars.rhel9cis_rule_1_7_4 }}
   motd_config:
     title: |
       1.7.1 | Ensure message of the day is configured properly
-      1.7.4 | Ensure permissions on /etc/motd are configured
+      1.7.4 | Ensure access to /etc/motd is configured
     path: /etc/motd
     exists: true
     mode: "0644"
@@ -39,11 +39,11 @@ file:
       - AC-3
       - MP-2
   {{ end }}
-  {{ if .Vars.rhel9cis_rule_1_7_2 }}
+  {{ if or .Vars.rhel9cis_rule_1_7_2 .Vars.rhel9cis_rule_1_7_5 }}
   etc_issue_config:
     title: |
       1.7.2 | Ensure local login warning banner is configured properly
-      1.7.5 | Ensure permissions on /etc/issue are configured
+      1.7.5 | Ensure access to /etc/issue is configured
     path: /etc/issue
     exists: true
     mode: "0644"
@@ -77,11 +77,11 @@ file:
       - AC-3
       - MP-2
   {{ end }}
-  {{ if .Vars.rhel9cis_rule_1_7_3 }}
+  {{ if or .Vars.rhel9cis_rule_1_7_3 .Vars.rhel9cis_rule_1_7_6 }}
   etc_issue_net_config:
     title: |
       1.7.3 | Ensure remote login warning banner is configured properly
-      1.7.6 | Ensure permissions on /etc/issue.net are configured
+      1.7.6 | Ensure access to /etc/issue.net is configured
     path: /etc/issue.net
     exists: true
     mode: "0644"

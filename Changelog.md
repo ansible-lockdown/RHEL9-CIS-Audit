@@ -7,6 +7,7 @@
 - vars - rhel9cis_pass_min_days 1 -> 7 and rhel9cis_authselect_custom_profile_create false -> true to match remediation defaults
 - 1.2.1.3 gate now matches the remediation gate - rule toggle AND enable_repogpg AND not rhel_default_repo
 - vars - rhel9cis_rhel_default_repo added
+- 4.3.3 exit-status accepts 0 or 1 - the test could never pass, a correctly hardened host made grep exit 1
 
 ## Aug 2026 — QA pass: section 1.8 coverage, gate polarity and value alignment
 

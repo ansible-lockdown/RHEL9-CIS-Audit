@@ -2,46 +2,25 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_16 }}
-file:
-  sshd_authtries:
-    title: 5.1.16 | Ensure sshd MaxAuthTries is configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - "/^MaxAuthTries [1-4]/"
-    - "!/^MaxAuthTries [5-9]/"
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.16
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
 command:
-  sshd_authtries_live:
-    title: 5.1.16 | Ensure sshd MaxAuthTries is configured | live
-    exec: sshd -T | grep maxauthtries
-    exit-status:
-      or:
-      - 0
-      - 1
+  ssh_loglevel_live:
+    title: 5.1.16 | Ensure sshd LogLevel is configured
+    exec: sshd -T 2>/dev/null | grep -i -- '^loglevel\s'
+    exit-status: 0
     stdout:
-    - "/maxauthtries [1-4]/"
-    - "!/^maxauthtries [5-9]/"
+    - '/^loglevel (VERBOSE|INFO)$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.16
-      CISv8: 8.5
-      CISv8_IG1: false
+      CISv8: 8.2
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
       - AU-3
+      - AU-12
+      - SI-5
   {{ end }}
 {{ end }}

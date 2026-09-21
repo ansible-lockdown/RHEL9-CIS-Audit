@@ -1,23 +1,43 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_1 }}
-package:
-  rsyslog:
-    title: 6.2.3.1 | Ensure rsyslog is installed
-    installed: true
+command:
+  auditd_6_2_3_1_cnf:
+    title: 6.2.3.1 | Ensure modification of the /etc/sudoers file is collected | conf check
+    exec: 'grep -Phs -- ''scope'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/sudoers/? -p wa -k scope|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sudoers/? -F perm=wa (-k |-F key=)scope)\s*$/'
+    - '/^\s*(-w /etc/sudoers\.d/? -p wa -k scope|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sudoers\.d/? -F perm=wa (-k |-F key=)scope)\s*$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.1
-      CISv8: 8.2
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-2
       - AU-3
-      - AU-12
+  auditd_6_2_3_1_live:
+    title: 6.2.3.1 | Ensure modification of the /etc/sudoers file is collected | running
+    exec: 'auditctl -l | grep -P -- ''scope'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/sudoers/? -p wa -k scope|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sudoers/? -F perm=wa (-k |-F key=)scope)\s*$/'
+    - '/^\s*(-w /etc/sudoers\.d/? -p wa -k scope|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sudoers\.d/? -F perm=wa (-k |-F key=)scope)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.1
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
   {{ end }}
 {{ end }}

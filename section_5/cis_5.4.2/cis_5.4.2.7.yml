@@ -5,10 +5,15 @@
 command:
   secure_system_accts:
     title: 5.4.2.7 | Ensure system accounts do not have a valid login shell
-    exec: "awk -F: '$3<1000' /etc/passwd | grep -Ev 'root|sync|halt|shutdown|nfsnobody|/sbin/nologin|/bin/false'"
-    exit-status: 1
+    exec: |
+      l_valid_shells="^($(awk -F/ '($NF != "nologin" && $NF != "false") {print}' /etc/shells | sed -rn '/^\//{s,/,\\\\/,g;p}' | paste -s -d '|' - ))$"
+      l_uid_min="$(awk '/^\s*UID_MIN/{print $2}' /etc/login.defs)"
+      awk -v pat="$l_valid_shells" -v uidmin="${l_uid_min:-1000}" -F: '($1 !~ /^(root|halt|sync|shutdown|nfsnobody)$/ && ($3 < uidmin || $3 == 65534) && $(NF) ~ pat) {print "FAIL: " $1 " has a valid shell: " $7}' /etc/passwd
+      echo "scan_done"
+    exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

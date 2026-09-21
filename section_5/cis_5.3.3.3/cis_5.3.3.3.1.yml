@@ -8,7 +8,7 @@ file:
     path: /etc/security/pwhistory.conf
     exists: true
     contents:
-    - '/^remember\s*=\s*(2[4-9]|[3-9][0-9])/'
+    - '/^\s*remember\s*=\s*(2[4-9]|[3-9][0-9]|[1-9][0-9]{2,})\b/'
     meta:
       server: 1
       workstation: 1
@@ -21,14 +21,11 @@ file:
       NIST800-53R5: IA-5
 command:
   pwhistory_remember_pam_configs:
-    title: 5.3.3.3.1 | Ensure password history remember is configured | pam_configs
-    exec: grep -Pi -- '^\s*password\s+(requisite|required|sufficient)\s+pam_pwhistory\.so\s+([^#\n\r]+\s+)?remember=(2[0-3]|1[0-9]|[0-9])\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
-    exit-status:
-      or:
-      - 0
-      - 1
+    title: 5.3.3.3.1 | Ensure password history remember is configured | pam files
+    exec: grep -Pi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwhistory\.so\h+([^#\n\r]+\h+)?remember=(2[0-3]|1[0-9]|[0-9])\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
+    exit-status: 1
     stdout:
-    - '!/.*/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

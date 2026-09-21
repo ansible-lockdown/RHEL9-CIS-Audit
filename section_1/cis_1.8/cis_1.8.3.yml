@@ -4,44 +4,21 @@
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_3 }}
 command:
-  gdm_last_login:
-    title: 1.8.3 | Ensure GDM disable-user-list option is enabled
-    exec: cat /etc/dconf/profile/gdm
+  gdm_screen_lock_settings:
+    title: 1.8.3 | Ensure GDM screen lock is configured
+    exec: 'echo "idle_delay_writable=$(gsettings writable org.gnome.desktop.session idle-delay)"; echo "lock_delay_writable=$(gsettings writable org.gnome.desktop.screensaver lock-delay)"; echo "idle_delay=$(gsettings get org.gnome.desktop.session idle-delay)"; echo "lock_delay=$(gsettings get org.gnome.desktop.screensaver lock-delay)"'
     exit-status: 0
     stdout:
-    - '/^user-db:user/'
-    - '/^system-db:gdm/'
-    - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults/'
+    - '/^idle_delay_writable=false$/'
+    - '/^lock_delay_writable=false$/'
+    - '/^idle_delay=uint32 ([1-9]|[1-9][0-9]|[1-8][0-9]{2}|900)$/'
+    - '/^lock_delay=uint32 [0-5]$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.3
-      CISv8:
-      - NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-  gdm_disable_user:
-    title: 1.8.3 | Ensure GDM disable-user-list option is enabled
-    exec: grep "[org/gnome/login-screen]" /etc/dconf/db/gdm.d/00-login-screen | grep disable-user-list
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '/^disable-user-list=true/'
-    - '!/^disable-user-list=false/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.8.3
-      CISv8:
-      - NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
+      NIST800-53R5: AC-11
     {{ end }}
   {{ end }}
 {{ end }}

@@ -2,50 +2,23 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_15 }}
-file:
-  sshd_loglevel:
-    title: 5.1.15 | Ensure sshd LogLevel is configured | config
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^LogLevel\s(VERBOSE|INFO)/'
-    - '!/^LogLevel DEBUG/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.15
-      CISv8: 8.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
-      - AU-12
-      - SI-5
 command:
-  ssh_loglevel_live:
-    title: 5.1.15 | Ensure sshd LogLevel is configured | live
-    exec: sshd -T | grep loglevel
-    exit-status:
-      or:
-      - 0
-      - 1
+  ssh_logingrace_live:
+    title: 5.1.15 | Ensure sshd LoginGraceTime is configured
+    exec: sshd -T 2>/dev/null | grep -i -- '^logingracetime\s'
+    exit-status: 0
     stdout:
-    - '/^loglevel\s(VERBOSE|INFO)/'
-    - '!/^loglevel DEBUG/'
+    - '/^logingracetime ([1-9]|[1-5][0-9]|60)$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.15
-      CISv8: 8.2
+      CISv8: 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-3
-      - AU-12
-      - SI-5
+      - CM-6
   {{ end }}
 {{ end }}

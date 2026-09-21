@@ -62,6 +62,7 @@ file:
     {{ if not .Vars.rhel9cis_legacy_boot }}
 command:
   efi_boot_opts:
+    title: 1.4.2 | Ensure access to bootloader config is configured | efi mount options
     exec: grep "^[^#;]" /etc/fstab | grep '/boot/efi' | awk -F" " '{print $4}'
     exit-status: 0
     stdout:

@@ -8,9 +8,7 @@ file:
     path: /etc/login.defs
     exists: true
     contents:
-    - '/^PASS_WARN_AGE\s+{{ .Vars.rhel9cis_pass_warn_age }}$/'
-    - '/^PASS_WARN_AGE\s+(7|[1-9][0-9]{1,3})$/'
-    - '!/^PASS_WARN_AGE\s+[1-6]$/'
+    - '/^\s*PASS_WARN_AGE\s+([7-9]|[1-9][0-9]+)\b/'
     meta:
       server: 1
       workstation: 1
@@ -22,13 +20,15 @@ file:
       CISv8_IG3: true
       NIST800-53R5: NA
 command:
-  check_users_MAX_DAYS:
-    title: 5.4.1.3 | Ensure password expiration warning days is configured | check_users
-    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,6"
+  check_users_warn_age:
+    title: 5.4.1.3 | Ensure password expiration warning days is configured | existing users
+    exec: |
+      awk -F: '($2~/^\$.+\$/) {if($6 < 7) print "FAIL: " $1 " PASS_WARN_AGE: " $6}' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^.*:([7-9]|[1-9][0-9]{1,})$/'
-    - '!/^.*:[1-6]$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

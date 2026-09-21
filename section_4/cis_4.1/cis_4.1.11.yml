@@ -1,0 +1,36 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_4_1_11 }}
+command:
+  cis_4_1_11_icmp_timestamp:
+    title: 4.1.11 | Ensure firewalld blocks ICMP timestamp requests and replies
+    exec: |
+      l_fail=""
+      for l_zone in $(firewall-cmd --get-active-zones 2>/dev/null | awk '!/^[[:space:]]/ {print $1}'); do
+        [ "$(firewall-cmd --permanent --zone="$l_zone" --get-target)" = "default" ] || continue
+        l_inv="$(firewall-cmd --permanent --zone="$l_zone" --query-icmp-block-inversion)"
+        l_blocks=" $(firewall-cmd --permanent --zone="$l_zone" --list-icmp-blocks) "
+        for l_type in timestamp-request timestamp-reply; do
+          if [ "$l_inv" = "yes" ]; then
+            echo "$l_blocks" | grep -q " $l_type " && { echo "FAIL - zone $l_zone allows $l_type"; l_fail="yes"; }
+          else
+            echo "$l_blocks" | grep -q " $l_type " || { echo "FAIL - zone $l_zone does not block $l_type"; l_fail="yes"; }
+          fi
+        done
+      done
+      [ -z "$l_fail" ] && echo "PASS"
+      exit 0
+    exit-status: 0
+    stdout:
+    - '/^PASS$/'
+    - '!/FAIL/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.11
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

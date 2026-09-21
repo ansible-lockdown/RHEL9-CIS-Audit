@@ -1,0 +1,44 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_1_5 }}
+command:
+  journald_tmpfiles_journal_mode:
+    title: 6.1.1.5 | Ensure journald log file access is configured | tmpfiles directive
+    exec: 'systemd-tmpfiles --cat-config | grep -P -- ''^\h*[^#\h]+\h+/var/log/journal/\S*\.journal'''
+    exit-status: 0
+    stdout:
+    - '/\.journal\S*\s+0?[0246][04]0\s/'
+    - '!/\.journal\S*\s+0?([1357][0-7]{2}|[0-7][1235-7][0-7]|[0-7]{2}[1-7])\s/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.5
+      CISv8:
+      - 8.2
+      - 8.9
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  journald_journal_file_mode:
+    title: 6.1.1.5 | Ensure journald log file access is configured | journal files
+    exec: 'find /var/log/journal /run/log/journal -type f -name ''*.journal*'' -perm /0137 2>/dev/null | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.5
+      CISv8:
+      - 8.2
+      - 8.9
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

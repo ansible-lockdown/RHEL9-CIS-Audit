@@ -1,37 +1,49 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_5 }}
-file:
-  /etc/rsyslog.conf:
-    title: 6.2.3.5 | Ensure rsyslog logging is configured
-    exists: true
-    contents:
-    - '/^\*.emerg\s+:omusrmsg:\*/'
-    - '/auth,authpriv.\*\s+/var/log/secure/'
-    - '/^mail.\*\s+-/var/log/mail/'
-    - '/^mail.info\s+-/var/log/mail.info/'
-    - '/^mail.err\s+/var/log/mail.err/'
-    - '/^cron.\*\s+/var/log/cron/'
-    - '/^*.=warning;\*.=err\s+-/var/log/warn/'
-    - '/^*.crit\s+/var/log/warn/'
-    - '/^*.*;mail.none;news.none\s+/var/log/messages/'
-    - '/^local0,local1.\*\s+-/var/log/localmessages/'
-    - '/^local2,local3.\*\s+-/var/log/localmessages/'
-    - '/^local4,local5.\*\s+-/var/log/localmessages/'
-    - '/^local6,local7.\*\s+-/var/log/localmessages/'
+command:
+  auditd_6_2_3_5_cnf:
+    title: 6.2.3.5 | Ensure events that modify sethostname and setdomainname are collected | conf check
+    exec: 'grep -Phs -- ''sethostname'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?sethostname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?setdomainname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?sethostname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?setdomainname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.5
-      CISv8: 8.2
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-2
-      - AU-7
-      - AU-12
+      - AU-3
+      - CM-6
+  auditd_6_2_3_5_live:
+    title: 6.2.3.5 | Ensure events that modify sethostname and setdomainname are collected | running
+    exec: 'auditctl -l | grep -P -- ''sethostname'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?sethostname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?setdomainname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?sethostname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?setdomainname(,\S+)? (.* )?(-k |-F key=)system-locale\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.5
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
   {{ end }}
 {{ end }}

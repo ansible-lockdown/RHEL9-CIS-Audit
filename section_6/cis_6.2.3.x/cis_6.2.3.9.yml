@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_9 }}
+command:
+  auditd_6_2_3_9_cnf:
+    title: 6.2.3.9 | Ensure events that modify /etc/NetworkManager directory are collected | conf check
+    exec: 'grep -Phs -- ''/etc/NetworkManager( |/? )'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/NetworkManager/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/NetworkManager/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.9
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  auditd_6_2_3_9_live:
+    title: 6.2.3.9 | Ensure events that modify /etc/NetworkManager directory are collected | running
+    exec: 'auditctl -l | grep -P -- ''/etc/NetworkManager( |/? )'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/NetworkManager/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/NetworkManager/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.9
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  {{ end }}
+{{ end }}

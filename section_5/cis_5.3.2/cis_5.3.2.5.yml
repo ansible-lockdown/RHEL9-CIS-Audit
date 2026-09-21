@@ -3,15 +3,15 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_2_5 }}
 file:
-  passwd_auth_pam_unix:
-    title: 5.3.2.5 | Ensure pam_unix module is enabled
-    path: /etc/pam.d/password-auth
+  pam_unix_enabled_system_auth:
+    title: 5.3.2.5 | Ensure pam_unix module is enabled | system-auth
+    path: /etc/pam.d/system-auth
     exists: true
     contents:
-    - '/auth\s+sufficient\s+pam_unix.so/'
-    - '/account\s+required\s+pam_unix.so/'
-    - '/password\s+sufficient\s+pam_unix.so sha512 shadow ({if not "without-nullok":nullok}|) use_authtok/'
-    - '/session\s+required\s+pam_unix.so/'
+    - '/^\s*auth\s+\S+\s+pam_unix\.so/'
+    - '/^\s*account\s+\S+\s+pam_unix\.so/'
+    - '/^\s*password\s+\S+\s+pam_unix\.so/'
+    - '/^\s*session\s+\S+\s+pam_unix\.so/'
     meta:
       server: 1
       workstation: 1
@@ -22,24 +22,41 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: IA-5
-  system_auth_pam_unix:
-    title: 5.3.2.5 | Ensure pam_unix module is enabled
-    path: /etc/pam.d/system-auth
+  pam_unix_enabled_password_auth:
+    title: 5.3.2.5 | Ensure pam_unix module is enabled | password-auth
+    path: /etc/pam.d/password-auth
     exists: true
     contents:
-    - '/auth\s+sufficient\s+pam_unix.so/'
-    - '/account\s+required\s+pam_unix.so/'
-    - '/password\s+sufficient\s+pam_unix.so sha512 shadow ({if not "without-nullok":nullok}|) use_authtok/'
-    - '/session\s+required\s+pam_unix.so/'
+    - '/^\s*auth\s+\S+\s+pam_unix\.so/'
+    - '/^\s*account\s+\S+\s+pam_unix\.so/'
+    - '/^\s*password\s+\S+\s+pam_unix\.so/'
+    - '/^\s*session\s+\S+\s+pam_unix\.so/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.2.5
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+command:
+  authselect_check_5_3_2_5:
+    title: 5.3.2.5 | Ensure pam_unix module is enabled | authselect check
+    exec: authselect check
+    exit-status: 0
+    stdout:
+    - '/Current configuration is valid/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.5
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

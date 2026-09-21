@@ -1,30 +1,55 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_3 }}
 command:
-  forward_journald_conf:
-    title: 6.2.3.3 | Ensure journald is configured to send logs to rsyslog
-    exec: grep -i forward /etc/systemd/journald.conf /etc/systemd/journald.conf.d/
+  auditd_6_2_3_3_sudoers_logfile:
+    title: 6.2.3.3 | Ensure events that modify the sudo log file are collected | sudo logfile
+    exec: 'grep -rPsih -- ''^\h*Defaults\h+([^#]+,\h*)?logfile\h*='' /etc/sudoers /etc/sudoers.d'
     exit-status: 0
     stdout:
-    - '!/^\.*:ForwardToSyslog/'
+    - '/(?i)^\s*Defaults\s+([^#]+,\s*)?logfile\s*=\s*"?/var/log/sudo\.log/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.3
-      CISv8:
-      - 8.2
-      - 8.9
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - AU-2
-      - AU-4
-      - AU-12
-      - MP-2
+      NIST800-53R5: NA
+  auditd_6_2_3_3_cnf:
+    title: 6.2.3.3 | Ensure events that modify the sudo log file are collected | conf check
+    exec: 'grep -Phs -- ''sudo.log'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/log/sudo\.log/? -p wa -k sudo_log_file|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/sudo\.log/? -F perm=wa (-k |-F key=)sudo_log_file)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.3
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  auditd_6_2_3_3_live:
+    title: 6.2.3.3 | Ensure events that modify the sudo log file are collected | running
+    exec: 'auditctl -l | grep -P -- ''sudo.log'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/log/sudo\.log/? -p wa -k sudo_log_file|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/sudo\.log/? -F perm=wa (-k |-F key=)sudo_log_file)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.3
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
   {{ end }}
 {{ end }}

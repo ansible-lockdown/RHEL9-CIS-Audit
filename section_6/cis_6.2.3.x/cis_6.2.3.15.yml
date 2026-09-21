@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_15 }}
+command:
+  auditd_6_2_3_15_cnf:
+    title: 6.2.3.15 | Ensure events that modify /etc/security/opasswd are collected | conf check
+    exec: 'grep -Phs -- ''opasswd'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/security/opasswd/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/security/opasswd/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.15
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_15_live:
+    title: 6.2.3.15 | Ensure events that modify /etc/security/opasswd are collected | running
+    exec: 'auditctl -l | grep -P -- ''opasswd'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/security/opasswd/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/security/opasswd/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.15
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

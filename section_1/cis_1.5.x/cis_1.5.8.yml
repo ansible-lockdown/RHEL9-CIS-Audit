@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_5_8 }}
+command:
+  hard_core_limit:
+    title: 1.5.8 | Ensure core file size is configured
+    exec: "grep -Pshi -- '^\\h*\\*\\h+hard\\h+core\\b' /etc/security/limits.conf /etc/security/limits.d/*"
+    exit-status: 0
+    stdout:
+    - '/^\s*\*\s+hard\s+core\s+0\s*$/'
+    - '!/hard\s+core\s+([1-9]|unlimited|infinity)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.8
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

@@ -3,14 +3,14 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_2_2 }}
 file:
-  passwd_auth_faillock:
-    title: 5.3.2.2 | Ensure pam_faillock module is enabled
-    path: /etc/pam.d/password-auth
+  pam_faillock_enabled_system_auth:
+    title: 5.3.2.2 | Ensure pam_faillock module is enabled | system-auth
+    path: /etc/pam.d/system-auth
     exists: true
     contents:
-    - '/auth\s+required\s+pam_faillock.so preauth silent/'
-    - '/auth\s+required\s+pam_faillock.so authfail/'
-    - '/account\s+required\s+pam_faillock.so/'
+    - '/^\s*auth\s+required\s+pam_faillock\.so\s+preauth/'
+    - '/^\s*auth\s+required\s+pam_faillock\.so\s+authfail/'
+    - '/^\s*account\s+required\s+pam_faillock\.so/'
     meta:
       server: 1
       workstation: 1
@@ -21,14 +21,31 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: NA
-  system_auth_faillock:
-    title: 5.3.2.2 | Ensure pam_faillock module is enabled
-    path: /etc/pam.d/system-auth
+  pam_faillock_enabled_password_auth:
+    title: 5.3.2.2 | Ensure pam_faillock module is enabled | password-auth
+    path: /etc/pam.d/password-auth
     exists: true
     contents:
-    - '/auth\s+required\s+pam_faillock.so preauth silent/'
-    - '/auth\s+required\s+pam_faillock.so authfail/'
-    - '/account\s+required\s+pam_faillock.so/'
+    - '/^\s*auth\s+required\s+pam_faillock\.so\s+preauth/'
+    - '/^\s*auth\s+required\s+pam_faillock\.so\s+authfail/'
+    - '/^\s*account\s+required\s+pam_faillock\.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.2
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+command:
+  authselect_check_5_3_2_2:
+    title: 5.3.2.2 | Ensure pam_faillock module is enabled | authselect check
+    exec: authselect check
+    exit-status: 0
+    stdout:
+    - '/Current configuration is valid/'
     meta:
       server: 1
       workstation: 1

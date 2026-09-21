@@ -3,7 +3,7 @@
 ## metadata for benchmark
 
 ## metadata for Audit benchmark
-benchmark_version: '2.0.0'
+benchmark_version: '3.0.0'
 
 # Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
 # If run via script this is discovered and set
@@ -35,9 +35,8 @@ rhel9cis_legacy_boot: false
 
 rhel9cis_set_boot_pass: false
 
-# Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
-# Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
-# Filesystem kernel modules
+# Section 1 - Initial Setup
+## 1.1.1 Filesystem kernel modules
 rhel9cis_rule_1_1_1_1: true
 rhel9cis_rule_1_1_1_2: true
 rhel9cis_rule_1_1_1_3: true
@@ -47,53 +46,50 @@ rhel9cis_rule_1_1_1_6: true
 rhel9cis_rule_1_1_1_7: true
 rhel9cis_rule_1_1_1_8: true
 rhel9cis_rule_1_1_1_9: true
-# Filesystems
-# /tmp
+rhel9cis_rule_1_1_1_10: true
+rhel9cis_rule_1_1_1_11: true
+## 1.1.2.1 /tmp
 rhel9cis_rule_1_1_2_1_1: true
 rhel9cis_rule_1_1_2_1_2: true
 rhel9cis_rule_1_1_2_1_3: true
 rhel9cis_rule_1_1_2_1_4: true
-# /dev/shm
+## 1.1.2.2 /dev/shm
 rhel9cis_rule_1_1_2_2_1: true
 rhel9cis_rule_1_1_2_2_2: true
 rhel9cis_rule_1_1_2_2_3: true
 rhel9cis_rule_1_1_2_2_4: true
-# /home
+## 1.1.2.3 /home
 rhel9cis_rule_1_1_2_3_1: true
 rhel9cis_rule_1_1_2_3_2: true
 rhel9cis_rule_1_1_2_3_3: true
-# /var
+## 1.1.2.4 /var
 rhel9cis_rule_1_1_2_4_1: true
 rhel9cis_rule_1_1_2_4_2: true
 rhel9cis_rule_1_1_2_4_3: true
-# /var/tmp
+## 1.1.2.5 /var/tmp
 rhel9cis_rule_1_1_2_5_1: true
 rhel9cis_rule_1_1_2_5_2: true
 rhel9cis_rule_1_1_2_5_3: true
 rhel9cis_rule_1_1_2_5_4: true
-# /var/log
+## 1.1.2.6 /var/log
 rhel9cis_rule_1_1_2_6_1: true
 rhel9cis_rule_1_1_2_6_2: true
 rhel9cis_rule_1_1_2_6_3: true
 rhel9cis_rule_1_1_2_6_4: true
-# /var/log/audit
+## 1.1.2.7 /var/log/audit
 rhel9cis_rule_1_1_2_7_1: true
 rhel9cis_rule_1_1_2_7_2: true
 rhel9cis_rule_1_1_2_7_3: true
 rhel9cis_rule_1_1_2_7_4: true
-
-# Package Mgmt
-# Config Pkg Repos
+## 1.2.1 Package management
 rhel9cis_rule_1_2_1_1: true
 rhel9cis_rule_1_2_1_2: true
 rhel9cis_rule_1_2_1_3: true
 rhel9cis_rule_1_2_1_4: true
-rhel9cis_enable_repogpg: true
-rhel9cis_rhel_default_repo: true
-# Package updates
+rhel9cis_rule_1_2_1_5: true
+## 1.2.2 Package updates
 rhel9cis_rule_1_2_2_1: true
-
-# Selinux
+## 1.3.1 SELinux
 rhel9cis_rule_1_3_1_1: true
 rhel9cis_rule_1_3_1_2: true
 rhel9cis_rule_1_3_1_3: true
@@ -102,18 +98,24 @@ rhel9cis_rule_1_3_1_5: true
 rhel9cis_rule_1_3_1_6: true
 rhel9cis_rule_1_3_1_7: true
 rhel9cis_rule_1_3_1_8: true
-
-# Bootloader
+## 1.4 Bootloader
 rhel9cis_rule_1_4_1: true
 rhel9cis_rule_1_4_2: true
-
-# Additional Process Hardening
+rhel9cis_rule_1_4_3: true
+rhel9cis_rule_1_4_4: true
+rhel9cis_rule_1_4_5: true
+## 1.5 Additional process hardening
 rhel9cis_rule_1_5_1: true
 rhel9cis_rule_1_5_2: true
 rhel9cis_rule_1_5_3: true
 rhel9cis_rule_1_5_4: true
-
-# Config system wide Crypto
+rhel9cis_rule_1_5_5: true
+rhel9cis_rule_1_5_6: true
+rhel9cis_rule_1_5_7: true
+rhel9cis_rule_1_5_8: true
+rhel9cis_rule_1_5_9: true
+rhel9cis_rule_1_5_10: true
+## 1.6 System wide crypto policy
 rhel9cis_rule_1_6_1: true
 rhel9cis_rule_1_6_2: true
 rhel9cis_rule_1_6_3: true
@@ -121,16 +123,14 @@ rhel9cis_rule_1_6_4: true
 rhel9cis_rule_1_6_5: true
 rhel9cis_rule_1_6_6: true
 rhel9cis_rule_1_6_7: true
-
-# Command line warning banners
+## 1.7 Command line warning banners
 rhel9cis_rule_1_7_1: true
 rhel9cis_rule_1_7_2: true
 rhel9cis_rule_1_7_3: true
 rhel9cis_rule_1_7_4: true
 rhel9cis_rule_1_7_5: true
 rhel9cis_rule_1_7_6: true
-
-# Gnome Display Manager
+## 1.8 GNOME Display Manager
 rhel9cis_rule_1_8_1: true
 rhel9cis_rule_1_8_2: true
 rhel9cis_rule_1_8_3: true
@@ -138,12 +138,9 @@ rhel9cis_rule_1_8_4: true
 rhel9cis_rule_1_8_5: true
 rhel9cis_rule_1_8_6: true
 rhel9cis_rule_1_8_7: true
-rhel9cis_rule_1_8_8: true
-rhel9cis_rule_1_8_9: true
-rhel9cis_rule_1_8_10: true
 
-# Section 2 rules are controlling Services (Special Purpose Services, and service clients)
-## Configure Server Services
+# Section 2 - Services
+## 2.1 Server services
 rhel9cis_rule_2_1_1: true
 rhel9cis_rule_2_1_2: true
 rhel9cis_rule_2_1_3: true
@@ -166,21 +163,17 @@ rhel9cis_rule_2_1_19: true
 rhel9cis_rule_2_1_20: true
 rhel9cis_rule_2_1_21: true
 rhel9cis_rule_2_1_22: true
-
-## Configure Client Services
+rhel9cis_rule_2_1_23: true
+## 2.2 Client services
 rhel9cis_rule_2_2_1: true
 rhel9cis_rule_2_2_2: true
 rhel9cis_rule_2_2_3: true
 rhel9cis_rule_2_2_4: true
-rhel9cis_rule_2_2_5: true
-
-## Configure Time Synchronization
+## 2.3 Time synchronization
 rhel9cis_rule_2_3_1: true
 rhel9cis_rule_2_3_2: true
 rhel9cis_rule_2_3_3: true
-
-## Job Schedulers
-### cron
+## 2.4.1 cron
 rhel9cis_rule_2_4_1_1: true
 rhel9cis_rule_2_4_1_2: true
 rhel9cis_rule_2_4_1_3: true
@@ -189,47 +182,69 @@ rhel9cis_rule_2_4_1_5: true
 rhel9cis_rule_2_4_1_6: true
 rhel9cis_rule_2_4_1_7: true
 rhel9cis_rule_2_4_1_8: true
-### at
+rhel9cis_rule_2_4_1_9: true
+## 2.4.2 at
 rhel9cis_rule_2_4_2_1: true
 
-# Section 3 Network
-## Network Devices
+# Section 3 - Network
+## 3.1 Network devices
 rhel9cis_rule_3_1_1: true
 rhel9cis_rule_3_1_2: true
 rhel9cis_rule_3_1_3: true
-## Network Kernel Modules
+## 3.2 Network kernel modules
 rhel9cis_rule_3_2_1: true
 rhel9cis_rule_3_2_2: true
 rhel9cis_rule_3_2_3: true
 rhel9cis_rule_3_2_4: true
-# Network Kernel Parameters
-rhel9cis_rule_3_3_1: true
-rhel9cis_rule_3_3_2: true
-rhel9cis_rule_3_3_3: true
-rhel9cis_rule_3_3_4: true
-rhel9cis_rule_3_3_5: true
-rhel9cis_rule_3_3_6: true
-rhel9cis_rule_3_3_7: true
-rhel9cis_rule_3_3_8: true
-rhel9cis_rule_3_3_9: true
-rhel9cis_rule_3_3_10: true
-rhel9cis_rule_3_3_11: true
+rhel9cis_rule_3_2_5: true
+rhel9cis_rule_3_2_6: true
+## 3.3.1 IPv4 kernel parameters
+rhel9cis_rule_3_3_1_1: true
+rhel9cis_rule_3_3_1_2: true
+rhel9cis_rule_3_3_1_3: true
+rhel9cis_rule_3_3_1_4: true
+rhel9cis_rule_3_3_1_5: true
+rhel9cis_rule_3_3_1_6: true
+rhel9cis_rule_3_3_1_7: true
+rhel9cis_rule_3_3_1_8: true
+rhel9cis_rule_3_3_1_9: true
+rhel9cis_rule_3_3_1_10: true
+rhel9cis_rule_3_3_1_11: true
+rhel9cis_rule_3_3_1_12: true
+rhel9cis_rule_3_3_1_13: true
+rhel9cis_rule_3_3_1_14: true
+rhel9cis_rule_3_3_1_15: true
+rhel9cis_rule_3_3_1_16: true
+rhel9cis_rule_3_3_1_17: true
+rhel9cis_rule_3_3_1_18: true
+rhel9cis_rule_3_3_1_19: true
+rhel9cis_rule_3_3_1_20: true
+## 3.3.2 IPv6 kernel parameters
+rhel9cis_rule_3_3_2_1: true
+rhel9cis_rule_3_3_2_2: true
+rhel9cis_rule_3_3_2_3: true
+rhel9cis_rule_3_3_2_4: true
+rhel9cis_rule_3_3_2_5: true
+rhel9cis_rule_3_3_2_6: true
+rhel9cis_rule_3_3_2_7: true
+rhel9cis_rule_3_3_2_8: true
 
-# Section 4 Firewalls
-## Firewall utility
+# Section 4 - Host based firewall
+## 4.1 firewalld
 rhel9cis_rule_4_1_1: true
 rhel9cis_rule_4_1_2: true
-## Configure firewalld
-rhel9cis_rule_4_2_1: true
-rhel9cis_rule_4_2_2: true
-# Configure nftables
-rhel9cis_rule_4_3_1: true
-rhel9cis_rule_4_3_2: true
-rhel9cis_rule_4_3_3: true
-rhel9cis_rule_4_3_4: true
+rhel9cis_rule_4_1_3: true
+rhel9cis_rule_4_1_4: true
+rhel9cis_rule_4_1_5: true
+rhel9cis_rule_4_1_6: true
+rhel9cis_rule_4_1_7: true
+rhel9cis_rule_4_1_8: true
+rhel9cis_rule_4_1_9: true
+rhel9cis_rule_4_1_10: true
+rhel9cis_rule_4_1_11: true
 
-## Section 5
-## 5.1. Configure SSH Server
+# Section 5 - Access, authentication and authorization
+## 5.1 SSH server
 rhel9cis_rule_5_1_1: true
 rhel9cis_rule_5_1_2: true
 rhel9cis_rule_5_1_3: true
@@ -252,7 +267,8 @@ rhel9cis_rule_5_1_19: true
 rhel9cis_rule_5_1_20: true
 rhel9cis_rule_5_1_21: true
 rhel9cis_rule_5_1_22: true
-## 5.2 Configure Privilege Escalation
+rhel9cis_rule_5_1_23: true
+## 5.2 Privilege escalation
 rhel9cis_rule_5_2_1: true
 rhel9cis_rule_5_2_2: true
 rhel9cis_rule_5_2_3: true
@@ -260,21 +276,26 @@ rhel9cis_rule_5_2_4: true
 rhel9cis_rule_5_2_5: true
 rhel9cis_rule_5_2_6: true
 rhel9cis_rule_5_2_7: true
-# 5.3.1.x Configure PAM software packages
+rhel9cis_rule_5_2_8: true
+rhel9cis_rule_5_2_9: true
+rhel9cis_rule_5_2_10: true
+rhel9cis_rule_5_2_11: true
+rhel9cis_rule_5_2_12: true
+## 5.3.1 PAM software packages
 rhel9cis_rule_5_3_1_1: true
 rhel9cis_rule_5_3_1_2: true
 rhel9cis_rule_5_3_1_3: true
-# 5.3.2 Configure authselect
+## 5.3.2 authselect
 rhel9cis_rule_5_3_2_1: true
 rhel9cis_rule_5_3_2_2: true
 rhel9cis_rule_5_3_2_3: true
 rhel9cis_rule_5_3_2_4: true
 rhel9cis_rule_5_3_2_5: true
-# 5.3.3.1 Configure pam_faillock module
+## 5.3.3.1 pam_faillock
 rhel9cis_rule_5_3_3_1_1: true
 rhel9cis_rule_5_3_3_1_2: true
 rhel9cis_rule_5_3_3_1_3: true
-# 5.3.3.2 Configure pam_pwquality module
+## 5.3.3.2 pam_pwquality
 rhel9cis_rule_5_3_3_2_1: true
 rhel9cis_rule_5_3_3_2_2: true
 rhel9cis_rule_5_3_3_2_3: true
@@ -282,25 +303,23 @@ rhel9cis_rule_5_3_3_2_4: true
 rhel9cis_rule_5_3_3_2_5: true
 rhel9cis_rule_5_3_3_2_6: true
 rhel9cis_rule_5_3_3_2_7: true
-# 5.3.3.3 Configure pam_pwhistory module
-# These are added as part of 5.3.2.4 using jinja2 template
+## 5.3.3.3 pam_pwhistory
 rhel9cis_rule_5_3_3_3_1: true
 rhel9cis_rule_5_3_3_3_2: true
 rhel9cis_rule_5_3_3_3_3: true
-# 5.3.3.4 Configure pam_unix module
+## 5.3.3.4 pam_unix
 rhel9cis_rule_5_3_3_4_1: true
 rhel9cis_rule_5_3_3_4_2: true
 rhel9cis_rule_5_3_3_4_3: true
 rhel9cis_rule_5_3_3_4_4: true
-# 5.4 User Accounts and Environment
-# 5.4.1 Configure shadow password suite parameters
+## 5.4.1 Shadow password suite
 rhel9cis_rule_5_4_1_1: true
 rhel9cis_rule_5_4_1_2: true
 rhel9cis_rule_5_4_1_3: true
 rhel9cis_rule_5_4_1_4: true
 rhel9cis_rule_5_4_1_5: true
 rhel9cis_rule_5_4_1_6: true
-# 5.4.2 Configure root and system accounts and environment
+## 5.4.2 root and system accounts
 rhel9cis_rule_5_4_2_1: true
 rhel9cis_rule_5_4_2_2: true
 rhel9cis_rule_5_4_2_3: true
@@ -309,30 +328,47 @@ rhel9cis_rule_5_4_2_5: true
 rhel9cis_rule_5_4_2_6: true
 rhel9cis_rule_5_4_2_7: true
 rhel9cis_rule_5_4_2_8: true
-# 5.4.3 Configure user default environment
+## 5.4.3 User default environment
 rhel9cis_rule_5_4_3_1: true
 rhel9cis_rule_5_4_3_2: true
 rhel9cis_rule_5_4_3_3: true
+rhel9cis_rule_5_4_3_4: true
 
-# Section 6 Logging and Auditing
-## 6.1 Configure Integrity Checking
-rhel9cis_rule_6_1_1: true
-rhel9cis_rule_6_1_2: true
-rhel9cis_rule_6_1_3: true
-## 6.2.1 Configure systemd-journald service
+# Section 6 - Logging and auditing
+## 6.1.1 journald
+rhel9cis_rule_6_1_1_1: true
+rhel9cis_rule_6_1_1_2: true
+rhel9cis_rule_6_1_1_3: true
+rhel9cis_rule_6_1_1_4: true
+rhel9cis_rule_6_1_1_5: true
+## 6.1.2 rsyslog
+rhel9cis_rule_6_1_2_1: true
+rhel9cis_rule_6_1_2_2: true
+rhel9cis_rule_6_1_2_3: true
+rhel9cis_rule_6_1_2_4: true
+rhel9cis_rule_6_1_2_5: true
+rhel9cis_rule_6_1_2_6: true
+rhel9cis_rule_6_1_2_7: true
+rhel9cis_rule_6_1_2_8: true
+rhel9cis_rule_6_1_2_9: true
+rhel9cis_rule_6_1_2_10: true
+rhel9cis_rule_6_1_2_11: true
+rhel9cis_rule_6_1_2_12: true
+rhel9cis_rule_6_1_2_13: true
+rhel9cis_rule_6_1_2_14: true
+## 6.1.3 Logfiles
+rhel9cis_rule_6_1_3_1: true
+## 6.2.1 auditd service
 rhel9cis_rule_6_2_1_1: true
 rhel9cis_rule_6_2_1_2: true
 rhel9cis_rule_6_2_1_3: true
 rhel9cis_rule_6_2_1_4: true
-## 6.2.2.x Configure journald
-rhel9cis_rule_6_2_2_1_1: true
-rhel9cis_rule_6_2_2_1_2: true
-rhel9cis_rule_6_2_2_1_3: true
-rhel9cis_rule_6_2_2_1_4: true
+## 6.2.2 Data retention
+rhel9cis_rule_6_2_2_1: true
 rhel9cis_rule_6_2_2_2: true
 rhel9cis_rule_6_2_2_3: true
 rhel9cis_rule_6_2_2_4: true
-## 6.2.3 Configure rsyslog
+## 6.2.3 auditd rules
 rhel9cis_rule_6_2_3_1: true
 rhel9cis_rule_6_2_3_2: true
 rhel9cis_rule_6_2_3_3: true
@@ -341,55 +377,53 @@ rhel9cis_rule_6_2_3_5: true
 rhel9cis_rule_6_2_3_6: true
 rhel9cis_rule_6_2_3_7: true
 rhel9cis_rule_6_2_3_8: true
-## 6.2.4 Configure Logfiles
+rhel9cis_rule_6_2_3_9: true
+rhel9cis_rule_6_2_3_10: true
+rhel9cis_rule_6_2_3_11: true
+rhel9cis_rule_6_2_3_12: true
+rhel9cis_rule_6_2_3_13: true
+rhel9cis_rule_6_2_3_14: true
+rhel9cis_rule_6_2_3_15: true
+rhel9cis_rule_6_2_3_16: true
+rhel9cis_rule_6_2_3_17: true
+rhel9cis_rule_6_2_3_18: true
+rhel9cis_rule_6_2_3_19: true
+rhel9cis_rule_6_2_3_20: true
+rhel9cis_rule_6_2_3_21: true
+rhel9cis_rule_6_2_3_22: true
+rhel9cis_rule_6_2_3_23: true
+rhel9cis_rule_6_2_3_24: true
+rhel9cis_rule_6_2_3_25: true
+rhel9cis_rule_6_2_3_26: true
+rhel9cis_rule_6_2_3_27: true
+rhel9cis_rule_6_2_3_28: true
+rhel9cis_rule_6_2_3_29: true
+rhel9cis_rule_6_2_3_30: true
+rhel9cis_rule_6_2_3_31: true
+rhel9cis_rule_6_2_3_32: true
+rhel9cis_rule_6_2_3_33: true
+rhel9cis_rule_6_2_3_34: true
+rhel9cis_rule_6_2_3_35: true
+rhel9cis_rule_6_2_3_36: true
+## 6.2.4 auditd file access
 rhel9cis_rule_6_2_4_1: true
-## 6.3 Configure Auditing
-## 6.3.1 Configure auditd Service
-rhel9cis_rule_6_3_1_1: true
-rhel9cis_rule_6_3_1_2: true
-rhel9cis_rule_6_3_1_3: true
-rhel9cis_rule_6_3_1_4: true
-## 6.3.2 Configure Data Retention
-rhel9cis_rule_6_3_2_1: true
-rhel9cis_rule_6_3_2_2: true
-rhel9cis_rule_6_3_2_3: true
-rhel9cis_rule_6_3_2_4: true
-## 6.3.3 Configure auditd Rules
-rhel9cis_rule_6_3_3_1: true
-rhel9cis_rule_6_3_3_2: true
-rhel9cis_rule_6_3_3_3: true
-rhel9cis_rule_6_3_3_4: true
-rhel9cis_rule_6_3_3_5: true
-rhel9cis_rule_6_3_3_6: true
-rhel9cis_rule_6_3_3_7: true
-rhel9cis_rule_6_3_3_8: true
-rhel9cis_rule_6_3_3_9: true
-rhel9cis_rule_6_3_3_10: true
-rhel9cis_rule_6_3_3_11: true
-rhel9cis_rule_6_3_3_12: true
-rhel9cis_rule_6_3_3_13: true
-rhel9cis_rule_6_3_3_14: true
-rhel9cis_rule_6_3_3_15: true
-rhel9cis_rule_6_3_3_16: true
-rhel9cis_rule_6_3_3_17: true
-rhel9cis_rule_6_3_3_18: true
-rhel9cis_rule_6_3_3_19: true
-rhel9cis_rule_6_3_3_20: true
-rhel9cis_rule_6_3_3_21: true
-## 6.3.4 Configure auditd File Access
-rhel9cis_rule_6_3_4_1: true
-rhel9cis_rule_6_3_4_2: true
-rhel9cis_rule_6_3_4_3: true
-rhel9cis_rule_6_3_4_4: true
-rhel9cis_rule_6_3_4_5: true
-rhel9cis_rule_6_3_4_6: true
-rhel9cis_rule_6_3_4_7: true
-rhel9cis_rule_6_3_4_8: true
-rhel9cis_rule_6_3_4_9: true
-rhel9cis_rule_6_3_4_10: true
+rhel9cis_rule_6_2_4_2: true
+rhel9cis_rule_6_2_4_3: true
+rhel9cis_rule_6_2_4_4: true
+rhel9cis_rule_6_2_4_5: true
+rhel9cis_rule_6_2_4_6: true
+rhel9cis_rule_6_2_4_7: true
+rhel9cis_rule_6_2_4_8: true
+rhel9cis_rule_6_2_4_9: true
+rhel9cis_rule_6_2_4_10: true
+## 6.3 Integrity checking (AIDE)
+rhel9cis_rule_6_3_1: true
+rhel9cis_rule_6_3_2: true
+rhel9cis_rule_6_3_3: true
+rhel9cis_rule_6_3_4: true
 
-# Section 7 System Maintenance
-## 7.1 System File Permissions
+# Section 7 - System maintenance
+## 7.1 System file permissions
 rhel9cis_rule_7_1_1: true
 rhel9cis_rule_7_1_2: true
 rhel9cis_rule_7_1_3: true
@@ -403,7 +437,7 @@ rhel9cis_rule_7_1_10: true
 rhel9cis_rule_7_1_11: true
 rhel9cis_rule_7_1_12: true
 rhel9cis_rule_7_1_13: true
-## 7.2 Local User and Group Settings
+## 7.2 Local user and group settings
 rhel9cis_rule_7_2_1: true
 rhel9cis_rule_7_2_2: true
 rhel9cis_rule_7_2_3: true
@@ -413,6 +447,9 @@ rhel9cis_rule_7_2_6: true
 rhel9cis_rule_7_2_7: true
 rhel9cis_rule_7_2_8: true
 rhel9cis_rule_7_2_9: true
+
+rhel9cis_enable_repogpg: true
+rhel9cis_rhel_default_repo: true
 
 ############
 
@@ -441,6 +478,8 @@ rhel9cis_autofs_services: false
 rhel9cis_autofs_mask: false
 rhel9cis_avahi_server: false
 rhel9cis_avahi_mask: false
+rhel9cis_cockpit_server: false
+rhel9cis_cockpit_mask: false
 rhel9cis_dhcp_server: false
 rhel9cis_dhcp_mask: false
 rhel9cis_dns_server: false
@@ -455,8 +494,6 @@ rhel9cis_message_server: false  # This is for messaging dovecot and cyrus-imap
 rhel9cis_message_mask: false
 rhel9cis_nfs_server: true
 rhel9cis_nfs_mask: true
-rhel9cis_nis_server: false  # set to mask if nis client required
-rhel9cis_nis_mask: false
 rhel9cis_print_server: false  # replaces cups
 rhel9cis_print_mask: false
 rhel9cis_rpc_server: true
@@ -475,8 +512,6 @@ rhel9cis_httpd_server: false
 rhel9cis_httpd_mask: false
 rhel9cis_nginx_server: false
 rhel9cis_nginx_mask: false
-rhel9cis_xinetd_server: false
-rhel9cis_xinetd_mask: false
 rhel9cis_xwindow_server: false  # will remove mask not an option
 rhel9cis_is_mail_server: false
 
@@ -484,7 +519,6 @@ rhel9cis_is_mail_server: false
 
 rhel9cis_ftp_client: false
 rhel9cis_openldap_clients_required: false
-rhel9cis_ypbind_required: false  # Same package as NIS server
 rhel9cis_telnet_required: false
 rhel9cis_tftp_client: false
 
@@ -511,10 +545,10 @@ rhel9cis_ipv6_required: true
 # rhel9cis_ipv6_disable defines the method of disabling IPv6, sysctl vs kernel
 rhel9cis_ipv6_disable_method: sysctl
 
-## 3.2 System network parameters (host only OR host and router)
+## 3.3.1.1-3.3.1.5, 3.3.2.1-3.3.2.2 forwarding and send_redirects (host only OR host and router)
 rhel9cis_is_router: false
 
-## Section 3.4
+## Section 4
 ### Firewall
 rhel9cis_firewall: firewalld
 
@@ -525,13 +559,13 @@ rhel9cis_firewall: firewalld
 
 rhel9_cis_sshd_config_file: /etc/ssh/sshd_config
 
-## 5.1.7 Note the following to understand precedence and layout, comma separated
+## 5.1.8 Note the following to understand precedence and layout, comma separated
 rhel9cis_sshd_allowusers: ''
 rhel9cis_sshd_allowgroups:
 rhel9cis_sshd_denyusers: nobody
 rhel9cis_sshd_denygroups:
 
-## 5.2.7 set sugroup if differs from wheel
+## 5.2.12 set sugroup if differs from wheel
 rhel9cis_sugroup: sugroup
 
 ## 5.3.2.1 Enable automation to create custom profile settings, using the settings above
@@ -557,24 +591,27 @@ rhel9cis_pass_warn_age: "7"
 # Control 6.1.x
 
 # aide setup via - cron, timer
-rhel9cis_aide_scan: cron
+rhel9cis_aide_scan: timer
 
 ## Logging 6.2.x.x
 
 ## syslog
 ## change to rsyslog/ journald or other
-rhel9cis_syslog: journald
 
 # Control 6.2.3.x
 ## Set if host is a logserver
 rhel9cis_remote_log_server: false
 
 # Log server settings
+rhel9cis_system_is_log_server: false
 rhel9cis_remote_log_host: logagg.example.com
 rhel9cis_remote_log_port: 514
 rhel9cis_remote_log_protocol: tcp
 rhel9cis_remote_log_retrycount: 100
 rhel9cis_remote_log_queuesize: 1000
+rhel9cis_remote_log_tls: false
+rhel9cis_remote_log_tls_cafile: /etc/pki/tls/certs/ca-bundle.crt
+rhel9cis_remote_log_tls_keyfile: ''
 
 # Control 7.1.12
 rhel9cis_exclude_unowned_search_path: \( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

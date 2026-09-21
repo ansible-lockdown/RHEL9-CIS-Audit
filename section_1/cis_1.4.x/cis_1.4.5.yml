@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_4_5 }}
+command:
+  grubby_confirm_spawn:
+    title: 1.4.5 | Ensure systemd ability to spawn an interactive boot process is disabled
+    exec: "a=$(grubby --info=ALL 2>/dev/null | grep -E '^[[:space:]]*args='); [ -n \"$a\" ] && echo \"boot_entries_found confirm_spawn=$(echo \"$a\" | grep -c 'systemd.confirm_spawn')\""
+    exit-status: 0
+    stdout:
+    - '/^boot_entries_found confirm_spawn=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.5
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

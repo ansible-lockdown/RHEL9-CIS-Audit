@@ -4,12 +4,39 @@
   {{ if .Vars.rhel9cis_rule_5_1_1 }}
 file:
   sshd_config_perms:
-    title: 5.1.1 | Ensure permissions on /etc/ssh/sshd_config are configured
+    title: 5.1.1 | Ensure access to /etc/ssh/sshd_config is configured | sshd_config
     path: /etc/ssh/sshd_config
     exists: true
-    mode: "0600"
+    mode:
+      or:
+      - "0600"
+      - "0400"
+      - "0200"
+      - "0000"
     owner: root
     group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+command:
+  sshd_config_d_conf_perms:
+    title: 5.1.1 | Ensure access to /etc/ssh/sshd_config is configured | sshd_config.d conf files
+    exec: |
+      find /etc/ssh/sshd_config.d/ -type f -name '*.conf' \( -perm /177 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n' 2>/dev/null
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

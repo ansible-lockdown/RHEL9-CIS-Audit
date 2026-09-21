@@ -2,36 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_14 }}
-file:
-  sshd_logingrace:
-    title: 5.1.14 | Ensure sshd LoginGraceTime is configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^LoginGraceTime ([1-9]|[1-5][0-9]|60)/'
-    - '!/^LoginGraceTime (6[1-9]|[7-9][0-9]|[1-9][0-9]{2,})/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.14
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-6
 command:
-  ssh_logingrace_live:
-    title: 5.1.14 | Ensure sshd LoginGraceTime is configured | live
-    exec: sshd -T | grep logingracetime
-    exit-status:
-      or:
-      - 0
-      - 1
+  ssh_rhosts_live:
+    title: 5.1.14 | Ensure sshd IgnoreRhosts is enabled
+    exec: sshd -T 2>/dev/null | grep -i -- '^ignorerhosts\s'
+    exit-status: 0
     stdout:
-    - '/^logingracetime ([1-9]|[1-5][0-9]|60)/'
-    - '!/^logingracetime (6[1-9]|[7-9][0-9]|[1-9][0-9]{2,})/'
+    - '/^ignorerhosts yes$/'
     meta:
       server: 1
       workstation: 1
@@ -42,6 +19,10 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
+      - CM-1
+      - CM-2
       - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

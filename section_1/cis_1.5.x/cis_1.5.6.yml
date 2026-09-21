@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_5_6 }}
+kernel-param:
+  kernel.randomize_va_space:
+    title: 1.5.6 | Ensure kernel.randomize_va_space is configured | running
+    value: '2'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.6
+      NIST800-53R5: CM-6
+command:
+  kernel_randomize_va_space_persistent:
+    title: 1.5.6 | Ensure kernel.randomize_va_space is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*kernel[.]randomize_va_space[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*kernel\.randomize_va_space\s*=\s*2$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.6
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

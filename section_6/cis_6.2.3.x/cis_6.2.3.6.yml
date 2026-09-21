@@ -1,30 +1,45 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_6 }}
-    {{ if not .Vars.rhel9cis_remote_log_server }}
 command:
-  remote_syslog:
-    title: 6.2.3.6 | Ensure rsyslog is configured to send logs to a remote log host
-    exec: 'grep -E "action.*omfwd.*target" /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
-    exit-status:
-      or:
-        - 0
-        - 2
+  auditd_6_2_3_6_cnf:
+    title: 6.2.3.6 | Ensure events that modify /etc/issue and /etc/issue.net are collected | conf check
+    exec: 'grep -Phs -- ''/etc/issue'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
     stdout:
-    - '*.* action(type="omfwd" target="{{ .Vars.rhel9cis_remote_log_host }}" port="{{ .Vars.rhel9cis_remote_log_port }}"'
-    - protocol="{{ .Vars.rhel9cis_remote_log_protocol }}"
+    - '/^\s*(-w /etc/issue/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/issue/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    - '/^\s*(-w /etc/issue\.net/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/issue\.net/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.6
-      CISv8: 8.2
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-6
-    {{ end }}
+      - AU-3
+      - CM-6
+  auditd_6_2_3_6_live:
+    title: 6.2.3.6 | Ensure events that modify /etc/issue and /etc/issue.net are collected | running
+    exec: 'auditctl -l | grep -P -- ''/etc/issue'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/issue/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/issue/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    - '/^\s*(-w /etc/issue\.net/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/issue\.net/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.6
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
   {{ end }}
 {{ end }}

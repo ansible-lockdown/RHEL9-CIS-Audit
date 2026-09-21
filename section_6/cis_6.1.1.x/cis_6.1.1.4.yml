@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_1_4 }}
+command:
+  journald_rotation:
+    title: 6.1.1.4 | Ensure journald log file rotation is configured
+    exec: 'systemd-analyze cat-config systemd/journald.conf | grep -Psi -- ''^\h*(SystemMaxUse|SystemKeepFree|SystemMaxFileSize|RuntimeMaxUse|RuntimeKeepFree|RuntimeMaxFileSize|MaxFileSec)\h*='''
+    exit-status: 0
+    stdout:
+    - '/(?i)^\s*(SystemMaxUse|SystemKeepFree|SystemMaxFileSize|RuntimeMaxUse|RuntimeKeepFree|RuntimeMaxFileSize|MaxFileSec)\s*=\s*\S+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

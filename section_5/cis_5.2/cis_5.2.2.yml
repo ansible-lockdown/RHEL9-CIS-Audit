@@ -3,23 +3,22 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_2_2 }}
 command:
-  pty_sudoers_d:
-    title: 5.2.2 | Ensure sudo commands use pty
-    exec: export PTY=`grep -q -Ei '^\s*Defaults\s+(\[^#]+,\s*)?use_pty' /etc/sudoers /etc/sudoers.d/*; echo $?` && if [[ $PTY == 0 ]];then echo OK ;fi
+  sudoers_files_access:
+    title: 5.2.2 | Ensure access on sudoers configuration files is configured
+    exec: |
+      find /etc/sudoers /etc/sudoers.d/ -type f \( -perm /0337 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
+      echo "scan_rc=$?"
     exit-status: 0
     stdout:
-    - 'OK'
+    - '/^scan_rc=0$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 0
       CIS_ID:
       - 5.2.2
-      CISv8:
-      - 5.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - AC-6
+      - AC-3
+      - MP-2
   {{ end }}
 {{ end }}

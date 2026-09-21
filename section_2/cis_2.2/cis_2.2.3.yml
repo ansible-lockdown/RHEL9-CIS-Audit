@@ -1,13 +1,13 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if not .Vars.rhel9cis_ypbind_required }}
+  {{ if not .Vars.rhel9cis_telnet_required }}
     {{ if .Vars.rhel9cis_rule_2_2_3 }}
 package:
-  nis_client:
-    title: 2.2.3 | Ensure nis client is not installed
+  telnet_client:
+    title: 2.2.3 | Ensure telnet client is not installed
     installed: false
-    name: ypbind
+    name: telnet
     meta:
       server: 1
       workstation: 1

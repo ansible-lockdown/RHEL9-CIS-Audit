@@ -5,10 +5,28 @@
 command:
   root_path_check:
     title: 5.4.2.5 | Ensure root path integrity
-    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
+    exec: |
+      l_root_path="$(su - root -c 'printf "%s" "$PATH"')"
+      [ -n "$l_root_path" ] && echo "path_found"
+      printf '%s\n' "$l_root_path" | grep -q -- "::" && echo "FAIL: root's PATH contains an empty directory (::)"
+      printf '%s\n' "$l_root_path" | grep -Pq -- ":\h*$" && echo "FAIL: root's PATH ends with a trailing colon (:)"
+      printf '%s\n' "$l_root_path" | grep -Pq -- '(^\h*|:)\.(:|\h*$)' && echo "FAIL: root's PATH contains the current working directory (.)"
+      printf '%s\n' "$l_root_path" | tr ':' '\n' | while IFS= read -r l_path; do
+        [ -z "$l_path" ] && continue
+        if [ -d "$l_path" ]; then
+          stat -Lc '%#a %U' "$l_path" | while read -r l_mode l_own; do
+            [ "$l_own" != "root" ] && echo "FAIL: $l_path is owned by $l_own"
+            [ $(( l_mode & 022 )) -gt 0 ] && echo "FAIL: $l_path is mode $l_mode"
+          done
+        else
+          echo "FAIL: $l_path is not an existing directory"
+        fi
+      done
+      true
     exit-status: 0
     stdout:
-    - '!/\\./'
+    - '/^path_found$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

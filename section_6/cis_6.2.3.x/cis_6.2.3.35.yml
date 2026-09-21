@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_35 }}
+command:
+  auditd_6_2_3_35_immutable:
+    title: 6.2.3.35 | Ensure the audit configuration is immutable
+    exec: 'grep -Ph -- ''^\h*-e\h+2\b'' /etc/audit/rules.d/*.rules | tail -1'
+    exit-status: 0
+    stdout:
+    - '/^\s*-e\s+2\b/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.35
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - AU-3
+      - MP-2
+  {{ end }}
+{{ end }}

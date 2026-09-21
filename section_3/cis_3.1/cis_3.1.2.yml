@@ -3,21 +3,28 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_3_1_2 }}
 command:
-  wireless_disabled:
-    title: 3.1.2 | Ensure wireless interfaces are disabled
+  cis_3_1_2_wireless_not_available:
+    title: 3.1.2 | Ensure wireless interfaces are not available
+    exec: |
+      l_fail=""
+      for l_dir in $(find /sys/class/net/*/ -type d -name wireless 2>/dev/null); do
+        l_path="$(readlink -e "$(dirname "$l_dir")"/device/driver/module)" || continue
+        l_mod="$(basename "$l_path")"
+        modprobe -n -v "$l_mod" 2>/dev/null | grep -Pq -- '^\h*install\h+(/usr)?/bin/(true|false)\b' || { echo "FAIL - $l_mod is loadable"; l_fail="yes"; }
+        lsmod | awk '{print $1}' | grep -qx "$l_mod" && { echo "FAIL - $l_mod is loaded"; l_fail="yes"; }
+        modprobe --showconfig | grep -Pq -- "^\h*blacklist\h+$l_mod\b" || { echo "FAIL - $l_mod is not deny listed"; l_fail="yes"; }
+      done
+      [ -z "$l_fail" ] && echo "PASS"
+      exit 0
     exit-status: 0
-    exec: 'nmcli radio all | tail -1'
     stdout:
-    - '/^(enabled|disabled|missing)\s\s(disabled)\s\s(enabled|disabled|missing)\s\s(disabled)/'
+    - '/^PASS$/'
+    - '!/FAIL/'
     meta:
       server: 1
-      workstation: NA
+      workstation: 0
       CIS_ID:
       - 3.1.2
-      CISv8: 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
   {{ end }}

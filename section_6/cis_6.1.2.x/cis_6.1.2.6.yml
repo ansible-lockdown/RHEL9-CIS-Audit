@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_6 }}
+command:
+  rsyslog_workdir_access:
+    title: 6.1.2.6 | Ensure access to the rsyslog work directory is configured
+    exec: |
+      d=$(grep -Psoh -- '^[^#]*(\$WorkDirectory\h+|workDirectory\h*=\h*"?)\K[^"\h)]+' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | tail -n 1)
+      find "${d:-/var/lib/rsyslog}" -maxdepth 0 -type d \( ! -user root -o ! -group root -o -perm /0077 \) 2>/dev/null | wc -l
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.6
+      CISv8:
+      - 3.3
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

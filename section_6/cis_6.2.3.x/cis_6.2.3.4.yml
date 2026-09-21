@@ -1,29 +1,55 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_4 }}
 command:
-  perms_rsyslog_d:
-    title: 6.2.3.4 | Ensure rsyslog log file creation mode is configured
-    exec: 'grep -s ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf | cut -f2 -d:'
+  auditd_6_2_3_4_cnf:
+    title: 6.2.3.4 | Ensure events that modify date and time information are collected | conf check
+    exec: 'grep -Phs -- ''(adjtimex|settimeofday|clock_settime|/etc/localtime)'' /etc/audit/rules.d/*.rules'
     exit-status: 0
     stdout:
-    - '/\$FileCreateMode 06[0-4]0/'
-    - '!/\$FileCreateMode 06[6-7][0-7]/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?adjtimex(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?settimeofday(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?adjtimex(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?settimeofday(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?clock_settime(,\S+)? (.* )?-F a0=0x0 (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?clock_settime(,\S+)? (.* )?-F a0=0x0 (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*(-w /etc/localtime/? -p wa -k time-change|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/localtime/? -F perm=wa (-k |-F key=)time-change)\s*$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.4
-      CISv8:
-      - 3.3
-      - 8.2
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
-      - AC-6
-      - MP-2
+      - AU-3
+      - CM-6
+  auditd_6_2_3_4_live:
+    title: 6.2.3.4 | Ensure events that modify date and time information are collected | running
+    exec: 'auditctl -l | grep -P -- ''(adjtimex|settimeofday|clock_settime|/etc/localtime)'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?adjtimex(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?settimeofday(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?adjtimex(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?settimeofday(,\S+)? (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?clock_settime(,\S+)? (.* )?-F a0=0x0 (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?clock_settime(,\S+)? (.* )?-F a0=0x0 (.* )?(-k |-F key=)time-change\s*$/'
+    - '/^\s*(-w /etc/localtime/? -p wa -k time-change|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/localtime/? -F perm=wa (-k |-F key=)time-change)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.4
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
   {{ end }}
 {{ end }}

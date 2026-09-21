@@ -1,0 +1,49 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_32 }}
+command:
+  auditd_6_2_3_32_cnf:
+    title: 6.2.3.32 | Ensure kernel "init_module" and "finit_module" loading unloading and modification is collected | conf check
+    exec: 'grep -Phs -- ''init_module'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?init_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?finit_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?init_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?finit_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.32
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  auditd_6_2_3_32_live:
+    title: 6.2.3.32 | Ensure kernel "init_module" and "finit_module" loading unloading and modification is collected | running
+    exec: 'auditctl -l | grep -P -- ''init_module'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?init_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?finit_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?init_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?finit_module(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)kernel_modules\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.32
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  {{ end }}
+{{ end }}

@@ -1,15 +1,14 @@
 ---
 
-
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_4_2_6 }}
 command:
-  root_umask_bash_profile:
+  root_umask_effective:
     title: 5.4.2.6 | Ensure root user umask is configured
-    exec: grep -i umask /root/.bash_profile /root/.bashrc
+    exec: su - root -c 'umask'
     exit-status: 0
     stdout:
-    - '/.*:umask 00(2|7)7/'
+    - '/^0?[0-7][2367]7$/'
     meta:
       server: 1
       workstation: 1

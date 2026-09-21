@@ -1,0 +1,36 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_11 }}
+    {{ if .Vars.rhel9cis_remote_log_server }}
+      {{ if .Vars.rhel9cis_remote_log_tls }}
+command:
+  rsyslog_forwarding_tls:
+    title: 6.1.2.11 | Ensure rsyslog network forwarding uses TLS
+    exec: |
+      grep -Psih -- '^[^#]*(StreamDriver|DefaultNetstreamDriver)(\.Name)?\s*[= ]\s*"?(gtls|ossl)"?' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      grep -Psih -- '^[^#]*(StreamDriverMode\s*=\s*"?1"?|ActionSendStreamDriverMode\s+1)' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      grep -Psih -- '^[^#]*(StreamDriverAuthMode\s*=\s*"?(x509/name|x509/certvalid|x509/fingerprint|anon)"?|ActionSendStreamDriverAuthMode\s+(x509/name|x509/certvalid|x509/fingerprint|anon))' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      grep -Psih -- '^[^#]*(port\s*=\s*"?6514"?|:6514)' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '/(?i)(StreamDriver|DefaultNetstreamDriver)(\.Name)?\s*[= ]\s*"?(gtls|ossl)/'
+    - '/(?i)(StreamDriverMode\s*=\s*"?1|ActionSendStreamDriverMode\s+1)/'
+    - '/(?i)(StreamDriverAuthMode\s*=\s*"?|ActionSendStreamDriverAuthMode\s+)(x509/name|x509/certvalid|x509/fingerprint|anon)/'
+    - '/(?i)(port\s*=\s*"?6514|:6514)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.11
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

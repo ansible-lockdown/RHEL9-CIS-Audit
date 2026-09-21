@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_3 }}
+service:
+  firewalld:
+    title: 4.1.3 | Ensure firewalld.service is configured
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.3
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

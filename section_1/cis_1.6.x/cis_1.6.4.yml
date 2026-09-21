@@ -2,13 +2,17 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_4 }}
-file:
-  crypto_policies_no_weakmacs:
-    title: 1.6.4 | Ensure system wide crypto policy disables macs less than 128 bits
-    path: /etc/crypto-policies/state/CURRENT.pol
-    exists: true
-    contents:
-    - '!/^mac\s*=\s*.*64/'
+command:
+  crypto_policies_no_ssh_cbc:
+    title: 1.6.4 | Ensure system wide crypto policy disables cbc for ssh
+    exec: |
+      f=/etc/crypto-policies/state/CURRENT.pol
+      if grep -Piq -- '^\h*cipher@(lib|open)ssh(-server|-client)?\h*=\h*([^#\n\r]+)?-CBC\b' "$f"; then echo ssh_cbc=enabled
+      elif grep -Piq -- '^\h*cipher\h*=\h*([^#\n\r]+)?-CBC\b' "$f" && ! grep -Piq -- '^\h*cipher@(lib|open)ssh' "$f"; then echo ssh_cbc=enabled
+      else echo ssh_cbc=disabled; fi
+    exit-status: 0
+    stdout:
+    - '/^ssh_cbc=disabled$/'
     meta:
       server: 1
       workstation: 1

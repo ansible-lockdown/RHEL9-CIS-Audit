@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_23 }}
+command:
+  auditd_6_2_3_23_cnf:
+    title: 6.2.3.23 | Ensure login and logout events are collected | conf check
+    exec: 'grep -Phs -- ''(lastlog|faillock)'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/log/lastlog/? -p wa -k logins|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/lastlog/? -F perm=wa (-k |-F key=)logins)\s*$/'
+    - '/^\s*(-w /var/run/faillock/? -p wa -k logins|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/run/faillock/? -F perm=wa (-k |-F key=)logins)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.23
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_23_live:
+    title: 6.2.3.23 | Ensure login and logout events are collected | running
+    exec: 'auditctl -l | grep -P -- ''(lastlog|faillock)'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/log/lastlog/? -p wa -k logins|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/lastlog/? -F perm=wa (-k |-F key=)logins)\s*$/'
+    - '/^\s*(-w /var/run/faillock/? -p wa -k logins|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/run/faillock/? -F perm=wa (-k |-F key=)logins)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.23
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

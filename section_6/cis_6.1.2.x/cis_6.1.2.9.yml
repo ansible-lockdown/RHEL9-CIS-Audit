@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_9 }}
+    {{ if .Vars.rhel9cis_remote_log_server }}
+command:
+  rsyslog_remote_log_host:
+    title: 6.1.2.9 | Ensure rsyslog is configured to send logs to a remote log host
+    exec: |
+      grep -Psih -- '^\h*[^#]\S*\h+@@\S+' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      grep -Psih -- '^\s*([^#]+\s+)?action\(([^#]+\s+)?\btarget="?[^#"]+"?\b' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '/(@@\S+|target="?{{ .Vars.rhel9cis_remote_log_host }})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.9
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-6
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_14 }}
+file:
+  /etc/logrotate.conf:
+    title: 6.1.2.14 | Ensure logrotate is configured
+    exists: true
+    contents:
+    - '/^\s*(daily|weekly|monthly|yearly)\s*$/'
+    - '/^\s*rotate\s+\d+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.14
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-8
+  {{ end }}
+{{ end }}

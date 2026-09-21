@@ -1,0 +1,34 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_3_2 }}
+command:
+  aide_scheduled_check:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked
+    exec: |
+      grep -rEi 'aide[[:space:]]+(--check|--update)' /var/spool/cron/ /etc/crontab /etc/cron.d /etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly 2>/dev/null | grep -Ev ':[[:space:]]*#'
+      for t in $(systemctl list-unit-files --type=timer --no-legend | awk '{print $1}'); do
+        en="$(systemctl is-enabled "$t" 2>/dev/null)"; ac="$(systemctl is-active "$t" 2>/dev/null)"
+        [ "$en" = "enabled" ] || [ "$ac" = "active" ] || continue
+        s="$(systemctl show -p Unit --value "$t")"; [ -z "$s" ] && s="${t%.timer}.service"
+        systemctl cat "$s" 2>/dev/null | grep -Eq 'ExecStart=.*aide[[:space:]]+(--check|--update)' && echo "$t -> $s"
+      done
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '/(aide[[:space:]]+--(check|update)|\.timer -> )/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      CISv8:
+      - 3.14
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+  {{ end }}
+{{ end }}

@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_5 }}
+command:
+  cis_4_1_5_loopback_zone_target:
+    title: 4.1.5 | Ensure firewalld loopback traffic is configured
+    exec: |
+      l_zone="$(firewall-cmd --get-zone-of-interface=lo 2>&1 | xargs)"
+      l_pzone="$(firewall-cmd --permanent --get-zone-of-interface=lo 2>&1 | xargs)"
+      echo "zone:$l_zone"
+      echo "permanent_zone:$l_pzone"
+      firewall-cmd --list-all --zone="$l_zone" 2>/dev/null | grep -Psi -- '^\h*target:\h+\H+' | xargs
+    exit-status: 0
+    stdout:
+    - '/^target: ACCEPT$/'
+    - '/^zone:\S+$/'
+    - '/^permanent_zone:\S+$/'
+    - '!/zone:no zone/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.5
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

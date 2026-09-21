@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_1 }}
+command:
+  motd_no_system_info:
+    title: 1.7.1 | Ensure /etc/motd is configured
+    exec: |
+      os_id=$(. /etc/os-release; echo "$ID")
+      echo "motd_sysinfo_lines=$(grep -Psi -- "(\\\\[vrms]|\\b${os_id}\\b)" /etc/motd /etc/motd.d/* 2>/dev/null | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^motd_sysinfo_lines=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.1
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+  {{ end }}
+{{ end }}

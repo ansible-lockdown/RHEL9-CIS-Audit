@@ -2,54 +2,23 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_21 }}
-file:
-  sshd_userenv:
-    title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled | config
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^PermitUserEnvironment no/'
-    - '!/^PermitUserEnvironment yes/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.21
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
 command:
-  ssh_userenv_live:
-    title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled | live
-    exec: sshd -T | grep permituserenvironment
-    exit-status:
-      or:
-      - 0
-      - 1
+  ssh_permit_root_live:
+    title: 5.1.21 | Ensure sshd PermitRootLogin is disabled
+    exec: sshd -T 2>/dev/null | grep -i -- '^permitrootlogin\s'
+    exit-status: 0
     stdout:
-    - '/^permituserenvironment no/'
-    - '!/^permituserenvironment yes/'
+    - '/^permitrootlogin no$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.21
-      CISv8: 4.1
+      CISv8: 5.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - AC-6
   {{ end }}
 {{ end }}

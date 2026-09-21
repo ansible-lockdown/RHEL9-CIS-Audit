@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_4_1_10 }}
+command:
+  cis_4_1_10_log_denied:
+    title: 4.1.10 | Ensure firewalld logs denied packets
+    exec: firewall-cmd --get-log-denied
+    exit-status: 0
+    stdout:
+    - '/^(all|unicast|broadcast|multicast)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.10
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

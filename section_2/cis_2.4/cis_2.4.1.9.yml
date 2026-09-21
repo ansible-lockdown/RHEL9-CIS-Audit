@@ -1,0 +1,46 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_2_4_1_9 }}
+file:
+  cron_deny_users:
+    title: 2.4.1.9 | Ensure access to crontab is configured
+    path: /etc/cron.deny
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.9
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  cron_allow_users:
+    title: 2.4.1.9 | Ensure access to crontab is configured
+    path: /etc/cron.allow
+    exists: true
+    owner: root
+    group: root
+    mode:
+      or:
+        - "0400"
+        - "0600"
+        - "0640"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.9
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

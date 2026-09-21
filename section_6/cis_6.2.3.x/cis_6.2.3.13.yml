@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_13 }}
+command:
+  auditd_6_2_3_13_cnf:
+    title: 6.2.3.13 | Ensure events that modify /etc/passwd information are collected | conf check
+    exec: 'grep -Phs -- ''/etc/passwd( |/? )'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/passwd/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/passwd/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.13
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_13_live:
+    title: 6.2.3.13 | Ensure events that modify /etc/passwd information are collected | running
+    exec: 'auditctl -l | grep -P -- ''/etc/passwd( |/? )'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/passwd/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/passwd/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.13
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

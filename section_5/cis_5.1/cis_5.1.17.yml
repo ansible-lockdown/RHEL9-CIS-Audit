@@ -2,52 +2,23 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_17 }}
-file:
-  sshd_maxstartups:
-    title: 5.1.17 | Ensure sshd MaxStartups is configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - "MaxStartups 10:30:60"
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.17
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
 command:
-  ssh_maxstartups_live:
-    title: 5.1.17 | Ensure sshd MaxStartups is configured | live
-    exec: sshd -T | grep maxstartups
-    exit-status:
-      or:
-      - 0
-      - 1
+  sshd_authtries_live:
+    title: 5.1.17 | Ensure sshd MaxAuthTries is configured
+    exec: sshd -T 2>/dev/null | grep -i -- '^maxauthtries\s'
+    exit-status: 0
     stdout:
-    - "maxstartups 10:30:60"
+    - '/^maxauthtries [1-4]$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.17
-      CISv8: 4.1
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - AU-3
   {{ end }}
 {{ end }}

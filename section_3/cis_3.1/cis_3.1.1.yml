@@ -51,6 +51,7 @@ command:
       NIST800-53R5:
       - CM-7
     {{ end }}
+  {{ if not .Vars.rhel9cis_ipv6_required }}
   {{ if eq .Vars.rhel9cis_ipv6_disable_method "sysctl" }}
   ipv6_disabled_sysctl:
     title: 3.1.1 | Ensure IPv6 status is identified | IPv6 disabled via sysctl
@@ -88,6 +89,7 @@ kernel-param:
       CISv8_IG3: true
       NIST800-53R5:
       - CM-7
+  {{ end }}
   {{ end }}
   {{ end }}
 {{ end }}

@@ -1,16 +1,16 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if not .Vars.rhel9cis_telnet_required }}
+  {{ if not .Vars.rhel9cis_tftp_client }}
     {{ if .Vars.rhel9cis_rule_2_2_4 }}
 package:
-  telnet_client:
-    title: 2.2.4 | Ensure telnet client is not installed
+  tftp_client:
+    title: 2.2.4 | Ensure tftp client is not installed
     installed: false
-    name: telnet
+    name: tftp
     meta:
       server: 1
-      workstation: NA
+      workstation: 1
       CIS_ID:
       - 2.2.4
       CISv8:

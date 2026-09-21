@@ -3,26 +3,19 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_6 }}
-file:
-  00-media-automount_disable:
-    title: 1.8.6 | Ensure GDM automatic mounting of removable media is disabled
-    path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/00-media-automount
-    exists: true
-    contents:
-    - '/^[org/gnome/desktop/media-handling]/'
-    - '/^automount=false/'
-    - '/^automount-open=false/'
-    - '!/^automount=true/'
-    - '!/^automount-open=true/'
+command:
+  gdm_xdmcp_disabled:
+    title: 1.8.6 | Ensure XDMCP is not enabled
+    exec: echo "xdmcp_enabled_lines=$(for f in /etc/gdm/custom.conf /etc/gdm/daemon.conf; do [ -f "$f" ] && awk '/\[xdmcp\]/{f=1;next} /\[/{f=0} f && /^\s*Enable\s*=\s*true/' "$f"; done | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^xdmcp_enabled_lines=0$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.6
-      CISv8: 10.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: CM-7
     {{ end }}
   {{ end }}
 {{ end }}

@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_10 }}
+    {{ if .Vars.rhel9cis_remote_log_server }}
+      {{ if .Vars.rhel9cis_remote_log_tls }}
+command:
+  rsyslog_tls_driver_installed:
+    title: 6.1.2.10 | Ensure a rsyslog TLS network stream driver is installed
+    exec: 'rpm -q rsyslog-gnutls rsyslog-openssl'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^rsyslog-(gnutls|openssl)-\d/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.10
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

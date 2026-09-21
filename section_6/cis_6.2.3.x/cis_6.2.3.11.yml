@@ -1,0 +1,79 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_11 }}
+command:
+  auditd_6_2_3_11_cnf:
+    title: 6.2.3.11 | Ensure unsuccessful file access attempts are collected | conf check
+    exec: 'grep -Phs -- ''(EACCES|EPERM)'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.11
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_11_live:
+    title: 6.2.3.11 | Ensure unsuccessful file access attempts are collected | running
+    exec: 'auditctl -l | grep -P -- ''(EACCES|EPERM)'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EACCES (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?creat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?open(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?openat(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?truncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?ftruncate(,\S+)? (.* )?-F exit=-EPERM (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)access\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.11
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

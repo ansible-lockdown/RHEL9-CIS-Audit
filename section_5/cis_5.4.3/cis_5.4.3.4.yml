@@ -1,0 +1,56 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_4_3_4 }}
+command:
+  umask_profile_scripts:
+    title: 5.4.3.4 | Ensure default user umask is configured
+    exec: |
+      l_floor=23
+      for l_file in /etc/profile /etc/bashrc /etc/bash.bashrc /etc/profile.d/sh.local /etc/profile.d/*.sh; do
+        [ -r "$l_file" ] || continue
+        grep -Psi -- '^\h*umask\h+\S' "$l_file" | while IFS= read -r l_line; do
+          l_arg="$(printf '%s' "$l_line" | grep -Poi -- '^\h*umask\h+\K[^[:space:]#;]+')"
+          [ -n "$l_arg" ] || continue
+          l_dec="INVALID"
+          if printf '%s' "$l_arg" | grep -Eq '^[0-7]{3,4}$'; then
+            l_dec="$(( 8#$l_arg ))"
+          elif printf '%s' "$l_arg" | grep -Eq '^([augo]+=[rwx]*)(,[augo]+=[rwx]*)*$'; then
+            l_u=0; l_g=0; l_o=0
+            for l_clause in $(printf '%s' "$l_arg" | tr ',' ' '); do
+              l_who="${l_clause%%=*}"; l_perms="${l_clause#*=}"; l_bits=0
+              case "$l_perms" in *r*) l_bits=$(( l_bits | 4 ));; esac
+              case "$l_perms" in *w*) l_bits=$(( l_bits | 2 ));; esac
+              case "$l_perms" in *x*) l_bits=$(( l_bits | 1 ));; esac
+              l_deny=$(( 7 - l_bits ))
+              case "$l_who" in *a*) l_u=$l_deny; l_g=$l_deny; l_o=$l_deny;; esac
+              case "$l_who" in *u*) l_u=$l_deny;; esac
+              case "$l_who" in *g*) l_g=$l_deny;; esac
+              case "$l_who" in *o*) l_o=$l_deny;; esac
+            done
+            l_dec=$(( l_u * 64 + l_g * 8 + l_o ))
+          fi
+          if [ "$l_dec" = "INVALID" ] || [ $(( l_dec & l_floor )) -ne "$l_floor" ]; then
+            echo "FAIL: $l_file: $l_line"
+          fi
+        done
+      done
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.3.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

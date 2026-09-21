@@ -2,40 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_18 }}
-file:
-  sshd_maxsessions:
-    title: 5.1.18 | Ensure sshd MaxSessions is configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^MaxSessions ([1-9]|10)/'
-    - '!/^MaxSessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.18
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
 command:
-  ssh_maxsessions_live:
-    title: 5.1.18 | Ensure sshd MaxSessions is configured | live
-    exec: sshd -T | grep maxsessions
-    exit-status:
-      or:
-      - 0
-      - 1
+  ssh_maxstartups_live:
+    title: 5.1.18 | Ensure sshd MaxStartups is configured
+    exec: |
+      sshd -T 2>/dev/null | awk '$1 == "maxstartups" {split($2, a, ":"); if (a[1] > 10 || a[2] > 30 || a[3] > 60) print "FAIL: " $0; else print "maxstartups_ok"}'
+    exit-status: 0
     stdout:
-    - '/^maxsessions ([1-9]|10)/'
-    - '!/^maxsessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    - '/^maxstartups_ok$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

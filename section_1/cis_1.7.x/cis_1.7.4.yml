@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_4 }}
+command:
+  etc_motd_access:
+    title: 1.7.4 | Ensure access to /etc/motd is configured
+    exec: if [ -e /etc/motd ]; then stat -Lc '%a %U %G' /etc/motd; else echo motd_absent; fi
+    exit-status: 0
+    stdout:
+    - '/^([0246][04][04] root root|motd_absent)$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.4
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

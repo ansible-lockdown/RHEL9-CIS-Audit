@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_2_10 }}
+command:
+  sudo_timeout:
+    title: 5.2.10 | Ensure sudo timestamp_timeout is configured
+    exec: |
+      grep -rhoPi -- '^[^#\n\r]*timestamp_timeout\h*=\h*\K-?\d+' /etc/sudoers /etc/sudoers.d/ | awk '{ if ($1 < 0 || $1 > 15) print "FAIL: timestamp_timeout=" $1 }'
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.10
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

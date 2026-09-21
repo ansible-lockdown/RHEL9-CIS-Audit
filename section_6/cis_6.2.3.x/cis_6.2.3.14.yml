@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_14 }}
+command:
+  auditd_6_2_3_14_cnf:
+    title: 6.2.3.14 | Ensure events that modify /etc/shadow and /etc/gshadow are collected | conf check
+    exec: 'grep -Phs -- ''shadow'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/shadow/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/shadow/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    - '/^\s*(-w /etc/gshadow/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/gshadow/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.14
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_14_live:
+    title: 6.2.3.14 | Ensure events that modify /etc/shadow and /etc/gshadow are collected | running
+    exec: 'auditctl -l | grep -P -- ''shadow'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/shadow/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/shadow/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    - '/^\s*(-w /etc/gshadow/? -p wa -k identity|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/gshadow/? -F perm=wa (-k |-F key=)identity)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.14
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

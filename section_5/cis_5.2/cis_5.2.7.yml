@@ -2,44 +2,22 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_2_7 }}
-file:
-  restrict_su:
-    title: 5.2.7 | Ensure access to the su command is restricted
-    path: /etc/pam.d/su
-    exists: true
-    contents:
-      - '/^auth.*required.*pam_wheel.so\suse_uid\sgroup={{ .Vars.rhel9cis_sugroup }}/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.2.7
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
 command:
-  sugroup_etc_group:
-    title: 5.2.7 | Ensure access to the su command is restricted
-    exec: grep {{ .Vars.rhel9cis_sugroup }} /etc/group
-    exit-status: 0
+  authenticate_sudoers:
+    title: 5.2.7 | Ensure re-authentication for privilege escalation is not disabled globally
+    exec: grep -r '^[^#].*!authenticate' /etc/sudoers /etc/sudoers.d/
+    exit-status: 1
     stdout:
-    - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:$/'
-    - '!/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:.*:/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.7
-      CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
-      - MP-2
+      - AC-6
   {{ end }}
 {{ end }}

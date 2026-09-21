@@ -2,14 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_19 }}
-file:
-  sshs_permitempty_passwd:
-    title: 5.1.19 | Ensure sshd PermitEmptyPasswords is disabled | config
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^PermitEmptyPasswords no/'
-    - '!/^PermitEmptyPasswords yes/'
+command:
+  ssh_maxsessions_live:
+    title: 5.1.19 | Ensure sshd MaxSessions is configured
+    exec: sshd -T 2>/dev/null | grep -i -- '^maxsessions\s'
+    exit-status: 0
+    stdout:
+    - '/^maxsessions ([1-9]|10)$/'
     meta:
       server: 1
       workstation: 1
@@ -25,17 +24,15 @@ file:
       - CM-6
       - CM-7
       - IA-5
-command:
-  ssh_empty_passwd_live:
-    title: 5.1.19 | Ensure sshd PermitEmptyPasswords is disabled | live
-    exec: sshd -T | grep permitemptypasswords
+  ssh_maxsessions_config:
+    title: 5.1.19 | Ensure sshd MaxSessions is configured | config files
+    exec: grep -Psi -- '^\h*MaxSessions\h+\"?(1[1-9]|[2-9][0-9]|[1-9][0-9][0-9]+)\b' /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
     exit-status:
       or:
-      - 0
       - 1
+      - 2
     stdout:
-    - '/^permitemptypasswords no/'
-    - '!/^permitemptypasswords yes/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

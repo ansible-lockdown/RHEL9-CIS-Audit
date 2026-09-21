@@ -5,41 +5,33 @@
 command:
   password_dictchk:
     title: 5.3.3.2.6 | Ensure password dictionary check is enabled
-    exec: grep -Psi -- '^\s*dictcheck\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exec: grep -Psi -- '^\h*dictcheck\h*=\h*0\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
     exit-status:
       or:
-      - 0
       - 1
+      - 2
     stdout:
-    - '/.*\:dictcheck\s*=\s*1/'
-    - '!/.*\:dictcheck\s*=\s*0/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.2.6
-      CISv8:
-      - 5.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: IA-5
   dictchk_not_pamd:
-    title: 5.3.3.2.6 | Ensure password dictionary check is enabled
-    exec: grep -Psi -- '^\s*password\s+(requisite|required|sufficient)\s+pam_pwquality\.so\s+([^#\n\r]+\s+)?dictcheck\s*=\s*0\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
-    exit-status:
-      or:
-      - 0
-      - 1
+    title: 5.3.3.2.6 | Ensure password dictionary check is enabled | pam files
+    exec: grep -Psi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?dictcheck\h*=\h*0\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
+    exit-status: 1
     stdout:
-    - '!/.*/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.2.6
-      CISv8:
-      - 5.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

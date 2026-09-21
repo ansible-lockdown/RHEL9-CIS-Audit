@@ -3,14 +3,23 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_4 }}
 command:
-  no_weak_ssh_ciphers:
-    title: 5.1.4 | Ensure sshd Ciphers are configured | weak cipher check
-    exec: sshd -T | grep -Pi --'^ciphers\h+\"?([^#\n\r]+,)?((3des|blowfish|cast128|aes(128|192|256))-cbc|arcfour(128|256)?|rijndael-cbc@lysator\.liu\.se|chacha20-poly1305@openssh\.com)\b'
-    exit-status:
-      or:
-      - 0
-      - 2
-    stdout: ['!/./']
+  ssh_host_public_key_access:
+    title: 5.1.4 | Ensure access to SSH public host key files is configured
+    exec: |
+      sshd -T 2>/dev/null | awk '$1=="hostkey"{print $2}' | while IFS= read -r l_key; do
+        l_file="${l_key}.pub"
+        ssh-keygen -lf "$l_file" >/dev/null 2>&1 || continue
+        echo "checked: $l_file"
+        stat -Lc '%#a:%U:%G' "$l_file" | while IFS=: read -r l_mode l_owner l_group; do
+          if [ $(( l_mode & 0133 )) -gt 0 ] || [ "$l_owner" != "root" ] || [ "$l_group" != "root" ]; then
+            echo "FAIL: $l_file mode $l_mode owner $l_owner group $l_group"
+          fi
+        done
+      done
+    exit-status: 0
+    stdout:
+    - '/^checked: /'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
@@ -21,6 +30,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - SC-8
+      - AC-3
+      - MP-2
   {{ end }}
 {{ end }}

@@ -3,10 +3,10 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_7 }}
 command:
-  udf:
-    title: 1.1.1.7 | Ensure udf kernel module is not available
+  squashfs:
+    title: 1.1.1.7 | Ensure squashfs kernel module is not available | disabled
     exit-status: 0
-    exec: "modprobe -n -v udf | grep -E '(udf|install)'"
+    exec: "modprobe -n -v squashfs | grep -E '(squashfs|install)'"
     stdout:
     - install /bin/true
     meta:
@@ -19,12 +19,12 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-  blacklist_udf:
-    title: 1.1.1.7 | Ensure udf kernel module is not available | blacklist
+  blacklist_squashfs:
+    title: 1.1.1.7 | Ensure squashfs kernel module is not available | blacklist
     exit-status: 0
-    exec: grep udf /etc/modprobe.d/*.conf
+    exec: grep squashfs /etc/modprobe.d/*.conf
     stdout:
-      - '/blacklist udf/'
+      - '/blacklist squashfs/'
     meta:
       server: 2
       workstation: 2

@@ -1,19 +1,21 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_7_1_11 }}
+  {{ if .Vars.rhel9cis_rule_7_1_11 }}
+    {{ if .Vars.run_heavy_tests }}
 command:
-  sticky_bit:
+  world_writable_secured:
     title: 7.1.11 | Ensure world writable files and directories are secured
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
-    exit-status:
-      or:
-      - 0
-      - 1
+    exec: |
+      findmnt -Dkerno fstype,target | awk '($1 !~ /^[[:space:]]*(nfs|proc|cifs|smb|vfat|iso9660|efivarfs|selinuxfs|ncpfs)/ && $2 !~ /^(\/run|\/tmp|\/var\/tmp)(\/|$)/){print $2}' | while IFS= read -r l_mount; do
+        find "$l_mount" -mount -xdev \( -path "*/containers/storage/*" -o -path "*/containerd/*" -o -path "*/kubelet/*" -o -path "*/docker/*" -o -path "/sys/*" -o -path "/snap/*" -o -path "/boot/efi/*" \) -prune -o \( \( -type f -perm -0002 \) -o \( -type d -perm -0002 ! -perm -1000 \) \) -printf 'FAIL: %y %p\n' 2>/dev/null
+      done
+      echo "scan_done"
+    exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
-    - '!/.*/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

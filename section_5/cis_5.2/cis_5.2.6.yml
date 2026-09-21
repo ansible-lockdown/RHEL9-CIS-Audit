@@ -1,25 +1,23 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_5_2_6 }}
 command:
-  sudo_timeout:
-    title: 5.2.6 | Ensure sudo authentication timeout is configured correctly
-    exec: grep -rP "timestamp_timeout=\K[0-9]*" /etc/sudoers*
-    exit-status: 0
+  nopasswd_sudoers_d:
+    title: 5.2.6 | Ensure users must provide password for escalation
+    exec: grep -r "^[^#].*NOPASSWD" /etc/sudoers /etc/sudoers.d/
+    exit-status: 1
     stdout:
-    - '!/timestamp_timeout=(-1|1[6-9]|[2-9][0-9]|[1-9][0-9]{2,})/'
-    - '/timestamp_timeout=([5-9]|1[0-5])/'
+    - '!/./'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 5.2.6
-      CISv8:
-      - 5.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5:
+      - AC-6
   {{ end }}
 {{ end }}

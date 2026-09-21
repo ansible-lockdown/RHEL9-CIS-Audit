@@ -1,50 +1,29 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_7_2_8 }}
+  {{ if .Vars.rhel9cis_rule_7_2_8 }}
+    {{ if .Vars.run_heavy_tests }}
 command:
-  home_dirs_exist:
-    title: 7.2.8 | Ensure local interactive user home directories are configured | exist
-    exec: pwck -r | grep -v journal | grep "does not exist"
-    timeout: {{ .Vars.timeout_ms }}
-    exit-status: 1
-    stdout:
-    - '!/does not exist/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 7.2.8
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
-  home_dirs_owned:
-    title: 7.2.8 | Ensure local interactive user home directories are configured | owned
-    exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $6 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
+  home_dirs_configured:
+    title: 7.2.8 | Ensure local interactive user home directories are configured
+    exec: |
+      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//{s,/,\\/,g;p}' | paste -s -d '|' - ))$"
+      awk -v pat="$l_valid_shells" -F: '$(NF) ~ pat { print $1 " " $(NF-1) }' /etc/passwd | while read -r l_user l_home; do
+        if [ ! -d "$l_home" ]; then
+          echo "FAIL: user $l_user home directory $l_home does not exist"
+          continue
+        fi
+        stat -Lc '%U %#a' "$l_home" | while read -r l_own l_mode; do
+          [ "$l_own" != "$l_user" ] && echo "FAIL: user $l_user home $l_home is owned by $l_own"
+          [ $(( l_mode & 027 )) -gt 0 ] && echo "FAIL: user $l_user home $l_home is mode $l_mode"
+        done
+      done
+      echo "scan_done"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
-    - '!/./'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 7.2.8
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
-  home_dirs_restrict:
-    title: 7.2.8 | Ensure local interactive user home directories are configured | permissions
-    exec: "for i in `getent passwd {1000..60000} |  awk '{split($0,a,\":\");print a[6]}'`; do stat -c \"%a %n\" $i ; done"
-    exit-status: 0
-    timeout: {{ .Vars.timeout_ms }}
-    stdout:
-    - '/^7(0|5)0\s/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

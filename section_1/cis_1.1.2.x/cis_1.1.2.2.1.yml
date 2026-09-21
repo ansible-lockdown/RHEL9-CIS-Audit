@@ -4,9 +4,8 @@
   {{ if .Vars.rhel9cis_rule_1_1_2_2_1 }}
 mount:
   dev_shm_mount:
-    title: 1.1.2.2.1 | Ensure /dev/shm is a separate partition
+    title: 1.1.2.2.1 | Ensure /dev/shm is tmpfs or a separate partition
     mountpoint: /dev/shm
-    filesystem: tmpfs
     exists: true
     meta:
       server: 1

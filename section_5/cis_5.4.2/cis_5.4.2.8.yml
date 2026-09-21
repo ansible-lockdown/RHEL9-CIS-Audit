@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_4_2_8 }}
+command:
+  nologin_accts_locked:
+    title: 5.4.2.8 | Ensure accounts without a valid login shell are locked
+    exec: |
+      l_valid_shells="^($(awk -F/ '($NF != "nologin" && $NF != "false") {print}' /etc/shells | sed -rn '/^\//{s,/,\\\\/,g;p}' | paste -s -d '|' - ))$"
+      awk -v pat="$l_valid_shells" -F: '($1 != "root" && $(NF) !~ pat) {print $1}' /etc/passwd | while IFS= read -r l_user; do
+        passwd -S "$l_user" | awk '$2 !~ /^L/ {print "FAIL: " $1 " does not have a valid login shell and is not locked"}'
+      done
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2.8
+      NIST800-53R5:
+      - AC-2
+      - AC-3
+      - AC-11
+      - MP-2
+  {{ end }}
+{{ end }}

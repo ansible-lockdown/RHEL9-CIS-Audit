@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_4_4 }}
+command:
+  audit_logfile_group_setting:
+    title: 6.2.4.4 | Ensure audit log files group owner is configured | log_group
+    exec: 'grep -Po ''^\s*log_group\s*=\s*\K\S+'' /etc/audit/auditd.conf'
+    exit-status: 0
+    stdout:
+    - '/^(root|adm)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.4
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  audit_logfile_group:
+    title: 6.2.4.4 | Ensure audit log files group owner is configured | files
+    exec: 'find "$(dirname "$(awk -F= ''/^\s*log_file\s*/{print $2}'' /etc/audit/auditd.conf | xargs)")" -maxdepth 1 -type f \( ! -group root -a ! -group adm \) | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.4
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  {{ end }}
+{{ end }}

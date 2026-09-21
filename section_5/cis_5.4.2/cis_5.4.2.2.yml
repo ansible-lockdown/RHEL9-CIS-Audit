@@ -5,11 +5,12 @@
 command:
   gid_0_check:
     title: 5.4.2.2 | Ensure root is the only GID 0 account
-    exec: "awk -F: '($1 !~ /^(sync|shutdown|halt|operator)/ && $4=='0') {print $1\":\"$4}' /etc/passwd"
+    exec: |
+      awk -F: '($4 == 0 && $1 == "root") {print "root_ok"} ($4 == 0 && $1 !~ /^(root|sync|shutdown|halt|operator)$/) {print "FAIL: " $1}' /etc/passwd
     exit-status: 0
     stdout:
-    - 'root'
-    - '/[^root]/'
+    - '/^root_ok$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

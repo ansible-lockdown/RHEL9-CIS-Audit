@@ -2,13 +2,18 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_5 }}
-file:
-  crypto_policies_no_ssh_cbc:
-    title: 1.6.5 | Ensure system wide crypto policy disables cbc for ssh
-    path: /etc/crypto-policies/state/CURRENT.pol
-    exists: true
-    contents:
-    - '!/^cipher@/(lib|open)ssh(-server|-client)?\s*=\s*([^#\n\r]+)?-CBC\b'
+command:
+  crypto_policies_no_ssh_chacha20:
+    title: 1.6.5 | Ensure system wide crypto policy disables chacha20- poly1305 for ssh
+    exec: |
+      f=/etc/crypto-policies/state/CURRENT.pol
+      if grep -Piq -- '^\h*cipher@(lib|open)ssh' "$f"; then l=$(grep -Pi -- '^\h*cipher@(lib|open)ssh(-server|-client)?\h*=' "$f"); else l=$(grep -Pi -- '^\h*cipher\h*=' "$f"); fi
+      if [ -z "$l" ]; then echo ssh_chacha20=unknown
+      elif echo "$l" | grep -qi 'chacha20-poly1305'; then echo ssh_chacha20=enabled
+      else echo ssh_chacha20=disabled; fi
+    exit-status: 0
+    stdout:
+    - '/^ssh_chacha20=disabled$/'
     meta:
       server: 1
       workstation: 1

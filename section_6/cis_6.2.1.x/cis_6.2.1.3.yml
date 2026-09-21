@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_1_3 }}
+command:
+  audit_backlog_default_grub:
+    title: 6.2.1.3 | Ensure audit_backlog_limit is configured | default grub
+    exec: 'grep -Po -- ''^\h*GRUB_CMDLINE_LINUX="([^#\n\r]+\h+)?\baudit_backlog_limit=\K\d+'' /etc/default/grub | awk ''{ if ($1 + 0 >= 8192) ok=1 } END { print (ok ? "ok" : "fail") }'''
+    exit-status: 0
+    stdout:
+    - '/^ok$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.1.3
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+      - SI-5
+  audit_backlog_grubby:
+    title: 6.2.1.3 | Ensure audit_backlog_limit is configured | all boot entries
+    exec: 'grubby --info=ALL | grep ''^args='' | awk ''{ if (match($0, /audit_backlog_limit=[0-9]+/)) { v=substr($0, RSTART + 20, RLENGTH - 20); if (v + 0 < 8192) bad++ } else bad++ } END { print bad + 0 }'''
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.1.3
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

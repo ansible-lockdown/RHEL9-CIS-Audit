@@ -1,0 +1,49 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_24 }}
+command:
+  auditd_6_2_3_24_cnf:
+    title: 6.2.3.24 | Ensure unlink file deletion events by users are collected | conf check
+    exec: 'grep -Phs -- ''unlink'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?unlink(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?unlinkat(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?unlink(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?unlinkat(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.24
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-12
+      - SC-7
+  auditd_6_2_3_24_live:
+    title: 6.2.3.24 | Ensure unlink file deletion events by users are collected | running
+    exec: 'auditctl -l | grep -P -- ''unlink'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?unlink(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?unlinkat(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?unlink(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?unlinkat(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)delete\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.24
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-12
+      - SC-7
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_2_9 }}
+command:
+  sudo_visiblepw:
+    title: 5.2.9 | Ensure sudo visiblepw is configured
+    exec: grep -rPi -- '^\h*Defaults\h+([^#\n\r]+,\h*)?visiblepw\b' /etc/sudoers /etc/sudoers.d/
+    exit-status: 1
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 0
+      CIS_ID:
+      - 5.2.9
+      NIST800-53R5:
+      - AC-6
+  {{ end }}
+{{ end }}

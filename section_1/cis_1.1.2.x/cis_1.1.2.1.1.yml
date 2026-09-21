@@ -4,9 +4,28 @@
   {{ if .Vars.rhel9cis_rule_1_1_2_1_1 }}
 mount:
   tmp_mount:
-    title: 1.1.2.1.1 | Ensure /tmp is a separate partition
+    title: 1.1.2.1.1 | Ensure /tmp is tmpfs or a separate partition
     mountpoint: /tmp
     exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.1.1
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+command:
+  tmp_mount_unit_enabled:
+    title: 1.1.2.1.1 | Ensure /tmp is tmpfs or a separate partition | tmp.mount not masked or disabled
+    exec: systemctl is-enabled tmp.mount
+    exit-status: 0
+    stdout:
+    - '/^(generated|enabled|static|alias|indirect|linked)/'
+    - '!/masked/'
+    - '!/disabled/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_1_2 }}
+command:
+  audit_default_grub:
+    title: 6.2.1.2 | Ensure auditing for processes that start prior to auditd is enabled | default grub
+    exec: 'grep -Psoi -- ''^\h*GRUB_CMDLINE_LINUX="([^#\n\r]+\h+)?audit=1\b'' /etc/default/grub'
+    exit-status: 0
+    stdout:
+    - '/audit=1/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.1.2
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  grubby_audit_1:
+    title: 6.2.1.2 | Ensure auditing for processes that start prior to auditd is enabled | all boot entries
+    exec: 'grubby --info=ALL | grep ''^args='' | grep -vc ''\baudit=1\b'''
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.1.2
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

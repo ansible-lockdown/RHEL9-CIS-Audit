@@ -3,23 +3,20 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_5 }}
-file:
-  00-screensaver_lock:
-    title: 1.8.5 | Ensure GDM screen locks cannot be overridden
-    path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/locks/00-screensaver_lock
-    exists: true
-    contents:
-    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
-    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+command:
+  gdm_autorun_never_settings:
+    title: 1.8.5 | Ensure GDM autorun-never is configured
+    exec: 'echo "autorun_never_writable=$(gsettings writable org.gnome.desktop.media-handling autorun-never)"; echo "autorun_never=$(gsettings get org.gnome.desktop.media-handling autorun-never)"'
+    exit-status: 0
+    stdout:
+    - '/^autorun_never_writable=false$/'
+    - '/^autorun_never=true$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.5
-      CISv8: 4.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: CM-7
     {{ end }}
   {{ end }}
 {{ end }}

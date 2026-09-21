@@ -4,7 +4,7 @@
   {{ if .Vars.rhel9cis_rule_2_4_1_3 }}
 file:
   cron_hourly_perms:
-    title: 2.4.1.3 | Ensure permissions on /etc/cron.hourly are configured
+    title: 2.4.1.3 | Ensure access to /etc/cron.hourly is configured
     path: /etc/cron.hourly
     exists: true
     owner: root

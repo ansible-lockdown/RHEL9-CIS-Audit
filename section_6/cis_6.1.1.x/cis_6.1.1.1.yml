@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_1_1 }}
+service:
+  systemd-journald:
+    title: 6.1.1.1 | Ensure journald service is active
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.1
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

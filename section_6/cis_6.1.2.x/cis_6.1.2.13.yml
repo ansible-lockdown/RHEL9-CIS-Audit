@@ -1,0 +1,50 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_13 }}
+    {{ if .Vars.rhel9cis_remote_log_server }}
+      {{ if .Vars.rhel9cis_remote_log_tls }}
+command:
+  rsyslog_tls_client_cert_conf:
+    title: 6.1.2.13 | Ensure rsyslog TLS client certificate is configured | configured
+    exec: |
+      grep -Psih -- '^[^#]*(DefaultNetstreamDriverCertFile|StreamDriver\.CertFile)\h*[= ]' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      grep -Psih -- '^[^#]*(DefaultNetstreamDriverKeyFile|StreamDriver\.KeyFile)\h*[= ]' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '/(?i)(DefaultNetstreamDriverCertFile|StreamDriver\.CertFile)\s*[= ]/'
+    - '/(?i)(DefaultNetstreamDriverKeyFile|StreamDriver\.KeyFile)\s*[= ]/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.13
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+    {{ if .Vars.rhel9cis_remote_log_tls_keyfile }}
+  rsyslog_tls_client_key_access:
+    title: 6.1.2.13 | Ensure rsyslog TLS client certificate is configured | private key access
+    exec: 'stat -Lc ''%U %a'' {{ .Vars.rhel9cis_remote_log_tls_keyfile }}'
+    exit-status: 0
+    stdout:
+    - '/^root [0-7]00$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.13
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+    {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

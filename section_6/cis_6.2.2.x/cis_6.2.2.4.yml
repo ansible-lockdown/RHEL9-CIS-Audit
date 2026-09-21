@@ -1,25 +1,30 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_2_4 }}
 command:
-  storage_journald_conf:
-    title: 6.2.2.4 | Ensure journald Storage is configured
-    exec: grep -i storage /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*
+  logs_low_space_auditd_conf:
+    title: 6.2.2.4 | Ensure system warns when audit logs are low on space
+    exec: grep space_left_action /etc/audit/auditd.conf
     exit-status: 0
     stdout:
-    - '/^.*:Storage=persistent/'
+    - '/space_left_action\s*=\s*(email|exec|single|halt)/'
+    - '/admin_space_left_action\s*=\s*(halt|single)/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.2.4
-      CISv8: 8.2
+      CISv8:
+      - 8.2
+      - 8.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-3
+      - AU-2
+      - AU-8
       - AU-12
+      - SI-5
   {{ end }}
 {{ end }}

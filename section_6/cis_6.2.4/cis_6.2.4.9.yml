@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_4_9 }}
+command:
+  audit_tools_owner:
+    title: 6.2.4.9 | Ensure audit tools owner is configured
+    exec: 'stat -Lc ''%n %U'' /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules | awk ''$2 != "root" {print}'' | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.9
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  {{ end }}
+{{ end }}

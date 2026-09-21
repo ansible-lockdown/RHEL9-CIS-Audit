@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_2_8 }}
+command:
+  sudo_pwfeedback:
+    title: 5.2.8 | Ensure sudo pwfeedback is configured
+    exec: grep -rPi -- '^\h*Defaults\h+([^#\n\r]+,\h*)?pwfeedback\b' /etc/sudoers /etc/sudoers.d/
+    exit-status: 1
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 0
+      CIS_ID:
+      - 5.2.8
+      NIST800-53R5:
+      - AC-6
+  {{ end }}
+{{ end }}

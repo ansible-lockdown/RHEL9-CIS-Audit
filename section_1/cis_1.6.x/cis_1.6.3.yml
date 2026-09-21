@@ -3,13 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_3 }}
 file:
-  crypto_policies_no_sha1_current:
-    title: 1.6.3 | Ensure system wide crypto policy disables sha1 hash and signature support
+  crypto_policies_no_weakmacs:
+    title: 1.6.3 | Ensure system wide crypto policy macs are configured
     path: /etc/crypto-policies/state/CURRENT.pol
     exists: true
     contents:
-    - '/^sha1_in_certs\s*=\s*0/'
-    - '!/^(hash|sign)\s*=\s*SHA1/'
+    - '/(?i)^\s*mac\s*=/'
+    - '!/(?i)^\s*mac(@[^=\s]+)?\s*=\s*([^#]+)?-64\b/'
     meta:
       server: 1
       workstation: 1

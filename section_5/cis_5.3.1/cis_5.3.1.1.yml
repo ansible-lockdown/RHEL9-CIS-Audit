@@ -5,17 +5,16 @@
 command:
   pam_version:
     title: 5.3.1.1 | Ensure latest version of pam is installed
+    exec: |
+      l_inst="$(rpm -q --qf '%{VERSION}-%{RELEASE}' pam)" && [ "$(printf '%s\n%s\n' '1.5.1-14' "$l_inst" | sort -V | head -n1)" = '1.5.1-14' ] && echo "version_ok: $l_inst"
     exit-status: 0
-    exec: rpm -q pam | grep -E "pam-1.5.1-(19|2)"
     stdout:
-    - '/pam-1.5.1-(19|2)/'
+    - '/^version_ok: /'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.1.1
-      CISv8:
-      - 5.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

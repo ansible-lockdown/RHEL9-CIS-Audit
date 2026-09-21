@@ -3,18 +3,17 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_7 }}
 command:
-  sshd_access_limited:
-    title: 5.1.7 | Ensure sshd access is configured | config
-    exec: grep -Ei "^(Allow|Deny)(Users|Groups)" /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
-    exit-status:
-      or:
-      - 0
-      - 1
+  no_weak_ssh_macs:
+    title: 5.1.7 | Ensure sshd MACs are configured
+    exec: |
+      l_offered="$(sshd -T 2>/dev/null | awk '$1=="macs"{print $2}')"
+      [ -n "$l_offered" ] && echo "macs_offered"
+      printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e hmac-md5 -e hmac-md5-96 -e hmac-ripemd160 -e hmac-sha1-96 -e umac-64@openssh.com -e hmac-md5-etm@openssh.com -e hmac-md5-96-etm@openssh.com -e hmac-ripemd160-etm@openssh.com -e hmac-sha1-96-etm@openssh.com -e umac-64-etm@openssh.com | sed 's/^/WEAK: /'
+      true
+    exit-status: 0
     stdout:
-    - '/(?i)AllowUsers: {{ .Vars.rhel9cis_sshd_allowusers }}/'
-    - '/(?i)AllowGroups: {{ .Vars.rhel9cis_sshd_allowgroups }}/'
-    - '/(?i)DenyUsers: {{ .Vars.rhel9cis_sshd_denyusers }}/'
-    - '/(?i)DenyGroups: {{ .Vars.rhel9cis_sshd_denygroups }}/'
+    - '/^macs_offered$/'
+    - '!/^WEAK:/'
     meta:
       server: 1
       workstation: 1
@@ -25,7 +24,10 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
-      - MP-2
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

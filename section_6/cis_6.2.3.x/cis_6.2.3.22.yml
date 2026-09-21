@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_22 }}
+command:
+  auditd_6_2_3_22_cnf:
+    title: 6.2.3.22 | Ensure session initiation information is collected | conf check
+    exec: 'grep -Phs -- ''(utmp|wtmp|btmp)'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/run/utmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/run/utmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    - '/^\s*(-w /var/log/wtmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/wtmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    - '/^\s*(-w /var/log/btmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/btmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.22
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  auditd_6_2_3_22_live:
+    title: 6.2.3.22 | Ensure session initiation information is collected | running
+    exec: 'auditctl -l | grep -P -- ''(utmp|wtmp|btmp)'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /var/run/utmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/run/utmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    - '/^\s*(-w /var/log/wtmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/wtmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    - '/^\s*(-w /var/log/btmp/? -p wa -k session|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/var/log/btmp/? -F perm=wa (-k |-F key=)session)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.22
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

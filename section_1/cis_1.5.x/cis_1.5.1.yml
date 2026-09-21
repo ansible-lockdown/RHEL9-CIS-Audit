@@ -3,38 +3,27 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_5_1 }}
 kernel-param:
-  address_space_random:
-    title: 1.5.1 | Ensure address space layout randomization is enabled | running
-    name: kernel.randomize_va_space
-    value: '2'
+  fs.protected_hardlinks:
+    title: 1.5.1 | Ensure fs.protected_hardlinks is configured | running
+    value: '1'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8:
-      - 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
 command:
-  aslr_enabled_2:
-    title: 1.5.1 | Ensure address space layout randomization is enabled | conf
+  fs_protected_hardlinks_persistent:
+    title: 1.5.1 | Ensure fs.protected_hardlinks is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*fs[.]protected_hardlinks[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
     exit-status: 0
-    exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
     stdout:
-    - '/^*.conf:kernel.randomize_va_space\s*=\s*2/'
+    - '/^\s*fs\.protected_hardlinks\s*=\s*1$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8:
-      - 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

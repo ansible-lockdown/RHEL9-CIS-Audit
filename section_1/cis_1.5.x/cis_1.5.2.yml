@@ -1,39 +1,29 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_5_2 }}
 kernel-param:
-  ptrace_restricted:
-    title: 1.5.2 | Ensure ptrace_scope is restricted | running
+  fs.protected_symlinks:
+    title: 1.5.2 | Ensure fs.protected_symlinks is configured | running
     value: '1'
-    name: kernel.yama.ptrace_scope
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 1.5.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: CM-6
 command:
-  ptrace_restricted_2:
-    title: 1.5.2 | Ensure ptrace_scope is restricted | conf
+  fs_protected_symlinks_persistent:
+    title: 1.5.2 | Ensure fs.protected_symlinks is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*fs[.]protected_symlinks[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
     exit-status: 0
-    exec: 'grep "kernel\.yama\.ptrace_scope" /etc/sysctl.conf /etc/sysctl.d/*'
     stdout:
-    - '/^*.conf:kernel.yama.ptrace_scope\s*=\s*1/'
+    - '/^\s*fs\.protected_symlinks\s*=\s*1$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 1.5.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

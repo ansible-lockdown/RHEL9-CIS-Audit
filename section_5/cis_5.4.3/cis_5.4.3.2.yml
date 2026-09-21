@@ -5,12 +5,22 @@
 command:
   check_timeout:
     title: 5.4.3.2 | Ensure default user shell timeout is configured
-    exec: 'grep TMOUT /etc/profile.d/*.sh /etc/profile /etc/profile.d/*.sh| cut -d ":" -f2'
+    exec: |
+      l_set=0
+      for l_file in $(grep -Pls -- '^([^#\n\r]+)?\bTMOUT\b' /etc/*bashrc /etc/profile /etc/profile.d/*.sh /etc/profile.d/sh.local /usr/etc/profile.d/*.sh /usr/etc/profile.d/sh.local 2>/dev/null); do
+        l_val="$(grep -Po -- '^([^#\n\r]+)?\bTMOUT=\d+\b' "$l_file" | awk -F= '{v=$NF} END{if (NR>0) print v}')"
+        [ -z "$l_val" ] && continue
+        l_set=1
+        grep -Pq -- '^\h*(typeset\h\-xr\hTMOUT=\d+|([^#\n\r]+)?\breadonly\h+TMOUT\b)' "$l_file" || echo "FAIL: $l_file TMOUT is not marked readonly"
+        grep -Pq -- '^\h*(typeset\h\-xr\hTMOUT=\d+|([^#\n\r]+)?\bexport\b([^#\n\r]+\b)?TMOUT\b)' "$l_file" || echo "FAIL: $l_file TMOUT is not exported"
+        { [ "$l_val" -gt 0 ] && [ "$l_val" -le 900 ]; } || echo "FAIL: $l_file TMOUT=$l_val is out of range"
+      done
+      [ "$l_set" -eq 1 ] && echo "tmout_set"
+      true
     exit-status: 0
     stdout:
-    - '/^(readonly |)TMOUT/'
-    - '/TMOUT=([1-8][0-9]{0,2}|900)$/'
-    - '/export TMOUT/'
+    - '/^tmout_set$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

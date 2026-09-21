@@ -4,7 +4,7 @@
   {{ if .Vars.rhel9cis_rule_2_4_1_4 }}
 file:
   cron_daily_perms:
-    title: 2.4.1.4 | Ensure permissions on /etc/cron.daily are configured
+    title: 2.4.1.4 | Ensure access to /etc/cron.daily is configured
     path: /etc/cron.daily
     exists: true
     owner: root

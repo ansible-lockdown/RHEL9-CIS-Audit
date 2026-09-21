@@ -1,43 +1,35 @@
 ---
 
-{{ if .Vars.rhel9cis_level_2 }}
+{{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_3_2_4 }}
 command:
-  modprobe_sctp:
-    title: 3.2.4 | Ensure sctp kernel module is not available | sctp config
+  cis_3_2_4_sctp_not_available:
+    title: 3.2.4 | Ensure sctp kernel module is not available
+    exec: |
+      l_mod="sctp"
+      l_avail=""
+      for l_path in /usr/lib/modules/*/kernel/net/"$l_mod" /lib/modules/*/kernel/net/"$l_mod"; do
+        [ -d "$l_path" ] && [ -n "$(ls -A "$l_path")" ] && l_avail="yes"
+      done
+      if [ -z "$l_avail" ]; then
+        echo "PASS - $l_mod not available"
+        exit 0
+      fi
+      l_fail=""
+      lsmod | awk '{print $1}' | grep -qx "$l_mod" && { echo "FAIL - $l_mod is loaded"; l_fail="yes"; }
+      modprobe --showconfig | grep -Pq -- "^\h*blacklist\h+$l_mod\b" || { echo "FAIL - $l_mod is not deny listed"; l_fail="yes"; }
+      modprobe --showconfig | grep -Pq -- "^\h*install\h+$l_mod\h+(/usr)?/bin/(true|false)\b" || { echo "FAIL - $l_mod is loadable"; l_fail="yes"; }
+      [ -z "$l_fail" ] && echo "PASS - $l_mod not loaded and not loadable"
+      exit 0
     exit-status: 0
-    exec: 'modprobe -n -v sctp'
     stdout:
-      - '/install /bin/(true|false)/'
+    - '/^PASS - sctp not (available|loaded and not loadable)$/'
+    - '!/FAIL/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.2.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      - SI-4
-  lsmod_sctp:
-    title: 3.2.4 | Ensure sctp kernel module is not available | running sctp
-    exit-status: 1
-    exec: lsmod | grep -i sctp
-    stdout:
-    - '!/^.*/'
-    meta:
-      server: 2
-      workstation: 2
-      CIS_ID:
-      - 3.2.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
       - SI-4

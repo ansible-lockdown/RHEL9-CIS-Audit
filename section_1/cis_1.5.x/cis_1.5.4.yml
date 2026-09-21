@@ -2,25 +2,28 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_5_4 }}
-command:
-  storage_coredump_conf:
-    title: 1.5.4 | Ensure core dump storage is disabled
-    exec: grep -i storage /etc/systemd/coredump.conf /etc/systemd/coredump.conf.d/
-    exit-status:
-      or:
-      - 0
-      - 2
-    stdout:
-    - '/^*.conf:Storage=none/'
+kernel-param:
+  kernel.dmesg_restrict:
+    title: 1.5.4 | Ensure kernel.dmesg_restrict is configured | running
+    value: '1'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.4
-      CISv8:
-      - N/A
-      CISv8_IG1: N/A
-      CISv8_IG2: N/A
-      CISv8_IG3: N/A
+      NIST800-53R5: CM-6
+command:
+  kernel_dmesg_restrict_persistent:
+    title: 1.5.4 | Ensure kernel.dmesg_restrict is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*kernel[.]dmesg_restrict[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*kernel\.dmesg_restrict\s*=\s*1$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.4
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

@@ -1,16 +1,21 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_7_1_12 }}
+  {{ if .Vars.rhel9cis_rule_7_1_12 }}
+    {{ if .Vars.run_heavy_tests }}
 command:
   unowned_ungrouped_dirs:
     title: 7.1.12 | Ensure no files or directories without an owner and a group exist
-    exec: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev {{ .Vars.rhel9cis_exclude_unowned_search_path }}
+    exec: |
+      findmnt -Dkerno fstype,target | awk '($1 !~ /^[[:space:]]*(nfs|proc|cifs|smb|vfat|iso9660|efivarfs|selinuxfs|ncpfs)/ && $2 !~ /^(\/run|\/tmp|\/var\/tmp)(\/|$)/){print $2}' | while IFS= read -r l_mount; do
+        find "$l_mount" -mount -xdev \( -path "*/containers/storage/*" -o -path "*/containerd/*" -o -path "*/kubelet/*" -o -path "*/docker/*" -o -path "/sys/*" -o -path "/snap/*" -o -path "/boot/efi/*" \) -prune -o \( -type f -o -type d \) \( -nouser -o -nogroup \) -printf 'FAIL: %u %g %p\n' 2>/dev/null
+      done
+      echo "scan_done"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
-    - '!/.*/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

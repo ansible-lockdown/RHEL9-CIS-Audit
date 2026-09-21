@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_4 }}
+command:
+  rsyslog_conf_file_access:
+    title: 6.1.2.4 | Ensure access to rsyslog configuration files is configured
+    exec: '{ find /etc/rsyslog.conf -not -type l \( ! -user root -o ! -group root -o -perm /0137 \) 2>/dev/null; find /etc/rsyslog.d/ -type f -name ''*.conf'' \( ! -user root -o ! -group root -o -perm /0137 \) 2>/dev/null; } | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.4
+      CISv8:
+      - 3.3
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

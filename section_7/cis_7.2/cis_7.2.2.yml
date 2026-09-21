@@ -5,11 +5,13 @@
 command:
   nopasswd_shadow:
     title: 7.2.2 | Ensure /etc/shadow password fields are not empty
-    exec: cat /etc/shadow | cut -d ':' -f2
+    exec: |
+      awk -F: '($2 == "") { print "FAIL: " $1 " does not have a password" }' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^(\*|\!|\$)/'
-    - '!/^$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_3_3_1_8 }}
+kernel-param:
+  net.ipv4.conf.all.accept_redirects:
+    title: 3.3.1.8 | Ensure net.ipv4.conf.all.accept_redirects is configured | running config
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.8
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+command:
+  cis_3_3_1_8_sysctl_conf:
+    title: 3.3.1.8 | Ensure net.ipv4.conf.all.accept_redirects is configured | effective systemd-sysctl config
+    exec: |
+      l_sysctl="$(readlink -e /usr/lib/systemd/systemd-sysctl || readlink -e /lib/systemd/systemd-sysctl)"
+      l_value="$("$l_sysctl" --cat-config 2>/dev/null | grep -Pi -- '^\h*-?net(\.|/)ipv4(\.|/)conf(\.|/)all(\.|/)accept_redirects\h*=' | tail -n 1 | cut -d= -f2 | xargs)"
+      echo "net.ipv4.conf.all.accept_redirects=$l_value"
+    exit-status: 0
+    stdout:
+    - '/^net\.ipv4\.conf\.all\.accept_redirects=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.8
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

@@ -1,11 +1,11 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.rhel9cis_rule_2_4_1_7 }}
+    {{ if .Vars.rhel9cis_rule_2_4_1_7 }}
 file:
-  crond_perms:
-    title: 2.4.1.7 | Ensure permissions on /etc/cron.d are configured
-    path: /etc/cron.d
+  cron_year_perms:
+    title: 2.4.1.7 | Ensure access to /etc/cron.yearly is configured
+    path: /etc/cron.yearly
     exists: true
     owner: root
     group: root

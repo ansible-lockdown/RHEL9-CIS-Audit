@@ -1,0 +1,65 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_20 }}
+command:
+  auditd_6_2_3_20_cnf:
+    title: 6.2.3.20 | Ensure discretionary access control permission modification events setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr collected | conf check
+    exec: 'grep -Phs -- ''xattr'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?setxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?lsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?fsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?removexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?lremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?fremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?setxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?lsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?fsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?removexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?lremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?fremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.20
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  auditd_6_2_3_20_live:
+    title: 6.2.3.20 | Ensure discretionary access control permission modification events setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr collected | running
+    exec: 'auditctl -l | grep -P -- ''xattr'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?setxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?lsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?fsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?removexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?lremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b64 .*-S (\S+,)?fremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?setxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?lsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?fsetxattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?removexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?lremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    - '/^\s*-a (always,exit|exit,always) -F arch=b32 .*-S (\S+,)?fremovexattr(,\S+)? (.* )?-F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_mod\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.20
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  {{ end }}
+{{ end }}

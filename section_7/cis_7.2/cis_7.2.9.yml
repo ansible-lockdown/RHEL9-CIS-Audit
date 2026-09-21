@@ -1,16 +1,35 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_7_2_9 }}
+  {{ if .Vars.rhel9cis_rule_7_2_9 }}
+    {{ if .Vars.run_heavy_tests }}
 command:
-  dot_netrc_perms:
+  dot_files_access:
     title: 7.2.9 | Ensure local interactive user dot files access is configured
-    exec: 'find /home/  \( -name .netrc -o -name .rhost -o -name .forward \)'
+    exec: |
+      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//{s,/,\\/,g;p}' | paste -s -d '|' - ))$"
+      awk -v pat="$l_valid_shells" -F: '$(NF) ~ pat { print $1 " " $(NF-1) }' /etc/passwd | while read -r l_user l_home; do
+        [ -d "$l_home" ] || continue
+        l_group="$(id -gn "$l_user")"
+        find "$l_home" -xdev -type f -name '.*' 2>/dev/null | while IFS= read -r l_hdfile; do
+          case "$(basename "$l_hdfile")" in
+            .forward|.rhost|.rhosts) echo "FAIL: $l_hdfile exists"; continue ;;
+            .netrc|.bash_history) l_mask=0177 ;;
+            *) l_mask=0133 ;;
+          esac
+          stat -Lc '%#a %U %G' "$l_hdfile" | while read -r l_mode l_owner l_gowner; do
+            [ $(( l_mode & l_mask )) -gt 0 ] && echo "FAIL: $l_hdfile is mode $l_mode"
+            [ "$l_owner" != "$l_user" ] && echo "FAIL: $l_hdfile is owned by $l_owner"
+            [ "$l_gowner" != "$l_group" ] && echo "FAIL: $l_hdfile is group owned by $l_gowner"
+          done
+        done
+      done
+      echo "scan_done"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

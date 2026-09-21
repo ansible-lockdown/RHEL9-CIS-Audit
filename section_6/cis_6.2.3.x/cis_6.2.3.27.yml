@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_27 }}
+command:
+  auditd_6_2_3_27_cnf:
+    title: 6.2.3.27 | Ensure successful and unsuccessful attempts to use the chcon command are collected | conf check
+    exec: 'grep -Phs -- ''chcon'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always)( -F arch=b(32|64))?( -S all)? -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_chng\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.27
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+      - SI-5
+  auditd_6_2_3_27_live:
+    title: 6.2.3.27 | Ensure successful and unsuccessful attempts to use the chcon command are collected | running
+    exec: 'auditctl -l | grep -P -- ''chcon'''
+    exit-status: 0
+    stdout:
+    - '/^\s*-a (always,exit|exit,always)( -F arch=b(32|64))?( -S all)? -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=(unset|-1|4294967295) (-k |-F key=)perm_chng\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.27
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

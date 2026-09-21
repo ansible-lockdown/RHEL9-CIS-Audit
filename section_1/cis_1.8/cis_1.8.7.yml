@@ -3,23 +3,19 @@
 {{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_7 }}
-file:
-  00-media-autorun_override:
-    title: 1.8.7 | Ensure GDM disabling automatic mounting of removable media is not overridden
-    path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/00-media-autorun
-    exists: true
-    contents:
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
+command:
+  gdm_wayland_enabled:
+    title: 1.8.7 | Ensure Wayland is configured
+    exec: echo "wayland_disabled_lines=$(grep -Psi -- '^\h*WaylandEnable\h*=\h*false\b' /etc/gdm/custom.conf /etc/gdm3/custom.conf 2>/dev/null | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^wayland_disabled_lines=0$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.7
-      CISv8: 10.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: CM-6
     {{ end }}
   {{ end }}
 {{ end }}

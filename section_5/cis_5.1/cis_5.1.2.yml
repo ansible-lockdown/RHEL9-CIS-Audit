@@ -3,54 +3,20 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_2 }}
 command:
-  /etc/ssh/ssh_host_prv_key_user:
-    title: 5.1.2 | Ensure permissions on SSH private host key files are configured | user
-    exec: "userkeys=$(sudo find /etc/ssh/ -name *_key -type f ! -user root ); echo $userkeys"
+  sshd_config_d_dir_perms:
+    title: 5.1.2 | Ensure access to /etc/ssh/sshd_config.d/ directory is configured
+    exec: |
+      find /etc/ssh/sshd_config.d/ -maxdepth 0 \( ! -user root -o ! -group root -o -perm /077 \) -printf 'FAIL: %p %m %u %g\n'
+      echo "scan_rc=$?"
     exit-status: 0
-    stdout: ['!/./']
+    stdout:
+    - '/^scan_rc=0$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
-  /etc/ssh/ssh_host_prv_key_group:
-    title: 5.1.2 | Ensure permissions on SSH private host key files are configured | group
-    exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key -type f !( -group root -o -group ssh_keys )); echo $groupkeys"
-    exit-status: 0
-    stdout: ['!/./']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
-  /etc/ssh/ssh_host_prv_key_perms:
-    title: 5.1.2 | Ensure permissions on SSH private host key files are configured | perms
-    exec: "keyperms=$(sudo find /etc/ssh/ -name *_key -type f -perm /137 ); echo $keyperms"
-    exit-status: 0
-    stdout: ['!/./']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.1.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

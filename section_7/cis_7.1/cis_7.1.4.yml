@@ -2,19 +2,20 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_4 }}
-file:
+command:
   etcgroup-_perms:
-    title: 7.1.4 | Ensure permissions on /etc/group- are configured
-    path: /etc/group-
-    exists: true
-    mode:
-      or:
-      - '0644'
-      - '0640'
-      - '0600'
-      - '0400'
-    owner: root
-    group: root
+    title: 7.1.4 | Ensure access to /etc/group- is configured
+    exec: |
+      if [ -e /etc/group- ]; then
+        find /etc/group- -maxdepth 0 \( -perm /7133 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
+        echo "checked_rc=$?"
+      else
+        echo "not_present"
+      fi
+    exit-status: 0
+    stdout:
+    - '/^(checked_rc=0|not_present)$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

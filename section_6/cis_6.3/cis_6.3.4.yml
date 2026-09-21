@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_3_4 }}
+command:
+  aide_report_url_syslog:
+    title: 6.3.4 | Ensure report_url is configured
+    exec: 'grep -P ''^\h*report_url'' /etc/aide.conf'
+    exit-status: 0
+    stdout:
+    - '/^\s*report_url\s*=\s*syslog:\S+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.4
+      CISv8:
+      - 3.14
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

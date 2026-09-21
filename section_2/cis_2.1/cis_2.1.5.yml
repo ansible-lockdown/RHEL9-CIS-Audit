@@ -2,12 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_5 }}
-    {{ if not .Vars.rhel9cis_dnsmasq_server }}
-      {{ if not .Vars.rhel9cis_dnsmasq_mask }}
+    {{ if not .Vars.rhel9cis_dns_server }}
+      {{ if not .Vars.rhel9cis_dns_mask }}
 package:
-  dnsmasq_pkg:
-    title: 2.1.5 | Ensure dnsmasq services are not in use | pkg removed
-    name: dnsmasq
+  dns_pkg:
+    title: 2.1.5 | Ensure dns server services are not in use | pkg removed
+    name: named
     installed: false
     meta:
       server: 1
@@ -22,11 +22,11 @@ package:
       NIST800-53R5:
       - CM-7
       {{ end }}
-      {{ if .Vars.rhel9cis_dnsmasq_mask }}
+      {{ if .Vars.rhel9cis_dns_mask }}
 file:
-  dnsmasq_service_masked:
-    title: 2.1.5 | Ensure dnsmasq services are not in use | masked
-    path: /etc/systemd/system/dnsmasq.service
+  dns_service_masked:
+    title: 2.1.5 | Ensure dns server services are not in use | masked
+    path: /etc/systemd/system/named.service
     exists: true
     filetype: symlink
     linked-to: /dev/null

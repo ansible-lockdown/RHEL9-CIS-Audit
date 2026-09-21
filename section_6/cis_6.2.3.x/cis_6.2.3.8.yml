@@ -1,30 +1,45 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_3_8 }}
 command:
-  rsyslog_logrotate:
-    title: 6.2.3.8 | Ensure rsyslog logrotate is configured
-    exec: grep -A9 "rsyslog/*.log" /etc/logrotate.conf /etc/logrotate.d/*
-    exit-status:
-      or:
-      - 0
-      - 1
-      - 2
+  auditd_6_2_3_8_cnf:
+    title: 6.2.3.8 | Ensure events that modify /etc/sysconfig/network and /etc/NetworkManager/system-connections/ are collected | conf check
+    exec: 'grep -Phs -- ''(sysconfig/network|system-connections)'' /etc/audit/rules.d/*.rules'
+    exit-status: 0
     stdout:
-    - '/.*: rotate/'
+    - '/^\s*(-w /etc/sysconfig/network/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sysconfig/network/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    - '/^\s*(-w /etc/NetworkManager/system\-connections/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/NetworkManager/system\-connections/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.3.8
-      CISv8:
-      - 4.8
-      - 8.2
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-8
+      - AU-3
+      - CM-6
+  auditd_6_2_3_8_live:
+    title: 6.2.3.8 | Ensure events that modify /etc/sysconfig/network and /etc/NetworkManager/system-connections/ are collected | running
+    exec: 'auditctl -l | grep -P -- ''(sysconfig/network|system-connections)'''
+    exit-status: 0
+    stdout:
+    - '/^\s*(-w /etc/sysconfig/network/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/sysconfig/network/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    - '/^\s*(-w /etc/NetworkManager/system\-connections/? -p wa -k system-locale|-a (always,exit|exit,always)( -F arch=b(32|64))? -S all -F (path|dir)=/etc/NetworkManager/system\-connections/? -F perm=wa (-k |-F key=)system-locale)\s*$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.8
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
   {{ end }}
 {{ end }}

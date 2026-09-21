@@ -1,45 +1,39 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_5_3_3_1_2 }}
+  {{ if .Vars.rhel9cis_rule_5_3_3_1_2 }}
 file:
   faillock_unlock_time:
     title: 5.3.3.1.2 | Ensure password unlock time is configured
     path: /etc/security/faillock.conf
     exists: true
     contents:
-    - '/^unlock_time\s*=\s*([1-9]|[1-9][0-9]|[1-8][0-9]{1,2}|900)$/'
-    - '!/^unlock_time\s*=\s*(90[1-9]|9[1-9][0-9]|[1-9][0-9][0-9]{2,})/'
+    - '/^\s*unlock_time\s*=\s*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b/'
+    - '!/^\s*unlock_time\s*=\s*([1-9]|[1-9][0-9]|[1-8][0-9][0-9])\b/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.1.2
-      CISv8:
-      - 6.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: NA
 command:
-  faillock_unlock_time_removed:
-    title: 5.3.3.1.2 | Ensure password unlock time is configured
-    exec: grep -Pl -- '\bpam_faillock\.so\s+([^#\n\r]+\s+)?unlock_time\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
+  faillock_unlock_time_pam:
+    title: 5.3.3.1.2 | Ensure password unlock time is configured | pam files
+    exec: grep -Pi -- '^\h*auth\h+(requisite|required|sufficient)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?unlock_time\h*=\h*([1-9]|[1-9][0-9]|[1-8][0-9][0-9])\b' /etc/pam.d/system-auth /etc/pam.d/password-auth
     exit-status: 1
     stdout:
-    - '!/.*/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.1.2
-      CISv8:
-      - 6.2
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: NA
-    {{ end }}
   {{ end }}
 {{ end }}

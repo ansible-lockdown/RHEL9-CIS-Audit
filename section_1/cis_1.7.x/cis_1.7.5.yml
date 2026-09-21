@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_5 }}
+command:
+  etc_issue_access:
+    title: 1.7.5 | Ensure access to /etc/issue is configured
+    exec: if [ -e /etc/issue ]; then stat -Lc '%a %U %G' /etc/issue; else echo issue_absent; fi
+    exit-status: 0
+    stdout:
+    - '/^([0246][04][04] root root|issue_absent)$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.5
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

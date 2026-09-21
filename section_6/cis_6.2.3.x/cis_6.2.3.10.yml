@@ -1,0 +1,34 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_3_10 }}
+command:
+  auditd_6_2_3_10_priv_cmds:
+    title: 6.2.3.10 | Ensure use of privileged commands are collected
+    exec: |
+      UID_MIN=$(awk '/^\s*UID_MIN/ {print $2}' /etc/login.defs)
+      RUNNING=$(auditctl -l)
+      for P in $(findmnt -n -l -k -it "$(awk '/nodev/ { print $2 }' /proc/filesystems | paste -sd,)" | grep -Pv "noexec|nosuid" | awk '{print $1}'); do
+        find "$P" -xdev \( -path "*/containers/storage/*" -o -path "*/containerd/*" -o -path "*/kubelet/*" -o -path "/snap/*" \) -prune -o -perm /6000 -type f -print 2>/dev/null
+      done | sort -u | while read -r F; do
+        grep -hs -- "path=$F " /etc/audit/rules.d/*.rules | grep -P -- '-a\s+(always,exit|exit,always)' | grep -P -- '-F\s+perm=x' | grep -P -- "-F\s+auid>=$UID_MIN" | grep -Pq -- '-F\s+auid!=(unset|-1|4294967295)' || echo "MISSING or incomplete on-disk rule: $F"
+        printf '%s\n' "$RUNNING" | grep -- "path=$F " | grep -P -- '-a\s+(always,exit|exit,always)' | grep -P -- '-F\s+perm=x' | grep -P -- "-F\s+auid>=$UID_MIN" | grep -Pq -- '-F\s+auid!=(unset|-1|4294967295)' || echo "MISSING or incomplete loaded rule: $F"
+      done
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '!/MISSING/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.10
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

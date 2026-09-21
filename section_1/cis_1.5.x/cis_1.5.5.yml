@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_5_5 }}
+kernel-param:
+  kernel.kptr_restrict:
+    title: 1.5.5 | Ensure kernel.kptr_restrict is configured | running
+    value:
+      match-regexp: '^(1|2)$'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      NIST800-53R5: CM-6
+command:
+  kernel_kptr_restrict_persistent:
+    title: 1.5.5 | Ensure kernel.kptr_restrict is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*kernel[.]kptr_restrict[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*kernel\.kptr_restrict\s*=\s*(1|2)$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

@@ -2,16 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_2 }}
-command:
-  crypto_policies_not_in_sshd:
-    title: 1.6.2 | Ensure system wide crypto policy is not set in sshd configuration
-    exec: grep -Pi '^\s*CRYPTO_POLICY\s*=' /etc/sysconfig/sshd
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '!/^.*/'
+file:
+  crypto_policies_no_sha1_current:
+    title: 1.6.2 | Ensure system wide crypto policy disables sha1 hash and signature support | global hash, sign and certs
+    path: /etc/crypto-policies/state/CURRENT.pol
+    exists: true
+    contents:
+    - '/(?i)^\s*hash\s*=/'
+    - '!/(?i)^\s*(hash|sign)\s*=.*SHA-?1\b/'
+    - '!/(?i)^\s*sha1_in_certs\s*=\s*[1-9]/'
     meta:
       server: 1
       workstation: 1
@@ -22,9 +21,24 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - SC-8
-      - IA-5
-      - AC-17
+      NIST800-53R5: SC-8
+command:
+  crypto_policies_no_sha1_scopes:
+    title: 1.6.2 | Ensure system wide crypto policy disables sha1 hash and signature support | no non-exempt scope enables SHA1
+    exec: echo "sha1_nonexempt_scopes=$(grep -Pi -- '^\h*(hash|sign)@\S+\h*=.*SHA-?1\b' /etc/crypto-policies/state/CURRENT.pol | grep -Piv -- '^\h*(hash|sign)@(nss-)?(rpm|dnssec|smime|pkcs12)[^\h=]*\h*=' | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^sha1_nonexempt_scopes=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.2
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: SC-8
   {{ end }}
 {{ end }}

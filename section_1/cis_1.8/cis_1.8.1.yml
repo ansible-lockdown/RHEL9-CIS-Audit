@@ -1,23 +1,24 @@
 ---
 
-{{ if not .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_2 }}
+{{ if .Vars.rhel9cis_gui }}
+  {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_1 }}
-package:
-  gdm_removed:
-    title: 1.8.1 | Ensure GNOME Display Manager is removed
-    installed: false
-    name: gdm
+command:
+  gdm_banner_settings:
+    title: 1.8.1 | Ensure GDM login banner is configured
+    exec: 'echo "banner_enable_writable=$(gsettings writable org.gnome.login-screen banner-message-enable)"; echo "banner_text_writable=$(gsettings writable org.gnome.login-screen banner-message-text)"; echo "banner_enable=$(gsettings get org.gnome.login-screen banner-message-enable)"; echo "banner_text=$(gsettings get org.gnome.login-screen banner-message-text)"'
+    exit-status: 0
+    stdout:
+    - '/^banner_enable_writable=false$/'
+    - '/^banner_text_writable=false$/'
+    - '/^banner_enable=true$/'
+    - "{{ trim .Vars.rhel9cis_warning_banner }}"
     meta:
-      server: 2
-      workstation: NA
+      server: 1
+      workstation: 1
       CIS_ID:
       - 1.8.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: AC-8
     {{ end }}
   {{ end }}
 {{ end }}

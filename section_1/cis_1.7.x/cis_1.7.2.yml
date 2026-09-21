@@ -1,0 +1,52 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_2 }}
+file:
+  etc_issue_banner:
+    title: 1.7.2 | Ensure /etc/issue is configured | banner content
+    path: /etc/issue
+    exists: true
+    contents:
+    - '{{ trim .Vars.rhel9cis_warning_banner }}'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.2
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+command:
+  etc_issue_no_system_info:
+    title: 1.7.2 | Ensure /etc/issue is configured
+    exec: |
+      os_id=$(. /etc/os-release; echo "$ID")
+      [ -e /etc/issue ] && echo "issue_sysinfo_lines=$(grep -Psi -- "(\\\\[vrms]|\\b${os_id}\\b)" /etc/issue | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^issue_sysinfo_lines=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.2
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+  {{ end }}
+{{ end }}

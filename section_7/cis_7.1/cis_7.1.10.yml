@@ -2,36 +2,19 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_10 }}
-file:
+command:
   etc_security_opasswd_perms:
-    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured
-    path: /etc/security/opasswd
-    exists: true
-    mode: "0600"
-    owner: root
-    group: root
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 7.1.10
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
-  etc_security_opasswd__old_perms:
-    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured | old passwd
-    path: /etc/security/opasswd.old
-    exists:
-      or:
-      - true
-      - false
-    mode: "0600"
-    owner: root
-    group: root
+    title: 7.1.10 | Ensure access to /etc/security/opasswd is configured
+    exec: |
+      for l_file in /etc/security/opasswd /etc/security/opasswd.old; do
+        [ -e "$l_file" ] || continue
+        find "$l_file" -maxdepth 0 \( -perm /7177 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
+      done
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+    {{ if .Vars.rhel9cis_rule_2_1_23 }}
+command:
+  manual_listening_ports:
+    title: 2.1.23 | Ensure only approved services are listening on a network interface | Manual Check Required
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: echo "Manual!! - Please check only approved services are listening"
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.1.23
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+  {{ end }}
+{{ end }}

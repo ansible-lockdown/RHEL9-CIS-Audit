@@ -2,20 +2,19 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_1_2 }}
-package:
+command:
   authselect_version:
     title: 5.3.1.2 | Ensure latest version of authselect is installed
-    installed: true
-    name: authselect
-    versions:
-      semver-constraint: ">1.2.6-1"
+    exec: |
+      l_inst="$(rpm -q --qf '%{VERSION}-%{RELEASE}' authselect)" && [ "$(printf '%s\n%s\n' '1.2.6-1' "$l_inst" | sort -V | head -n1)" = '1.2.6-1' ] && echo "version_ok: $l_inst"
+    exit-status: 0
+    stdout:
+    - '/^version_ok: /'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.1.2
-      CISv8:
-      - 5.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

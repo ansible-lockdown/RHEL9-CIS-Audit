@@ -1,0 +1,37 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_3_2_6 }}
+command:
+  cis_3_2_6_can_not_available:
+    title: 3.2.6 | Ensure can kernel module is not available
+    exec: |
+      l_mod="can"
+      l_avail=""
+      for l_path in /usr/lib/modules/*/kernel/net/"$l_mod" /lib/modules/*/kernel/net/"$l_mod"; do
+        [ -d "$l_path" ] && [ -n "$(ls -A "$l_path")" ] && l_avail="yes"
+      done
+      if [ -z "$l_avail" ]; then
+        echo "PASS - $l_mod not available"
+        exit 0
+      fi
+      l_fail=""
+      lsmod | awk '{print $1}' | grep -qx "$l_mod" && { echo "FAIL - $l_mod is loaded"; l_fail="yes"; }
+      modprobe --showconfig | grep -Pq -- "^\h*blacklist\h+$l_mod\b" || { echo "FAIL - $l_mod is not deny listed"; l_fail="yes"; }
+      modprobe --showconfig | grep -Pq -- "^\h*install\h+$l_mod\h+(/usr)?/bin/(true|false)\b" || { echo "FAIL - $l_mod is loadable"; l_fail="yes"; }
+      [ -z "$l_fail" ] && echo "PASS - $l_mod not loaded and not loadable"
+      exit 0
+    exit-status: 0
+    stdout:
+    - '/^PASS - can not (available|loaded and not loadable)$/'
+    - '!/FAIL/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.6
+      NIST800-53R5:
+      - CM-7
+      - SI-4
+  {{ end }}
+{{ end }}

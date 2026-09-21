@@ -2,12 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_7 }}
-    {{ if not .Vars.rhel9cis_ftp_server }}
-      {{ if not .Vars.rhel9cis_ftp_mask }}
+    {{ if not .Vars.rhel9cis_samba_server }}
+      {{ if not .Vars.rhel9cis_samba_mask }}
 package:
-  ftp_pkg:
-    title: 2.1.7 | Ensure ftp server services are not in use | pkg removed
-    name: vsftp
+  samba_pkg:
+    title: 2.1.7 | Ensure samba file server services are not in use | pkg removed
+    name: samba
     installed: false
     meta:
       server: 1
@@ -20,13 +20,14 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
+      - CM-6
       - CM-7
       {{ end }}
-      {{ if .Vars.rhel9cis_ftp_mask }}
+      {{ if .Vars.rhel9cis_samba_mask }}
 file:
-  ftp_service_masked:
-    title: 2.1.7 | Ensure ftp server services are not in use | masked
-    path: /etc/systemd/system/vsftpd.service
+  samba_service_masked:
+    title: 2.1.7 | Ensure samba file server services are not in use | masked
+    path: /etc/systemd/system/smb.service
     exists: true
     filetype: symlink
     linked-to: /dev/null
@@ -41,6 +42,7 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
+      - CM-6
       - CM-7
       {{ end }}
     {{ end }}

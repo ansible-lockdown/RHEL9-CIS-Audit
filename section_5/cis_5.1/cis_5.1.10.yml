@@ -1,47 +1,29 @@
 ---
 
-{{ if .Vars.rhel9cis_level_2 }}
+{{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_10 }}
-file:
-  sshd_disable_forward:
-    title: 5.1.10 | Ensure sshd DisableForwarding is enabled | config
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^(?i)disableforwarding yes/'
-    - '!/^(?i)disableforwarding no/'
-    meta:
-      server: 2
-      workstation: 1
-      CIS_ID:
-      - 5.1.10
-      CISv8: 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
 command:
-  ssh_disable_forward_live:
-    title: 5.1.10 | Ensure sshd DisableForwarding is enabled | live
-    exec: sshd -T | grep disableforwarding
-    exit-status:
-      or:
-      - 0
-      - 1
+  sshd_clientalive_live:
+    title: 5.1.10 | Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured
+    exec: sshd -T 2>/dev/null | grep -Pi -- '^(clientaliveinterval|clientalivecountmax)\h'
+    exit-status: 0
     stdout:
-    - '/^disableforwarding yes/'
-    - '!/^disableforwarding no/'
+    - '/^clientaliveinterval [1-9][0-9]*$/'
+    - '/^clientalivecountmax [1-9][0-9]*$/'
     meta:
-      server: 2
+      server: 1
       workstation: 1
       CIS_ID:
       - 5.1.10
-      CISv8: 4.8
-      CISv8_IG1: false
+      CISv8: 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
       - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

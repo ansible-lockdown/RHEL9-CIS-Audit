@@ -2,21 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_2_1 }}
-file:
-  passwd_auth_authselect_modules:
-    title: 5.3.2.1 | Ensure active authselect profile includes pam modules
-    path: /etc/authselect/custom/{{ .Vars.rhel9cis_authselect_custom_profile_name }}/password-auth
-    exists: true
-    contents:
-    - '/auth\s*required\s*pam_faillock.so\s*preauth silent\s*{include if "with-faillock"}/'
-    - '/auth\s*sufficient\s*pam_unix.so\s*{if not "without-nullok":nullok}/'
-    - '/auth\s*required\s*pam_faillock.so\s*authfail\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_faillock.so\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_unix.so/'
-    - '/password\s*requisite\s*pam_pwquality.so\s*local_users_only/'
-    - '/password\s*(required|requisite)\s*pam_pwhistory.so\s*use_authtok/'
-    - '/password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*{if not "without-nullok":nullok} use_authtok/'
-    - '/session\s*required\s*pam_unix.so/'
+command:
+  authselect_current_profile:
+    title: 5.3.2.1 | Ensure PAM is managed by an active authselect profile | active profile
+    exec: authselect current
+    exit-status: 0
+    stdout:
+    - '/^Profile ID: \S+/'
     meta:
       server: 1
       workstation: 1
@@ -27,20 +19,12 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: NA
-  system_auth_authselect_modules:
-    title: 5.3.2.1 | Ensure active authselect profile includes pam modules
-    path: /etc/authselect/custom/{{ .Vars.rhel9cis_authselect_custom_profile_name }}/system-auth
-    exists: true
-    contents:
-    - '/auth\s*required\s*pam_faillock.so\s*preauth silent\s*{include if "with-faillock"}/'
-    - '/auth\s*sufficient\s*pam_unix.so\s*{if not "without-nullok":nullok}/'
-    - '/auth\s*required\s*pam_faillock.so\s*authfail\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_faillock.so\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_unix.so/'
-    - '/password\s*requisite\s*pam_pwquality.so\s*local_users_only/'
-    - '/password\s*(required|requisite)\s*pam_pwhistory.so\s*use_authtok/'
-    - '/password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*{if not "without-nullok":nullok} use_authtok/'
-    - '/session\s*required\s*pam_unix.so/'
+  authselect_check_5_3_2_1:
+    title: 5.3.2.1 | Ensure PAM is managed by an active authselect profile | authselect check
+    exec: authselect check
+    exit-status: 0
+    stdout:
+    - '/Current configuration is valid/'
     meta:
       server: 1
       workstation: 1

@@ -5,10 +5,13 @@
 command:
   no_dup_uid:
     title: 7.2.4 | Ensure no duplicate UIDs exist
-    exec: "cat /etc/passwd | cut -d: -f3 | uniq -d"
+    exec: |
+      cut -d: -f3 /etc/passwd | sort | uniq -d | sed 's/^/FAIL: duplicate UID /'
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

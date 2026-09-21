@@ -5,10 +5,13 @@
 command:
   passwd_group_exist:
     title: 7.2.3 | Ensure all groups in /etc/passwd exist in /etc/group
-    exec: "comm -23 <(awk -F: '{print $4}' /etc/passwd | sort -u) <(awk -F: '{print $3}' /etc/group  | sort -u)"
+    exec: |
+      awk -F: 'NR == FNR { gid[$3]; next } !($4 in gid) { print "FAIL: " $1 " has GID " $4 " which does not exist in /etc/group" }' /etc/group /etc/passwd
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

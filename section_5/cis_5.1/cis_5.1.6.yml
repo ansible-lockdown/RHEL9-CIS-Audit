@@ -3,14 +3,17 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_6 }}
 command:
-  no_weak_ssh_macs:
-    title: 5.1.6 | Ensure sshd MACs are configured | weak mac check
-    exec: sshd -T | grep -Pi -- 'macs\h+([^#\n\r]+,)?(hmac-md5|hmac-md5-96|hmac-ripemd160|hmac-sha1-96|umac-64@openssh\.com|hmac-md5-etm@openssh\.com|hmac-md5-96-etm@openssh\.com|hmac-ripemd160-etm@openssh\.com|hmac-sha1-96-etm@openssh\.com|umac-64-etm@openssh\.com|umac-128-etm@openssh\.com)\b'
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout: ['!/./']
+  no_weak_ssh_kex:
+    title: 5.1.6 | Ensure sshd KexAlgorithms is configured
+    exec: |
+      l_offered="$(sshd -T 2>/dev/null | awk '$1=="kexalgorithms"{print $2}')"
+      [ -n "$l_offered" ] && echo "kexalgorithms_offered"
+      printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e diffie-hellman-group1-sha1 -e diffie-hellman-group14-sha1 -e diffie-hellman-group-exchange-sha1 | sed 's/^/WEAK: /'
+      true
+    exit-status: 0
+    stdout:
+    - '/^kexalgorithms_offered$/'
+    - '!/^WEAK:/'
     meta:
       server: 1
       workstation: 1
@@ -21,10 +24,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - SC-8
   {{ end }}
 {{ end }}

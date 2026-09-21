@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_12 }}
+    {{ if .Vars.rhel9cis_remote_log_server }}
+      {{ if .Vars.rhel9cis_remote_log_tls }}
+command:
+  rsyslog_tls_cafile_conf:
+    title: 6.1.2.12 | Ensure rsyslog TLS CA certificate is configured | configured
+    exec: 'grep -Psih -- ''^[^#]*(DefaultNetstreamDriverCAFile|StreamDriver\.CAFile)\s*[= ]'' /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
+    exit-status: 0
+    stdout:
+    - '/(?i)(DefaultNetstreamDriverCAFile|StreamDriver\.CAFile)\s*[= ]/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.12
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  rsyslog_tls_cafile_cert:
+    title: 6.1.2.12 | Ensure rsyslog TLS CA certificate is configured | certificate readable
+    exec: 'openssl x509 -in {{ .Vars.rhel9cis_remote_log_tls_cafile }} -noout -subject'
+    exit-status: 0
+    stdout:
+    - '/^subject\s*=/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.12
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

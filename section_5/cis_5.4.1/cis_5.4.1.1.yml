@@ -2,15 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_4_1_1 }}
-command:
+file:
   login_defs_max_days:
     title: 5.4.1.1 | Ensure password expiration is configured
-    exec: grep PASS_MAX_DAYS /etc/login.defs
-    exit-status: 0
-    stdout:
-    - '/^PASS_MAX_DAYS\s+{{ .Vars.rhel9cis_pass_max_days }}/'
-    - '!/^PASS_MAX_DAYS\s+(36[6-9]|[4-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9])/'
-    - '!/^PASS_MAX_DAYS\s+-1/'
+    path: /etc/login.defs
+    exists: true
+    contents:
+    - '/^\s*PASS_MAX_DAYS\s+([1-9]|[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|36[0-5])\b/'
     meta:
       server: 1
       workstation: 1
@@ -26,12 +24,16 @@ command:
       - CM-6
       - CM-7
       - IA-5
+command:
   check_user_expiry:
-    title: 5.4.1.1 | Ensure password expiration is configured | check_users
-    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,5"
+    title: 5.4.1.1 | Ensure password expiration is configured | existing users
+    exec: |
+      awk -F: '($2~/^\$.+\$/) {if($5 > 365 || $5 < 1) print "FAIL: " $1 " PASS_MAX_DAYS: " $5}' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^.*:([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[1-5][0-9]|36[0-5])$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

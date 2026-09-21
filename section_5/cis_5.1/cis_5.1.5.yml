@@ -3,14 +3,17 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_5 }}
 command:
-  no_weak_ssh_kex:
-    title: 5.1.5 | Ensure sshd KexAlgorithms is configured | weak kex check
-    exec: sshd -T | grep -Pi -- 'kexalgorithms\h+([^#\n\r]+,)?(diffie-hellman-group1-sha1|diffie-hellman-group14-sha1|diffie-hellman-group-exchange-sha1)\b'
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout: ['!/./']
+  no_weak_ssh_ciphers:
+    title: 5.1.5 | Ensure sshd Ciphers are configured
+    exec: |
+      l_offered="$(sshd -T 2>/dev/null | awk '$1=="ciphers"{print $2}')"
+      [ -n "$l_offered" ] && echo "ciphers_offered"
+      printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e 3des-cbc -e blowfish-cbc -e cast128-cbc -e aes128-cbc -e aes192-cbc -e aes256-cbc -e arcfour -e arcfour128 -e arcfour256 -e rijndael-cbc@lysator.liu.se | sed 's/^/WEAK: /'
+      true
+    exit-status: 0
+    stdout:
+    - '/^ciphers_offered$/'
+    - '!/^WEAK:/'
     meta:
       server: 1
       workstation: 1

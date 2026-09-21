@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_6 }}
+command:
+  cis_4_1_6_loopback_rich_rules:
+    title: 4.1.6 | Ensure firewalld loopback source address traffic is configured
+    exec: |
+      l_zone="$(firewall-cmd --get-zone-of-interface=lo 2>/dev/null | xargs)"
+      echo "Zone: $l_zone"
+      firewall-cmd --zone="$l_zone" --list-rich-rules 2>/dev/null | grep -P -- '(::1|127\.0\.0\.0/8)\b' | sed 's/^/runtime: /'
+      firewall-cmd --permanent --zone="$l_zone" --list-rich-rules 2>/dev/null | grep -P -- '(::1|127\.0\.0\.0/8)\b' | sed 's/^/permanent: /'
+      exit 0
+    exit-status: 0
+    stdout:
+    - '/^Zone: \S+$/'
+    - '/^runtime: rule family="ipv4" source address="127\.0\.0\.0/8" destination NOT address="127\.0\.0\.0/8" drop$/'
+    - '/^runtime: rule family="ipv6" source address="::1" destination NOT address="::1" drop$/'
+    - '/^permanent: rule family="ipv4" source address="127\.0\.0\.0/8" destination NOT address="127\.0\.0\.0/8" drop$/'
+    - '/^permanent: rule family="ipv6" source address="::1" destination NOT address="::1" drop$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.6
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

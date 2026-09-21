@@ -4,7 +4,7 @@
     {{ if .Vars.rhel9cis_rule_2_4_1_6 }}
 file:
   cron_month_perms:
-    title: 2.4.1.6 | Ensure permissions on /etc/cron.monthly are configured
+    title: 2.4.1.6 | Ensure access to /etc/cron.monthly is configured
     path: /etc/cron.monthly
     exists: true
     owner: root

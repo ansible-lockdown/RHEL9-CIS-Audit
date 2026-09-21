@@ -2,23 +2,18 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_4_3_3 }}
-command:
-  umask_profile_scripts:
-    title: 5.4.3.3 | Ensure default user umask is configured
-    exec: 'grep -i "^\s*umask" /etc/profile /etc/profile.d/*.sh /etc/login.defs | cut -d ":" -f 2'
-    exit-status: 0
-    stdout:
-    - '/(?i)umask\s+00[2-7][7]/'
-    - '!/(?i)umask\s+[7][0-1][0-6]/'
+file:
+  login_defs_umask:
+    title: 5.4.3.3 | Ensure default user umask is configured in /etc/login.defs
+    path: /etc/login.defs
+    exists: true
+    contents:
+    - '/^\s*UMASK\s+0?[0-7][2367]7\b/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.4.3.3
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

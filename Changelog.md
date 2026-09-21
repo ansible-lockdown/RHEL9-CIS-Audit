@@ -1,5 +1,25 @@
 # Changes to RHEL9-CIS-Audit
 
+## Sept 2026 - benchmark v3.0.0
+
+- BENCHMARK_VER 3.0.0
+- goss files renumbered and moved to the v3.0.0 section folders
+- retired control files removed
+- new control files added
+- goss.yml and standalone.yml globs rewritten for the v3.0.0 layout
+- section 4 firewalld only
+- journald 6.1.1.x tests added
+- 6.2.3.x audit rule tests split per control
+- 3.3.x sysctl tests use the effective systemd-sysctl value
+- sshd tests assert sshd -T output only
+- 1.7.x combined banner file split per control
+- vars - rule toggles regenerated in v3.0.0 order
+- vars - rhel9cis_syslog, nis and xinetd variables removed
+- vars - cockpit, rsyslog TLS and rhel9cis_system_is_log_server added
+- vars - rhel9cis_aide_scan timer
+- 2.1.11, 2.2.3, 2.2.4 workstation meta corrected
+- 6.1.2.3 accepts grep exit 2 when /etc/rsyslog.d is empty
+
 ## Sept 2026 - QA pass
 
 - 1.7.x combined tests now gate on either paired toggle, not just the first

@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_1_2 }}
+    {{ if not .Vars.rhel9cis_system_is_log_server }}
+command:
+  journald_remote_not_in_use:
+    title: 6.1.1.2 | Ensure systemd-journal-remote is not in use
+    exec: |
+      systemctl show -p Id -p UnitFileState -p ActiveState systemd-journal-remote.socket systemd-journal-remote.service | awk -v RS='' '{ id=""; u=0; for(i=1;i<=NF;i++){ if($i ~ /^Id=/) id=substr($i,4); if($i ~ /^UnitFileState=(enabled|enabled-runtime)$/) u=1; if($i ~ /^ActiveState=active$/) u=1 } if(u) print id " is in use" }'
+      echo check_complete
+    exit-status: 0
+    stdout:
+    - '/^check_complete$/'
+    - '!/is in use/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.2
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+    {{ end }}
+  {{ end }}
+{{ end }}

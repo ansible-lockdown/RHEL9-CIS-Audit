@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_4 }}
+command:
+  cis_4_1_4_active_zone_target:
+    title: 4.1.4 | Ensure firewalld active zone target is configured
+    exec: |
+      l_pass=""
+      l_fail=""
+      for l_zone in $(firewall-cmd --get-active-zones 2>/dev/null | awk '!/^[[:space:]]/ {print $1}'); do
+        l_interfaces="$(firewall-cmd --zone="$l_zone" --list-interfaces)"
+        if [ -n "$l_interfaces" ] && [ -z "$(echo "$l_interfaces" | tr ' ' '\n' | grep -Pv '^(lo|virbr\S+)?$')" ]; then
+          continue
+        fi
+        l_target="$(firewall-cmd --zone="$l_zone" --list-all | awk '/^[[:space:]]*target:/ {print $2}')"
+        l_ptarget="$(firewall-cmd --permanent --zone="$l_zone" --get-target)"
+        if [ -z "$l_target" ] || [ "$(echo "$l_target" | tr '[:upper:]' '[:lower:]')" = "accept" ]; then
+          echo "FAIL - zone $l_zone target is $l_target"; l_fail="yes"
+        elif [ "$l_target" != "$l_ptarget" ]; then
+          echo "FAIL - zone $l_zone target $l_target is not permanent ($l_ptarget)"; l_fail="yes"
+        else
+          l_pass="yes"
+        fi
+      done
+      [ -z "$l_pass" ] && echo "FAIL - no active zone configured"
+      [ -n "$l_pass" ] && [ -z "$l_fail" ] && echo "PASS"
+      exit 0
+    exit-status: 0
+    stdout:
+    - '/^PASS$/'
+    - '!/FAIL/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.4
+      NIST800-53R5:
+      - CA-9
+  {{ end }}
+{{ end }}

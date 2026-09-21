@@ -3,18 +3,14 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_4_1_1 }}
 package:
-  nftables:
-    title: 4.1.1 | Ensure nftables is installed
+  firewalld:
+    title: 4.1.1 | Ensure firewalld is installed
     installed: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8: 4.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CA-9
   {{ end }}

@@ -1,0 +1,44 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_ipv6_required }}
+    {{ if .Vars.rhel9cis_rule_3_3_2_8 }}
+kernel-param:
+  net.ipv6.conf.default.accept_ra:
+    title: 3.3.2.8 | Ensure net.ipv6.conf.default.accept_ra is configured | running config
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.8
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+command:
+  cis_3_3_2_8_sysctl_conf:
+    title: 3.3.2.8 | Ensure net.ipv6.conf.default.accept_ra is configured | effective systemd-sysctl config
+    exec: |
+      l_sysctl="$(readlink -e /usr/lib/systemd/systemd-sysctl || readlink -e /lib/systemd/systemd-sysctl)"
+      l_value="$("$l_sysctl" --cat-config 2>/dev/null | grep -Pi -- '^\h*-?net(\.|/)ipv6(\.|/)conf(\.|/)default(\.|/)accept_ra\h*=' | tail -n 1 | cut -d= -f2 | xargs)"
+      echo "net.ipv6.conf.default.accept_ra=$l_value"
+    exit-status: 0
+    stdout:
+    - '/^net\.ipv6\.conf\.default\.accept_ra=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.8
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+    {{ end }}
+  {{ end }}
+{{ end }}

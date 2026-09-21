@@ -5,10 +5,13 @@
 command:
   accts_use_shadowed:
     title: 7.2.1 | Ensure accounts in /etc/passwd use shadowed passwords
-    exec: "awk -F: '($2 != \"x\" ) { print $1 \" is not set to shadowed passwords \"}' /etc/passwd"
+    exec: |
+      awk -F: '($2 != "x") { print "FAIL: " $1 " is not set to shadowed passwords" }' /etc/passwd
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/.*/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

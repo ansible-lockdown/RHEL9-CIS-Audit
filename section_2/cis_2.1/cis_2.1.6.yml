@@ -2,12 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_6 }}
-    {{ if not .Vars.rhel9cis_samba_server }}
-      {{ if not .Vars.rhel9cis_samba_mask }}
+    {{ if not .Vars.rhel9cis_dnsmasq_server }}
+      {{ if not .Vars.rhel9cis_dnsmasq_mask }}
 package:
-  samba_pkg:
-    title: 2.1.6 | Ensure samba file server services are not in use | pkg removed
-    name: samba
+  dnsmasq_pkg:
+    title: 2.1.6 | Ensure dnsmasq services are not in use | pkg removed
+    name: dnsmasq
     installed: false
     meta:
       server: 1
@@ -20,14 +20,13 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-6
       - CM-7
       {{ end }}
-      {{ if .Vars.rhel9cis_samba_mask }}
+      {{ if .Vars.rhel9cis_dnsmasq_mask }}
 file:
-  samba_service_masked:
-    title: 2.1.6 | Ensure samba file server services are not in use | masked
-    path: /etc/systemd/system/smb.service
+  dnsmasq_service_masked:
+    title: 2.1.6 | Ensure dnsmasq services are not in use | masked
+    path: /etc/systemd/system/dnsmasq.service
     exists: true
     filetype: symlink
     linked-to: /dev/null
@@ -42,7 +41,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-6
       - CM-7
       {{ end }}
     {{ end }}

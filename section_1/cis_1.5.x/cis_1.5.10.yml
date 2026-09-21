@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_5_10 }}
+command:
+  coredump_storage_effective:
+    title: 1.5.10 | Ensure systemd-coredump Storage is configured
+    exec: "systemd-analyze cat-config systemd/coredump.conf | grep -E '^[[:space:]]*Storage[[:space:]]*=' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*Storage\s*=\s*none\s*$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.10
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

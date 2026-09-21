@@ -1,17 +1,17 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_6_7 }}
-file:
-  crypto_policies_no_ssh_EtM:
-    title: 1.6.7 | Ensure system wide crypto policy disables EtM for ssh
-    path: /etc/crypto-policies/state/CURRENT.pol
-    exists: true
-    contents:
-    - '!/^\s*etm\b'
+command:
+  crypto_policies_pq:
+    title: 1.6.7 | Ensure system wide crypto policy enables post-quantum algorithms
+    exec: if [ -f /usr/share/crypto-policies/policies/modules/PQ.pmod ]; then update-crypto-policies --show; else echo pq_subpolicy_not_available; fi
+    exit-status: 0
+    stdout:
+    - '/(:PQ(:|$)|^pq_subpolicy_not_available$)/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 1.6.7
       CISv8:
@@ -19,6 +19,6 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: SC-8
+      NIST800-53R5: SC-13
   {{ end }}
 {{ end }}

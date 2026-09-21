@@ -2,14 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_1_9 }}
-file:
-  sshd_clientalive:
-    title: 5.1.9 | Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    - '/^ClientAliveInterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
-    - '/^ClientAliveCountMax [1-4]/'
+command:
+  sshd_banner_live:
+    title: 5.1.9 | Ensure sshd Banner is configured
+    exec: sshd -T 2>/dev/null | grep -Pi -- '^banner\h+\/\H+'
+    exit-status: 0
+    stdout:
+    - '/^banner \/\S+/'
     meta:
       server: 1
       workstation: 1
@@ -25,17 +24,16 @@ file:
       - CM-6
       - CM-7
       - IA-5
-command:
-  sshd_clientalive_live:
-    title: 5.1.9 | Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured | live
-    exec: sshd -T | grep clientalive
-    exit-status:
-      or:
-      - 0
-      - 1
+  sshd_banner_content:
+    title: 5.1.9 | Ensure sshd Banner is configured | banner content
+    exec: |
+      l_banner="$(sshd -T 2>/dev/null | awk '$1 == "banner" {print $2}')"
+      l_os_id="$(awk -F= '$1=="ID"{gsub(/"/,"",$2); print $2}' /etc/os-release)"
+      [ -n "$l_os_id" ] || l_os_id="rhel"
+      grep -Psi -- '(\\v|\\r|\\m|\\s|\b'"$l_os_id"'\b)' "$l_banner"
+    exit-status: 1
     stdout:
-    - '/^(?i)clientaliveinterval ([1-9]|[1-9][0-9]|[1-8][0-9][0-9]|900)/'
-    - '/^(?i)ClientAliveCountMax [1-4]/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

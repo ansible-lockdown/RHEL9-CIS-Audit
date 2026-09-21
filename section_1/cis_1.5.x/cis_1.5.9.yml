@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_5_9 }}
+command:
+  coredump_processsizemax_effective:
+    title: 1.5.9 | Ensure systemd-coredump ProcessSizeMax is configured
+    exec: "systemd-analyze cat-config systemd/coredump.conf | grep -E '^[[:space:]]*ProcessSizeMax[[:space:]]*=' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*ProcessSizeMax\s*=\s*0\s*$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.9
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

@@ -5,9 +5,10 @@
 command:
   root_passwd_set:
     title: 5.4.2.4 | Ensure root account access is controlled
-    exec: "passwd -S root | awk '$2 ~ /^P/ {print \"OK Password\"}'"
+    exec: passwd -S root | awk '$2 ~ /^(P|L)/ {print "root_status_ok " $2}'
     exit-status: 0
-    stdout: ['OK Password']
+    stdout:
+    - '/^root_status_ok (P|L)/'
     meta:
       server: 1
       workstation: 1

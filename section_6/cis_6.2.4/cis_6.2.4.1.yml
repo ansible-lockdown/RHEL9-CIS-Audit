@@ -1,64 +1,25 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_2_4_1 }}
 command:
-  logfile_configured_login_files:
-    title: 6.2.4.1 | Ensure access to all logfiles has been configured
-    exec: find /var/log/ -type f -perm /g+x,o+wx -exec ls -l "{}" + | grep -E "[b,u,w]tmp.*|lastllog"
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout: ['!/.*/']
+  audit_logfile_dir_mode:
+    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    exec: 'stat -Lc ''%a'' "$(dirname "$(awk -F= ''/^\s*log_file\s*/{print $2}'' /etc/audit/auditd.conf | xargs)")"'
+    exit-status: 0
+    stdout:
+    - '/^[0-7]?[0-7][0145]0$/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.4.1
-      CISv8: 3.3
+      CISv8:
+      - 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-8
-  logfile_configured_syslog_logs:
-    title: 6.2.4.1 | Ensure access to all logfiles has been configured
-    exec: find /var/log/ -type f -perm /g+wx,o+wx -exec ls -l "{}" + | grep -E "auth|secure|syslog|messages|journal|auth"
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout: ['!/.*/']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 6.2.4.1
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AU-8
-  logfile_configured_sssd:
-    title: 6.2.4.1 | Ensure access to all logfiles has been configured
-    exec: find /var/log/ -type f -perm /g+x,o+rwx -exec ls -l "{}" + | grep -Ei "ssd|gdm"
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout: ['!/.*/']
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 6.2.4.1
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AU-8
+      - AU-3
   {{ end }}
 {{ end }}

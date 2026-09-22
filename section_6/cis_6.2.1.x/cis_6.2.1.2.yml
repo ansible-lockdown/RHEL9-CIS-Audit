@@ -18,7 +18,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AU-2
   grubby_audit_1:
     title: 6.2.1.2 | Ensure auditing for processes that start prior to auditd is enabled | all boot entries
     exec: 'grubby --info=ALL | grep ''^args='' | grep -vc ''\baudit=1\b'''
@@ -37,6 +37,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AU-2
   {{ end }}
 {{ end }}

@@ -11,7 +11,12 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 1.5.4
-      NIST800-53R5: CM-6
+      NIST800-53R5:
+      - SC-2
+      - SC-4
+      CCI:
+      - CCI-001082
+      - CCI-001090
 command:
   kernel_dmesg_restrict_persistent:
     title: 1.5.4 | Ensure kernel.dmesg_restrict is configured | effective persistent setting
@@ -24,6 +29,11 @@ command:
       workstation: 1
       CIS_ID:
       - 1.5.4
-      NIST800-53R5: CM-6
+      NIST800-53R5:
+      - SC-2
+      - SC-4
+      CCI:
+      - CCI-001082
+      - CCI-001090
   {{ end }}
 {{ end }}

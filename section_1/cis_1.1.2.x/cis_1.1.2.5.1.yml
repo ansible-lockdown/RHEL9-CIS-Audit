@@ -17,5 +17,6 @@ mount:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R4: CM-7
+      NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

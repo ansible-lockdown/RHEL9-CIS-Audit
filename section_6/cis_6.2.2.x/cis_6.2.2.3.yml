@@ -21,7 +21,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-8
+      NIST800-53R5: AU-5
   {{ end }}
 {{ end }}

@@ -19,8 +19,8 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-2
       - AU-12
+      - AU-2
       - SI-5
   audit_backlog_grubby:
     title: 6.2.1.3 | Ensure audit_backlog_limit is configured | all boot entries
@@ -38,8 +38,8 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AU-2
       - AU-12
+      - AU-2
       - SI-5
   {{ end }}
 {{ end }}

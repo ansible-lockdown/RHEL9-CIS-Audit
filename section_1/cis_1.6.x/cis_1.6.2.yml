@@ -22,7 +22,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: SC-8
+      NIST800-53R5: SC-6
 command:
   crypto_policies_no_sha1_scopes:
     title: 1.6.2 | Ensure system wide crypto policy disables sha1 hash and signature support | no non-exempt scope enables SHA1
@@ -41,6 +41,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: SC-8
+      NIST800-53R5: SC-6
   {{ end }}
 {{ end }}

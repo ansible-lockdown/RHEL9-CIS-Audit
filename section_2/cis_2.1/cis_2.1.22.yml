@@ -15,6 +15,7 @@ package:
       CIS_ID:
       - 2.1.22
       NIST800-53R5:
+      - CM-11
       - CM-7
       {{ end }}
     {{ end }}

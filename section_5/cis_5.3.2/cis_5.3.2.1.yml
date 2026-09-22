@@ -19,7 +19,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   authselect_check_5_3_2_1:
     title: 5.3.2.1 | Ensure PAM is managed by an active authselect profile | authselect check
     exec: authselect check
@@ -36,6 +36,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

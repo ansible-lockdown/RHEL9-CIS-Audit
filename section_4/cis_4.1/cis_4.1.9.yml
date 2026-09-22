@@ -20,8 +20,7 @@ command:
       workstation: 1
       CIS_ID:
       - 4.1.9
-      NIST800-53R5:
-      - CA-9
+      NIST800-53R5: CA-9
 package:
   iptables-services:
     title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | iptables-services
@@ -31,8 +30,7 @@ package:
       workstation: 1
       CIS_ID:
       - 4.1.9
-      NIST800-53R5:
-      - CA-9
+      NIST800-53R5: CA-9
   ufw:
     title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | ufw
     installed: false
@@ -41,7 +39,6 @@ package:
       workstation: 1
       CIS_ID:
       - 4.1.9
-      NIST800-53R5:
-      - CA-9
+      NIST800-53R5: CA-9
   {{ end }}
 {{ end }}

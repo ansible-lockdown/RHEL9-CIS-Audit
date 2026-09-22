@@ -18,9 +18,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
-      - CM-6
+      NIST800-53R5: AU-12
   auditd_6_2_3_31_live:
     title: 6.2.3.31 | Ensure kernel module loading unloading and modification is collected | running
     exec: 'auditctl -l | grep -P -- ''/usr/bin/kmod'''
@@ -36,8 +34,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
-      - CM-6
+      NIST800-53R5: AU-12
   {{ end }}
 {{ end }}

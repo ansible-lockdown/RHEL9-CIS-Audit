@@ -19,7 +19,6 @@ mount:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - AC-3
       - MP-2
 file:
@@ -39,7 +38,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - AC-3
       - MP-2
   {{ end }}

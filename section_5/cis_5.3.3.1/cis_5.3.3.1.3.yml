@@ -18,7 +18,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
 command:
   faillock_even_root_pam:
     title: 5.3.3.1.3 | Ensure password failed attempts lockout includes root account | pam files
@@ -34,6 +34,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

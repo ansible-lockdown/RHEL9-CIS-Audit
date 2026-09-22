@@ -20,8 +20,8 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - CM-11
+      - CM-7
       {{ end }}
       {{ if .Vars.rhel9cis_telnet_mask }}
 file:
@@ -42,8 +42,8 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - CM-11
+      - CM-7
   telnet_socket_masked:
     title: 2.1.15 | Ensure telnet server services are not in use | masked
     path: /etc/systemd/system/telnet.socket
@@ -61,8 +61,8 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - CM-11
+      - CM-7
       {{ end }}
     {{ end }}
   {{ end }}

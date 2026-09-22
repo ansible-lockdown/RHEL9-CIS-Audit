@@ -22,8 +22,11 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
+      - SC-3
       - SI-6
+      CCI:
+      - CCI-001084
+      - CCI-002696
 file:
   /etc/selinux/config:
     title: 1.3.1.5 | Ensure the SELinux mode is enforcing | config
@@ -42,8 +45,11 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
+      - SC-3
       - SI-6
+      CCI:
+      - CCI-001084
+      - CCI-002696
     {{ end }}
   {{ end }}
 {{ end }}

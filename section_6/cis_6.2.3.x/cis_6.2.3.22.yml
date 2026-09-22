@@ -20,8 +20,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   auditd_6_2_3_22_live:
     title: 6.2.3.22 | Ensure session initiation information is collected | running
     exec: 'auditctl -l | grep -P -- ''(utmp|wtmp|btmp)'''
@@ -39,7 +38,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   {{ end }}
 {{ end }}

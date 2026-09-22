@@ -17,8 +17,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AC-6
+      NIST800-53R5: AC-6
   pty_sudoers_d_not_disabled:
     title: 5.2.4 | Ensure sudo commands use pty | !use_pty not set
     exec: grep -rPi -- '^\h*Defaults\h+([^#\n\r]+,\h*)?!use_pty\b' /etc/sudoers /etc/sudoers.d/
@@ -33,7 +32,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AC-6
+      NIST800-53R5: AC-6
   {{ end }}
 {{ end }}

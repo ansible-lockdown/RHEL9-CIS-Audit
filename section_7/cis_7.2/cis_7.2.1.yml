@@ -21,7 +21,6 @@ command:
       CISv8_IG1: NA
       CISv8_IG2: NA
       CISv8_IG3: NA
-      NIST800-53R5:
-      - IA-5
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

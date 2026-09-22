@@ -19,6 +19,8 @@ command:
       CIS_ID:
       - 1.8.3
       NIST800-53R5: AC-11
+      CCI:
+      - CCI-000057
     {{ end }}
   {{ end }}
 {{ end }}

@@ -21,7 +21,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: AC-3
+      NIST800-53R5: CM-6
   grubenv_perms:
     title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | grubenv
     path: /boot/grub2/grubenv
@@ -39,7 +39,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: AC-3
+      NIST800-53R5: CM-6
   grub_user_perms:
     title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | user.cfg
     path: /boot/grub2/user.cfg
@@ -57,7 +57,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: AC-3
+      NIST800-53R5: CM-6
     {{ end }}
     {{ if not .Vars.rhel9cis_legacy_boot }}
 command:
@@ -80,7 +80,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: AC-3
+      NIST800-53R5: CM-6
     {{ end }}
   {{ end }}
 {{ end }}

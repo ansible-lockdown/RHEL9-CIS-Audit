@@ -19,6 +19,8 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
+      CCI:
+      - CCI-000381
   blacklist_cramfs:
     title: 1.1.1.1 | Ensure cramfs kernel module is not available | blacklist
     exit-status: 0
@@ -35,5 +37,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
+      CCI:
+      - CCI-000381
   {{ end }}
 {{ end }}

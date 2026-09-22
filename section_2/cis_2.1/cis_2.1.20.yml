@@ -18,8 +18,7 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
 command:
   gui_default_target:
     title: 2.1.20 | Ensure a graphical user interface is not in use | default target not graphical
@@ -38,8 +37,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
     {{ end }}
   {{ end }}
 {{ end }}

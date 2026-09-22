@@ -22,7 +22,6 @@ command:
       workstation: 1
       CIS_ID:
       - 4.1.5
-      NIST800-53R5:
-      - CA-9
+      NIST800-53R5: CA-9
   {{ end }}
 {{ end }}

@@ -21,7 +21,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AU-9
   journald_journal_file_mode:
     title: 6.1.1.5 | Ensure journald log file access is configured | journal files
     exec: 'find /var/log/journal /run/log/journal -type f -name ''*.journal*'' -perm /0137 2>/dev/null | wc -l'
@@ -39,6 +39,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AU-9
   {{ end }}
 {{ end }}

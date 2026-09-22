@@ -13,6 +13,8 @@ kernel-param:
       CIS_ID:
       - 1.5.7
       NIST800-53R5: CM-6
+      CCI:
+      - CCI-000366
 command:
   kernel_yama_ptrace_scope_persistent:
     title: 1.5.7 | Ensure kernel.yama.ptrace_scope is configured | effective persistent setting
@@ -26,5 +28,7 @@ command:
       CIS_ID:
       - 1.5.7
       NIST800-53R5: CM-6
+      CCI:
+      - CCI-000366
   {{ end }}
 {{ end }}

@@ -17,6 +17,8 @@ service:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: SC-24
+      CCI:
+      - CCI-001665
   {{ end }}
 {{ end }}

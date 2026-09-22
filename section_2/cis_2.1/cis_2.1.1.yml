@@ -20,8 +20,8 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - SI-3
       - MP-7
+      - SI-3
       {{ end }}
       {{ if .Vars.rhel9cis_autofs_mask }}
 file:
@@ -42,8 +42,8 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - SI-3
       - MP-7
+      - SI-3
       {{ end }}
     {{ end }}
   {{ end }}

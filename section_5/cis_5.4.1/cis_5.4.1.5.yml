@@ -18,7 +18,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   inactive_users:
     title: 5.4.1.5 | Ensure inactive password lock is configured | existing users
     exec: |
@@ -37,6 +37,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

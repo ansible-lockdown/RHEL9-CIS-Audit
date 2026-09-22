@@ -25,9 +25,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
+      NIST800-53R5: CM-6
     {{ end }}
   {{ end }}
 {{ end }}

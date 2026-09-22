@@ -11,12 +11,9 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.1.15
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: CM-6
+      CCI:
+      - CCI-000366
 command:
   cis_3_3_1_15_sysctl_conf:
     title: 3.3.1.15 | Ensure net.ipv4.conf.default.accept_source_route is configured | effective systemd-sysctl config
@@ -32,11 +29,8 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.1.15
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: CM-6
+      CCI:
+      - CCI-000366
   {{ end }}
 {{ end }}

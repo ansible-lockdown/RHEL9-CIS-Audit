@@ -19,8 +19,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   auditd_6_2_3_1_live:
     title: 6.2.3.1 | Ensure modification of the /etc/sudoers file is collected | running
     exec: 'auditctl -l | grep -P -- ''scope'''
@@ -37,7 +36,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   {{ end }}
 {{ end }}

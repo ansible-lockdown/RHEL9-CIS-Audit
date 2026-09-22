@@ -13,12 +13,7 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.2.2
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: CM-6
 command:
   cis_3_3_2_2_sysctl_conf:
     title: 3.3.2.2 | Ensure net.ipv6.conf.default.forwarding is configured | effective systemd-sysctl config
@@ -34,12 +29,7 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.2.2
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: CM-6
       {{ end }}
     {{ end }}
   {{ end }}

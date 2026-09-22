@@ -24,8 +24,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   {{ end }}
   {{ if .Vars.rhel9cis_ipv6_required }}
   ipv6_required:
@@ -48,8 +47,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
     {{ end }}
   {{ if not .Vars.rhel9cis_ipv6_required }}
   {{ if eq .Vars.rhel9cis_ipv6_disable_method "sysctl" }}
@@ -69,8 +67,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   {{ end }}
   {{ if eq .Vars.rhel9cis_ipv6_disable_method "kernel" }}
 kernel-param:
@@ -87,8 +84,7 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   {{ end }}
   {{ end }}
   {{ end }}

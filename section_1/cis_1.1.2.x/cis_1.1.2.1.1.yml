@@ -16,7 +16,11 @@ mount:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: CM-7
+      NIST800-53R5:
+      - CM-6
+      - CM-7
+      CCI:
+      - CCI-000366
 command:
   tmp_mount_unit_enabled:
     title: 1.1.2.1.1 | Ensure /tmp is tmpfs or a separate partition | tmp.mount not masked or disabled
@@ -35,6 +39,10 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: CM-7
+      NIST800-53R5:
+      - CM-6
+      - CM-7
+      CCI:
+      - CCI-000366
   {{ end }}
 {{ end }}

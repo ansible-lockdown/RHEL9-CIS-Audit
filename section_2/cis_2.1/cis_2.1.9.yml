@@ -19,8 +19,7 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   cyrus_impad_pkg:
     title: 2.1.9 | Ensure message access server services are not in use | pkg removed
     name: cyrus-impad
@@ -35,8 +34,7 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
       {{ end }}
       {{ if .Vars.rhel9cis_message_mask }}
 file:
@@ -56,8 +54,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   cyrus_imapd_masked:
     title: 2.1.9 | Ensure message access server services are not in use | masked
     path: /etc/systemd/system/cyrus-imapd.service
@@ -74,8 +71,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
   dovecot_socket_masked:
     title: 2.1.9 | Ensure message access server services are not in use | masked
     path: /etc/systemd/system/dovecot.socket
@@ -92,8 +88,7 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
+      NIST800-53R5: CM-7
       {{ end }}
     {{ end }}
   {{ end }}

@@ -21,6 +21,6 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: SC-8
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

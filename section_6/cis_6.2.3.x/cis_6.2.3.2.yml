@@ -22,8 +22,7 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   auditd_6_2_3_2_live:
     title: 6.2.3.2 | Ensure actions as another user are always logged | running
     exec: 'auditctl -l | grep -P -- ''execve'''
@@ -43,7 +42,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - AU-3
+      NIST800-53R5: AU-3
   {{ end }}
 {{ end }}

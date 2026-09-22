@@ -18,7 +18,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
 command:
   faillock_unlock_time_pam:
     title: 5.3.3.1.2 | Ensure password unlock time is configured | pam files
@@ -34,6 +34,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

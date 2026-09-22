@@ -20,6 +20,8 @@ command:
       CISv8_IG1: false
       CISv8_IG2: false
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5:
+      - SI-7
+      - SI-7(2)
   {{ end }}
 {{ end }}

@@ -15,7 +15,7 @@ command:
       workstation: 1
       CIS_ID:
       - 1.8.6
-      NIST800-53R5: CM-7
+      NIST800-53R5: SI-4
     {{ end }}
   {{ end }}
 {{ end }}

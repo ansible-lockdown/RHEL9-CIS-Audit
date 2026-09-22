@@ -19,6 +19,13 @@ command:
       CIS_ID:
       - 1.8.1
       NIST800-53R5: AC-8
+      CCI:
+      - CCI-000048
+      - CCI-001384
+      - CCI-001385
+      - CCI-001386
+      - CCI-001387
+      - CCI-001388
     {{ end }}
   {{ end }}
 {{ end }}

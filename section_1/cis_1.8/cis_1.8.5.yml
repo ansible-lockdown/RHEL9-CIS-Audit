@@ -16,7 +16,9 @@ command:
       workstation: 1
       CIS_ID:
       - 1.8.5
-      NIST800-53R5: CM-7
+      NIST800-53R5: CM-7(2)
+      CCI:
+      - CCI-001764
     {{ end }}
   {{ end }}
 {{ end }}

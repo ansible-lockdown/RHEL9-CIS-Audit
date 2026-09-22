@@ -21,7 +21,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AC-7
   pam_faillock_enabled_password_auth:
     title: 5.3.2.2 | Ensure pam_faillock module is enabled | password-auth
     path: /etc/pam.d/password-auth
@@ -40,7 +40,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AC-7
 command:
   authselect_check_5_3_2_2:
     title: 5.3.2.2 | Ensure pam_faillock module is enabled | authselect check
@@ -58,6 +58,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AC-7
   {{ end }}
 {{ end }}

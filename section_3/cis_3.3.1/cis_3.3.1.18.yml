@@ -12,11 +12,11 @@ kernel-param:
       CIS_ID:
       - 3.3.1.18
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - SC-5
+      - SC-5(2)
+      CCI:
+      - CCI-001095
+      - CCI-002385
 command:
   cis_3_3_1_18_sysctl_conf:
     title: 3.3.1.18 | Ensure net.ipv4.tcp_syncookies is configured | effective systemd-sysctl config
@@ -33,10 +33,10 @@ command:
       CIS_ID:
       - 3.3.1.18
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - SC-5
+      - SC-5(2)
+      CCI:
+      - CCI-001095
+      - CCI-002385
   {{ end }}
 {{ end }}

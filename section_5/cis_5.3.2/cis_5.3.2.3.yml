@@ -19,7 +19,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: IA-5
+      NIST800-53R5: CM-6
   pam_pwquality_enabled_password_auth:
     title: 5.3.2.3 | Ensure pam_pwquality module is enabled | password-auth
     path: /etc/pam.d/password-auth
@@ -36,7 +36,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: IA-5
+      NIST800-53R5: CM-6
 command:
   authselect_check_5_3_2_3:
     title: 5.3.2.3 | Ensure pam_pwquality module is enabled | authselect check
@@ -54,6 +54,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: IA-5
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

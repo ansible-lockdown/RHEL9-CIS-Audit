@@ -20,7 +20,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: SC-17
   rsyslog_tls_cafile_cert:
     title: 6.1.2.12 | Ensure rsyslog TLS CA certificate is configured | certificate readable
     exec: 'openssl x509 -in {{ .Vars.rhel9cis_remote_log_tls_cafile }} -noout -subject'
@@ -36,7 +36,7 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: SC-17
       {{ end }}
     {{ end }}
   {{ end }}

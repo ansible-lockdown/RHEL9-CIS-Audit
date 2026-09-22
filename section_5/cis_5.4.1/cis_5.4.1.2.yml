@@ -18,7 +18,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5(1)
 command:
   check_users_min_days:
     title: 5.4.1.2 | Ensure minimum password days is configured | existing users
@@ -39,6 +39,6 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5(1)
   {{ end }}
 {{ end }}

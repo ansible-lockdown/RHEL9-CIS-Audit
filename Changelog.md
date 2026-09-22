@@ -26,6 +26,9 @@
 - vars - 10 remediation gate variables added
 - 5.3.3.3.3 system-auth test indentation fixed
 - LICENSE company name MindPoint Group - A Quantum Sky Company
+- meta NIST800-53R5 aligned to the remediation role
+- meta NIST800-53R5 NA placeholders replaced
+- meta CCI added from the v3.0.0 benchmark references
 
 ## Sept 2026 - QA pass
 

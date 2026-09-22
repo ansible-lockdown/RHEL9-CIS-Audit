@@ -14,7 +14,6 @@ command:
       workstation: 0
       CIS_ID:
       - 5.2.8
-      NIST800-53R5:
-      - AC-6
+      NIST800-53R5: AC-6
   {{ end }}
 {{ end }}

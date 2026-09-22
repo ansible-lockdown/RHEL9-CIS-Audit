@@ -11,7 +11,12 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 1.5.1
-      NIST800-53R5: CM-6
+      NIST800-53R5:
+      - AC-3(4)
+      - AC-6(10)
+      CCI:
+      - CCI-002165
+      - CCI-002235
 command:
   fs_protected_hardlinks_persistent:
     title: 1.5.1 | Ensure fs.protected_hardlinks is configured | effective persistent setting
@@ -24,6 +29,11 @@ command:
       workstation: 1
       CIS_ID:
       - 1.5.1
-      NIST800-53R5: CM-6
+      NIST800-53R5:
+      - AC-3(4)
+      - AC-6(10)
+      CCI:
+      - CCI-002165
+      - CCI-002235
   {{ end }}
 {{ end }}

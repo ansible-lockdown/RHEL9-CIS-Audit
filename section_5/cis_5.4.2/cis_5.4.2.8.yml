@@ -22,9 +22,9 @@ command:
       CIS_ID:
       - 5.4.2.8
       NIST800-53R5:
+      - AC-11
       - AC-2
       - AC-3
-      - AC-11
       - MP-2
   {{ end }}
 {{ end }}

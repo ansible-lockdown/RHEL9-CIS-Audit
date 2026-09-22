@@ -17,6 +17,8 @@ command:
       CIS_ID:
       - 1.8.2
       NIST800-53R5: CM-6
+      CCI:
+      - CCI-000366
     {{ end }}
   {{ end }}
 {{ end }}

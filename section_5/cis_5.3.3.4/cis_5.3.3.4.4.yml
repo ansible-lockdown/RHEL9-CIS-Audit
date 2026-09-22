@@ -9,6 +9,7 @@ file:
     exists: true
     contents:
     - '/password\s+([^#\n\r]+)\s+pam_unix\.so.*use_authtok/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1
@@ -25,6 +26,7 @@ file:
     exists: true
     contents:
     - '/password\s+([^#\n\r]+)\s+pam_unix\.so.*use_authtok/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1

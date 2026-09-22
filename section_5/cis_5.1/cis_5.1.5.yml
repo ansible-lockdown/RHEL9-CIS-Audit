@@ -14,6 +14,7 @@ command:
     stdout:
     - '/^ciphers_offered$/'
     - '!/^WEAK:/'
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1

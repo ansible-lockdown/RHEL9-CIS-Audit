@@ -11,6 +11,7 @@ file:
     - '/(?i)^\s*hash\s*=/'
     - '!/(?i)^\s*(hash|sign)\s*=.*SHA-?1\b/'
     - '!/(?i)^\s*sha1_in_certs\s*=\s*[1-9]/'
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1
@@ -29,6 +30,7 @@ command:
     exit-status: 0
     stdout:
     - '/^sha1_nonexempt_scopes=0$/'
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1

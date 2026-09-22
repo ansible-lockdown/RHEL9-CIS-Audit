@@ -19,6 +19,13 @@
 - vars - rhel9cis_aide_scan timer
 - 2.1.11, 2.2.3, 2.2.4 workstation meta corrected
 - 6.1.2.3 accepts grep exit 2 when /etc/rsyslog.d is empty
+- tests the role is told not to remediate report skipped - disruption_high, allow_authselect_updates, authselect_pkg_update, crypto_policy_ansiblemanaged, selinux_enforce, config_aide
+- 5.4.1.1, 5.4.1.2 existing-user tests skipped unless force_user_maxdays / force_user_mindays
+- 1.1.2.1.2-4 check tmp.mount when rhel9cis_tmp_svc
+- 5.4.2.7 excludes rhel9cis_system_users_shell accounts
+- vars - 10 remediation gate variables added
+- 5.3.3.3.3 system-auth test indentation fixed
+- LICENSE company name MindPoint Group - A Quantum Sky Company
 
 ## Sept 2026 - QA pass
 

@@ -11,6 +11,7 @@ file:
     - '/^\s*auth\s+required\s+pam_faillock\.so\s+preauth/'
     - '/^\s*auth\s+required\s+pam_faillock\.so\s+authfail/'
     - '/^\s*account\s+required\s+pam_faillock\.so/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1
@@ -29,6 +30,7 @@ file:
     - '/^\s*auth\s+required\s+pam_faillock\.so\s+preauth/'
     - '/^\s*auth\s+required\s+pam_faillock\.so\s+authfail/'
     - '/^\s*account\s+required\s+pam_faillock\.so/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1
@@ -46,6 +48,7 @@ command:
     exit-status: 0
     stdout:
     - '/Current configuration is valid/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1

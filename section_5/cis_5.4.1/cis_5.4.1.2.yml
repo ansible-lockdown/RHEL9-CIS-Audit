@@ -29,6 +29,7 @@ command:
     stdout:
     - '/^scan_done$/'
     - '!/^FAIL:/'
+    skip: {{ not .Vars.rhel9cis_force_user_mindays }}
     meta:
       server: 2
       workstation: 2

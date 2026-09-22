@@ -23,6 +23,27 @@ mount:
       - AC-3
       - MP-2
 file:
+  {{ if .Vars.rhel9cis_tmp_svc }}
+  tmp_noexec_unit_options:
+    title: 1.1.2.1.4 | Ensure noexec option set on /tmp partition
+    exists: true
+    path: /etc/systemd/system/tmp.mount
+    contents:
+    - '/^Options=.*\bnoexec\b/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.1.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      - AC-3
+      - MP-2
+  {{ else }}
   tmp_noexec_fstab_options:
     title: 1.1.2.1.4 | Ensure noexec option set on /tmp partition
     exists: true
@@ -42,5 +63,6 @@ file:
       - CM-7
       - AC-3
       - MP-2
+  {{ end }}
   {{ end }}
 {{ end }}

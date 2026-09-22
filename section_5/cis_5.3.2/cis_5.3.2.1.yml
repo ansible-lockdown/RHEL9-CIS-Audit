@@ -9,6 +9,7 @@ command:
     exit-status: 0
     stdout:
     - '/^Profile ID: \S+/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
     meta:
       server: 1
       workstation: 1
@@ -25,6 +26,7 @@ command:
     exit-status: 0
     stdout:
     - '/Current configuration is valid/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
     meta:
       server: 1
       workstation: 1

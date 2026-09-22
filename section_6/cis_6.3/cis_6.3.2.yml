@@ -18,6 +18,7 @@ command:
     stdout:
     - '/^check_complete$/'
     - '/(aide[[:space:]]+--(check|update)|\.timer -> )/'
+    skip: {{ not .Vars.rhel9cis_config_aide }}
     meta:
       server: 1
       workstation: 1

@@ -10,6 +10,7 @@ command:
     exit-status: 0
     stdout:
     - '/^version_ok: /'
+    skip: {{ not .Vars.rhel9cis_authselect_pkg_update }}
     meta:
       server: 1
       workstation: 1

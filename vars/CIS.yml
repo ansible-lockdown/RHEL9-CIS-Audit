@@ -453,6 +453,18 @@ rhel9cis_rhel_default_repo: true
 
 ############
 
+## Remediation gates the audit follows - a control the role is told not to change is reported SKIPPED
+rhel9cis_disruption_high: false
+rhel9cis_allow_authselect_updates: true
+rhel9cis_authselect_pkg_update: false
+rhel9cis_crypto_policy_ansiblemanaged: true
+rhel9cis_selinux_enforce: enforcing
+rhel9cis_config_aide: true
+rhel9cis_force_user_maxdays: false
+rhel9cis_force_user_mindays: false
+rhel9cis_tmp_svc: false
+rhel9cis_system_users_shell: []
+
 # Section 1
 
 # Whether or not to run tasks related to auditing/patching the desktop environment

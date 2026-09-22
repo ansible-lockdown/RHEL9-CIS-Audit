@@ -9,6 +9,7 @@ command:
     exit-status: 0
     stdout:
     - '/^\s*report_url\s*=\s*syslog:\S+/'
+    skip: {{ not .Vars.rhel9cis_config_aide }}
     meta:
       server: 1
       workstation: 1

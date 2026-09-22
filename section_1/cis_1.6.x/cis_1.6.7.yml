@@ -9,6 +9,7 @@ command:
     exit-status: 0
     stdout:
     - '/(:PQ(:|$)|^pq_subpolicy_not_available$)/'
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 2
       workstation: 2

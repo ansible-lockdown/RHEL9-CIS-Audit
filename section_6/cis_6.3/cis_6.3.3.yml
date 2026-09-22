@@ -17,6 +17,7 @@ command:
       - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
       - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
       - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
+    skip: {{ not .Vars.rhel9cis_config_aide }}
     meta:
       server: 1
       workstation: 1

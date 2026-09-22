@@ -34,6 +34,7 @@ command:
     stdout:
     - '/^scan_done$/'
     - '!/^FAIL:/'
+    skip: {{ not .Vars.rhel9cis_force_user_maxdays }}
     meta:
       server: 1
       workstation: 1

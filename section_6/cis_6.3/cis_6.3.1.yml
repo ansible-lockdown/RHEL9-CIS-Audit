@@ -7,6 +7,7 @@ package:
     title: 6.3.1 | Ensure AIDE is installed
     installed: true
     name: aide
+    skip: {{ not .Vars.rhel9cis_config_aide }}
     meta:
       server: 1
       workstation: 1

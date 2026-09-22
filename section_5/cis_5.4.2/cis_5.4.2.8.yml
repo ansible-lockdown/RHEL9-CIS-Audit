@@ -15,6 +15,7 @@ command:
     stdout:
     - '/^scan_done$/'
     - '!/^FAIL:/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1

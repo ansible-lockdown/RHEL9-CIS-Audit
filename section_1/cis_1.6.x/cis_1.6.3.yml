@@ -10,6 +10,7 @@ file:
     contents:
     - '/(?i)^\s*mac\s*=/'
     - '!/(?i)^\s*mac(@[^=\s]+)?\s*=\s*([^#]+)?-64\b/'
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1

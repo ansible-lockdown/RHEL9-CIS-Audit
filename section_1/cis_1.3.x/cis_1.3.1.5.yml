@@ -10,6 +10,7 @@ command:
     exec: "getenforce"
     stdout:
     - '/^Enforcing/'
+    skip: {{ ne .Vars.rhel9cis_selinux_enforce "enforcing" }}
     meta:
       server: 2
       workstation: 2
@@ -29,6 +30,7 @@ file:
     exists: true
     contents:
     - '/^SELINUX( |)=( |)enforcing/'
+    skip: {{ ne .Vars.rhel9cis_selinux_enforce "enforcing" }}
     meta:
       server: 2
       workstation: 2

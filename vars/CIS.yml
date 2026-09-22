@@ -462,7 +462,6 @@ rhel9cis_selinux_enforce: enforcing
 rhel9cis_config_aide: true
 rhel9cis_force_user_maxdays: false
 rhel9cis_force_user_mindays: false
-rhel9cis_tmp_svc: false
 rhel9cis_system_users_shell: []
 
 # Section 1

@@ -29,6 +29,8 @@
 - meta NIST800-53R5 aligned to the remediation role
 - meta NIST800-53R5 NA placeholders replaced
 - meta CCI added from the v3.0.0 benchmark references
+- 1.1.2.1.2-4 check the persistent /tmp options from the source systemd reports
+- vars - rhel9cis_tmp_svc removed
 
 ## Sept 2026 - QA pass
 

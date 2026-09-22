@@ -23,14 +23,18 @@ mount:
       - CM-7
       CCI:
       - CCI-001764
-file:
-  {{ if .Vars.rhel9cis_tmp_svc }}
-  tmp_nosuid_unit_options:
-    title: 1.1.2.1.3 | Ensure nosuid option set on /tmp partition
-    exists: true
-    path: /etc/systemd/system/tmp.mount
-    contents:
-    - '/^Options=.*\bnosuid\b/'
+command:
+  tmp_nosuid_persistent_options:
+    title: 1.1.2.1.3 | Ensure nosuid option set on /tmp partition | persistent config
+    exec: |
+      if [ "$(systemctl show tmp.mount -p SourcePath --value)" = "/etc/fstab" ]; then
+        findmnt --fstab -n -o OPTIONS /tmp
+      else
+        systemctl cat tmp.mount 2>/dev/null | awk -F= '/^Options=/{print $2}'
+      fi
+    exit-status: 0
+    stdout:
+    - '/\bnosuid\b/'
     meta:
       server: 1
       workstation: 1
@@ -45,27 +49,5 @@ file:
       - CM-7
       CCI:
       - CCI-001764
-  {{ else }}
-  tmp_nosuid_fstab_options:
-    title: 1.1.2.1.3 | Ensure nosuid option set on /tmp partition
-    exists: true
-    path: /etc/fstab
-    contents:
-    - '/\s\/tmp.*nosuid/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.1.2.1.3
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-6
-      - CM-7
-      CCI:
-      - CCI-001764
-  {{ end }}
   {{ end }}
 {{ end }}

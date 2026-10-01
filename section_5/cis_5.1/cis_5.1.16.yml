@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^loglevel\s'
     exit-status: 0
     stdout:
-    - '/^loglevel (VERBOSE|INFO)$/'
+    - '/(?i)^loglevel (VERBOSE|INFO)$/'
     meta:
       server: 1
       workstation: 1

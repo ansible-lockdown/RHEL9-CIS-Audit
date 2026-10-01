@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -Pi -- '^banner\h+\/\H+'
     exit-status: 0
     stdout:
-    - '/^banner \/\S+/'
+    - '/(?i)^banner \/\S+/'
     meta:
       server: 1
       workstation: 1

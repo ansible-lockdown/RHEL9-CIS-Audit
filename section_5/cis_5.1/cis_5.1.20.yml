@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^permitemptypasswords\s'
     exit-status: 0
     stdout:
-    - '/^permitemptypasswords no$/'
+    - '/(?i)^permitemptypasswords no$/'
     meta:
       server: 1
       workstation: 1

@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^maxauthtries\s'
     exit-status: 0
     stdout:
-    - '/^maxauthtries [1-4]$/'
+    - '/(?i)^maxauthtries [1-4]$/'
     meta:
       server: 1
       workstation: 1

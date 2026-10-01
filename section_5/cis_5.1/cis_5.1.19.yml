@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^maxsessions\s'
     exit-status: 0
     stdout:
-    - '/^maxsessions ([1-9]|10)$/'
+    - '/(?i)^maxsessions ([1-9]|10)$/'
     meta:
       server: 1
       workstation: 1

@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^permituserenvironment\s'
     exit-status: 0
     stdout:
-    - '/^permituserenvironment no$/'
+    - '/(?i)^permituserenvironment no$/'
     meta:
       server: 1
       workstation: 1

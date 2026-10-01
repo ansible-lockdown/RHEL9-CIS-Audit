@@ -8,8 +8,8 @@ command:
     exec: sshd -T 2>/dev/null | grep -Pi -- '^(clientaliveinterval|clientalivecountmax)\h'
     exit-status: 0
     stdout:
-    - '/^clientaliveinterval [1-9][0-9]*$/'
-    - '/^clientalivecountmax [1-9][0-9]*$/'
+    - '/(?i)^clientaliveinterval [1-9][0-9]*$/'
+    - '/(?i)^clientalivecountmax [1-9][0-9]*$/'
     meta:
       server: 1
       workstation: 1

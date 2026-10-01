@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^gssapiauthentication\s'
     exit-status: 0
     stdout:
-    - '/^gssapiauthentication no$/'
+    - '/(?i)^gssapiauthentication no$/'
     meta:
       server: 2
       workstation: 1

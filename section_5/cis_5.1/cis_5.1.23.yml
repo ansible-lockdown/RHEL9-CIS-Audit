@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^usepam\s'
     exit-status: 0
     stdout:
-    - '/^usepam yes$/'
+    - '/(?i)^usepam yes$/'
     meta:
       server: 1
       workstation: 1

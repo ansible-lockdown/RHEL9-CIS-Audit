@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^logingracetime\s'
     exit-status: 0
     stdout:
-    - '/^logingracetime ([1-9]|[1-5][0-9]|60)$/'
+    - '/(?i)^logingracetime ([1-9]|[1-5][0-9]|60)$/'
     meta:
       server: 1
       workstation: 1

@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^disableforwarding\s'
     exit-status: 0
     stdout:
-    - '/^disableforwarding yes$/'
+    - '/(?i)^disableforwarding yes$/'
     meta:
       server: 2
       workstation: 1

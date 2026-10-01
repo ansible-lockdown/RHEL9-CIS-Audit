@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^ignorerhosts\s'
     exit-status: 0
     stdout:
-    - '/^ignorerhosts yes$/'
+    - '/(?i)^ignorerhosts yes$/'
     meta:
       server: 1
       workstation: 1

@@ -8,7 +8,7 @@ command:
     exec: sshd -T 2>/dev/null | grep -i -- '^permitrootlogin\s'
     exit-status: 0
     stdout:
-    - '/^permitrootlogin no$/'
+    - '/(?i)^permitrootlogin no$/'
     meta:
       server: 1
       workstation: 1

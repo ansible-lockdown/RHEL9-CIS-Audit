@@ -28,14 +28,14 @@ file:
 command:
   ssh_rhosts_live:
     title: 5.1.13 | Ensure sshd IgnoreRhosts is enabled | live
-    exec: sshd -T | grep ignorerhosts
+    exec: sshd -T | grep -i '^ignorerhosts'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^ignorerhosts yes/'
-    - '!/^ignorerhosts no/'
+    - '/(?i)^ignorerhosts yes/'
+    - '!/(?i)^ignorerhosts no/'
     meta:
       server: 1
       workstation: 1

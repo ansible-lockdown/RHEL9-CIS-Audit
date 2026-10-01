@@ -1,5 +1,16 @@
 # Changes to RHEL9-CIS-Audit
 
+## Oct 2026 - backlog fixes
+
+- 5.1.9-5.1.22 sshd -T checks case-insensitive
+- 2.1.8 cyrus-imapd package name corrected
+- 5.4.1.2 user check reports only accounts with min days below 1
+- 6.2.3.3 checks ForwardToSyslog=yes and accepts the grep exit codes
+- 5.1.3 public key perms check echoes the right variable
+- 5.1.2 private key group check parentheses escaped for find
+- 7.2.4-7.2.7 duplicate checks sort before uniq
+- 1.2.1.3 repo check reads /etc/yum.repos.d
+
 ## Sept 2026 - QA pass
 
 - 1.7.x combined tests now gate on either paired toggle, not just the first

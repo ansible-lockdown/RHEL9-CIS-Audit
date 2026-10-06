@@ -1,7 +1,9 @@
 # Changes to RHEL9-CIS-Audit
 
+## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes
 
+- company name MindPoint Group - A Quantum Sky Company
 - 5.1.9-5.1.22 sshd -T checks case-insensitive
 - 2.1.8 cyrus-imapd package name corrected
 - 5.4.1.2 user check reports only accounts with min days below 1

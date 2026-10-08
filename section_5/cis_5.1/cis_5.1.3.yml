@@ -8,7 +8,7 @@ command:
     exec: |
       l_ssh_group=""
       grep -Psiq -- '^\h*ID_LIKE="?([^#\n\r]+)?\bfedora\b' /etc/os-release 2>/dev/null && grep -Psq -- '^ssh_keys\b' /etc/group 2>/dev/null && l_ssh_group="ssh_keys"
-      sshd -T 2>/dev/null | awk '$1=="hostkey"{print $2}' | while IFS= read -r l_file; do
+      sshd -T 2>/dev/null | awk 'tolower($1)=="hostkey"{print $2}' | while IFS= read -r l_file; do
         ssh-keygen -lf "$l_file" >/dev/null 2>&1 || continue
         echo "checked: $l_file"
         stat -Lc '%#a:%U:%G' "$l_file" | while IFS=: read -r l_mode l_owner l_group; do

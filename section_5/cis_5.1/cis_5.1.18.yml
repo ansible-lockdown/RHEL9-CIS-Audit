@@ -6,7 +6,7 @@ command:
   ssh_maxstartups_live:
     title: 5.1.18 | Ensure sshd MaxStartups is configured
     exec: |
-      sshd -T 2>/dev/null | awk '$1 == "maxstartups" {split($2, a, ":"); if (a[1] > 10 || a[2] > 30 || a[3] > 60) print "FAIL: " $0; else print "maxstartups_ok"}'
+      sshd -T 2>/dev/null | awk 'tolower($1) == "maxstartups" {split($2, a, ":"); if (a[1] > 10 || a[2] > 30 || a[3] > 60) print "FAIL: " $0; else print "maxstartups_ok"}'
     exit-status: 0
     stdout:
     - '/^maxstartups_ok$/'

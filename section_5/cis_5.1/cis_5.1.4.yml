@@ -6,7 +6,7 @@ command:
   ssh_host_public_key_access:
     title: 5.1.4 | Ensure access to SSH public host key files is configured
     exec: |
-      sshd -T 2>/dev/null | awk '$1=="hostkey"{print $2}' | while IFS= read -r l_key; do
+      sshd -T 2>/dev/null | awk 'tolower($1)=="hostkey"{print $2}' | while IFS= read -r l_key; do
         l_file="${l_key}.pub"
         ssh-keygen -lf "$l_file" >/dev/null 2>&1 || continue
         echo "checked: $l_file"

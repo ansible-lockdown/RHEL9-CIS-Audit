@@ -6,7 +6,7 @@ command:
   no_weak_ssh_ciphers:
     title: 5.1.5 | Ensure sshd Ciphers are configured
     exec: |
-      l_offered="$(sshd -T 2>/dev/null | awk '$1=="ciphers"{print $2}')"
+      l_offered="$(sshd -T 2>/dev/null | awk 'tolower($1)=="ciphers"{print $2}')"
       [ -n "$l_offered" ] && echo "ciphers_offered"
       printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e 3des-cbc -e blowfish-cbc -e cast128-cbc -e aes128-cbc -e aes192-cbc -e aes256-cbc -e arcfour -e arcfour128 -e arcfour256 -e rijndael-cbc@lysator.liu.se | sed 's/^/WEAK: /'
       true

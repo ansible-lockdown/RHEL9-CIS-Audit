@@ -5,6 +5,8 @@
 - BENCHMARK_VER 3.0.0
 - run_audit.sh uses syver v0.13.0 by default
 - README describes syver
+- 5.1.3-5.1.7, 5.1.9, 5.1.18 sshd -T directive match case-insensitive
+- .gitignore aligned to the Lockdown reference set
 - goss files renumbered and moved to the v3.0.0 section folders
 - retired control files removed
 - new control files added

@@ -6,7 +6,7 @@ command:
   no_weak_ssh_kex:
     title: 5.1.6 | Ensure sshd KexAlgorithms is configured
     exec: |
-      l_offered="$(sshd -T 2>/dev/null | awk '$1=="kexalgorithms"{print $2}')"
+      l_offered="$(sshd -T 2>/dev/null | awk 'tolower($1)=="kexalgorithms"{print $2}')"
       [ -n "$l_offered" ] && echo "kexalgorithms_offered"
       printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e diffie-hellman-group1-sha1 -e diffie-hellman-group14-sha1 -e diffie-hellman-group-exchange-sha1 | sed 's/^/WEAK: /'
       true

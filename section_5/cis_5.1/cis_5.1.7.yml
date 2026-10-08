@@ -6,7 +6,7 @@ command:
   no_weak_ssh_macs:
     title: 5.1.7 | Ensure sshd MACs are configured
     exec: |
-      l_offered="$(sshd -T 2>/dev/null | awk '$1=="macs"{print $2}')"
+      l_offered="$(sshd -T 2>/dev/null | awk 'tolower($1)=="macs"{print $2}')"
       [ -n "$l_offered" ] && echo "macs_offered"
       printf '%s\n' "$l_offered" | tr ',' '\n' | grep -Fx -e hmac-md5 -e hmac-md5-96 -e hmac-ripemd160 -e hmac-sha1-96 -e umac-64@openssh.com -e hmac-md5-etm@openssh.com -e hmac-md5-96-etm@openssh.com -e hmac-ripemd160-etm@openssh.com -e hmac-sha1-96-etm@openssh.com -e umac-64-etm@openssh.com | sed 's/^/WEAK: /'
       true

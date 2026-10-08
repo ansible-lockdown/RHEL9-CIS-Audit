@@ -23,10 +23,10 @@ file:
 command:
   check_users_MIN_DAYS:
     title: 5.4.1.2 | Ensure minimum password days is configured | check users
-    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,4"
+    exec: awk -F':' '($2 ~ /^\$.+\$/) && ($4 < 1) {print $1 ":" $4}' /etc/shadow
     exit-status: 0
     stdout:
-    - '!/.*/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

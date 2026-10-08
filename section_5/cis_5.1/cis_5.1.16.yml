@@ -24,14 +24,14 @@ file:
 command:
   sshd_authtries_live:
     title: 5.1.16 | Ensure sshd MaxAuthTries is configured | live
-    exec: sshd -T | grep maxauthtries
+    exec: sshd -T | grep -i '^maxauthtries'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - "/maxauthtries [1-4]/"
-    - "!/^maxauthtries [5-9]/"
+    - "/(?i)^maxauthtries [1-4]/"
+    - "!/(?i)^maxauthtries [5-9]/"
     meta:
       server: 1
       workstation: 1

@@ -29,7 +29,7 @@ command:
   repo_gpgcheck_repo:
     title: 1.2.1.3 | Ensure repo_gpgcheck is globally activated
     exit-status: 0
-    exec: if [ `find . -type f | xargs grep 'repo_gpgcheck*' * | grep -v '=1' | wc -l` -ne 0 ]; then echo FAIL; else echo OK; fi
+    exec: if grep -hqE '^\s*repo_gpgcheck\s*=\s*0' /etc/yum.repos.d/*.repo; then echo FAIL; else echo OK; fi
     stdout:
     - 'OK'
     timeout: {{ .Vars.timeout_ms }}

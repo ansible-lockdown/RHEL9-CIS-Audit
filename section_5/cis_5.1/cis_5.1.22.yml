@@ -28,14 +28,14 @@ file:
 command:
   ssh_usepam_live:
     title: 5.1.22 | Ensure sshd UsePAM is enabled | live
-    exec: sshd -T | grep usepam
+    exec: sshd -T | grep -i '^usepam'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^usepam yes/'
-    - '!/^usepam no/'
+    - '/(?i)^usepam yes/'
+    - '!/(?i)^usepam no/'
     meta:
       server: 1
       workstation: 1

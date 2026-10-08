@@ -1,5 +1,5 @@
 
-# RHEL 9 Goss config
+# RHEL 9 Syver config
 
 ## Overview
 
@@ -9,7 +9,7 @@ Ability to audit a system using a lightweight binary to check the current state.
 
 This is:
 
-- very small (16 MB)
+- very small
 - lightweight
 - self-contained
 
@@ -24,11 +24,12 @@ Tested on
 
 ## Requirements
 
-You must have [goss](https://github.com/kraemff/goss/) available on the host you would like to test.
+You must have [syver](https://github.com/krameff/syver) >= 0.13.0 available on the host you would like to test. The audit
+content uses the goss file format, which syver reads unchanged.
 
 You must have sudo/root access to the system, as some commands require elevated privileges.
 
-Assuming you have already cloned this repository, you can run goss from where you wish.
+Assuming you have already cloned this repository, you can run syver from where you wish.
 
 Please refer to the audit documentation for usage.
 
@@ -55,9 +56,10 @@ Set of configuration files and directories to run the first stages of CIS of RHE
 
 This is configured in a directory structure level.
 
-Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
+Syver is run based on the goss.yml file in the top level directory. This specifies the configuration.
 
 ## Further Information
 
-- [goss documentation](https://github.com/krameff/goss/blob/devel/docs/index.md)
+- [Syver documentation](https://github.com/krameff/syver/blob/main/docs/index.md)
+- [goss vs Syver](https://github.com/krameff/syver/blob/main/docs/goss-vs-syver.md)
 - [CIS standards](https://www.cisecurity.org)

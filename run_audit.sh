@@ -32,8 +32,8 @@ BENCHMARK_VER=3.0.0
 BENCHMARK_OS=RHEL9
 
 # Goss host Variables
-AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
-AUDIT_BIN_MIN_VER="0.4.8"
+AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/syver}"  # location of the syver (or goss) executable
+AUDIT_BIN_MIN_VER="0.13.0"
 AUDIT_FILE="${AUDIT_FILE:-goss.yml}"  # the default goss file used by the audit provided by the audit configuration
 AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audit configuration file as available to the OS
 
@@ -41,7 +41,7 @@ AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audi
 Help()
 {
   # Display Help
-  echo "Script to run the goss audit"
+  echo "Script to run the syver audit"
   echo
   echo "Syntax: $0 [-f|-g|-m|-o|-v|-w|-h]"
   echo "options:"
@@ -155,9 +155,9 @@ if [ -s "${AUDIT_BIN}" ]; then
   goss_installed_version="$($AUDIT_BIN -v | awk 'NR==1{print $NF}' | cut -dv -f2)"
   newer_version=$(echo -e "$goss_installed_version\n$AUDIT_BIN_MIN_VER" | sort -V | tail -n 1)
   if [ "$goss_installed_version" = "$newer_version" ] || [ "$goss_installed_version" = "$AUDIT_BIN_MIN_VER" ]; then
-    echo "OK - Goss is installed and version is ok ($goss_installed_version >= $AUDIT_BIN_MIN_VER)"
+    echo "OK - Audit binary is installed and version is ok ($goss_installed_version >= $AUDIT_BIN_MIN_VER)"
   else
-    echo "WARNING - Goss installed = ${goss_installed_version}, does not meet minimum of ${AUDIT_BIN_MIN_VER}"
+    echo "WARNING - Audit binary installed = ${goss_installed_version}, does not meet minimum of ${AUDIT_BIN_MIN_VER}"
     export FAILURE=2
   fi
 else

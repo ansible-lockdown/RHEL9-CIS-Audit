@@ -3,6 +3,8 @@
 ## Sept 2026 - benchmark v3.0.0
 
 - BENCHMARK_VER 3.0.0
+- run_audit.sh uses syver v0.13.0 by default
+- README describes syver
 - goss files renumbered and moved to the v3.0.0 section folders
 - retired control files removed
 - new control files added

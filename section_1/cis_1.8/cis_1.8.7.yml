@@ -1,6 +1,6 @@
 ---
 
-{{ if not .Vars.rhel9cis_gui }}
+{{ if .Vars.rhel9cis_gui }}
   {{ if .Vars.rhel9cis_level_1 }}
     {{ if .Vars.rhel9cis_rule_1_8_7 }}
 file:

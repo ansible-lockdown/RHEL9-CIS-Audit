@@ -1,24 +1,39 @@
 Contributing to Ansible-Lockdown Projects
 ==========================================
 
+Who can raise a pull request
+----------------------------
+
+**Pull requests come from approved contributors, and we are happy to onboard anyone who would like to join them.**
+
+We appreciate everyone who takes the time to contribute, and a great deal of what makes these roles useful has come from the community.
+
+As the project has grown, we have found that contributions sometimes arrive that do not quite line up with the conventions shared across the Ansible-Lockdown roles, or that cover ground we are already working on ahead of the next release. That means rework on both sides, and it is a disappointing outcome for someone who has put real effort in. Talking it through with us first means we can tell you what is already in hand and point you at the right branch and conventions from the start, so your work lands the way you intended.
+
+To become an approved contributor:
+
+1) Join our [Discord Server](https://www.lockdownenterprise.com/discord)
+2) Ask in the community channel for contributor access, and tell us what you would like to work on
+3) A maintainer will confirm no one is already working on it, walk you through the conventions, and grant you access
+
+**Issues are still open to everyone.** You do not need approval to raise a bug report, and a well described issue is a genuinely valuable contribution. Please include the branch you are on, your Ansible version, the control affected, and the actual against expected behaviour. If you have already worked out a fix, describe it in the issue and we will credit you in the changelog when it is applied.
+
 Rules
 -----
 
-1) All commits must be GPG signed (details in Signing section)
-2) All commits must have Signed-off-by (Signed-off-by: Joan Doe <joan.doe@email.com>) in the commit message (details in Signing section)
-3) All work is done in your own branch or own fork
-4) Pull requests
-    a) From within the repo: All pull requests go into the devel branch. There are automated checks for signed commits, signoff in commit message, and functional testing
-    b) From a forked repo: All pull requests will go into a staging branch within the repo. There are automated checks for signed commits, signoff in commit message, and functional testing when going from staging to devel
-5) All pull requests go into the devel branch. There are automated checks for signed commits, signoff in commit message, and functional testing)
-6) Be open and nice to each other
+1) Pull requests are from approved contributors (see above)
+2) All commits must be GPG signed and carry Signed-off-by (details in Signing section)
+3) Work in your own branch or your own fork
+4) Pull requests go into the devel branch. From a fork they go into a staging branch first, as our CI/CD needs information held in the repo
+5) Be open and nice to each other
 
 Workflow
 --------
 
-- Your work is done in your own individual branch. Make sure to Signed-off and GPG sign all commits you intend to merge
-- All community Pull Requests are into the devel branch. There are automated checks for GPG signed, Signed-off in commits, and functional tests before being approved. If your pull request comes in from outside of our repo, the pull request will go into a staging branch. There is info needed from our repo for our CI/CD testing.
-- Once your changes are merged and a more detailed review is complete, an authorized member will merge your changes into the main branch for a new release
+- Agree the change with a maintainer first, so you know what is already in hand
+- Work in your own branch. GPG sign and Signed-off every commit
+- Raise the pull request into devel. Automated checks cover signing, signoff and functional tests
+- Once merged and reviewed, a maintainer merges to main for the next release
 
 Signing your contribution
 -------------------------

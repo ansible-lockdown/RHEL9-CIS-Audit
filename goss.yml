@@ -10,9 +10,7 @@ gossfile:
   section_1/cis_1.5.x/*.yml: {}
   section_1/cis_1.6.x/*.yml: {}
   section_1/cis_1.7.x/*.yml: {}
-  {{ if .Vars.rhel9cis_gui }}
   section_1/cis_1.8/*.yml: {}
-  {{ end }}
   {{ end }}
   {{ if .Vars.rhel9cis_section2 }}
   section_2/*/*.yml: {}

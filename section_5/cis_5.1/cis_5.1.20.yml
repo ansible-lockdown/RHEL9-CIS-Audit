@@ -24,14 +24,14 @@ file:
 command:
   ssh_permit_root_live:
     title: 5.1.20 | Ensure sshd PermitRootLogin is disabled | live
-    exec: sshd -T | grep permitrootlogin
+    exec: sshd -T | grep -i '^permitrootlogin'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^permitrootlogin no/'
-    - '!/^permitrootlogin yes/'
+    - '/(?i)^permitrootlogin no/'
+    - '!/(?i)^permitrootlogin yes/'
     meta:
       server: 1
       workstation: 1

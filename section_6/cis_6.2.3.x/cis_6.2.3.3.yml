@@ -5,10 +5,15 @@
 command:
   forward_journald_conf:
     title: 6.2.3.3 | Ensure journald is configured to send logs to rsyslog
-    exec: grep -i forward /etc/systemd/journald.conf /etc/systemd/journald.conf.d/
-    exit-status: 0
+    exec: grep -rhi '^\s*ForwardToSyslog' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
     stdout:
-    - '!/^\.*:ForwardToSyslog/'
+    - '/(?i)^\s*ForwardToSyslog\s*=\s*yes/'
+    - '!/(?i)^\s*ForwardToSyslog\s*=\s*no/'
     meta:
       server: 1
       workstation: 1

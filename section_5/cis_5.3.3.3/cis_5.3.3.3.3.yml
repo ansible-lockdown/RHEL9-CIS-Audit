@@ -19,21 +19,21 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: IA-5
-pwhistory_use_authtok_system-auth:
-    title: 5.3.3.3.3 | Ensure pam_pwhistory includes use_authtok | system-auth
-    path: /etc/pam.d/system-auth
-    exists: true
-    contents:
-    - '/^\s*password\s*(requisite|required)\s*pam_pwhistory.so.*use_authtok/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.3.3.3.3
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: IA-5
-  {{ end }}
+  pwhistory_use_authtok_system-auth:
+      title: 5.3.3.3.3 | Ensure pam_pwhistory includes use_authtok | system-auth
+      path: /etc/pam.d/system-auth
+      exists: true
+      contents:
+      - '/^\s*password\s*(requisite|required)\s*pam_pwhistory.so.*use_authtok/'
+      meta:
+        server: 1
+        workstation: 1
+        CIS_ID:
+        - 5.3.3.3.3
+        CISv8: 5.2
+        CISv8_IG1: true
+        CISv8_IG2: true
+        CISv8_IG3: true
+        NIST800-53R5: IA-5
+    {{ end }}
 {{ end }}

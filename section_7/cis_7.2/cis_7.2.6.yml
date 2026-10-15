@@ -5,7 +5,7 @@
 command:
   no_dup_username:
     title: 7.2.6 | Ensure no duplicate user names exist
-    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
+    exec: "cut -d: -f1 /etc/passwd | sort | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'

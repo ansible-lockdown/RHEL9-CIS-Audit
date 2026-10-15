@@ -28,14 +28,14 @@ file:
 command:
   ssh_userenv_live:
     title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled | live
-    exec: sshd -T | grep permituserenvironment
+    exec: sshd -T | grep -i '^permituserenvironment'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^permituserenvironment no/'
-    - '!/^permituserenvironment yes/'
+    - '/(?i)^permituserenvironment no/'
+    - '!/(?i)^permituserenvironment yes/'
     meta:
       server: 1
       workstation: 1

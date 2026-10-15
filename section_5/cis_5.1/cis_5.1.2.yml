@@ -22,7 +22,7 @@ command:
       - MP-2
   /etc/ssh/ssh_host_prv_key_group:
     title: 5.1.2 | Ensure permissions on SSH private host key files are configured | group
-    exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key -type f !( -group root -o -group ssh_keys )); echo $groupkeys"
+    exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key -type f ! \\( -group root -o -group ssh_keys \\) ); echo $groupkeys"
     exit-status: 0
     stdout: ['!/./']
     meta:

@@ -24,14 +24,14 @@ file:
 command:
   ssh_disable_forward_live:
     title: 5.1.10 | Ensure sshd DisableForwarding is enabled | live
-    exec: sshd -T | grep disableforwarding
+    exec: sshd -T | grep -i '^disableforwarding'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^disableforwarding yes/'
-    - '!/^disableforwarding no/'
+    - '/(?i)^disableforwarding yes/'
+    - '!/(?i)^disableforwarding no/'
     meta:
       server: 2
       workstation: 1

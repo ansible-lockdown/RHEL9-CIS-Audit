@@ -28,14 +28,14 @@ file:
 command:
   ssh_hostbased_auth_live:
     title: 5.1.12 | Ensure sshd HostbasedAuthentication is disabled | live
-    exec: sshd -T | grep hostbasedauthentication
+    exec: sshd -T | grep -i '^hostbasedauthentication'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^hostbasedauthentication no/'
-    - '!/^hostbasedauthentication yes/'
+    - '/(?i)^hostbasedauthentication no/'
+    - '!/(?i)^hostbasedauthentication yes/'
     meta:
       server: 1
       workstation: 1

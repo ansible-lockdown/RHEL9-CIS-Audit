@@ -26,14 +26,14 @@ file:
 command:
   ssh_loglevel_live:
     title: 5.1.15 | Ensure sshd LogLevel is configured | live
-    exec: sshd -T | grep loglevel
+    exec: sshd -T | grep -i '^loglevel'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^loglevel\s(VERBOSE|INFO)/'
-    - '!/^loglevel DEBUG/'
+    - '/(?i)^loglevel\s(VERBOSE|INFO)/'
+    - '!/(?i)^loglevel DEBUG/'
     meta:
       server: 1
       workstation: 1

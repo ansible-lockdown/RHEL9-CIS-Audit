@@ -1,5 +1,36 @@
 # Changes to RHEL9-CIS-Audit
 
+## Based on CIS Benchmark v2.0.0
+## Oct 2026 - backlog fixes
+
+- company name MindPoint Group - A Quantum Sky Company
+- 5.1.9-5.1.22 sshd -T checks case-insensitive
+- 2.1.8 cyrus-imapd package name corrected
+- 5.4.1.2 user check reports only accounts with min days below 1
+- 6.2.3.3 checks ForwardToSyslog=yes and accepts the grep exit codes
+- 5.1.3 public key perms check echoes the right variable
+- 5.1.2 private key group check parentheses escaped for find
+- 7.2.4-7.2.7 duplicate checks sort before uniq
+- 1.2.1.3 repo check reads /etc/yum.repos.d
+
+## Sept 2026 - QA pass
+
+- 1.7.x combined tests now gate on either paired toggle, not just the first
+- 1.7.4, 1.7.5, 1.7.6 titles aligned to the v2.0.0 benchmark wording
+- vars - rhel9cis_pass_min_days 1 -> 7 and rhel9cis_authselect_custom_profile_create false -> true to match remediation defaults
+- 1.2.1.3 gate now matches the remediation gate - rule toggle AND enable_repogpg AND not rhel_default_repo
+- vars - rhel9cis_rhel_default_repo added
+- 4.3.3 exit-status accepts 0 or 1 - the test could never pass, a correctly hardened host made grep exit 1
+
+## Aug 2026 — QA pass: section 1.8 coverage, gate polarity and value alignment
+
+- 1.8 gui based updates readdressed and fixed
+- 2.4.3.x - seperated tests to a file each
+- 5.3.3.3.3.yml layout fixed
+- 5.1.16.yml updated test module
+- vars updated defaults to match remediation - typos updated
+- README updates and updated contributing and contributors
+
 ## June 2026 — QA pass: audit alignment and hygiene fixes
 
 - Fixed LICENSE copyright casing: Mindpoint -> MindPoint

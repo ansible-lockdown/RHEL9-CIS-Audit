@@ -45,6 +45,12 @@ This also works alongside the [Ansible Lockdown RHEL9-CIS role](https://github.c
 
 Join us on our [Discord Server](https://www.lockdownenterprise.com/discord) to ask questions, discuss features, or just chat with other Ansible-Lockdown users.
 
+## Contributing
+
+Bug reports and feature requests are welcome from everyone, please raise an issue.
+
+Pull requests are accepted from approved contributors only. To be onboarded, join the [Discord Server](https://www.lockdownenterprise.com/discord) and request contributor access. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process.
+
 Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers.
 
 This is configured in a directory structure level.

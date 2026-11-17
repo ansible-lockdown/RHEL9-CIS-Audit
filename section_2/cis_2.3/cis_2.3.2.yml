@@ -2,14 +2,18 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_3_2 }}
-file:
-  chrony_servers_pools:
-    title: 2.3.2 | Ensure chrony is configured | server
-    path: /etc/chrony.conf
-    exists: true
-    contents:
-    - '/^(server|pool)\s.*/'
-    skip: false
+command:
+  cis_2_3_2_chrony_sources:
+    title: 2.3.2 | Ensure chrony is configured | server, pool or refclock in chrony.conf, sourcedir or confdir
+    exec: |
+      grep -Ph -- '^\h*(server|pool|refclock)\h+\H+' /etc/chrony.conf 2>/dev/null
+      awk '/^[[:space:]]*(sourcedir|confdir)[[:space:]]+/{print $2}' /etc/chrony.conf 2>/dev/null | while IFS= read -r l_dir; do
+        grep -PhRs -- '^\h*(server|pool|refclock)\h+\H+' "$l_dir"
+      done
+      exit 0
+    exit-status: 0
+    stdout:
+    - '/^\s*(server|pool|refclock)\s+\S+/'
     meta:
       server: 1
       workstation: 1

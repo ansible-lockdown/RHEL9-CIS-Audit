@@ -2,12 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_16 }}
-    {{ if not .Vars.rhel9cis_tftp_server }}
-      {{ if not .Vars.rhel9cis_tftp_mask }}
+    {{ if not .Vars.rhel9cis_tftp_mask }}
 package:
-  tftp_pkg:
-    title: 2.1.16 | Ensure tftp server services are not in use | pkg removed
-    name: tftpd-hpa
+  cis_2_1_16_tftp_server_pkg:
+    title: 2.1.16 | Ensure tftp server services are not in use | tftp-server not installed
+    skip: {{ .Vars.rhel9cis_tftp_server }}
+    skip-reason: a TFTP server is required, rhel9cis_tftp_server is true
+    name: tftp-server
     installed: false
     meta:
       server: 1
@@ -20,15 +21,15 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_tftp_mask }}
-file:
-  tftp_service_masked:
-    title: 2.1.16 | Ensure tftp server services are not in use | masked
-    path: /etc/systemd/system/tftpd-hpa.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    {{ end }}
+    {{ if .Vars.rhel9cis_tftp_mask }}
+service:
+  cis_2_1_16_tftp_socket_masked:
+    title: 2.1.16 | Ensure tftp server services are not in use | tftp.socket masked
+    skip: {{ .Vars.rhel9cis_tftp_server }}
+    skip-reason: a TFTP server is required, rhel9cis_tftp_server is true
+    name: tftp.socket
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -40,12 +41,12 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-  tftp_socket_masked:
-    title: 2.1.16 | Ensure tftp server services are not in use | masked
-    path: /etc/systemd/system/tftp.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+  cis_2_1_16_tftp_service_masked:
+    title: 2.1.16 | Ensure tftp server services are not in use | tftp.service masked
+    skip: {{ .Vars.rhel9cis_tftp_server }}
+    skip-reason: a TFTP server is required, rhel9cis_tftp_server is true
+    name: tftp.service
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -57,7 +58,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

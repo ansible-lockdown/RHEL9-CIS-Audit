@@ -2,19 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_4_1_9 }}
-command:
+service:
   cis_4_1_9_nftables_service:
     title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | nftables.service
-    exec: |
-      echo "enabled:$(systemctl is-enabled nftables.service 2>&1)"
-      echo "active:$(systemctl is-active nftables.service 2>&1)"
-      exit 0
-    exit-status: 0
-    stdout:
-    - '/^enabled:/'
-    - '/^active:/'
-    - '!/^enabled:enabled/'
-    - '!/^active:active/'
+    name: nftables
+    enabled: false
+    running: false
     meta:
       server: 1
       workstation: 1

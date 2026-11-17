@@ -5,6 +5,8 @@
 mount:
   var_log_audit_noexec_options:
     title: 1.1.2.7.4 | Ensure noexec option set on /var/log/audit partition
+    skip: {{ not .Discovered.var_log_audit_mounted }}
+    skip-reason: /var/log/audit is not a separate partition
     mountpoint: '/var/log/audit'
     exists: true
     opts:
@@ -24,6 +26,8 @@ mount:
 file:
   var_log_audit_noexec_fstab_options:
     title: 1.1.2.7.4 | Ensure noexec option set on /var/log/audit partition
+    skip: {{ not .Discovered.var_log_audit_mounted }}
+    skip-reason: /var/log/audit is not a separate partition
     exists: true
     path: /etc/fstab
     contents:

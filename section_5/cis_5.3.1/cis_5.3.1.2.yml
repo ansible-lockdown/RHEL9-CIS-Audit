@@ -11,6 +11,7 @@ command:
     stdout:
     - '/^version_ok: /'
     skip: {{ not .Vars.rhel9cis_authselect_pkg_update }}
+    skip-reason: rhel9cis_authselect_pkg_update is false, the authselect package is not updated by the role
     meta:
       server: 1
       workstation: 1

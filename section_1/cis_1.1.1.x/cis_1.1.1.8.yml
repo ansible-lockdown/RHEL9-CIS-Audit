@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_8 }}
 command:
-  udf:
-    title: 1.1.1.8 | Ensure udf kernel module is not available
+  modprobe_udf:
+    title: 1.1.1.8 | Ensure udf kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+udf\b'
     exit-status: 0
-    exec: "modprobe -n -v udf | grep -E '(udf|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist udf$/'
+    - '/^install udf (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 2
       workstation: 2
@@ -21,12 +22,11 @@ command:
       NIST800-53R5: CM-7
       CCI:
       - CCI-000381
-  blacklist_udf:
-    title: 1.1.1.8 | Ensure udf kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep udf /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist udf/'
+file:
+  sys_module_udf:
+    title: 1.1.1.8 | Ensure udf kernel module is not available | not loaded
+    path: /sys/module/udf
+    exists: false
     meta:
       server: 2
       workstation: 2

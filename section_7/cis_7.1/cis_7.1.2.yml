@@ -2,20 +2,17 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_2 }}
-command:
-  passwd-_perms:
+file:
+  cis_7_1_2_passwd_backup:
     title: 7.1.2 | Ensure access to /etc/passwd- is configured
-    exec: |
-      if [ -e /etc/passwd- ]; then
-        find /etc/passwd- -maxdepth 0 \( -perm /7133 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
-        echo "checked_rc=$?"
-      else
-        echo "not_present"
-      fi
-    exit-status: 0
-    stdout:
-    - '/^(checked_rc=0|not_present)$/'
-    - '!/^FAIL:/'
+    path: /etc/passwd-
+    exists: true
+    owner: root
+    group: root
+    mode:
+      match-regexp: '^0[0246][04][04]$'
+    skip: {{ not .Discovered.passwd_backup_exists }}
+    skip-reason: /etc/passwd- is a backup written by account-management tools and does not exist on this host
     meta:
       server: 1
       workstation: 1

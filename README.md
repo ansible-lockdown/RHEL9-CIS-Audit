@@ -24,7 +24,7 @@ Tested on
 
 ## Requirements
 
-You must have [syver](https://github.com/krameff/syver) >= 0.13.0 available on the host you would like to test. The audit
+You must have [syver](https://github.com/krameff/syver) >= 0.20.0 available on the host you would like to test. The audit
 content uses the goss file format, which syver reads unchanged.
 
 You must have sudo/root access to the system, as some commands require elevated privileges.
@@ -56,7 +56,7 @@ Set of configuration files and directories to run the first stages of CIS of RHE
 
 This is configured in a directory structure level.
 
-Syver is run based on the goss.yml file in the top level directory. This specifies the configuration.
+Syver is run based on the syver.yml file in the top level directory. This specifies the configuration.
 
 ## Further Information
 

@@ -1,15 +1,19 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_2_4_1_6 }}
+  {{ if .Vars.rhel9cis_rule_2_4_1_6 }}
 file:
-  cron_month_perms:
+  cis_2_4_1_6_cron_monthly:
     title: 2.4.1.6 | Ensure access to /etc/cron.monthly is configured
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
     path: /etc/cron.monthly
     exists: true
+    filetype: directory
     owner: root
     group: root
-    mode: "0700"
+    mode:
+      match-regexp: '^0[0-7]00$'
     meta:
       server: 1
       workstation: 1

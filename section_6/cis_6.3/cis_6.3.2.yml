@@ -19,6 +19,7 @@ command:
     - '/^check_complete$/'
     - '/(aide[[:space:]]+--(check|update)|\.timer -> )/'
     skip: {{ not .Vars.rhel9cis_config_aide }}
+    skip-reason: AIDE is not managed (rhel9cis_config_aide is false)
     meta:
       server: 1
       workstation: 1

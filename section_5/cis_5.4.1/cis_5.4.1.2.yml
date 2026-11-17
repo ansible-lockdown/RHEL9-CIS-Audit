@@ -30,6 +30,7 @@ command:
     - '/^scan_done$/'
     - '!/^FAIL:/'
     skip: {{ not .Vars.rhel9cis_force_user_mindays }}
+    skip-reason: rhel9cis_force_user_mindays is false, existing accounts are not changed by the role
     meta:
       server: 2
       workstation: 2

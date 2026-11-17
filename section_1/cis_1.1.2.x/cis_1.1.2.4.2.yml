@@ -5,6 +5,8 @@
 mount:
   var_nodev_options:
     title: 1.1.2.4.2 | Ensure nodev option set on /var partition
+    skip: {{ not .Discovered.var_mounted }}
+    skip-reason: /var is not a separate partition
     mountpoint: '/var'
     exists: true
     opts:
@@ -24,6 +26,8 @@ mount:
 file:
   var_nodev_fstab_options:
     title: 1.1.2.4.2 | Ensure nodev option set on /var partition
+    skip: {{ not .Discovered.var_mounted }}
+    skip-reason: /var is not a separate partition
     exists: true
     path: /etc/fstab
     contents:

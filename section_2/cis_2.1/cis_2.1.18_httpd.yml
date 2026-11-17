@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_18 }}
-    {{ if not .Vars.rhel9cis_httpd_server }}
-      {{ if not .Vars.rhel9cis_httpd_mask }}
+    {{ if not .Vars.rhel9cis_httpd_mask }}
 package:
-  httpd_pkg:
-    title: 2.1.18 | Ensure web server services are not in use | pkg removed
+  cis_2_1_18_httpd_pkg:
+    title: 2.1.18 | Ensure web server services are not in use | httpd not installed
+    skip: {{ .Vars.rhel9cis_httpd_server }}
+    skip-reason: an httpd web server is required, rhel9cis_httpd_server is true
     name: httpd
     installed: false
     meta:
@@ -22,13 +23,13 @@ package:
       NIST800-53R5: CM-7
     {{ end }}
     {{ if .Vars.rhel9cis_httpd_mask }}
-file:
-  httpd_service_masked:
-    title: 2.1.18 | Ensure web server services are not in use | masked
-    path: /etc/systemd/system/httpd.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+service:
+  cis_2_1_18_httpd_socket_masked:
+    title: 2.1.18 | Ensure web server services are not in use | httpd.socket masked
+    skip: {{ .Vars.rhel9cis_httpd_server }}
+    skip-reason: an httpd web server is required, rhel9cis_httpd_server is true
+    name: httpd.socket
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -40,12 +41,12 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-  httpd_socket_masked:
-    title: 2.1.18 | Ensure web server services are not in use | masked
-    path: /etc/systemd/system/httpd.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+  cis_2_1_18_httpd_service_masked:
+    title: 2.1.18 | Ensure web server services are not in use | httpd.service masked
+    skip: {{ .Vars.rhel9cis_httpd_server }}
+    skip-reason: an httpd web server is required, rhel9cis_httpd_server is true
+    name: httpd.service
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -57,7 +58,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

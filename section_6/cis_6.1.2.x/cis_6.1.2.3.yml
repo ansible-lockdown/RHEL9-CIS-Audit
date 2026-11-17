@@ -5,7 +5,11 @@
 command:
   rsyslog_file_create_mode:
     title: 6.1.2.3 | Ensure rsyslog log file creation mode is configured
-    exec: 'grep -Psih -- ''^\h*(\$FileCreateMode\h+|.*\bfileCreateMode\h*=\h*"?)0[0-7]{3}'' /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
+    exec: 'grep -Psih -- ''^\h*(\$FileCreateMode\h+|[^#]*\bfileCreateMode\h*=\h*"?)0[0-7]{3}'' /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
     exit-status:
       or:
       - 0

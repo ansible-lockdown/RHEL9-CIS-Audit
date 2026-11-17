@@ -2,11 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_1_2_12 }}
-    {{ if .Vars.rhel9cis_remote_log_server }}
-      {{ if .Vars.rhel9cis_remote_log_tls }}
 command:
   rsyslog_tls_cafile_conf:
     title: 6.1.2.12 | Ensure rsyslog TLS CA certificate is configured | configured
+    skip: {{ not (and .Vars.rhel9cis_remote_log_server .Vars.rhel9cis_remote_log_tls) }}
+    skip-reason: TLS log forwarding is not configured (rhel9cis_remote_log_server and rhel9cis_remote_log_tls are not both true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: 'grep -Psih -- ''^[^#]*(DefaultNetstreamDriverCAFile|StreamDriver\.CAFile)\s*[= ]'' /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
     exit-status: 0
     stdout:
@@ -23,6 +27,12 @@ command:
       NIST800-53R5: SC-17
   rsyslog_tls_cafile_cert:
     title: 6.1.2.12 | Ensure rsyslog TLS CA certificate is configured | certificate readable
+    skip: {{ not (and .Vars.rhel9cis_remote_log_server .Vars.rhel9cis_remote_log_tls) }}
+    skip-reason: TLS log forwarding is not configured (rhel9cis_remote_log_server and rhel9cis_remote_log_tls are not both true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: 'openssl x509 -in {{ .Vars.rhel9cis_remote_log_tls_cafile }} -noout -subject'
     exit-status: 0
     stdout:
@@ -37,7 +47,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SC-17
-      {{ end }}
-    {{ end }}
   {{ end }}
 {{ end }}

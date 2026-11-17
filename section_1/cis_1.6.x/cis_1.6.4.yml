@@ -5,6 +5,8 @@
 command:
   crypto_policies_no_ssh_cbc:
     title: 1.6.4 | Ensure system wide crypto policy disables cbc for ssh
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
+    skip-reason: the crypto policy is not managed, rhel9cis_crypto_policy_ansiblemanaged is false
     exec: |
       f=/etc/crypto-policies/state/CURRENT.pol
       if grep -Piq -- '^\h*cipher@(lib|open)ssh(-server|-client)?\h*=\h*([^#\n\r]+)?-CBC\b' "$f"; then echo ssh_cbc=enabled
@@ -13,7 +15,6 @@ command:
     exit-status: 0
     stdout:
     - '/^ssh_cbc=disabled$/'
-    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1

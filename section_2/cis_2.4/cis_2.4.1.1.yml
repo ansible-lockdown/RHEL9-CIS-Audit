@@ -3,10 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_4_1_1 }}
 service:
-  crond:
+  cis_2_4_1_1_crond:
     title: 2.4.1.1 | Ensure cron daemon is enabled and active
-    running: true
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
+    name: crond.service
     enabled: true
+    running: true
     meta:
       server: 1
       workstation: 1

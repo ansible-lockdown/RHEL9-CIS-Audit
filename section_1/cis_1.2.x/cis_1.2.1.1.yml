@@ -1,13 +1,19 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_1_2_1_1 }}
+  {{ if .Vars.rhel9cis_rule_1_2_1_1 }}
 command:
   gpg_keys:
-    title: 1.2.1.1 | Ensure GPG keys are configured
+    title: 1.2.1.1 | Ensure GPG keys are configured | distribution release key installed
+    {{ if .Vars.rhel9cis_os_gpg_key_pubkey_name }}
+    exec: rpm -q {{ .Vars.rhel9cis_os_gpg_key_pubkey_name }}
     exit-status: 0
-    exec: "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
+    {{ else }}
+    exec: rpm -q gpg-pubkey --queryformat '%{VERSION} %{PACKAGER}\n'
+    exit-status: 0
+    stdout:
+    - '/^(fd431d51 Red Hat, Inc\. \(release key 2\) <security@redhat\.com>|350d275d Rocky Enterprise Software Foundation - Release key 2022 <releng@rockylinux\.org>|b86b3716 AlmaLinux OS 9 <packager@almalinux\.org>|8d8b756f Oracle Linux \(release key 1\) <secalert_us@oracle\.com>)$/'
+    {{ end }}
     meta:
       server: 1
       workstation: 1
@@ -20,6 +26,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SI-2
-    {{ end }}
   {{ end }}
 {{ end }}

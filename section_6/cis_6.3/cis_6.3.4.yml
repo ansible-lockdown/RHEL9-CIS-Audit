@@ -10,6 +10,7 @@ command:
     stdout:
     - '/^\s*report_url\s*=\s*syslog:\S+/'
     skip: {{ not .Vars.rhel9cis_config_aide }}
+    skip-reason: AIDE is not managed (rhel9cis_config_aide is false)
     meta:
       server: 1
       workstation: 1

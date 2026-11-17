@@ -5,6 +5,8 @@
 mount:
   var_log_nodev_options:
     title: 1.1.2.6.2 | Ensure nodev option set on /var/log partition
+    skip: {{ not .Discovered.var_log_mounted }}
+    skip-reason: /var/log is not a separate partition
     mountpoint: '/var/log'
     exists: true
     opts:
@@ -24,6 +26,8 @@ mount:
 file:
   var_log_nodev_fstab_options:
     title: 1.1.2.6.2 | Ensure nodev option set on /var/log partition
+    skip: {{ not .Discovered.var_log_mounted }}
+    skip-reason: /var/log is not a separate partition
     exists: true
     path: /etc/fstab
     contents:

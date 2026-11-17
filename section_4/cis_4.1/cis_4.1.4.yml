@@ -31,6 +31,7 @@ command:
     - '/^PASS$/'
     - '!/FAIL/'
     skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: the role changes an ACCEPT zone target only when rhel9cis_disruption_high is true
     meta:
       server: 1
       workstation: 1

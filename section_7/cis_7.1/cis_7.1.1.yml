@@ -2,16 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_1 }}
-command:
-  etc_passwd_perms:
+file:
+  cis_7_1_1_passwd:
     title: 7.1.1 | Ensure access to /etc/passwd is configured
-    exec: |
-      find /etc/passwd -maxdepth 0 \( -perm /7133 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
-      echo "checked_rc=$?"
-    exit-status: 0
-    stdout:
-    - '/^checked_rc=0$/'
-    - '!/^FAIL:/'
+    path: /etc/passwd
+    exists: true
+    owner: root
+    group: root
+    mode:
+      match-regexp: '^0[0246][04][04]$'
     meta:
       server: 1
       workstation: 1

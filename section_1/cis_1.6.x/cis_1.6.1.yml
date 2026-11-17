@@ -5,12 +5,13 @@
 command:
   crypto_policies_config:
     title: 1.6.1 | Ensure system wide crypto policy is not legacy
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
+    skip-reason: the crypto policy is not managed, rhel9cis_crypto_policy_ansiblemanaged is false
     exec: cat /etc/crypto-policies/config
     exit-status: 0
     stdout:
     - '/^(|\s+)(DEFAULT|FUTURE|FIPS)/'
     - '!/^(|\s+)LEGACY/'
-    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
     meta:
       server: 1
       workstation: 1

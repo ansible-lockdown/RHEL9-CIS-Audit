@@ -5,6 +5,10 @@
 command:
   rsyslog_workdir_access:
     title: 6.1.2.6 | Ensure access to the rsyslog work directory is configured
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: |
       d=$(grep -Psoh -- '^[^#]*(\$WorkDirectory\h+|workDirectory\h*=\h*"?)\K[^"\h)]+' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | tail -n 1)
       find "${d:-/var/lib/rsyslog}" -maxdepth 0 -type d \( ! -user root -o ! -group root -o -perm /0077 \) 2>/dev/null | wc -l

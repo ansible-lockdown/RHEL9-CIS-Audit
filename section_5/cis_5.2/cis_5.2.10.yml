@@ -6,7 +6,7 @@ command:
   sudo_timeout:
     title: 5.2.10 | Ensure sudo timestamp_timeout is configured
     exec: |
-      grep -rhoPi -- '^[^#\n\r]*timestamp_timeout\h*=\h*\K-?\d+' /etc/sudoers /etc/sudoers.d/ | awk '{ if ($1 < 0 || $1 > 15) print "FAIL: timestamp_timeout=" $1 }'
+      grep -rhoPi -- '^[^#\n\r]*timestamp_timeout\h*=\h*\K-?[0-9.]+' /etc/sudoers /etc/sudoers.d/ | awk '{ if ($1 < 0 || $1 > 15) print "FAIL: timestamp_timeout=" $1 }'
       echo "scan_done"
     exit-status: 0
     stdout:

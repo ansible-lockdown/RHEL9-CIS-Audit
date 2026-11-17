@@ -10,6 +10,7 @@ file:
     contents:
     - '/^\s*password\s+(requisite|required)\s+pam_pwhistory\.so/'
     skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1
@@ -27,6 +28,7 @@ file:
     contents:
     - '/^\s*password\s+(requisite|required)\s+pam_pwhistory\.so/'
     skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1
@@ -45,6 +47,7 @@ command:
     stdout:
     - '/Current configuration is valid/'
     skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1

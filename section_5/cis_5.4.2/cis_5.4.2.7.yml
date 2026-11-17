@@ -15,6 +15,7 @@ command:
     - '/^scan_done$/'
     - '!/^FAIL:/'
     skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1

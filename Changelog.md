@@ -1,5 +1,38 @@
 # Changes to RHEL9-CIS-Audit
 
+## CIS Benchmark 3.0.0
+## November 2026 - QA fixes
+
+- run_audit.sh uses syver v0.20.0 by default
+- run_audit.sh: AUDIT_FILE syver.yml, OS metadata default when /etc/os-release is missing
+- goss.yml renamed syver.yml - syverfile:, syver-version: 0.20.0
+- discovery: separate partitions, cronie, at, cron.yearly, backup and opasswd files, chronyd running
+- host-state and opt-out tests report skipped with a reason
+- masked services checked with service masked
+- 1.1.1.x modules checked with modprobe --showconfig and /sys/module
+- 1.1.1.11: unused filesystem modules test, manual review
+- 1.1.2.x: mount option tests skipped when the partition is absent
+- 1.1.2.1.2-4: tmp.mount options read from the last Options= line
+- 1.2.1.1: release key package from the role checked
+- 1.4.2: every file in /boot/grub2 checked
+- 1.6.6: etm@openssh accepted
+- 1.8.x: skipped when no GNOME desktop
+- 2.1.x: RHEL9 package and unit names
+- 2.1.18: nginx-plus package checked
+- 2.1.19: non mail servers checked with postconf, ports 25, 465, 587
+- 2.3.3: chronyd user checked while it runs
+- 3.3.1.1: gated level 2
+- 4.1.8: skipped unless rhel9cis_default_zone is drop
+- 4.1.11: no active zone reported as FAIL
+- 5.4.1.5: existing users scoped to interactive accounts
+- 5.4.3.1: commented nologin lines ignored
+- 6.1.2.x: depends on package rsyslog
+- 6.1.3.1: rhel9cis_logfile_perms_exclude paths skipped
+- 7.1.x: typed file tests, mode or more restrictive
+- 7.1.13: container storage pruned
+- 7.2.9: skipped unless rhel9cis_dotperm_ansiblemanaged
+- 1.1.2.5.1: duplicate NIST800-53R4 meta removed
+
 ## Sept 2026 - benchmark v3.0.0
 
 - BENCHMARK_VER 3.0.0

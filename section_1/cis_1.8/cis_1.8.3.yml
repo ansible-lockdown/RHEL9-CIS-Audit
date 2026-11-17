@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_3 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_3 }}
 command:
   gdm_screen_lock_settings:
     title: 1.8.3 | Ensure GDM screen lock is configured
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: 'echo "idle_delay_writable=$(gsettings writable org.gnome.desktop.session idle-delay)"; echo "lock_delay_writable=$(gsettings writable org.gnome.desktop.screensaver lock-delay)"; echo "idle_delay=$(gsettings get org.gnome.desktop.session idle-delay)"; echo "lock_delay=$(gsettings get org.gnome.desktop.screensaver lock-delay)"'
     exit-status: 0
     stdout:
@@ -21,6 +22,5 @@ command:
       NIST800-53R5: AC-11
       CCI:
       - CCI-000057
-    {{ end }}
   {{ end }}
 {{ end }}

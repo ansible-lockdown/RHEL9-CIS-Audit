@@ -1,6 +1,66 @@
 ---
 
-gossfile:
+# Oldest syver this content needs; unknown top-level keys are errors
+syver-version: 0.20.0
+
+# Host facts that decide whether a test applies; the test is skipped with a reason when it does not
+# Partitions the role only checks when they exist (1.1.2.3 - 1.1.2.7 mount options)
+discovery:
+  mount:
+    /home:
+      register: home_mounted
+      exists: true
+    /var:
+      register: var_mounted
+      exists: true
+    /var/tmp:
+      register: var_tmp_mounted
+      exists: true
+    /var/log:
+      register: var_log_mounted
+      exists: true
+    /var/log/audit:
+      register: var_log_audit_mounted
+      exists: true
+  # 2.4.x cron and at checks only apply when the package is installed
+  package:
+    cronie:
+      register: cronie_installed
+      installed: true
+    at:
+      register: at_installed
+      installed: true
+  # 2.3.3 the chronyd process user can only be checked while it runs (not in containers)
+  service:
+    chronyd:
+      register: chronyd_running
+      running: true
+  # 2.4.1.7 no package creates /etc/cron.yearly
+  # 7.1.x backup and opasswd files the benchmark says may not exist
+  file:
+    /etc/cron.yearly:
+      register: cron_yearly_present
+      exists: true
+    /etc/passwd-:
+      register: passwd_backup_exists
+      exists: true
+    /etc/group-:
+      register: group_backup_exists
+      exists: true
+    /etc/shadow-:
+      register: shadow_backup_exists
+      exists: true
+    /etc/gshadow-:
+      register: gshadow_backup_exists
+      exists: true
+    /etc/security/opasswd:
+      register: opasswd_exists
+      exists: true
+    /etc/security/opasswd.old:
+      register: opasswd_old_exists
+      exists: true
+
+syverfile:
   {{ if .Vars.rhel9cis_section1 }}
   section_1/cis_1.1.1.x/*.yml: {}
   section_1/cis_1.1.2.x/*.yml: {}

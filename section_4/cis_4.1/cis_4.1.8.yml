@@ -5,6 +5,8 @@
 command:
   cis_4_1_8_default_zone_drop:
     title: 4.1.8 | Ensure firewalld default zone is set to drop
+    skip: {{ ne .Vars.rhel9cis_default_zone "drop" }}
+    skip-reason: the role sets the default zone to {{ .Vars.rhel9cis_default_zone }} (rhel9cis_default_zone), set it to drop to conform
     exec: firewall-cmd --get-default-zone
     exit-status: 0
     stdout:

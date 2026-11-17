@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_5 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_5 }}
 command:
   gdm_autorun_never_settings:
     title: 1.8.5 | Ensure GDM autorun-never is configured
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: 'echo "autorun_never_writable=$(gsettings writable org.gnome.desktop.media-handling autorun-never)"; echo "autorun_never=$(gsettings get org.gnome.desktop.media-handling autorun-never)"'
     exit-status: 0
     stdout:
@@ -19,6 +20,5 @@ command:
       NIST800-53R5: CM-7(2)
       CCI:
       - CCI-001764
-    {{ end }}
   {{ end }}
 {{ end }}

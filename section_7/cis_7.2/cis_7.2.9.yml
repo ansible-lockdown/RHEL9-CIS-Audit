@@ -2,12 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_2_9 }}
-    {{ if .Vars.run_heavy_tests }}
 command:
   dot_files_access:
     title: 7.2.9 | Ensure local interactive user dot files access is configured
+    skip: {{ or (not .Vars.run_heavy_tests) (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_dotperm_ansiblemanaged) }}
+    skip-reason: {{ if not .Vars.run_heavy_tests }}heavy tests are disabled (run_heavy_tests is false){{ else }}the role changes dot files only when rhel9cis_disruption_high and rhel9cis_dotperm_ansiblemanaged are true{{ end }}
     exec: |
-      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//{s,/,\\/,g;p}' | paste -s -d '|' - ))$"
+      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//p' | paste -s -d '|' - ))$"
       awk -v pat="$l_valid_shells" -F: '$(NF) ~ pat { print $1 " " $(NF-1) }' /etc/passwd | while read -r l_user l_home; do
         [ -d "$l_home" ] || continue
         l_group="$(id -gn "$l_user")"
@@ -30,7 +31,6 @@ command:
     stdout:
     - '/^scan_done$/'
     - '!/^FAIL:/'
-    skip: {{ not .Vars.rhel9cis_disruption_high }}
     meta:
       server: 1
       workstation: 1
@@ -41,6 +41,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: AC-3
-    {{ end }}
   {{ end }}
 {{ end }}

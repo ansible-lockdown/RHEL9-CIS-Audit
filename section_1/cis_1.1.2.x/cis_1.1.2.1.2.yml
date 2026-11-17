@@ -30,7 +30,7 @@ command:
       if [ "$(systemctl show tmp.mount -p SourcePath --value)" = "/etc/fstab" ]; then
         findmnt --fstab -n -o OPTIONS /tmp
       else
-        systemctl cat tmp.mount 2>/dev/null | awk -F= '/^Options=/{print $2}'
+        systemctl cat tmp.mount 2>/dev/null | sed -n 's/^Options=//p' | tail -n 1
       fi
     exit-status: 0
     stdout:

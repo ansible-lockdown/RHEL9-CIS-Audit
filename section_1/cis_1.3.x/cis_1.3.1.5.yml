@@ -1,16 +1,16 @@
 ---
 
-{{ if not .Vars.rhel9cis_selinux_disable }}
-  {{ if .Vars.rhel9cis_level_2 }}
-    {{ if .Vars.rhel9cis_rule_1_3_1_5 }}
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_3_1_5 }}
 command:
   getenforce_enforcing:
     title: 1.3.1.5 | Ensure the SELinux mode is enforcing | running
+    skip: {{ or .Vars.rhel9cis_selinux_disable (ne .Vars.rhel9cis_selinux_enforce "enforcing") }}
+    skip-reason: SELinux is disabled or not set to enforcing, rhel9cis_selinux_disable is true or rhel9cis_selinux_enforce is not enforcing
     exit-status: 0
     exec: "getenforce"
     stdout:
     - '/^Enforcing/'
-    skip: {{ ne .Vars.rhel9cis_selinux_enforce "enforcing" }}
     meta:
       server: 2
       workstation: 2
@@ -30,10 +30,11 @@ command:
 file:
   /etc/selinux/config:
     title: 1.3.1.5 | Ensure the SELinux mode is enforcing | config
+    skip: {{ or .Vars.rhel9cis_selinux_disable (ne .Vars.rhel9cis_selinux_enforce "enforcing") }}
+    skip-reason: SELinux is disabled or not set to enforcing, rhel9cis_selinux_disable is true or rhel9cis_selinux_enforce is not enforcing
     exists: true
     contents:
     - '/^SELINUX( |)=( |)enforcing/'
-    skip: {{ ne .Vars.rhel9cis_selinux_enforce "enforcing" }}
     meta:
       server: 2
       workstation: 2
@@ -50,6 +51,5 @@ file:
       CCI:
       - CCI-001084
       - CCI-002696
-    {{ end }}
   {{ end }}
 {{ end }}

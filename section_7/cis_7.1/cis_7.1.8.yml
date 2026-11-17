@@ -2,20 +2,16 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_8 }}
-command:
-  etc_gshadow-_perms:
+file:
+  cis_7_1_8_gshadow_backup:
     title: 7.1.8 | Ensure access to /etc/gshadow- is configured
-    exec: |
-      if [ -e /etc/gshadow- ]; then
-        find /etc/gshadow- -maxdepth 0 \( -perm /7777 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
-        echo "checked_rc=$?"
-      else
-        echo "not_present"
-      fi
-    exit-status: 0
-    stdout:
-    - '/^(checked_rc=0|not_present)$/'
-    - '!/^FAIL:/'
+    path: /etc/gshadow-
+    exists: true
+    owner: root
+    group: root
+    mode: '0000'
+    skip: {{ not .Discovered.gshadow_backup_exists }}
+    skip-reason: /etc/gshadow- is a backup written by account-management tools and does not exist on this host
     meta:
       server: 1
       workstation: 1

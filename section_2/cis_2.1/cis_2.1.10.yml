@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_10 }}
-    {{ if not .Vars.rhel9cis_nfs_server }}
-      {{ if not .Vars.rhel9cis_nfs_mask }}
+    {{ if not .Vars.rhel9cis_nfs_mask }}
 package:
-  nfs_pkg:
-    title: 2.1.10 | Ensure network file system services are not in use | pkg removed
+  cis_2_1_10_nfs_utils_pkg:
+    title: 2.1.10 | Ensure network file system services are not in use | nfs-utils not installed
+    skip: {{ .Vars.rhel9cis_nfs_server }}
+    skip-reason: an NFS server is required, rhel9cis_nfs_server is true
     name: nfs-utils
     installed: false
     meta:
@@ -22,15 +23,15 @@ package:
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_nfs_mask }}
-file:
-  nfs_service_masked:
-    title: 2.1.10 | Ensure network file system services are not in use | masked
-    path: /etc/systemd/system/nfs-server.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    {{ end }}
+    {{ if .Vars.rhel9cis_nfs_mask }}
+service:
+  cis_2_1_10_nfs_server_service_masked:
+    title: 2.1.10 | Ensure network file system services are not in use | nfs-server.service masked
+    skip: {{ .Vars.rhel9cis_nfs_server }}
+    skip-reason: an NFS server is required, rhel9cis_nfs_server is true
+    name: nfs-server.service
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -44,7 +45,6 @@ file:
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

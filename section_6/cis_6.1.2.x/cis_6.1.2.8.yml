@@ -5,6 +5,10 @@
 file:
   /etc/rsyslog.conf:
     title: 6.1.2.8 | Ensure rsyslog logging rules are configured
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exists: true
     contents:
     - '/^\*\.emerg\s+:omusrmsg:\*/'

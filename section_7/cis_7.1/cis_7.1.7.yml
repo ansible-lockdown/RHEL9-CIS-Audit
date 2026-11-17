@@ -2,16 +2,14 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_7 }}
-command:
-  etc_gshadow_perms:
+file:
+  cis_7_1_7_gshadow:
     title: 7.1.7 | Ensure access to /etc/gshadow is configured
-    exec: |
-      find /etc/gshadow -maxdepth 0 \( -perm /7777 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
-      echo "checked_rc=$?"
-    exit-status: 0
-    stdout:
-    - '/^checked_rc=0$/'
-    - '!/^FAIL:/'
+    path: /etc/gshadow
+    exists: true
+    owner: root
+    group: root
+    mode: '0000'
     meta:
       server: 1
       workstation: 1

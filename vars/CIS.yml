@@ -624,5 +624,17 @@ rhel9cis_remote_log_tls: false
 rhel9cis_remote_log_tls_cafile: /etc/pki/tls/certs/ca-bundle.crt
 rhel9cis_remote_log_tls_keyfile: ''
 
+# 1.2.1.1 Release key package the role checks (vars/<distro>.yml os_gpg_key_pubkey_name) - empty checks the known release keys
+rhel9cis_os_gpg_key_pubkey_name: ''
+
+# 4.1.8 Default zone the role sets - the test is skipped unless it is drop
+rhel9cis_default_zone: public
+
+# 7.2.9 The role changes dot files only when this is true (and rhel9cis_disruption_high)
+rhel9cis_dotperm_ansiblemanaged: false
+
+# 6.1.3.1 Log files left out of the permission check, as extended regex matched against the file path
+rhel9cis_logfile_perms_exclude: []
+
 # Control 7.1.12
 rhel9cis_exclude_unowned_search_path: \( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

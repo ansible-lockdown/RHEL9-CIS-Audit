@@ -2,12 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_2_8 }}
-    {{ if .Vars.run_heavy_tests }}
 command:
   home_dirs_configured:
     title: 7.2.8 | Ensure local interactive user home directories are configured
+    skip: {{ not .Vars.run_heavy_tests }}
+    skip-reason: heavy tests are disabled (run_heavy_tests is false)
     exec: |
-      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//{s,/,\\/,g;p}' | paste -s -d '|' - ))$"
+      l_valid_shells="^($(awk -F/ '$NF != "nologin" {print}' /etc/shells | sed -rn '/^\//p' | paste -s -d '|' - ))$"
       awk -v pat="$l_valid_shells" -F: '$(NF) ~ pat { print $1 " " $(NF-1) }' /etc/passwd | while read -r l_user l_home; do
         if [ ! -d "$l_home" ]; then
           echo "FAIL: user $l_user home directory $l_home does not exist"
@@ -34,6 +35,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: AC-3
-    {{ end }}
   {{ end }}
 {{ end }}

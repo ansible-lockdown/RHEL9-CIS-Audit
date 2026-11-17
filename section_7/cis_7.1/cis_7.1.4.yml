@@ -2,20 +2,17 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_4 }}
-command:
-  etcgroup-_perms:
+file:
+  cis_7_1_4_group_backup:
     title: 7.1.4 | Ensure access to /etc/group- is configured
-    exec: |
-      if [ -e /etc/group- ]; then
-        find /etc/group- -maxdepth 0 \( -perm /7133 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
-        echo "checked_rc=$?"
-      else
-        echo "not_present"
-      fi
-    exit-status: 0
-    stdout:
-    - '/^(checked_rc=0|not_present)$/'
-    - '!/^FAIL:/'
+    path: /etc/group-
+    exists: true
+    owner: root
+    group: root
+    mode:
+      match-regexp: '^0[0246][04][04]$'
+    skip: {{ not .Discovered.group_backup_exists }}
+    skip-reason: /etc/group- is a backup written by account-management tools and does not exist on this host
     meta:
       server: 1
       workstation: 1

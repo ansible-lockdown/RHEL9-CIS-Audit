@@ -8,7 +8,7 @@ file:
     exists: true
     path: /etc/shells
     contents:
-    - '!/.*nologin/'
+    - '!/^\s*[^#\n]*\/nologin\b/'
     meta:
       server: 2
       workstation: 2

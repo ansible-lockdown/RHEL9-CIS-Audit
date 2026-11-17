@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_1 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_1 }}
 command:
   gdm_banner_settings:
     title: 1.8.1 | Ensure GDM login banner is configured
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: 'echo "banner_enable_writable=$(gsettings writable org.gnome.login-screen banner-message-enable)"; echo "banner_text_writable=$(gsettings writable org.gnome.login-screen banner-message-text)"; echo "banner_enable=$(gsettings get org.gnome.login-screen banner-message-enable)"; echo "banner_text=$(gsettings get org.gnome.login-screen banner-message-text)"'
     exit-status: 0
     stdout:
@@ -26,6 +27,5 @@ command:
       - CCI-001386
       - CCI-001387
       - CCI-001388
-    {{ end }}
   {{ end }}
 {{ end }}

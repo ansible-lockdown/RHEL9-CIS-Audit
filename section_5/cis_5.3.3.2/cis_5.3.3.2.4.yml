@@ -10,6 +10,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     - '/.*\:maxrepeat\s*=\s*[1-3]/'
     - '!/.*\:maxrepeat\s*=\s*0/'

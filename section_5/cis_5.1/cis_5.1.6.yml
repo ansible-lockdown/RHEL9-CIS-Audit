@@ -15,6 +15,7 @@ command:
     - '/^kexalgorithms_offered$/'
     - '!/^WEAK:/'
     skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
+    skip-reason: rhel9cis_crypto_policy_ansiblemanaged is false, the system crypto policy is not managed by the role
     meta:
       server: 1
       workstation: 1

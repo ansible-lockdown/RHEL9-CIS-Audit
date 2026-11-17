@@ -26,6 +26,8 @@ command:
     exit-status: 1
     stdout:
     - '!/./'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not remove remember from the PAM files
     meta:
       server: 1
       workstation: 1

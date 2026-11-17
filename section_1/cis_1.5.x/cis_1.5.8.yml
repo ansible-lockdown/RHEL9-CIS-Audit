@@ -5,7 +5,7 @@
 command:
   hard_core_limit:
     title: 1.5.8 | Ensure core file size is configured
-    exec: "grep -Pshi -- '^\\h*\\*\\h+hard\\h+core\\b' /etc/security/limits.conf /etc/security/limits.d/*"
+    exec: "grep -Pshi -- '^\\h*[^#\\n\\r]+\\h+hard\\h+core\\b' /etc/security/limits.conf /etc/security/limits.d/*"
     exit-status: 0
     stdout:
     - '/^\s*\*\s+hard\s+core\s+0\s*$/'

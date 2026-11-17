@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_6 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_6 }}
 command:
   gdm_xdmcp_disabled:
     title: 1.8.6 | Ensure XDMCP is not enabled
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: echo "xdmcp_enabled_lines=$(for f in /etc/gdm/custom.conf /etc/gdm/daemon.conf; do [ -f "$f" ] && awk '/\[xdmcp\]/{f=1;next} /\[/{f=0} f && /^\s*Enable\s*=\s*true/' "$f"; done | wc -l)"
     exit-status: 0
     stdout:
@@ -16,6 +17,5 @@ command:
       CIS_ID:
       - 1.8.6
       NIST800-53R5: SI-4
-    {{ end }}
   {{ end }}
 {{ end }}

@@ -1,13 +1,14 @@
 ---
 
 {{ if .Vars.rhel9cis_level_2 }}
-  {{ if not .Vars.rhel9cis_openldap_clients_required }}
-    {{ if .Vars.rhel9cis_rule_2_2_2 }}
+  {{ if .Vars.rhel9cis_rule_2_2_2 }}
 package:
-  openldap-clients:
-    title: 2.2.2 | Ensure ldap client is not installed
-    installed: false
+  cis_2_2_2_openldap_clients_pkg:
+    title: 2.2.2 | Ensure ldap client is not installed | openldap-clients not installed
+    skip: {{ .Vars.rhel9cis_openldap_clients_required }}
+    skip-reason: an LDAP client is required, rhel9cis_openldap_clients_required is true
     name: openldap-clients
+    installed: false
     meta:
       server: 2
       workstation: 2
@@ -19,6 +20,5 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-    {{ end }}
   {{ end }}
 {{ end }}

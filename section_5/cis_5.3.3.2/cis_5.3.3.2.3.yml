@@ -10,6 +10,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     {{ if eq .Vars.rhel9cis_passwd_complex_option "minclass" }}
       - '/.*\:minclass\s*=\s*([4-9]|[1-9][0-9])/'

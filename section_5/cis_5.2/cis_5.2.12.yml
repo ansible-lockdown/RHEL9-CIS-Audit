@@ -21,13 +21,12 @@ file:
       NIST800-53R5:
       - AC-3
       - MP-2
-command:
   sugroup_etc_group:
     title: 5.2.12 | Ensure access to the su command is restricted | group is empty
-    exec: grep -E '^{{ .Vars.rhel9cis_sugroup }}:' /etc/group
-    exit-status: 0
-    stdout:
-    - '/^{{ .Vars.rhel9cis_sugroup }}:x:\d+:$/'
+    path: /etc/group
+    exists: true
+    contents:
+    - '/^{{ .Vars.rhel9cis_sugroup }}:[^:]*:[0-9]+:$/'
     meta:
       server: 1
       workstation: 1

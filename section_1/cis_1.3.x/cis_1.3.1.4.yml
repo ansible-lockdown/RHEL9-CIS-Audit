@@ -1,11 +1,12 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if not .Vars.rhel9cis_selinux_disable }}
-    {{ if .Vars.rhel9cis_rule_1_3_1_4 }}
+  {{ if .Vars.rhel9cis_rule_1_3_1_4 }}
 command:
   getenforce_set:
     title: 1.3.1.4 | Ensure the SELinux mode is not disabled
+    skip: {{ .Vars.rhel9cis_selinux_disable }}
+    skip-reason: SELinux is disabled by the operator, rhel9cis_selinux_disable is true
     exit-status: 0
     exec: "getenforce"
     stdout:
@@ -21,6 +22,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SC-3
-    {{ end }}
   {{ end }}
 {{ end }}

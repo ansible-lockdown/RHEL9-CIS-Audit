@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_10 }}
 command:
-  usb-storage:
-    title: 1.1.1.10 | Ensure usb-storage kernel module is not available
+  modprobe_usb_storage:
+    title: 1.1.1.10 | Ensure usb-storage kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+usb_storage\b'
     exit-status: 0
-    exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist usb_storage$/'
+    - '/^install usb_storage (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 2
@@ -25,12 +26,11 @@ command:
       - CCI-000778
       - CCI-001958
       - CCI-003959
-  blacklist_usb-storage:
-    title: 1.1.1.10 | Ensure usb-storage kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep usb-storage /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist usb-storage/'
+file:
+  sys_module_usb_storage:
+    title: 1.1.1.10 | Ensure usb-storage kernel module is not available | not loaded
+    path: /sys/module/usb_storage
+    exists: false
     meta:
       server: 1
       workstation: 2

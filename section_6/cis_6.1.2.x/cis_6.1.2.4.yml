@@ -5,6 +5,10 @@
 command:
   rsyslog_conf_file_access:
     title: 6.1.2.4 | Ensure access to rsyslog configuration files is configured
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: '{ find /etc/rsyslog.conf -not -type l \( ! -user root -o ! -group root -o -perm /0137 \) 2>/dev/null; find /etc/rsyslog.d/ -type f -name ''*.conf'' \( ! -user root -o ! -group root -o -perm /0137 \) 2>/dev/null; } | wc -l'
     exit-status: 0
     stdout:

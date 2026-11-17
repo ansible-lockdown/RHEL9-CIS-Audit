@@ -3,14 +3,50 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_3_3 }}
 file:
-  chrony_sysconfig:
-    title: 2.3.3 | Ensure chrony is not run as the root user | sysconfig
+  cis_2_3_3_chronyd_sysconfig:
+    title: 2.3.3 | Ensure chrony is not run as the root user | no -u root in OPTIONS
     path: /etc/sysconfig/chronyd
     exists: true
     contents:
-    - '/^OPTIONS=".*-u chrony.*"/'
-    - '!/^OPTIONS="".*-u root.*"/'
-    skip: false
+    - '!/^(?i)\s*OPTIONS="?\s*([^#\n\r]+\s+)?-u\s+root\b/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.3.3
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: AC-6
+command:
+  cis_2_3_3_chrony_user_root:
+    title: 2.3.3 | Ensure chrony is not run as the root user | no user root directive
+    exec: grep -PHsi -- '^\h*user\h+root\b' /etc/chrony.conf /etc/chrony.d/*.conf || true
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.3.3
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: AC-6
+  cis_2_3_3_chronyd_process_user:
+    title: 2.3.3 | Ensure chrony is not run as the root user | chronyd runs as chrony
+    skip: {{ not .Discovered.chronyd_running }}
+    skip-reason: chronyd is not running
+    exec: ps -C chronyd -o user= || true
+    exit-status: 0
+    stdout:
+    - '/^\s*chrony\s*$/'
+    - '!/^\s*root\s*$/'
     meta:
       server: 1
       workstation: 1

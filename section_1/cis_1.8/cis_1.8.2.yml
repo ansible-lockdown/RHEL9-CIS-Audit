@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_2 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_2 }}
 command:
   gdm_disable_user_list_settings:
     title: 1.8.2 | Ensure GDM disable-user-list is configured
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: 'echo "user_list_writable=$(gsettings writable org.gnome.login-screen disable-user-list)"; echo "user_list_disabled=$(gsettings get org.gnome.login-screen disable-user-list)"'
     exit-status: 0
     stdout:
@@ -19,6 +20,5 @@ command:
       NIST800-53R5: CM-6
       CCI:
       - CCI-000366
-    {{ end }}
   {{ end }}
 {{ end }}

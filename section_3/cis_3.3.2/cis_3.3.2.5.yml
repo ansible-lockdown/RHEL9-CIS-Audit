@@ -1,11 +1,12 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.rhel9cis_ipv6_required }}
-    {{ if .Vars.rhel9cis_rule_3_3_2_5 }}
+  {{ if .Vars.rhel9cis_rule_3_3_2_5 }}
 kernel-param:
   net.ipv6.conf.all.accept_source_route:
     title: 3.3.2.5 | Ensure net.ipv6.conf.all.accept_source_route is configured | running config
+    skip: {{ not .Vars.rhel9cis_ipv6_required }}
+    skip-reason: IPv6 is not required, rhel9cis_ipv6_required is false
     value: '0'
     meta:
       server: 1
@@ -18,6 +19,8 @@ kernel-param:
 command:
   cis_3_3_2_5_sysctl_conf:
     title: 3.3.2.5 | Ensure net.ipv6.conf.all.accept_source_route is configured | effective systemd-sysctl config
+    skip: {{ not .Vars.rhel9cis_ipv6_required }}
+    skip-reason: IPv6 is not required, rhel9cis_ipv6_required is false
     exec: |
       l_sysctl="$(readlink -e /usr/lib/systemd/systemd-sysctl || readlink -e /lib/systemd/systemd-sysctl)"
       l_value="$("$l_sysctl" --cat-config 2>/dev/null | grep -Pi -- '^\h*-?net(\.|/)ipv6(\.|/)conf(\.|/)all(\.|/)accept_source_route\h*=' | tail -n 1 | cut -d= -f2 | xargs)"
@@ -33,6 +36,5 @@ command:
       NIST800-53R5: CM-6
       CCI:
       - CCI-000366
-    {{ end }}
   {{ end }}
 {{ end }}

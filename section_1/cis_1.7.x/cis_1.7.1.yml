@@ -6,11 +6,21 @@ command:
   motd_no_system_info:
     title: 1.7.1 | Ensure /etc/motd is configured
     exec: |
-      os_id=$(. /etc/os-release; echo "$ID")
-      echo "motd_sysinfo_lines=$(grep -Psi -- "(\\\\[vrms]|\\b${os_id}\\b)" /etc/motd /etc/motd.d/* 2>/dev/null | wc -l)"
+      l_os="$(grep -Po '^ID="?\K[^"]+' /etc/os-release)|$(grep -Po '^NAME="?\K[^"]+' /etc/os-release)"
+      for l_file in /etc/motd /run/motd /usr/lib/motd /etc/motd.d/* /run/motd.d/* /usr/lib/motd.d/*; do
+        [ -f "$l_file" ] || continue
+        l_name="$(basename "$l_file")"
+        case "$l_file" in
+          /run/motd.d/*) [ -e "/etc/motd.d/$l_name" ] && continue ;;
+          /usr/lib/motd.d/*) { [ -e "/etc/motd.d/$l_name" ] || [ -e "/run/motd.d/$l_name" ]; } && continue ;;
+        esac
+        grep -Psil -- '(\\[mrsv]|\b('"$l_os"')\b)' "$l_file" | sed 's/^/sysinfo_in: /'
+      done
+      echo "motd_files_checked"
     exit-status: 0
     stdout:
-    - '/^motd_sysinfo_lines=0$/'
+    - '/^motd_files_checked$/'
+    - '!/^sysinfo_in: /'
     meta:
       server: 1
       workstation: 1

@@ -10,6 +10,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     - '/.*\:minlen\s*=\s*(1[4-9]|[2-4][0-9])/'
     meta:

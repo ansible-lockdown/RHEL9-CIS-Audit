@@ -2,10 +2,11 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_11 }}
-    {{ if .Vars.run_heavy_tests }}
 command:
   world_writable_secured:
     title: 7.1.11 | Ensure world writable files and directories are secured
+    skip: {{ not .Vars.run_heavy_tests }}
+    skip-reason: heavy filesystem scans are disabled (run_heavy_tests is false)
     exec: |
       findmnt -Dkerno fstype,target | awk '($1 !~ /^[[:space:]]*(nfs|proc|cifs|smb|vfat|iso9660|efivarfs|selinuxfs|ncpfs)/ && $2 !~ /^(\/run|\/tmp|\/var\/tmp)(\/|$)/){print $2}' | while IFS= read -r l_mount; do
         find "$l_mount" -mount -xdev \( -path "*/containers/storage/*" -o -path "*/containerd/*" -o -path "*/kubelet/*" -o -path "*/docker/*" -o -path "/sys/*" -o -path "/snap/*" -o -path "/boot/efi/*" \) -prune -o \( \( -type f -perm -0002 \) -o \( -type d -perm -0002 ! -perm -1000 \) \) -printf 'FAIL: %y %p\n' 2>/dev/null
@@ -26,6 +27,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SC-4
-    {{ end }}
   {{ end }}
 {{ end }}

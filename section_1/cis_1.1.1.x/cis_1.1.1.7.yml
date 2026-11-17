@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_7 }}
 command:
-  squashfs:
-    title: 1.1.1.7 | Ensure squashfs kernel module is not available | disabled
+  modprobe_squashfs:
+    title: 1.1.1.7 | Ensure squashfs kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+squashfs\b'
     exit-status: 0
-    exec: "modprobe -n -v squashfs | grep -E '(squashfs|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist squashfs$/'
+    - '/^install squashfs (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 2
       workstation: 2
@@ -21,12 +22,11 @@ command:
       NIST800-53R5: CM-7
       CCI:
       - CCI-000381
-  blacklist_squashfs:
-    title: 1.1.1.7 | Ensure squashfs kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep squashfs /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist squashfs/'
+file:
+  sys_module_squashfs:
+    title: 1.1.1.7 | Ensure squashfs kernel module is not available | not loaded
+    path: /sys/module/squashfs
+    exists: false
     meta:
       server: 2
       workstation: 2

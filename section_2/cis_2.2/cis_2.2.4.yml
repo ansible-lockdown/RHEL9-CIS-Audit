@@ -1,13 +1,14 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if not .Vars.rhel9cis_tftp_client }}
-    {{ if .Vars.rhel9cis_rule_2_2_4 }}
+  {{ if .Vars.rhel9cis_rule_2_2_4 }}
 package:
-  tftp_client:
-    title: 2.2.4 | Ensure tftp client is not installed
-    installed: false
+  cis_2_2_4_tftp_pkg:
+    title: 2.2.4 | Ensure tftp client is not installed | tftp not installed
+    skip: {{ .Vars.rhel9cis_tftp_client }}
+    skip-reason: a TFTP client is required, rhel9cis_tftp_client is true
     name: tftp
+    installed: false
     meta:
       server: 1
       workstation: 1
@@ -19,6 +20,5 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-    {{ end }}
   {{ end }}
 {{ end }}

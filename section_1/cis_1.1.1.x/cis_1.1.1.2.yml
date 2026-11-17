@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_2 }}
 command:
-  freevxfs:
-    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | disabled
+  modprobe_freevxfs:
+    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+freevxfs\b'
     exit-status: 0
-    exec: "modprobe -n -v freevxfs | grep -E '(freevxfs|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist freevxfs$/'
+    - '/^install freevxfs (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 1
@@ -21,12 +22,11 @@ command:
       NIST800-53R5: CM-7
       CCI:
       - CCI-000381
-  blacklist_freevxfs:
-    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep freevxfs /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist freevxfs/'
+file:
+  sys_module_freevxfs:
+    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | not loaded
+    path: /sys/module/freevxfs
+    exists: false
     meta:
       server: 1
       workstation: 1

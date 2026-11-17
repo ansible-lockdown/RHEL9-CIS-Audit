@@ -35,6 +35,7 @@ command:
     - '/^scan_done$/'
     - '!/^FAIL:/'
     skip: {{ not .Vars.rhel9cis_force_user_maxdays }}
+    skip-reason: rhel9cis_force_user_maxdays is false, existing accounts are not changed by the role
     meta:
       server: 1
       workstation: 1

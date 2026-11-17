@@ -2,11 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_6_1_2_13 }}
-    {{ if .Vars.rhel9cis_remote_log_server }}
-      {{ if .Vars.rhel9cis_remote_log_tls }}
 command:
   rsyslog_tls_client_cert_conf:
     title: 6.1.2.13 | Ensure rsyslog TLS client certificate is configured | configured
+    skip: {{ not (and .Vars.rhel9cis_remote_log_server .Vars.rhel9cis_remote_log_tls) }}
+    skip-reason: TLS log forwarding is not configured (rhel9cis_remote_log_server and rhel9cis_remote_log_tls are not both true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: |
       grep -Psih -- '^[^#]*(DefaultNetstreamDriverCertFile|StreamDriver\.CertFile)\h*[= ]' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
       grep -Psih -- '^[^#]*(DefaultNetstreamDriverKeyFile|StreamDriver\.KeyFile)\h*[= ]' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
@@ -29,6 +33,12 @@ command:
     {{ if .Vars.rhel9cis_remote_log_tls_keyfile }}
   rsyslog_tls_client_key_access:
     title: 6.1.2.13 | Ensure rsyslog TLS client certificate is configured | private key access
+    skip: {{ not (and .Vars.rhel9cis_remote_log_server .Vars.rhel9cis_remote_log_tls) }}
+    skip-reason: TLS log forwarding is not configured (rhel9cis_remote_log_server and rhel9cis_remote_log_tls are not both true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: 'stat -Lc ''%U %a'' {{ .Vars.rhel9cis_remote_log_tls_keyfile }}'
     exit-status: 0
     stdout:
@@ -43,8 +53,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SC-17
-    {{ end }}
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

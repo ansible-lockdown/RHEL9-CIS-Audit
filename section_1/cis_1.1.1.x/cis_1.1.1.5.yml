@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_5 }}
 command:
-  jffs2_modprobe:
-    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | disabled
+  modprobe_jffs2:
+    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+jffs2\b'
     exit-status: 0
-    exec: "modprobe -n -v jffs2 | grep -E '(jffs2|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist jffs2$/'
+    - '/^install jffs2 (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 1
@@ -21,12 +22,11 @@ command:
       NIST800-53R5: CM-7
       CCI:
       - CCI-000381
-  blacklist_jffs2:
-    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep jffs2 /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist jffs2/'
+file:
+  sys_module_jffs2:
+    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | not loaded
+    path: /sys/module/jffs2
+    exists: false
     meta:
       server: 1
       workstation: 1

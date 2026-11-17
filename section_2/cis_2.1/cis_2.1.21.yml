@@ -1,12 +1,12 @@
 ---
 
-{{ if not .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_2 }}
-    {{ if .Vars.rhel9cis_rule_2_1_21 }}
-      {{ if not .Vars.rhel9cis_xwindow_server }}
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_2_1_21 }}
 package:
   xwindow_pkg:
-    title: 2.1.21 | Ensure X window server services are not in use | pkg removed
+    title: 2.1.21 | Ensure X window server services are not in use | xorg-x11-server-common not installed
+    skip: {{ or .Vars.rhel9cis_gui .Vars.rhel9cis_xwindow_server }}
+    skip-reason: a graphical user interface or X window server is required, rhel9cis_gui or rhel9cis_xwindow_server is true
     name: xorg-x11-server-common
     installed: false
     meta:
@@ -20,7 +20,5 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-11
-      {{ end }}
-    {{ end }}
   {{ end }}
 {{ end }}

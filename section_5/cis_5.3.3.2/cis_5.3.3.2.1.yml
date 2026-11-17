@@ -10,6 +10,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     - '/.*\:difok\s*=\s*[2-9]/'
     meta:

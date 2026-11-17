@@ -1,13 +1,15 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.rhel9cis_rule_1_2_1_4 }}
+  {{ if .Vars.rhel9cis_rule_1_2_1_4 }}
 command:
   repos_configured:
-    title: 1.2.1.4 | Ensure package manager repositories are configured
+    title: 1.2.1.4 | Ensure package manager repositories are configured | Review repositories against site policy
+    skip: {{ not .Vars.run_heavy_tests }}
+    skip-reason: heavy tests are off, run_heavy_tests is false
+    exec: dnf repolist
     exit-status: 0
-    exec: "yum repolist"
+    timeout: {{ .Vars.timeout_ms }}
     meta:
       server: 1
       workstation: 1
@@ -20,6 +22,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SI-2
-    {{ end }}
   {{ end }}
 {{ end }}

@@ -5,10 +5,15 @@
 command:
   grubby_confirm_spawn:
     title: 1.4.5 | Ensure systemd ability to spawn an interactive boot process is disabled
-    exec: "a=$(grubby --info=ALL 2>/dev/null | grep -E '^[[:space:]]*args='); [ -n \"$a\" ] && echo \"boot_entries_found confirm_spawn=$(echo \"$a\" | grep -c 'systemd.confirm_spawn')\""
+    exec: |
+      echo "boot_entries=$(grubby --info=ALL 2>/dev/null | grep -Pc '^\h*args=.*\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)')"
+      echo "kernel_cmdline=$(grep -Ps -- '\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)' /etc/kernel/cmdline | wc -l)"
+      echo "default_grub=$(grep -Psi -- '^\h*GRUB_CMDLINE_LINUX(_DEFAULT)?=.*\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)' /etc/default/grub | wc -l)"
     exit-status: 0
     stdout:
-    - '/^boot_entries_found confirm_spawn=0$/'
+    - '/^boot_entries=0$/'
+    - '/^kernel_cmdline=0$/'
+    - '/^default_grub=0$/'
     meta:
       server: 1
       workstation: 1

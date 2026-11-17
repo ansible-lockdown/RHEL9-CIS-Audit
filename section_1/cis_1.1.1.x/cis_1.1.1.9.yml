@@ -3,12 +3,13 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_9 }}
 command:
-  firewire-core:
-    title: 1.1.1.9 | Ensure firewire-core kernel module is not available
+  modprobe_firewire_core:
+    title: 1.1.1.9 | Ensure firewire-core kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+firewire_core\b'
     exit-status: 0
-    exec: "modprobe -n -v firewire-core | grep -E '(firewire-core|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist firewire_core$/'
+    - '/^install firewire_core (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 2
@@ -21,12 +22,11 @@ command:
       NIST800-53R5: CM-7
       CCI:
       - CCI-000381
-  blacklist_firewire-core:
-    title: 1.1.1.9 | Ensure firewire-core kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep firewire-core /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist firewire-core/'
+file:
+  sys_module_firewire_core:
+    title: 1.1.1.9 | Ensure firewire-core kernel module is not available | not loaded
+    path: /sys/module/firewire_core
+    exists: false
     meta:
       server: 1
       workstation: 2

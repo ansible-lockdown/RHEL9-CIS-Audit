@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_7 }}
-    {{ if not .Vars.rhel9cis_samba_server }}
-      {{ if not .Vars.rhel9cis_samba_mask }}
+    {{ if not .Vars.rhel9cis_samba_mask }}
 package:
-  samba_pkg:
-    title: 2.1.7 | Ensure samba file server services are not in use | pkg removed
+  cis_2_1_7_samba_pkg:
+    title: 2.1.7 | Ensure samba file server services are not in use | samba not installed
+    skip: {{ .Vars.rhel9cis_samba_server }}
+    skip-reason: a samba server is required, rhel9cis_samba_server is true
     name: samba
     installed: false
     meta:
@@ -22,15 +23,15 @@ package:
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_samba_mask }}
-file:
-  samba_service_masked:
-    title: 2.1.7 | Ensure samba file server services are not in use | masked
-    path: /etc/systemd/system/smb.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    {{ end }}
+    {{ if .Vars.rhel9cis_samba_mask }}
+service:
+  cis_2_1_7_smb_service_masked:
+    title: 2.1.7 | Ensure samba file server services are not in use | smb.service masked
+    skip: {{ .Vars.rhel9cis_samba_server }}
+    skip-reason: a samba server is required, rhel9cis_samba_server is true
+    name: smb.service
+    masked: true
     meta:
       server: 1
       workstation: 1
@@ -44,7 +45,6 @@ file:
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

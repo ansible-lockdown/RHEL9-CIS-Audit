@@ -2,10 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_6_1_2_7 }}
-    {{ if not .Vars.rhel9cis_system_is_log_server }}
 command:
   rsyslog_not_log_server:
     title: 6.1.2.7 | Ensure rsyslog is not configured as a log server
+    skip: {{ .Vars.rhel9cis_system_is_log_server }}
+    skip-reason: the system is a log server (rhel9cis_system_is_log_server is true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     exec: |
       grep -Psi -- '^\h*module\(load="?(imtcp|imudp|imptcp|imrelp)"?' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
       grep -Psi -- '^\h*input\(type="?(imtcp|imudp|imptcp|imrelp)"?' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null
@@ -32,6 +37,5 @@ command:
       - AU-2
       - AU-7
       - CM-6
-    {{ end }}
   {{ end }}
 {{ end }}

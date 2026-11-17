@@ -22,7 +22,7 @@ command:
     - '!/FAIL/'
     meta:
       server: 1
-      workstation: 0
+      workstation: NA
       CIS_ID:
       - 3.1.2
       NIST800-53R5: AC-18(1)

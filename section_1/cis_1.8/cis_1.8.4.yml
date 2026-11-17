@@ -1,11 +1,12 @@
 ---
 
-{{ if .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_8_4 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_8_4 }}
 command:
   gdm_automount_settings:
     title: 1.8.4 | Ensure GDM automount is configured
+    skip: {{ not .Vars.rhel9cis_gui }}
+    skip-reason: no GNOME desktop found (rhel9cis_gui is false)
     exec: 'echo "automount_writable=$(gsettings writable org.gnome.desktop.media-handling automount)"; echo "automount_open_writable=$(gsettings writable org.gnome.desktop.media-handling automount-open)"; echo "automount=$(gsettings get org.gnome.desktop.media-handling automount)"; echo "automount_open=$(gsettings get org.gnome.desktop.media-handling automount-open)"'
     exit-status: 0
     stdout:
@@ -22,6 +23,5 @@ command:
       CCI:
       - CCI-000778
       - CCI-001958
-    {{ end }}
   {{ end }}
 {{ end }}

@@ -5,6 +5,8 @@
 command:
   auditd_6_2_3_10_priv_cmds:
     title: 6.2.3.10 | Ensure use of privileged commands are collected
+    skip: {{ not .Vars.run_heavy_tests }}
+    skip-reason: heavy filesystem scans are disabled (run_heavy_tests is false)
     exec: |
       UID_MIN=$(awk '/^\s*UID_MIN/ {print $2}' /etc/login.defs)
       RUNNING=$(auditctl -l)

@@ -2,28 +2,25 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_4_1 }}
-    {{ if .Vars.rhel9cis_set_boot_pass }}
-  file:
-    grub_bootloader_passwd:
-      title: 1.4.1 | Ensure bootloader password is set
-      path: /boot/grub2/user.cfg
-      exists: true
-      owner: root
-      group: root
-      mode: "0600"
-      contents:
-        - '/GRUB2_PASSWORD=grub.pbkdf2.sha512.*/'
-      meta:
-        server: 1
-        workstation: 1
-        CIS_ID:
-        - 1.4.1
-        CISv8:
-        - 3.3
-        CISv8_IG1: true
-        CISv8_IG2: true
-        CISv8_IG3: true
-        NIST800-53R5: AC-3
-    {{ end }}
+file:
+  grub_bootloader_passwd:
+    title: 1.4.1 | Ensure bootloader password is set
+    skip: {{ not .Vars.rhel9cis_set_boot_pass }}
+    skip-reason: the bootloader password is not managed, rhel9cis_set_boot_pass is false
+    path: /boot/grub2/user.cfg
+    exists: true
+    contents:
+    - '/^\s*GRUB2?_PASSWORD=grub\.pbkdf2\.sha512\./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: AC-3
   {{ end }}
 {{ end }}

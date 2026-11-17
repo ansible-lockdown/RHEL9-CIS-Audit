@@ -5,6 +5,10 @@
 service:
   rsyslog:
     title: 6.1.2.2 | Ensure rsyslog service is enabled and active
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
     running: true
     enabled: true
     meta:

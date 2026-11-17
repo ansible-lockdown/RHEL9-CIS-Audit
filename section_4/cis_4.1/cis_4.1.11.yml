@@ -7,7 +7,9 @@ command:
     title: 4.1.11 | Ensure firewalld blocks ICMP timestamp requests and replies
     exec: |
       l_fail=""
-      for l_zone in $(firewall-cmd --get-active-zones 2>/dev/null | awk '!/^[[:space:]]/ {print $1}'); do
+      l_zones="$(firewall-cmd --get-active-zones 2>/dev/null | awk '!/^[[:space:]]/ {print $1}')"
+      [ -z "$l_zones" ] && { echo "FAIL - no active zone, interfaces are not assigned to a zone"; l_fail="yes"; }
+      for l_zone in $l_zones; do
         [ "$(firewall-cmd --permanent --zone="$l_zone" --get-target)" = "default" ] || continue
         l_inv="$(firewall-cmd --permanent --zone="$l_zone" --query-icmp-block-inversion)"
         l_blocks=" $(firewall-cmd --permanent --zone="$l_zone" --list-icmp-blocks) "

@@ -3,8 +3,10 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_4_1_9 }}
 file:
-  cron_deny_users:
-    title: 2.4.1.9 | Ensure access to crontab is configured
+  cis_2_4_1_9_cron_deny:
+    title: 2.4.1.9 | Ensure access to crontab is configured | cron.deny absent
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
     path: /etc/cron.deny
     exists: false
     meta:
@@ -19,17 +21,19 @@ file:
       NIST800-53R5:
       - AC-3
       - MP-2
-  cron_allow_users:
-    title: 2.4.1.9 | Ensure access to crontab is configured
+  cis_2_4_1_9_cron_allow:
+    title: 2.4.1.9 | Ensure access to crontab is configured | cron.allow
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
     path: /etc/cron.allow
     exists: true
     owner: root
-    group: root
-    mode:
+    group:
       or:
-        - "0400"
-        - "0600"
-        - "0640"
+      - root
+      - crontab
+    mode:
+      match-regexp: '^0[0246][04]0$'
     meta:
       server: 1
       workstation: 1

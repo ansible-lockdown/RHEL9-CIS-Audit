@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_2 }}
-    {{ if not .Vars.rhel9cis_avahi_server }}
-      {{ if not .Vars.rhel9cis_avahi_mask }}
+    {{ if not .Vars.rhel9cis_avahi_mask }}
 package:
-  avahi_pkg:
-    title: 2.1.2 | Ensure avahi daemon services are not in use | pkg removed
+  cis_2_1_2_avahi_pkg:
+    title: 2.1.2 | Ensure avahi daemon services are not in use | avahi not installed
+    skip: {{ .Vars.rhel9cis_avahi_server }}
+    skip-reason: the avahi daemon is required, rhel9cis_avahi_server is true
     name: avahi
     installed: false
     meta:
@@ -20,15 +21,15 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SI-4
-      {{ end }}
-      {{ if .Vars.rhel9cis_avahi_mask }}
-file:
-  avahi_socket_masked:
-    title: 2.1.2 | Ensure avahi daemon services are not in use | masked
-    path: /etc/systemd/system/avahi-daemon.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    {{ end }}
+    {{ if .Vars.rhel9cis_avahi_mask }}
+service:
+  cis_2_1_2_avahi_daemon_socket_masked:
+    title: 2.1.2 | Ensure avahi daemon services are not in use | avahi-daemon.socket masked
+    skip: {{ .Vars.rhel9cis_avahi_server }}
+    skip-reason: the avahi daemon is required, rhel9cis_avahi_server is true
+    name: avahi-daemon.socket
+    masked: true
     meta:
       server: 1
       workstation: 2
@@ -40,12 +41,12 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SI-4
-  avahi_service_masked:
-    title: 2.1.2 | Ensure avahi daemon services are not in use | masked
-    path: /etc/systemd/system/avahi-daemon.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+  cis_2_1_2_avahi_daemon_service_masked:
+    title: 2.1.2 | Ensure avahi daemon services are not in use | avahi-daemon.service masked
+    skip: {{ .Vars.rhel9cis_avahi_server }}
+    skip-reason: the avahi daemon is required, rhel9cis_avahi_server is true
+    name: avahi-daemon.service
+    masked: true
     meta:
       server: 1
       workstation: 2
@@ -57,7 +58,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: SI-4
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

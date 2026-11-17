@@ -1,13 +1,14 @@
 ---
 
-{{ if not .Vars.rhel9cis_gui }}
-  {{ if .Vars.rhel9cis_level_2 }}
-    {{ if .Vars.rhel9cis_rule_2_1_20 }}
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_2_1_20 }}
 package:
   gdm_removed:
-    title: 2.1.20 | Ensure a graphical user interface is not in use | gdm removed
-    installed: false
+    title: 2.1.20 | Ensure a graphical user interface is not in use | gdm not installed
+    skip: {{ .Vars.rhel9cis_gui }}
+    skip-reason: a graphical user interface is required, rhel9cis_gui is true
     name: gdm
+    installed: false
     meta:
       server: 2
       workstation: NA
@@ -22,6 +23,8 @@ package:
 command:
   gui_default_target:
     title: 2.1.20 | Ensure a graphical user interface is not in use | default target not graphical
+    skip: {{ .Vars.rhel9cis_gui }}
+    skip-reason: a graphical user interface is required, rhel9cis_gui is true
     exec: systemctl get-default
     exit-status: 0
     stdout:
@@ -38,6 +41,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-    {{ end }}
   {{ end }}
 {{ end }}

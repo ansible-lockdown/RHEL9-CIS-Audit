@@ -6,6 +6,8 @@ package:
   firewalld:
     title: 4.1.1 | Ensure firewalld is installed
     installed: true
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1

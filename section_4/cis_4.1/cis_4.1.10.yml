@@ -9,6 +9,8 @@ command:
     exit-status: 0
     stdout:
     - '/^(all|unicast|broadcast|multicast)$/'
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 2
       workstation: 2

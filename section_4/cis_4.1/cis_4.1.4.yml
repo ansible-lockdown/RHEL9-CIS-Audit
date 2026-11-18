@@ -30,8 +30,8 @@ command:
     stdout:
     - '/^PASS$/'
     - '!/FAIL/'
-    skip: {{ not .Vars.rhel9cis_disruption_high }}
-    skip-reason: the role changes an ACCEPT zone target only when rhel9cis_disruption_high is true
+    skip: {{ or (ne .Vars.rhel9cis_firewall "firewalld") (not .Vars.rhel9cis_disruption_high) }}
+    skip-reason: {{ if ne .Vars.rhel9cis_firewall "firewalld" }}rhel9cis_firewall is not firewalld, the role skips section 4.1{{ else }}the role changes an ACCEPT zone target only when rhel9cis_disruption_high is true{{ end }}
     meta:
       server: 1
       workstation: 1

@@ -9,6 +9,8 @@ command:
     exit-status: 0
     stdout:
     - '!/Manual test/'
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1

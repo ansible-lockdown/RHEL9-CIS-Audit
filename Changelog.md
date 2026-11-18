@@ -32,6 +32,9 @@
 - 7.1.13: container storage pruned
 - 7.2.9: skipped unless rhel9cis_dotperm_ansiblemanaged
 - 1.1.2.5.1: duplicate NIST800-53R4 meta removed
+- 4.1.x: skipped when rhel9cis_firewall is not firewalld
+- 5.4.2.7: rhel9cis_playbook_user excluded
+- syver.yml includes section 4.1 and 6.2 files without gates
 
 ## Sept 2026 - benchmark v3.0.0
 

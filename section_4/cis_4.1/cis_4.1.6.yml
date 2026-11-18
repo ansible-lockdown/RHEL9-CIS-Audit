@@ -18,6 +18,8 @@ command:
     - '/^runtime: rule family="ipv6" source address="::1" destination NOT address="::1" drop$/'
     - '/^permanent: rule family="ipv4" source address="127\.0\.0\.0/8" destination NOT address="127\.0\.0\.0/8" drop$/'
     - '/^permanent: rule family="ipv6" source address="::1" destination NOT address="::1" drop$/'
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1

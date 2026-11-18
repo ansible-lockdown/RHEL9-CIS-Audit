@@ -463,6 +463,8 @@ rhel9cis_config_aide: true
 rhel9cis_force_user_maxdays: false
 rhel9cis_force_user_mindays: false
 rhel9cis_system_users_shell: []
+# 5.4.2.7 The role never sets nologin on the account running the playbook
+rhel9cis_playbook_user: ''
 
 # Section 1
 

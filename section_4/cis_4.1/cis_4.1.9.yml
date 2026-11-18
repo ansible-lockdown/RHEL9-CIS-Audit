@@ -8,6 +8,8 @@ service:
     name: nftables
     enabled: false
     running: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1
@@ -18,6 +20,8 @@ package:
   iptables-services:
     title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | iptables-services
     installed: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1
@@ -27,6 +31,8 @@ package:
   ufw:
     title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | ufw
     installed: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
     meta:
       server: 1
       workstation: 1

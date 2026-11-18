@@ -35,6 +35,7 @@
 - 4.1.x: skipped when rhel9cis_firewall is not firewalld
 - 5.4.2.7: rhel9cis_playbook_user excluded
 - syver.yml includes section 4.1 and 6.2 files without gates
+- 5.3.3.2.1, 5.3.3.2.2: difok and minlen accept any compliant value
 
 ## Sept 2026 - benchmark v3.0.0
 

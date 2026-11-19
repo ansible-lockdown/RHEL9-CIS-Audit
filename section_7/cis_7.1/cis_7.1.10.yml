@@ -18,10 +18,6 @@ file:
       workstation: 1
       CIS_ID:
       - 7.1.10
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
@@ -40,10 +36,6 @@ file:
       workstation: 1
       CIS_ID:
       - 7.1.10
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

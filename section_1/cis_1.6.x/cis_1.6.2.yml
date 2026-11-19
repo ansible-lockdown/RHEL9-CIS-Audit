@@ -18,11 +18,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.6.2
-      CISv8:
-      - 3.10
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SC-6
 command:
   crypto_policies_no_sha1_scopes:
@@ -38,11 +33,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.6.2
-      CISv8:
-      - 3.10
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SC-6
   {{ end }}
 {{ end }}

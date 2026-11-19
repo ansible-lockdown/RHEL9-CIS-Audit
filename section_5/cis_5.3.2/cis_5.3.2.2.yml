@@ -18,10 +18,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.2
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-7
   pam_faillock_enabled_password_auth:
     title: 5.3.2.2 | Ensure pam_faillock module is enabled | password-auth
@@ -38,10 +34,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.2
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-7
 command:
   authselect_check_5_3_2_2:
@@ -57,10 +49,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.2.2
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-7
   {{ end }}
 {{ end }}

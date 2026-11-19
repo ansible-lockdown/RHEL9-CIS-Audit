@@ -2,24 +2,49 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_4_2 }}
-command:
-  grub_all_files_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | all files in /boot/grub2 root:root 0600 or more restrictive
-    exec: find -L /boot/grub2/ -mindepth 1 -maxdepth 1 -type f \( -perm /0177 -o ! -user root -o ! -group root \) -exec stat -Lc '%n %#a %U:%G' {} +
-    exit-status: 0
-    stdout:
-    - '!/./'
+file:
+  grub_cfg_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | grub.cfg
+    path: /boot/grub2/grub.cfg
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
+  grubenv_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | grubenv
+    path: /boot/grub2/grubenv
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.2
+      NIST800-53R5: CM-6
+  grub_user_cfg_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | user.cfg
+    skip: {{ not .Vars.rhel9cis_set_boot_pass }}
+    skip-reason: no bootloader password is set, rhel9cis_set_boot_pass is false
+    path: /boot/grub2/user.cfg
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.2
+      NIST800-53R5: CM-6
+command:
   efi_boot_opts:
     title: 1.4.2 | Ensure access to bootloader config is configured | /boot/efi mount options
     exec: |
@@ -41,11 +66,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

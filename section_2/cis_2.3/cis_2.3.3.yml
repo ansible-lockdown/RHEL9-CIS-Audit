@@ -14,11 +14,6 @@ file:
       workstation: 1
       CIS_ID:
       - 2.3.3
-      CISv8:
-      - 8.4
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-6
 command:
   cis_2_3_3_chrony_user_root:
@@ -32,11 +27,6 @@ command:
       workstation: 1
       CIS_ID:
       - 2.3.3
-      CISv8:
-      - 8.4
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-6
   cis_2_3_3_chronyd_process_user:
     title: 2.3.3 | Ensure chrony is not run as the root user | chronyd runs as chrony
@@ -52,11 +42,6 @@ command:
       workstation: 1
       CIS_ID:
       - 2.3.3
-      CISv8:
-      - 8.4
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-6
   {{ end }}
 {{ end }}

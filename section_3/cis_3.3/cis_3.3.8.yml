@@ -41,6 +41,7 @@ kernel-param:
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   net.ipv6.conf.all.accept_source_route:
     title: 3.3.8 | Ensure source routed packets are not accepted
     value: '0'
@@ -79,6 +80,7 @@ kernel-param:
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
 command:
   ipv4_all_source_routed:
     title: 3.3.8 | Ensure source routed packets are not accepted | live ipv4 all
@@ -130,6 +132,7 @@ command:
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   ipv6_all_source_routed:
     title: 3.3.8 | Ensure source routed packets are not accepted | live ipv6 all
     exec: grep net.ipv6.conf.all.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
@@ -180,5 +183,6 @@ command:
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
   {{ end }}
 {{ end }}

@@ -10,7 +10,7 @@ package:
     name: tftp
     meta:
       server: 1
-      workstation: NA
+      workstation: 1
       CIS_ID:
       - 2.2.5
       CISv8:

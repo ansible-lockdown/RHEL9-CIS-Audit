@@ -8,8 +8,8 @@ command:
     exec: grep user_emu /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/[^#]-a always,exit -F arch=b64 -C euid!=uid -F auid!=(unset|-1|auid!=4294967295) -S execve -k user_emulation/'
-    - '/[^#]-a always,exit -F arch=b32 -C euid!=uid -F auid!=(unset|-1|auid!=4294967295) -S execve -k user_emulation/'
+    - '/[^#]-a always,exit -F arch=b64 -C euid!=uid -F auid!=(unset|-1|4294967295) -S execve -k user_emulation/'
+    - '/[^#]-a always,exit -F arch=b32 -C euid!=uid -F auid!=(unset|-1|4294967295) -S execve -k user_emulation/'
     meta:
       server: 2
       workstation: 2
@@ -26,8 +26,8 @@ command:
     exec: auditctl -l | grep user_emu
     exit-status: 0
     stdout:
-    - '/-a always,exit -F arch=b64 -S execve -C uid!=euid -F auid!=(unset|-1|auid!=4294967295) -F key=user_emulation/'
-    - '/-a always,exit -F arch=b32 -S execve -C uid!=euid -F auid!=(unset|-1|auid!=4294967295) -F key=user_emulation/'
+    - '/-a always,exit -F arch=b64 -S execve -C uid!=euid -F auid!=(unset|-1|4294967295) -F key=user_emulation/'
+    - '/-a always,exit -F arch=b32 -S execve -C uid!=euid -F auid!=(unset|-1|4294967295) -F key=user_emulation/'
     meta:
       server: 2
       workstation: 2

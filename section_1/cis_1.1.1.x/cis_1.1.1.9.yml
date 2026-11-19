@@ -1,0 +1,38 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_1_1_9 }}
+command:
+  unused_fs_kernel_modules:
+    title: 1.1.1.9 | Ensure unused filesystems kernel modules are not available | Review loaded modules against site policy
+    exec: |
+      l_search="$(readlink -e /usr/lib/modules/ || readlink -e /lib/modules/)"
+      l_mounted="$(findmnt -Dkerno fstype | sort -u)"
+      l_loaded="$(lsmod | awk '{print $1}')"
+      l_conf="$(modprobe --showconfig | grep -Pi -- '^\h*(blacklist|install)\h+')"
+      for l_mod in $(find -L "$l_search"/*/kernel/fs/ -mindepth 2 -maxdepth 2 -type f ! -path '*/kernel/fs/nls/*' -exec basename {} \; | cut -d. -f1 | sort -u); do
+        l_umod="$(echo "$l_mod" | tr '-' '_')"
+        if echo "xfs vfat ext2 ext3 ext4" | grep -Pq -- "\b${l_mod}\b"; then
+          continue
+        elif echo "$l_mounted" | grep -Pq -- "\b${l_mod}\b"; then
+          continue
+        elif echo "$l_loaded" | grep -Pq -- "\b${l_umod}\b"; then
+          echo "loaded: $l_mod"
+        elif ! echo "$l_conf" | grep -Piq -- "\binstall\h+${l_umod}\h+\H+" || ! echo "$l_conf" | grep -Piq -- "\bblacklist\h+${l_umod}\b"; then
+          echo "loadable: $l_mod"
+        fi
+      done
+      echo "unused_fs_modules_checked"
+    exit-status: 0
+    stdout:
+    - '/^unused_fs_modules_checked$/'
+    - '!/^loadable: /'
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.1.9
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

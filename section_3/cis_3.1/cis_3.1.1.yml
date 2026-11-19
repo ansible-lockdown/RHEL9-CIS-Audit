@@ -51,7 +51,8 @@ command:
       NIST800-53R5:
       - CM-7
     {{ end }}
-  {{ if eq .Vars.rhel9cis_ipv6_disable_method "sysctl" }}
+  {{ if not .Vars.rhel9cis_ipv6_required }}
+    {{ if contains "sysctl" .Vars.rhel9cis_ipv6_disable_method }}
   ipv6_disabled_sysctl:
     title: 3.1.1 | Ensure IPv6 status is identified | IPv6 disabled via sysctl
     exec: sysctl -a 2>/dev/null | grep -E 'net.ipv6.conf.(all|default).disable_ipv6 = 1'
@@ -70,13 +71,14 @@ command:
       CISv8_IG3: true
       NIST800-53R5:
       - CM-7
-  {{ end }}
-  {{ if eq .Vars.rhel9cis_ipv6_disable_method "kernel" }}
-kernel-param:
-  ipv6.disable:
-    title: 3.1.1 | Ensure IPv6 status is identified | IPv6 disabled via kernel parameter
-    value: '1'
-    name: ipv6.disable
+    {{ end }}
+    {{ if contains "kernel" .Vars.rhel9cis_ipv6_disable_method }}
+  ipv6_disabled_kernel:
+    title: 3.1.1 | Ensure IPv6 status is identified | IPv6 disabled via kernel parameter on every boot entry
+    exec: grubby --info=ALL 2>/dev/null | awk '/^args=/{ if ($0 ~ /ipv6\.disable=1/) ok++; else bad++ } END { printf "ok=%d bad=%d\n", ok, bad }'
+    exit-status: 0
+    stdout:
+    - '/^ok=[1-9][0-9]* bad=0$/'
     meta:
       server: 1
       workstation: 1
@@ -88,6 +90,7 @@ kernel-param:
       CISv8_IG3: true
       NIST800-53R5:
       - CM-7
+    {{ end }}
   {{ end }}
   {{ end }}
 {{ end }}

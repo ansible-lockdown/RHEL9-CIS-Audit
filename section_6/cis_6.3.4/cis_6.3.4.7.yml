@@ -5,10 +5,10 @@
 command:
   audit_conf_group:
     title: 6.3.4.7 | Ensure audit configuration files group owner is configured
-    exec: for file  in `find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \)`; do stat -Lc " %n_%U" $file; done
+    exec: 'find /etc/audit/ -type f \( -name ''*.conf'' -o -name ''*.rules'' \) ! -group root | wc -l'
     exit-status: 0
     stdout:
-    - '/.*_root$/'
+    - '/^0$/'
     meta:
       server: 2
       workstation: 2

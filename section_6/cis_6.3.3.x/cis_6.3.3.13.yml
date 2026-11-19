@@ -8,8 +8,8 @@ command:
     exec: grep delete /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/[^#]-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k delete/'
-    - '/[^#]-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k delete/'
+    - '/[^#]-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k delete/'
+    - '/[^#]-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k delete/'
     meta:
       server: 2
       workstation: 2
@@ -27,8 +27,8 @@ command:
     exec: auditctl -l | grep delete
     exit-status: 0
     stdout:
-    - '/-a always,exit -F arch=b64 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=delete/'
-    - '/-a always,exit -F arch=b32 -S unlink,rename,unlinkat,renameat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=delete/'
+    - '/-a always,exit -F arch=b64 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=delete/'
+    - '/-a always,exit -F arch=b32 -S unlink,rename,unlinkat,renameat -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=delete/'
     meta:
       server: 2
       workstation: 2

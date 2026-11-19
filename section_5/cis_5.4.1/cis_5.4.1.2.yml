@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_5_4_1_2 }}
 file:
   login_defs_min_days:
@@ -11,8 +11,8 @@ file:
     - '/^PASS_MIN_DAYS\s[1-9]/'
     - '!/^PASS_MIN_DAYS\s0/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 5.4.1.2
       CISv8: 4.1
@@ -28,8 +28,8 @@ command:
     stdout:
     - '!/./'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 5.4.1.2
       CISv8: 4.1

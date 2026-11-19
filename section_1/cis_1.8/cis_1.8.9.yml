@@ -9,7 +9,7 @@ file:
     path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/locks/00-autorun_lock
     exists: true
     contents:
-    - '^/\/org\/gnome\/desktop\/media-handling\/autorun-never/'
+    - '/^\/org\/gnome\/desktop\/media-handling\/autorun-never/'
     meta:
       server: 1
       workstation: 1

@@ -4,17 +4,39 @@
   {{ if .Vars.rhel9cis_rule_5_1_7 }}
 command:
   sshd_access_limited:
-    title: 5.1.7 | Ensure sshd access is configured | config
-    exec: grep -Ei "^(Allow|Deny)(Users|Groups)" /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
-    exit-status:
-      or:
-      - 0
-      - 1
+    title: 5.1.7 | Ensure sshd access is configured
+    exec: sshd -T 2>/dev/null | grep -Pi -- '^\h*(allow|deny)(users|groups)\h+\H+'
+    exit-status: 0
     stdout:
-    - '/(?i)AllowUsers: {{ .Vars.rhel9cis_sshd_allowusers }}/'
-    - '/(?i)AllowGroups: {{ .Vars.rhel9cis_sshd_allowgroups }}/'
-    - '/(?i)DenyUsers: {{ .Vars.rhel9cis_sshd_denyusers }}/'
-    - '/(?i)DenyGroups: {{ .Vars.rhel9cis_sshd_denygroups }}/'
+    - '/(?i)^(allow|deny)(users|groups)\s+\S+/'
+    {{ if .Vars.rhel9cis_sshd_allowusers }}
+      {{ range splitList " " (trim .Vars.rhel9cis_sshd_allowusers) }}
+        {{ if . }}
+    - '/(?i)^allowusers\s+{{ . }}$/'
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ if .Vars.rhel9cis_sshd_allowgroups }}
+      {{ range splitList " " (trim .Vars.rhel9cis_sshd_allowgroups) }}
+        {{ if . }}
+    - '/(?i)^allowgroups\s+{{ . }}$/'
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ if .Vars.rhel9cis_sshd_denyusers }}
+      {{ range splitList " " (trim .Vars.rhel9cis_sshd_denyusers) }}
+        {{ if . }}
+    - '/(?i)^denyusers\s+{{ . }}$/'
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ if .Vars.rhel9cis_sshd_denygroups }}
+      {{ range splitList " " (trim .Vars.rhel9cis_sshd_denygroups) }}
+        {{ if . }}
+    - '/(?i)^denygroups\s+{{ . }}$/'
+        {{ end }}
+      {{ end }}
+    {{ end }}
     meta:
       server: 1
       workstation: 1

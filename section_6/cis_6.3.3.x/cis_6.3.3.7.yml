@@ -8,10 +8,10 @@ command:
     exec: grep access /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/[^#]-a always,exit -F arch=b32 -S creat,open,openat,truncate,ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k access/'
-    - '/[^#]-a always,exit -F arch=b32 -S creat,open,openat,truncate,ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k access/'
-    - '/[^#]-a always,exit -F arch=b64 -S creat,open,openat,truncate,ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k access/'
-    - '/[^#]-a always,exit -F arch=b64 -S creat,open,openat,truncate,ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k access/'
+    - '/[^#]-a always,exit -F arch=b32 -S creat,open,openat,truncate,ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|4294967295) -k access/'
+    - '/[^#]-a always,exit -F arch=b32 -S creat,open,openat,truncate,ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|4294967295) -k access/'
+    - '/[^#]-a always,exit -F arch=b64 -S creat,open,openat,truncate,ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|4294967295) -k access/'
+    - '/[^#]-a always,exit -F arch=b64 -S creat,open,openat,truncate,ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|4294967295) -k access/'
     meta:
       server: 2
       workstation: 2
@@ -28,10 +28,10 @@ command:
     exec: auditctl -l | grep access
     exit-status: 0
     stdout:
-    - '/-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=access/'
-    - '/-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=access/'
-    - '/-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=access/'
-    - '/-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=access/'
+    - '/-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=access/'
+    - '/-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=access/'
+    - '/-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EACCES -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=access/'
+    - '/-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EPERM -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=access/'
     meta:
       server: 2
       workstation: 2

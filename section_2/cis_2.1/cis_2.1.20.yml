@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_2_1_20 }}
     {{ if not .Vars.rhel9cis_xwindow_server }}
 package:
@@ -9,8 +9,8 @@ package:
     name: xorg-x11-server-common
     installed: false
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: NA
       CIS_ID:
       - 2.1.20
       CISv8:

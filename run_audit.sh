@@ -23,6 +23,7 @@
 # Sept25        Added Additional max concurrent process option
 # June 2026     Changed OS discovery to use BENCHMARK_OS variable to allow for future OS discovery and audit alignment
 # July 2026     Updated goss version discovery
+# November 2026 OS name/version metadata default when /etc/os-release is missing
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
@@ -129,8 +130,10 @@ fi
 host_machine_uuid="$(if [ -f /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi)"
 host_epoch="$(date +%s)"
 host_os_locale="$(date +%Z)"
-host_os_name="$(grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d' ' -f1)"
-host_os_version="$(grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2)"
+host_os_name="$(grep "^NAME=" /etc/os-release 2>/dev/null | cut -d '"' -f2 | sed 's/ //' | cut -d' ' -f1)"
+host_os_name="${host_os_name:-$BENCHMARK_OS}"
+host_os_version="$(grep "^VERSION_ID=" /etc/os-release 2>/dev/null | cut -d '"' -f2)"
+host_os_version="${host_os_version:-unknown}"
 host_os_hostname="$(hostname)"
 
 ## Set variable audit_out

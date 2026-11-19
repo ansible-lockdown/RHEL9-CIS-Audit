@@ -5,10 +5,10 @@
 command:
   audit_conf_perms:
     title: 6.3.4.5 | Ensure audit configuration files mode is configured
-    exec: for file  in `find /etc/audit/ -type f \( -name '*.conf' -o -name '*.rules' \)`; do stat -Lc " %n_%a" $file; done
+    exec: 'find /etc/audit/ -type f \( -name ''*.conf'' -o -name ''*.rules'' \) -perm /0137 | wc -l'
     exit-status: 0
     stdout:
-    - '/.*_6(0|4)0$/'
+    - '/^0$/'
     meta:
       server: 2
       workstation: 2

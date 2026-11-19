@@ -11,7 +11,7 @@ package:
     installed: false
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
       CISv8:
@@ -32,7 +32,7 @@ file:
     linked-to: /dev/null
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
       CISv8:
@@ -50,7 +50,7 @@ file:
     linked-to: /dev/null
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
       CISv8:

@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_2_1_1 }}
+service:
+  systemd-journald:
+    title: 6.2.1.1 | Ensure journald service is enabled and active | active
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.1
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: SC-24
+command:
+  journald_unit_static:
+    title: 6.2.1.1 | Ensure journald service is enabled and active | static
+    exec: systemctl is-enabled systemd-journald.service
+    exit-status: 0
+    stdout:
+    - '/^static$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.1
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: SC-24
+  {{ end }}
+{{ end }}

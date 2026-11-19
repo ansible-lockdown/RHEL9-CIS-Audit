@@ -43,6 +43,7 @@ kernel-param:
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
 command:
   ip4_forward_conf:
     title: 3.3.1 | Ensure ip forwarding is disabled | ipv4 conf
@@ -69,6 +70,7 @@ command:
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   ip6_forward_conf:
     title: 3.3.1 | Ensure ip forwarding is disabled | ipv6 conf
     exec: grep net.ipv6.conf.all.forwarding /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
@@ -94,7 +96,7 @@ command:
       - CM-6
       - CM-7
       - IA-5
-     {{ end }}
+  {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

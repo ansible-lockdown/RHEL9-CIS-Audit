@@ -5,7 +5,7 @@
 command:
   logfile_configured_login_files:
     title: 6.2.4.1 | Ensure access to all logfiles has been configured
-    exec: find /var/log/ -type f -perm /g+x,o+wx -exec ls -l "{}" + | grep -E "[b,u,w]tmp.*|lastllog"
+    exec: find /var/log/ -type f -perm /g+x,o+wx -exec ls -l "{}" + | grep -E "[b,u,w]tmp.*|lastlog"
     exit-status:
       or:
       - 0

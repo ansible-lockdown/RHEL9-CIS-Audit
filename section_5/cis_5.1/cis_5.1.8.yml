@@ -28,7 +28,7 @@ file:
 command:
   ssh_configd_banner:
     title: 5.1.8 | Ensure sshd Banner is configured | conf.d banner settings
-    exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf
+    exec: grep -Eis '^\s*Banner\s+"?none\b' /etc/ssh/sshd_config.d/*.conf
     exit-status:
       or:
       - 0

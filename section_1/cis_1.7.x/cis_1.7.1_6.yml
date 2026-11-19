@@ -19,7 +19,8 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
+    - '!/[Ll]inux/'
+    - '!/(?i)\\[mrsv]/'
     meta:
       server: 1
       workstation: 1
@@ -56,8 +57,9 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
-    - '{{ .Vars.rhel9cis_warning_banner }}'
+    - '!/[Ll]inux/'
+    - '!/(?i)\\[mrsv]/'
+    - '{{ trim .Vars.rhel9cis_warning_banner }}'
     meta:
       server: 1
       workstation: 1
@@ -94,7 +96,8 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
+    - '!/[Ll]inux/'
+    - '!/(?i)\\[mrsv]/'
     meta:
       server: 1
       workstation: 1

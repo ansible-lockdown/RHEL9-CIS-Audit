@@ -2,73 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_4_2 }}
-    {{ if .Vars.rhel9cis_legacy_boot }}
-file:
-  grub_bootloaders_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | grub.cfg
-    path: /boot/grub2/grub.cfg
-    exists: true
-    owner: root
-    group: root
-    mode: "0600"
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-  grubenv_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | grubenv
-    path: /boot/grub2/grubenv
-    exists: true
-    owner: root
-    group: root
-    mode: "0600"
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-  grub_user_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | user.cfg
-    path: /boot/grub2/user.cfg
-    exists: true
-    owner: root
-    group: root
-    mode: "0600"
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-    {{ end }}
-    {{ if not .Vars.rhel9cis_legacy_boot }}
 command:
-  efi_boot_opts:
-    exec: grep "^[^#;]" /etc/fstab | grep '/boot/efi' | awk -F" " '{print $4}'
+  grub_all_files_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | all files in /boot/grub2 root:root 0600 or more restrictive
+    exec: find -L /boot/grub2/ -mindepth 1 -maxdepth 1 -type f \( -perm /0177 -o ! -user root -o ! -group root \) -exec stat -Lc '%n %#a %U:%G' {} +
     exit-status: 0
     stdout:
-    - 'umask=0077'
-    - 'fmask=0077'
-    - 'uid=0'
-    - 'gid=0'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
@@ -80,6 +20,32 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: AC-3
-    {{ end }}
+  efi_boot_opts:
+    title: 1.4.2 | Ensure access to bootloader config is configured | /boot/efi mount options
+    exec: |
+      l_opts="$(awk '$1 !~ /^#/ && $2 == "/boot/efi" {print $4}' /etc/fstab)"
+      if [ -z "$l_opts" ]; then
+        echo "efi_not_in_fstab"
+      else
+        for l_opt in fmask=0077 uid=0 gid=0; do
+          echo ",$l_opts," | grep -q ",$l_opt," || echo "efi_missing: $l_opt"
+        done
+        echo "efi_options_checked"
+      fi
+    exit-status: 0
+    stdout:
+    - '/^(efi_not_in_fstab|efi_options_checked)$/'
+    - '!/^efi_missing: /'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.2
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: AC-3
   {{ end }}
 {{ end }}

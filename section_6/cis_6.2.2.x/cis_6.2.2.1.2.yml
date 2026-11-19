@@ -9,9 +9,9 @@ file:
     exists: true
     contents:
     - '/^URL=/'
-    - '/ServerKeyFile=.*.pem'
-    - '/ServerCertificateFile=.*.pem'
-    - '/TrustedCertificateFile=.*.pem'
+    - '/^\s*ServerKeyFile=.*\.pem/'
+    - '/^\s*ServerCertificateFile=.*\.pem/'
+    - '/^\s*TrustedCertificateFile=.*\.pem/'
     meta:
       server: 1
       workstation: 1

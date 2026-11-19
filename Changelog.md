@@ -1,5 +1,18 @@
 # Changes to RHEL9-CIS-Audit
 
+## CIS Benchmark 2.0.0
+## November 2026 - public issue fixes
+
+- 1.4.2: all files in /boot/grub2 checked on BIOS and UEFI
+- 1.4.2: /boot/efi fstab options checked for fmask, uid and gid
+- 2.1.18: nginx-plus package check
+- 5.4.3.3: login.defs UMASK and all shell init files checked
+- 1.6.5-1.6.7: crypto policy checks follow the benchmark audit
+- 1.7.1-1.7.6: banner regexes closed, escape sequences checked
+- 6.2.2.1.2: journal-upload pem regexes closed
+- 5.1.8: conf.d Banner grep reads the files
+- 1.7.2: banner compared without the trailing newline
+
 ## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes
 

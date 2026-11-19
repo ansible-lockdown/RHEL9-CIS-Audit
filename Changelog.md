@@ -6,6 +6,9 @@
 - run_audit.sh uses syver v0.20.0 by default
 - run_audit.sh: AUDIT_FILE syver.yml, OS metadata default when /etc/os-release is missing
 - goss.yml renamed syver.yml - syverfile:, syver-version: 0.20.0
+- 1.4.2, 1.6.4-1.6.6: typed file resources instead of command
+- 2.1.19: postfix main.cf file test when postfix is installed
+- vars: rhel9cis_mta_postfix_installed
 - discovery: separate partitions, cronie, at, cron.yearly, backup and opasswd files, chronyd running
 - host-state and opt-out tests report skipped with a reason
 - masked services checked with service masked

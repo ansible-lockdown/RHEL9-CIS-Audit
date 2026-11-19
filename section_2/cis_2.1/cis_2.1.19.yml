@@ -22,18 +22,16 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-  cis_2_1_19_postfix_inet_interfaces:
+file:
+  cis_2_1_19_postfix_main_cf:
     title: 2.1.19 | Ensure mail transfer agents are configured for local-only mode | postfix inet_interfaces
-    skip: {{ .Vars.rhel9cis_is_mail_server }}
-    skip-reason: this host is a mail server, rhel9cis_is_mail_server is true
-    exec: |
-      if command -v postconf >/dev/null 2>&1; then
-        postconf -h inet_interfaces | grep -Piv -- '^\h*(loopback-only|localhost|127\.0\.0\.1|\[?::1\]?)(\h*[,\h]\h*(localhost|127\.0\.0\.1|\[?::1\]?))*\h*$'
-      fi
-      true
-    exit-status: 0
-    stdout:
-    - '!/./'
+    skip: {{ or .Vars.rhel9cis_is_mail_server (not .Vars.rhel9cis_mta_postfix_installed) }}
+    skip-reason: this host is a mail server or postfix is not installed
+    path: /etc/postfix/main.cf
+    exists: true
+    contents:
+    - '/^\s*inet_interfaces\s*=\s*(loopback-only|localhost)\s*$/'
+    - '!/^\s*inet_interfaces\s*=\s*(all|ipv4|ipv6)\b/'
     meta:
       server: 1
       workstation: 1

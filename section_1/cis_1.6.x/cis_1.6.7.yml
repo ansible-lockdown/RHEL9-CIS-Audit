@@ -2,15 +2,15 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_7 }}
-command:
+file:
   crypto_policies_no_ssh_etm:
     title: 1.6.7 | Ensure system wide crypto policy disables EtM for ssh
-    exec: |
-      f=/etc/crypto-policies/state/CURRENT.pol
-      if grep -Piq -- '^\h*etm\h*=\h*DISABLE_ETM\b' "$f" || { grep -Piq -- '^\h*etm@libssh\h*=\h*DISABLE_ETM\b' "$f" && grep -Piq -- '^\h*etm@openssh\h*=\h*DISABLE_ETM\b' "$f"; } || { grep -Piq -- '^\h*etm@libssh\h*=\h*DISABLE_ETM\b' "$f" && grep -Piq -- '^\h*etm@openssh-client\h*=\h*DISABLE_ETM\b' "$f" && grep -Piq -- '^\h*etm@openssh-server\h*=\h*DISABLE_ETM\b' "$f"; }; then echo ssh_etm=disabled; else echo ssh_etm=enabled; fi
-    exit-status: 0
-    stdout:
-    - '/^ssh_etm=disabled$/'
+    path: /etc/crypto-policies/state/CURRENT.pol
+    exists: true
+    contents:
+    - '/(?i)^\s*etm@libssh\s*=\s*DISABLE_ETM\b/'
+    - '/(?i)^\s*etm@openssh-client\s*=\s*DISABLE_ETM\b/'
+    - '/(?i)^\s*etm@openssh-server\s*=\s*DISABLE_ETM\b/'
     meta:
       server: 1
       workstation: 1

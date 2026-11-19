@@ -32,6 +32,9 @@
 - 6.3.4.5-6.3.4.7: every file checked, group tested
 - 7.1.12: unowned file scan on local filesystems
 - vars: rhel9cis_sudoers_exclude_nopasswd_list
+- 1.4.2, 1.6.5-1.6.7, 6.2.1.4: typed file and service resources instead of command
+- 2.1.21: postfix main.cf file test when postfix is installed
+- vars: rhel9cis_mta_postfix_installed
 
 ## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes

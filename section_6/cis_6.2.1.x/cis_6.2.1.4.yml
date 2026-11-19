@@ -2,20 +2,13 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_6_2_1_4 }}
-command:
-  single_logging_system:
+service:
+  rsyslog:
     title: 6.2.1.4 | Ensure only one logging system is in use
-    exec: systemctl is-active rsyslog.service
-    exit-status:
-      or:
-      - 0
-      - 3
-      - 4
-    stdout:
     {{ if eq .Vars.rhel9cis_syslog "rsyslog" }}
-    - '/^active$/'
+    running: true
     {{ else }}
-    - '!/^active$/'
+    running: false
     {{ end }}
     meta:
       server: 1

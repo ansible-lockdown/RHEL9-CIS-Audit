@@ -479,6 +479,8 @@ rhel9cis_xinetd_server: false
 rhel9cis_xinetd_mask: false
 rhel9cis_xwindow_server: false  # will remove mask not an option
 rhel9cis_is_mail_server: false
+# set by the role from package facts - 2.1.21 checks /etc/postfix/main.cf only when postfix is installed
+rhel9cis_mta_postfix_installed: false
 
 ## Section 2.3 Service clients
 

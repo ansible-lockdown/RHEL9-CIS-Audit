@@ -11,12 +11,6 @@ service:
       workstation: 1
       CIS_ID:
       - 6.2.1.1
-      CISv8:
-      - 4.8
-      - 8.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SC-24
 command:
   journald_unit_static:
@@ -30,12 +24,6 @@ command:
       workstation: 1
       CIS_ID:
       - 6.2.1.1
-      CISv8:
-      - 4.8
-      - 8.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SC-24
   {{ end }}
 {{ end }}

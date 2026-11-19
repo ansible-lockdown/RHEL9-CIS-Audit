@@ -15,12 +15,6 @@ command:
       workstation: 1
       CIS_ID:
       - 6.2.1.2
-      CISv8:
-      - 8.2
-      - 8.9
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AU-9
   journald_journal_file_mode:
     title: 6.2.1.2 | Ensure journald log file access is configured | journal files
@@ -33,12 +27,6 @@ command:
       workstation: 1
       CIS_ID:
       - 6.2.1.2
-      CISv8:
-      - 8.2
-      - 8.9
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AU-9
   {{ end }}
 {{ end }}

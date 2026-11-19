@@ -14,11 +14,6 @@ command:
       workstation: 2
       CIS_ID:
       - 3.2.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
       - SI-4
@@ -33,11 +28,6 @@ command:
       workstation: 2
       CIS_ID:
       - 3.2.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
       - SI-4

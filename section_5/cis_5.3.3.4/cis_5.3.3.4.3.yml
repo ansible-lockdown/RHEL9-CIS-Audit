@@ -14,10 +14,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.4.3
-      CISv8: 3.11
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   pam_unix_strong_password_system-auth:
     title: 5.3.3.4.3 | Ensure pam_unix includes a strong password hashing algorithm | system-auth
@@ -30,10 +26,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.4.3
-      CISv8: 3.11
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   {{ end }}
 {{ end }}

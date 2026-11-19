@@ -12,11 +12,6 @@ package:
       workstation: NA
       CIS_ID:
       - 1.3.1.8
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

@@ -22,10 +22,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.1
-      CISv8: 16.2
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   system_auth_authselect_modules:
     title: 5.3.2.1 | Ensure active authselect profile includes pam modules
@@ -46,10 +42,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.1
-      CISv8: 16.2
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   {{ end }}
 {{ end }}

@@ -14,9 +14,5 @@ command:
       workstation: 1
       CIS_ID:
       - 7.2.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

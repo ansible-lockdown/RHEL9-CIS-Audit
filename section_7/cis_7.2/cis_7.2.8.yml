@@ -16,10 +16,6 @@ command:
       workstation: 1
       CIS_ID:
       - 7.2.8
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   home_dirs_owned:
     title: 7.2.8 | Ensure local interactive user home directories are configured | owned
@@ -33,10 +29,6 @@ command:
       workstation: 1
       CIS_ID:
       - 7.2.8
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   home_dirs_restrict:
     title: 7.2.8 | Ensure local interactive user home directories are configured | permissions
@@ -50,10 +42,6 @@ command:
       workstation: 1
       CIS_ID:
       - 7.2.8
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
     {{ end }}
   {{ end }}

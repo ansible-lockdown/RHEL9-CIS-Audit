@@ -12,11 +12,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8:
-      - 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
 command:
   aslr_enabled_2:
@@ -30,11 +25,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8:
-      - 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

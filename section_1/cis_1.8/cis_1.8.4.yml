@@ -19,10 +19,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.8.4
-      CISv8: 4.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
     {{ end }}
   {{ end }}
 {{ end }}

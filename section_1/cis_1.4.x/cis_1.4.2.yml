@@ -15,10 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-3
   grubenv_perms:
     title: 1.4.2 | Ensure access to bootloader config is configured | grubenv
@@ -32,10 +28,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-3
     {{ if .Vars.rhel9cis_set_boot_pass }}
   grub_user_cfg_perms:
@@ -50,10 +42,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-3
     {{ end }}
 command:
@@ -78,11 +66,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-3
   {{ end }}
 {{ end }}

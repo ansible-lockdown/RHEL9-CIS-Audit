@@ -35,6 +35,7 @@
 - 1.4.2, 1.6.5-1.6.7, 6.2.1.4: typed file and service resources instead of command
 - 2.1.21: postfix main.cf file test when postfix is installed
 - vars: rhel9cis_mta_postfix_installed
+- CISv8 metadata removed
 
 ## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes

@@ -21,12 +21,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.7.1
-      CISv8:
-      - 3.3
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-3

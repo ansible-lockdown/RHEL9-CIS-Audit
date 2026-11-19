@@ -14,10 +14,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.3.1
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
 command:
   pwhistory_remember_pam_configs:
@@ -34,10 +30,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.3.3.1
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

@@ -12,10 +12,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
   net.ipv4.conf.default.log_martians:
@@ -27,10 +23,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
 command:
@@ -49,10 +41,6 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
   ipv4_default_log_martians:
@@ -70,10 +58,6 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
   {{ end }}

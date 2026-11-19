@@ -15,10 +15,6 @@ command:
       workstation: 2
       CIS_ID:
       - 6.3.3.12
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
   auditd_logins_live:
@@ -33,10 +29,6 @@ command:
       workstation: 2
       CIS_ID:
       - 6.3.3.12
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
   {{ end }}

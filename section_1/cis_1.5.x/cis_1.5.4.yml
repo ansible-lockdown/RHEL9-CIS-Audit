@@ -14,10 +14,5 @@ command:
       workstation: 1
       CIS_ID:
       - 1.5.4
-      CISv8:
-      - N/A
-      CISv8_IG1: N/A
-      CISv8_IG2: N/A
-      CISv8_IG3: N/A
   {{ end }}
 {{ end }}

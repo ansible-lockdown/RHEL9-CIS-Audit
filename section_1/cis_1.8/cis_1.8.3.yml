@@ -17,11 +17,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.8.3
-      CISv8:
-      - NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
   gdm_disable_user:
     title: 1.8.3 | Ensure GDM disable-user-list option is enabled
     exec: grep "[org/gnome/login-screen]" /etc/dconf/db/gdm.d/00-login-screen | grep disable-user-list
@@ -37,11 +32,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.8.3
-      CISv8:
-      - NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
     {{ end }}
   {{ end }}
 {{ end }}

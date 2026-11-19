@@ -14,10 +14,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.4.1.5
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   inactive_users:
     title: 5.4.1.5 | Ensure inactive password lock is configured
@@ -31,10 +27,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.4.1.5
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   {{ end }}
 {{ end }}

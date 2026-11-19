@@ -15,11 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   grubenv_perms:
     title: 1.4.2 | Ensure access to bootloader config is configured | grubenv
@@ -33,11 +28,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   grub_user_cfg_perms:
     title: 1.4.2 | Ensure access to bootloader config is configured | user.cfg
@@ -53,11 +43,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
 command:
   efi_boot_opts:
@@ -81,11 +66,6 @@ command:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

@@ -16,10 +16,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.4.1
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   pam_unix_nullok_system-auth:
     title: 5.3.3.4.1 | Ensure pam_unix does not include nullok | system-auth
@@ -34,10 +30,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.4.1
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

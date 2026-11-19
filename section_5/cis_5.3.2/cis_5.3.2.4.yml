@@ -16,10 +16,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.4
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   pam_pwhistory_enabled_password_auth:
     title: 5.3.2.4 | Ensure pam_pwhistory module is enabled | password-auth
@@ -34,10 +30,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.2.4
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
 command:
   authselect_check_5_3_2_4:
@@ -53,10 +45,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.2.4
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

@@ -14,9 +14,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.2.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-6
   pty_sudoers_d_not_disabled:
     title: 5.2.4 | Ensure sudo commands use pty | !use_pty not set
@@ -29,9 +26,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.2.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: AC-6
   {{ end }}
 {{ end }}

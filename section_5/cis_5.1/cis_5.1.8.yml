@@ -15,10 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.1.8
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -28,7 +24,7 @@ file:
 command:
   ssh_configd_banner:
     title: 5.1.8 | Ensure sshd Banner is configured | conf.d banner settings
-    exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf
+    exec: grep -Eis '^\s*Banner\s+"?none\b' /etc/ssh/sshd_config.d/*.conf
     exit-status:
       or:
       - 0
@@ -41,10 +37,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.1.8
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2

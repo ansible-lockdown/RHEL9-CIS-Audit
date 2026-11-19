@@ -19,11 +19,6 @@ command:
       workstation: 1
       CIS_ID:
       - 6.1.2
-      CISv8:
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-2
 # Can be enabled if using timer and service files
@@ -39,11 +34,6 @@ service:
       workstation: 1
       CIS_ID:
       - 6.1.2
-      CISv8:
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-2
   aidecheck.timer:
@@ -56,11 +46,6 @@ service:
       workstation: 1
       CIS_ID:
       - 6.1.2
-      CISv8:
-      - 3.14
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-2
     {{ end }}

@@ -14,10 +14,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.3.3.3.3
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   pwhistory_use_authtok_system-auth:
       title: 5.3.3.3.3 | Ensure pam_pwhistory includes use_authtok | system-auth
@@ -30,10 +26,6 @@ file:
         workstation: 1
         CIS_ID:
         - 5.3.3.3.3
-        CISv8: 5.2
-        CISv8_IG1: true
-        CISv8_IG2: true
-        CISv8_IG3: true
         NIST800-53R5: IA-5
     {{ end }}
 {{ end }}

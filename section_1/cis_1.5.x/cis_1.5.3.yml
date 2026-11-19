@@ -5,24 +5,15 @@
 command:
   procmaxsize_coredump_conf:
     title: 1.5.3 | Ensure core dump backtraces are disabled
-    exec: grep -i ProcessSizeMax /etc/systemd/coredump.conf /etc/systemd/coredump.conf.d
-    exit-status:
-      or:
-      - 0
-      - 2
+    exec: "systemd-analyze cat-config systemd/coredump.conf | grep -E '^[[:space:]]*ProcessSizeMax[[:space:]]*=' | tail -n 1"
+    exit-status: 0
     stdout:
-    - '/^*.conf:ProcessSizeMax=0/'
-    - '!/^*.conf:ProcessSizeMax=[1-9].*/'
+    - '/^\s*ProcessSizeMax\s*=\s*0\s*$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.3
-      CISv8:
-      - N/A
-      CISv8_IG1: N/A
-      CISv8_IG2: N/A
-      CISv8_IG3: N/A
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

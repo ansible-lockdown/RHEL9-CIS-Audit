@@ -1,5 +1,42 @@
 # Changes to RHEL9-CIS-Audit
 
+## CIS Benchmark 2.0.0
+## November 2026 - public issue fixes
+
+- 1.4.2: all files in /boot/grub2 checked on BIOS and UEFI
+- 1.4.2: /boot/efi fstab options checked for fmask, uid and gid
+- 2.1.18: nginx-plus package check
+- 5.4.3.3: login.defs UMASK and all shell init files checked
+- 1.6.5-1.6.7: crypto policy checks follow the benchmark audit
+- 1.7.1-1.7.6: banner regexes closed, escape sequences checked
+- 6.2.2.1.2: journal-upload pem regexes closed
+- 5.1.8: conf.d Banner grep reads the files
+- 1.7.2: banner compared without the trailing newline
+- run_audit.sh: OS metadata default when /etc/os-release is missing
+- 1.1.1.9, 5.4.2.8, 6.2.1.1-6.2.1.4: tests added
+- 1.5.3, 1.5.4: effective coredump.conf value checked
+- 1.7.x: one file per control
+- 1.8.4-1.8.9: dconf regexes closed, 1.8.7 lock file path
+- 1.8.6, 1.8.7, 2.1.11, 2.1.20, 2.2.4, 2.2.5, 5.3.3.1.3, 5.4.1.2: profile meta and level gates aligned
+- 7.2.5: level gate added
+- 2.1.21: gate on not mail server, postconf, ports 25/465/587
+- 3.1.1: disable checks gated on ipv6_required, grubby kernel check
+- 3.1.2: passes with no wireless NIC
+- 3.3.1, 3.3.5, 3.3.8: IPv6 checks gated on ipv6_required
+- 5.1.7: sshd -T, configured values only
+- 5.2.4: excluded NOPASSWD users skipped
+- 6.2.4.1: lastlog typo
+- 6.3.3.13: b64 rule checked
+- 6.3.3.x: auid regex alternation corrected
+- 6.3.3.17: running rule pattern is a regex
+- 6.3.4.5-6.3.4.7: every file checked, group tested
+- 7.1.12: unowned file scan on local filesystems
+- vars: rhel9cis_sudoers_exclude_nopasswd_list
+- 1.4.2, 1.6.5-1.6.7, 6.2.1.4: typed file and service resources instead of command
+- 2.1.21: postfix main.cf file test when postfix is installed
+- vars: rhel9cis_mta_postfix_installed
+- CISv8 metadata removed
+
 ## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes
 

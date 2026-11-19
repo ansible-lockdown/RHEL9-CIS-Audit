@@ -12,11 +12,6 @@ package:
       workstation: 1
       CIS_ID:
       - 2.3.1
-      CISv8:
-      - 8.4
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
       - AU-12

@@ -35,6 +35,7 @@ gossfile:
   {{ end }}
   {{ if .Vars.rhel9cis_section6 }}
   section_6/cis_6.1/*.yml: {}
+  section_6/cis_6.2.1.x/*.yml: {}
     {{ if eq .Vars.rhel9cis_syslog "journald" }}
   section_6/cis_6.2.2.x/*.yml: {}
     {{ end }}

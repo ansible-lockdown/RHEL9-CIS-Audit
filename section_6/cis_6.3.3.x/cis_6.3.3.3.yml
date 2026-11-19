@@ -14,10 +14,6 @@ command:
       workstation: 2
       CIS_ID:
       - 6.3.3.3
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   auditd_sudolog_live:
     title: 6.3.3.3 | Ensure events that modify the sudo log file are collected | running
     exec: auditctl -l | grep sudo_log
@@ -29,9 +25,5 @@ command:
       workstation: 2
       CIS_ID:
       - 6.3.3.3
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

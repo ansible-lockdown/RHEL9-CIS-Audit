@@ -14,10 +14,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.4.2.7
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-2(5)
       - AC-3

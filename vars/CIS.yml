@@ -479,6 +479,8 @@ rhel9cis_xinetd_server: false
 rhel9cis_xinetd_mask: false
 rhel9cis_xwindow_server: false  # will remove mask not an option
 rhel9cis_is_mail_server: false
+# set by the role from package facts - 2.1.21 checks /etc/postfix/main.cf only when postfix is installed
+rhel9cis_mta_postfix_installed: false
 
 ## Section 2.3 Service clients
 
@@ -530,6 +532,11 @@ rhel9cis_sshd_allowusers: ''
 rhel9cis_sshd_allowgroups:
 rhel9cis_sshd_denyusers: nobody
 rhel9cis_sshd_denygroups:
+
+## 5.2.4 users the role leaves with NOPASSWD in sudoers
+rhel9cis_sudoers_exclude_nopasswd_list:
+  - ec2-user
+  - vagrant
 
 ## 5.2.7 set sugroup if differs from wheel
 rhel9cis_sugroup: sugroup

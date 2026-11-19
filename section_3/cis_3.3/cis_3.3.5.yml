@@ -12,10 +12,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -31,16 +27,13 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   net.ipv6.conf.all.accept_redirects:
     title: 3.3.5 | Ensure icmp redirects are not accepted
     value: '0'
@@ -50,10 +43,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -69,16 +58,13 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
 command:
   ipv4_all_accept_redirects:
     title: 3.3.5 | Ensure icmp redirects are not accepted | live ipv4 all
@@ -95,10 +81,6 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -120,16 +102,13 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   ipv6_all_accept_redirects:
     title: 3.3.5 | Ensure icmp redirects are not accepted | live ipv6 all
     exec: grep net.ipv6.conf.all.accept_redirects /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
@@ -145,10 +124,6 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -170,15 +145,12 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
   {{ end }}
 {{ end }}

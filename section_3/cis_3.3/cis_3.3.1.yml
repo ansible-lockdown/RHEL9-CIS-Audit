@@ -13,10 +13,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
@@ -33,16 +29,13 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ end }}
 command:
   ip4_forward_conf:
     title: 3.3.1 | Ensure ip forwarding is disabled | ipv4 conf
@@ -59,16 +52,13 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
+  {{ if .Vars.rhel9cis_ipv6_required }}
   ip6_forward_conf:
     title: 3.3.1 | Ensure ip forwarding is disabled | ipv6 conf
     exec: grep net.ipv6.conf.all.forwarding /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
@@ -84,17 +74,13 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2
       - CM-6
       - CM-7
       - IA-5
-     {{ end }}
+  {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

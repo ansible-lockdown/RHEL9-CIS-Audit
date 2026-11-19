@@ -9,20 +9,16 @@ file:
     path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/00-media-automount
     exists: true
     contents:
-    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^\[org\/gnome\/desktop\/media-handling\]/'
     - '/^automount=false/'
     - '/^automount-open=false/'
     - '!/^automount=true/'
     - '!/^automount-open=true/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 1.8.6
-      CISv8: 10.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
     {{ end }}
   {{ end }}
 {{ end }}

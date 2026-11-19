@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_1 }}
+file:
+  motd_config:
+    title: 1.7.1 | Ensure message of the day is configured properly
+    path: /etc/motd
+    exists: true
+    contents:
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux/'
+    - '!/(?i)\\[mrsv]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.1
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+  {{ end }}
+{{ end }}

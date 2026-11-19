@@ -18,11 +18,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.3.2.5
-      CISv8:
-      - 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   maxseq_not_pamd:
     title: 5.3.3.2.5 | Ensure password maximum sequential characters is configured
@@ -38,11 +33,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.3.2.5
-      CISv8:
-      - 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

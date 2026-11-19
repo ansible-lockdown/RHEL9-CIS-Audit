@@ -20,11 +20,6 @@ command:
       workstation: 2
       CIS_ID:
       - 1.2.1.3
-      CISv8:
-      - 7.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SI-2
   repo_gpgcheck_repo:
     title: 1.2.1.3 | Ensure repo_gpgcheck is globally activated
@@ -38,11 +33,6 @@ command:
       workstation: 2
       CIS_ID:
       - 1.2.1.3
-      CISv8:
-      - 7.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: SI-2
     {{ end }}
   {{ end }}

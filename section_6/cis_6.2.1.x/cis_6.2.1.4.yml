@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_2_1_4 }}
+service:
+  rsyslog:
+    title: 6.2.1.4 | Ensure only one logging system is in use
+    {{ if eq .Vars.rhel9cis_syslog "rsyslog" }}
+    running: true
+    {{ else }}
+    running: false
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.4
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+  {{ end }}
+{{ end }}

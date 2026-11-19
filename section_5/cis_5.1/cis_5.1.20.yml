@@ -15,10 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.1.20
-      CISv8: 5.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-6
 command:
@@ -37,10 +33,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.1.20
-      CISv8: 5.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-6
   {{ end }}

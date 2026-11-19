@@ -9,7 +9,7 @@ file:
     path: /etc/dconf/db/{{ .Vars.rhel9cis_dconf_db_name }}.d/00-screensaver
     exists: true
     contents:
-    - '/^[org/gnome/desktop/session]/'
+    - '/^\[org\/gnome\/desktop\/session\]/'
     - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
     - '!/^idle-delay=uint32 (90[1-9]|9[1-9][0-9]|1[0-9]{3,})$/'
     - '/^lock-delay=uint32 [0-5]$/'
@@ -19,10 +19,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.8.4
-      CISv8: 4.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
     {{ end }}
   {{ end }}
 {{ end }}

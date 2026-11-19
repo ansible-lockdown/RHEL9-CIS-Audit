@@ -8,21 +8,17 @@ command:
     exec: grep perm_mod /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/[^#]-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
-    - '/[^#]-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
-    - '/[^#]-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
-    - '/[^#]-a always,exit -F arch=b32 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
-    - '/[^#]-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
-    - '/[^#]-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b32 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
+    - '/[^#]-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|4294967295) -k perm_mod/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
       - 6.3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
       - CM-6
@@ -35,17 +31,13 @@ command:
     - '/-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_mod/'
     - '/-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_mod/'
     - '/-a always,exit -F arch=b32 -S lchown,fchown,chown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_mod/'
-    - '/-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=perm_mod/'
-    - '/-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|auid!=4294967295) -F key=perm_mod/'
+    - '/-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=perm_mod/'
+    - '/-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=(unset|-1|4294967295) -F key=perm_mod/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
       - 6.3.3.9
-      CISv8: 8.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AU-3
       - CM-6

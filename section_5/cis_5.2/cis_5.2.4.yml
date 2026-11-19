@@ -5,23 +5,18 @@
 command:
   nopasswd_sudoers_d:
     title: 5.2.4 | Ensure users must provide password for escalation
-    exec: grep -R NOPASSWD /etc/sudoers /etc/sudoers.d/* | grep -v '.*\:#'
-    exit-status:
-      or:
-      - 0
-      - 1
+    exec: |
+      grep -rhs -- '^[^#]*NOPASSWD' /etc/sudoers /etc/sudoers.d | awk '$1 !~ /^(#{{ range .Vars.rhel9cis_sudoers_exclude_nopasswd_list }}|{{ . }}{{ end }})$/ {print "FAIL: " $0}'
+      echo "scan_done"
+    exit-status: 0
     stdout:
-    - '!/.*/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
       - 5.2.4
-      CISv8:
-      - 5.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-6
   {{ end }}

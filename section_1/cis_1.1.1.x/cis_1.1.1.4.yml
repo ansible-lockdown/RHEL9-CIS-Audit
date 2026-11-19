@@ -13,11 +13,6 @@ command:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
   blacklist_hfsplus:
     title: 1.1.1.4 | Ensure hfsplus kernel module is not available | blacklist
@@ -29,11 +24,6 @@ command:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

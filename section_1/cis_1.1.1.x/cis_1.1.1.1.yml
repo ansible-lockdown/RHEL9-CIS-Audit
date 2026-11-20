@@ -3,37 +3,31 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_1 }}
 command:
-  cramfs:
-    title: 1.1.1.1 | Ensure cramfs kernel module is not available | disabled
+  modprobe_cramfs:
+    title: 1.1.1.1 | Ensure cramfs kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+cramfs\b'
     exit-status: 0
-    exec: "modprobe -n -v cramfs | grep -E '(cramfs|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist cramfs$/'
+    - '/^install cramfs (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
-  blacklist_cramfs:
-    title: 1.1.1.1 | Ensure cramfs kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep cramfs /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist cramfs/'
+      CCI:
+      - CCI-000381
+file:
+  sys_module_cramfs:
+    title: 1.1.1.1 | Ensure cramfs kernel module is not available | not loaded
+    path: /sys/module/cramfs
+    exists: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
+      CCI:
+      - CCI-000381
   {{ end }}
 {{ end }}

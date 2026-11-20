@@ -5,21 +5,18 @@
 command:
   nopasswd_shadow:
     title: 7.2.2 | Ensure /etc/shadow password fields are not empty
-    exec: cat /etc/shadow | cut -d ':' -f2
+    exec: |
+      awk -F: '($2 == "") { print "FAIL: " $1 " does not have a password" }' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^(\*|\!|\$)/'
-    - '!/^$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.2.2
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - IA-5
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

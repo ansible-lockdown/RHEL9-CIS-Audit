@@ -3,22 +3,18 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_7 }}
 file:
-  etc_gshadow_perms:
-    title: 7.1.7 | Ensure permissions on /etc/gshadow are configured
+  cis_7_1_7_gshadow:
+    title: 7.1.7 | Ensure access to /etc/gshadow is configured
     path: /etc/gshadow
     exists: true
-    mode: "0000"
     owner: root
     group: root
+    mode: '0000'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.1.7
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

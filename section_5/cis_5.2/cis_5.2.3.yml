@@ -3,24 +3,22 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_2_3 }}
 command:
-  log_sudoers_d:
-    title: 5.2.3 | Ensure sudo log file exists | sudoers.d
-    exec: export LOG=`grep -q -Esi '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*; echo $?` && if [[ $LOG == 0 ]];then echo OK ;fi
+  sudoers_d_dir_access:
+    title: 5.2.3 | Ensure access on the /etc/sudoers.d directory is configured
+    exec: |
+      find /etc/sudoers.d -maxdepth 0 -type d \( -perm /0027 -o ! -user root -o ! -group root \) -printf 'FAIL: %p %m %u %g\n'
+      echo "scan_rc=$?"
     exit-status: 0
     stdout:
-    - 'OK'
+    - '/^scan_rc=0$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 0
       CIS_ID:
       - 5.2.3
-      CISv8:
-      - 8.5
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - AU-3
-      - AU-12
+      - AC-3
+      - MP-2
   {{ end }}
 {{ end }}

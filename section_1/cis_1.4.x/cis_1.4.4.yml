@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_4_4 }}
+command:
+  emergency_service_sulogin:
+    title: 1.4.4 | Ensure authentication is required when booting into emergency mode
+    exec: systemctl show -p ExecStart --value emergency.service
+    exit-status: 0
+    stdout:
+    - '/sulogin/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.4.4
+      NIST800-53R5: AC-3
+  {{ end }}
+{{ end }}

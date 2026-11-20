@@ -2,47 +2,36 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_19 }}
-    {{ if not .Vars.rhel9cis_xinetd_server }}
-      {{ if not .Vars.rhel9cis_xinetd_mask }}
-package:
-  xinetd_pkg:
-    title: 2.1.19 | Ensure xinetd services are not in use | pkg removed
-    name: xinetd
-    installed: false
+command:
+  cis_2_1_19_mta_listening_ports:
+    title: 2.1.19 | Ensure mail transfer agents are configured for local-only mode | not listening on non-loopback
+    skip: {{ .Vars.rhel9cis_is_mail_server }}
+    skip-reason: this host is a mail server, rhel9cis_is_mail_server is true
+    exec: ss -plntu | grep -P -- ':(25|465|587)\b' | grep -Pv -- '\h+(127\.0\.0\.1|\[?::1\]?):(25|465|587)\b'
+    exit-status: 1
+    stdout:
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.1.19
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_xinetd_mask }}
+      NIST800-53R5: CM-7
 file:
-  xinetd_service_masked:
-    title: 2.1.19 | Ensure xinetd services are not in use | masked
-    path: /etc/systemd/system/xinetd.service
+  cis_2_1_19_postfix_main_cf:
+    title: 2.1.19 | Ensure mail transfer agents are configured for local-only mode | postfix inet_interfaces
+    skip: {{ or .Vars.rhel9cis_is_mail_server (not .Vars.rhel9cis_mta_postfix_installed) }}
+    skip-reason: this host is a mail server or postfix is not installed
+    path: /etc/postfix/main.cf
     exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    contents:
+    - '/^\s*inet_interfaces\s*=\s*(loopback-only|localhost)\s*$/'
+    - '!/^\s*inet_interfaces\s*=\s*(all|ipv4|ipv6)\b/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.1.19
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
-    {{ end }}
+      NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

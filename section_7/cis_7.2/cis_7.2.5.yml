@@ -1,20 +1,22 @@
 ---
 
-{{ if .Vars.rhel9cis_rule_7_2_5 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_7_2_5 }}
 command:
   no_dup_gid:
     title: 7.2.5 | Ensure no duplicate GIDs exist
-    exec: "cut -d: -f3 /etc/group | sort | uniq -d"
+    exec: |
+      cut -d: -f3 /etc/group | sort | uniq -d | sed 's/^/FAIL: duplicate GID /'
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.2.5
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      NIST800-53R5: AC-2
+  {{ end }}
 {{ end }}

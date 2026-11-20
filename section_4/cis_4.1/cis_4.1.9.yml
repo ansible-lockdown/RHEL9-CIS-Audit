@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_9 }}
+service:
+  cis_4_1_9_nftables_service:
+    title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | nftables.service
+    name: nftables
+    enabled: false
+    running: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.9
+      NIST800-53R5: CA-9
+package:
+  iptables-services:
+    title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | iptables-services
+    installed: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.9
+      NIST800-53R5: CA-9
+  ufw:
+    title: 4.1.9 | Ensure conflicting firewall utilities are not in use with firewalld | ufw
+    installed: false
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.9
+      NIST800-53R5: CA-9
+  {{ end }}
+{{ end }}

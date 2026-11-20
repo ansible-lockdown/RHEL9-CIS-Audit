@@ -3,44 +3,39 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_10 }}
 file:
-  etc_security_opasswd_perms:
-    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured
+  cis_7_1_10_opasswd:
+    title: 7.1.10 | Ensure access to /etc/security/opasswd is configured | /etc/security/opasswd
     path: /etc/security/opasswd
     exists: true
-    mode: "0600"
     owner: root
     group: root
+    mode:
+      match-regexp: '^0[0246]00$'
+    skip: {{ not .Discovered.opasswd_exists }}
+    skip-reason: /etc/security/opasswd does not exist on this host, it is created when pam_pwhistory or pam_unix remember is in use
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.1.10
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
-  etc_security_opasswd__old_perms:
-    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured | old passwd
+  cis_7_1_10_opasswd_old:
+    title: 7.1.10 | Ensure access to /etc/security/opasswd is configured | /etc/security/opasswd.old
     path: /etc/security/opasswd.old
-    exists:
-      or:
-      - true
-      - false
-    mode: "0600"
+    exists: true
     owner: root
     group: root
+    mode:
+      match-regexp: '^0[0246]00$'
+    skip: {{ not .Discovered.opasswd_old_exists }}
+    skip-reason: /etc/security/opasswd.old does not exist on this host, it is created when pam_pwhistory or pam_unix remember is in use
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.1.10
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

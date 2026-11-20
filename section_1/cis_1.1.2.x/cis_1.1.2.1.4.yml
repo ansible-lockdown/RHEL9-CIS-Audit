@@ -14,33 +14,32 @@ mount:
       workstation: 1
       CIS_ID:
       - 1.1.2.1.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
+      - CM-6
       - CM-7
-      - AC-3
-      - MP-2
-file:
-  tmp_noexec_fstab_options:
-    title: 1.1.2.1.4 | Ensure noexec option set on /tmp partition
-    exists: true
-    path: /etc/fstab
-    contents:
-    - '/\s\/tmp.*noexec/'
+      CCI:
+      - CCI-001764
+command:
+  tmp_noexec_persistent_options:
+    title: 1.1.2.1.4 | Ensure noexec option set on /tmp partition | persistent config
+    exec: |
+      if [ "$(systemctl show tmp.mount -p SourcePath --value)" = "/etc/fstab" ]; then
+        findmnt --fstab -n -o OPTIONS /tmp
+      else
+        systemctl cat tmp.mount 2>/dev/null | sed -n 's/^Options=//p' | tail -n 1
+      fi
+    exit-status: 0
+    stdout:
+    - '/\bnoexec\b/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.1.2.1.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
+      - CM-6
       - CM-7
-      - AC-3
-      - MP-2
+      CCI:
+      - CCI-001764
   {{ end }}
 {{ end }}

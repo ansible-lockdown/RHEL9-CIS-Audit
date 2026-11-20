@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_4_1_7 }}
+command:
+  firewall_drop_unncessary_ports_manual:
+    title: 4.1.7 | Ensure firewalld services and ports are configured | Manual Check Required
+    exec: echo "Manual test"
+    exit-status: 0
+    stdout:
+    - '!/Manual test/'
+    skip: {{ ne .Vars.rhel9cis_firewall "firewalld" }}
+    skip-reason: rhel9cis_firewall is not firewalld, the role skips section 4.1
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.7
+      NIST800-53R5: CA-9
+  {{ end }}
+{{ end }}

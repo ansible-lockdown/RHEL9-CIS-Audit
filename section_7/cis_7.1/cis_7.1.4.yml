@@ -3,27 +3,21 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_4 }}
 file:
-  etcgroup-_perms:
-    title: 7.1.4 | Ensure permissions on /etc/group- are configured
+  cis_7_1_4_group_backup:
+    title: 7.1.4 | Ensure access to /etc/group- is configured
     path: /etc/group-
     exists: true
-    mode:
-      or:
-      - '0644'
-      - '0640'
-      - '0600'
-      - '0400'
     owner: root
     group: root
+    mode:
+      match-regexp: '^0[0246][04][04]$'
+    skip: {{ not .Discovered.group_backup_exists }}
+    skip-reason: /etc/group- is a backup written by account-management tools and does not exist on this host
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.1.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

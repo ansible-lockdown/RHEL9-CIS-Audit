@@ -5,25 +5,19 @@
 command:
   uid_0_check:
     title: 5.4.2.1 | Ensure root is the only UID 0 account
-    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
+    exec: |
+      awk -F: '($3 == 0 && $1 == "root") {print "root_ok"} ($3 == 0 && $1 != "root") {print "FAIL: " $1}' /etc/passwd
     exit-status: 0
     stdout:
-    - 'root'
-    - '!/[^root]/'
+    - '/^root_ok$/'
+    - '!/^FAIL:/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.4.2.1
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_12 }}
-    {{ if not .Vars.rhel9cis_rpc_server }}
-      {{ if not .Vars.rhel9cis_rpc_mask }}
+    {{ if not .Vars.rhel9cis_rpc_mask }}
 package:
-  rpcbind_pkg:
-    title: 2.1.12 | Ensure rpcbind services are not in use | pkg removed
+  cis_2_1_12_rpcbind_pkg:
+    title: 2.1.12 | Ensure rpcbind services are not in use | rpcbind not installed
+    skip: {{ .Vars.rhel9cis_rpc_server }}
+    skip-reason: rpcbind is required, rhel9cis_rpc_server is true
     name: rpcbind
     installed: false
     meta:
@@ -14,56 +15,40 @@ package:
       workstation: 1
       CIS_ID:
       - 2.1.12
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_rpc_mask }}
-file:
-  rpcbind_service_masked:
-    title: 2.1.12 | Ensure rpcbind services are not in use | masked
-    path: /etc/systemd/system/rpcbind.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+    {{ end }}
+    {{ if .Vars.rhel9cis_rpc_mask }}
+service:
+  cis_2_1_12_rpcbind_socket_masked:
+    title: 2.1.12 | Ensure rpcbind services are not in use | rpcbind.socket masked
+    skip: {{ .Vars.rhel9cis_rpc_server }}
+    skip-reason: rpcbind is required, rhel9cis_rpc_server is true
+    name: rpcbind.socket
+    masked: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.1.12
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-6
       - CM-7
-  rpcbind_socket_masked:
-    title: 2.1.12 | Ensure rpcbind services are not in use | masked
-    path: /etc/systemd/system/rpcbind.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+  cis_2_1_12_rpcbind_service_masked:
+    title: 2.1.12 | Ensure rpcbind services are not in use | rpcbind.service masked
+    skip: {{ .Vars.rhel9cis_rpc_server }}
+    skip-reason: rpcbind is required, rhel9cis_rpc_server is true
+    name: rpcbind.service
+    masked: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.1.12
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-6
       - CM-7
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

@@ -3,8 +3,10 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_4_2_1 }}
 file:
-  at_deny_users:
-    title: 2.4.2.1 | Ensure at is restricted to authorized users
+  cis_2_4_2_1_at_deny:
+    title: 2.4.2.1 | Ensure access to at is configured | at.deny absent
+    skip: {{ not .Discovered.at_installed }}
+    skip-reason: at is not installed, at package absent
     path: /etc/at.deny
     exists: false
     meta:
@@ -12,33 +14,27 @@ file:
       workstation: 1
       CIS_ID:
       - 2.4.2.1
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
-  at_allow_users:
-    title: 2.4.2.1 | Ensure at is restricted to authorized users
+  cis_2_4_2_1_at_allow:
+    title: 2.4.2.1 | Ensure access to at is configured | at.allow
+    skip: {{ not .Discovered.at_installed }}
+    skip-reason: at is not installed, at package absent
     path: /etc/at.allow
     exists: true
     owner: root
-    group: root
-    mode:
+    group:
       or:
-        - "0400"
-        - "0600"
-        - "0640"
+      - root
+      - daemon
+    mode:
+      match-regexp: '^0[0246][04]0$'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.4.2.1
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

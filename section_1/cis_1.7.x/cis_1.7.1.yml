@@ -1,0 +1,34 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_7_1 }}
+command:
+  motd_no_system_info:
+    title: 1.7.1 | Ensure /etc/motd is configured
+    exec: |
+      l_os="$(grep -Po '^ID="?\K[^"]+' /etc/os-release)|$(grep -Po '^NAME="?\K[^"]+' /etc/os-release)"
+      for l_file in /etc/motd /run/motd /usr/lib/motd /etc/motd.d/* /run/motd.d/* /usr/lib/motd.d/*; do
+        [ -f "$l_file" ] || continue
+        l_name="$(basename "$l_file")"
+        case "$l_file" in
+          /run/motd.d/*) [ -e "/etc/motd.d/$l_name" ] && continue ;;
+          /usr/lib/motd.d/*) { [ -e "/etc/motd.d/$l_name" ] || [ -e "/run/motd.d/$l_name" ]; } && continue ;;
+        esac
+        grep -Psil -- '(\\[mrsv]|\b('"$l_os"')\b)' "$l_file" | sed 's/^/sysinfo_in: /'
+      done
+      echo "motd_files_checked"
+    exit-status: 0
+    stdout:
+    - '/^motd_files_checked$/'
+    - '!/^sysinfo_in: /'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.1
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+  {{ end }}
+{{ end }}

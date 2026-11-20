@@ -9,15 +9,13 @@ file:
     exists: true
     contents:
     - '!/.*pam_unix.so.*remember/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.4.2
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   pam_unix_remember_system-auth:
     title: 5.3.3.4.2 | Ensure pam_unix does not include remember | system-auth
@@ -25,15 +23,13 @@ file:
     exists: true
     contents:
     - '!/.*pam_unix.so.*remember/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.4.2
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

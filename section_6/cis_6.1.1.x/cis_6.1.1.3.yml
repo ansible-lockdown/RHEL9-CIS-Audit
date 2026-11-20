@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_1_3 }}
+command:
+  journald_forward_to_syslog:
+    title: 6.1.1.3 | Ensure journald is configured to send logs to rsyslog
+    exec: 'systemd-analyze cat-config systemd/journald.conf | grep -Pi -- ''^\h*ForwardToSyslog\h*='' | tail -n 1'
+    exit-status: 0
+    stdout:
+    - '/(?i)^\s*ForwardToSyslog\s*=\s*yes\s*$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.3
+      NIST800-53R5: AU-6
+  {{ end }}
+{{ end }}

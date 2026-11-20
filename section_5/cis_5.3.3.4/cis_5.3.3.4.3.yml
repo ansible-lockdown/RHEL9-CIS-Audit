@@ -9,31 +9,27 @@ file:
     exists: true
     contents:
     - '/password\s+.*\s+pam_unix.so.*(yescrypt|sha512)/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.4.3
-      CISv8: 3.11
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   pam_unix_strong_password_system-auth:
     title: 5.3.3.4.3 | Ensure pam_unix includes a strong password hashing algorithm | system-auth
     path: /etc/pam.d/system-auth
     exists: true
     contents:
     - '/password\s+.*\s+pam_unix.so.*(yescrypt|sha512)/'
+    skip: {{ not .Vars.rhel9cis_disruption_high }}
+    skip-reason: rhel9cis_disruption_high is false, the role does not change this setting
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.3.4.3
-      CISv8: 3.11
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

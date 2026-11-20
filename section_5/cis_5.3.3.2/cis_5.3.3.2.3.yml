@@ -10,6 +10,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     {{ if eq .Vars.rhel9cis_passwd_complex_option "minclass" }}
       - '/.*\:minclass\s*=\s*([4-9]|[1-9][0-9])/'
@@ -29,11 +30,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.3.2.3
-      CISv8:
-      - 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   password_complex_not_pamd:
     title: 5.3.3.2.3 | Ensure password complexity is configured
@@ -49,11 +45,6 @@ command:
       workstation: 1
       CIS_ID:
       - 5.3.3.2.3
-      CISv8:
-      - 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

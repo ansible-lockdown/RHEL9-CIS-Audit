@@ -3,27 +3,19 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_7_1_9 }}
 file:
-  etc_shells_perms:
-    title: 7.1.9 | Ensure permissions on /etc/shells are configured
+  cis_7_1_9_shells:
+    title: 7.1.9 | Ensure access to /etc/shells is configured
     path: /etc/shells
     exists: true
-    mode:
-      or:
-      - '0644'
-      - '0640'
-      - '0600'
-      - '0400'
     owner: root
     group: root
+    mode:
+      match-regexp: '^0[0246][04][04]$'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.1.9
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

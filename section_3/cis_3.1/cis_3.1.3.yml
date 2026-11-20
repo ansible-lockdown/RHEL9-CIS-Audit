@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_3_1_3 }}
-    {{ if not .Vars.rhel9cis_bluetooth_service }}
-      {{ if not .Vars.rhel9cis_bluetooth_mask }}
+    {{ if not .Vars.rhel9cis_bluetooth_mask }}
 package:
-  bluetooth_pkg:
-    title: 3.1.3 | Ensure bluetooth services are not in use | pkg removed
+  cis_3_1_3_bluez_pkg:
+    title: 3.1.3 | Ensure bluetooth services are not in use | bluez not installed
+    skip: {{ .Vars.rhel9cis_bluetooth_service }}
+    skip-reason: bluetooth is required, rhel9cis_bluetooth_service is true
     name: bluez
     installed: false
     meta:
@@ -14,35 +15,22 @@ package:
       workstation: 2
       CIS_ID:
       - 3.1.3
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_bluetooth_mask }}
-file:
-  bluetooth_service_masked:
-    title: 3.1.3 | Ensure bluetooth services are not in use | masked
-    path: /etc/systemd/system/bluetooth.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+      NIST800-53R5: CM-7
+    {{ end }}
+    {{ if .Vars.rhel9cis_bluetooth_mask }}
+service:
+  cis_3_1_3_bluetooth_service_masked:
+    title: 3.1.3 | Ensure bluetooth services are not in use | bluetooth.service masked
+    skip: {{ .Vars.rhel9cis_bluetooth_service }}
+    skip-reason: bluetooth is required, rhel9cis_bluetooth_service is true
+    name: bluetooth.service
+    masked: true
     meta:
       server: 1
       workstation: 2
       CIS_ID:
       - 3.1.3
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
+      NIST800-53R5: CM-7
     {{ end }}
   {{ end }}
 {{ end }}

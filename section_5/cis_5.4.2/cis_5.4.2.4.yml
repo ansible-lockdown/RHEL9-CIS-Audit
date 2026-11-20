@@ -5,18 +5,15 @@
 command:
   root_passwd_set:
     title: 5.4.2.4 | Ensure root account access is controlled
-    exec: "passwd -S root | awk '$2 ~ /^P/ {print \"OK Password\"}'"
+    exec: passwd -S root | awk '$2 ~ /^(P|L)/ {print "root_status_ok " $2}'
     exit-status: 0
-    stdout: ['OK Password']
+    stdout:
+    - '/^root_status_ok (P|L)/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.4.2.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: AC-6
   {{ end }}
 {{ end }}

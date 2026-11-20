@@ -3,23 +3,20 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_6_3 }}
 file:
-  crypto_policies_no_sha1_current:
-    title: 1.6.3 | Ensure system wide crypto policy disables sha1 hash and signature support
+  crypto_policies_no_weakmacs:
+    title: 1.6.3 | Ensure system wide crypto policy macs are configured
+    skip: {{ not .Vars.rhel9cis_crypto_policy_ansiblemanaged }}
+    skip-reason: the crypto policy is not managed, rhel9cis_crypto_policy_ansiblemanaged is false
     path: /etc/crypto-policies/state/CURRENT.pol
     exists: true
     contents:
-    - '/^sha1_in_certs\s*=\s*0/'
-    - '!/^(hash|sign)\s*=\s*SHA1/'
+    - '/(?i)^\s*mac\s*=/'
+    - '!/(?i)^\s*mac(@[^=\s]+)?\s*=\s*([^#]+)?-64\b/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.6.3
-      CISv8:
-      - 3.10
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: SC-8
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

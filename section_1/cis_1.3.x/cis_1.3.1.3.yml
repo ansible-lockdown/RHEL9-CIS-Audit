@@ -1,11 +1,12 @@
 ---
 
-{{ if not .Vars.rhel9cis_selinux_disable }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_3_1_3 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_3_1_3 }}
 command:
   selinux_policy:
     title: 1.3.1.3 | Ensure SELinux policy is configured | config
+    skip: {{ .Vars.rhel9cis_selinux_disable }}
+    skip-reason: SELinux is disabled by the operator, rhel9cis_selinux_disable is true
     exit-status: 0
     exec: 'grep SELINUXTYPE= /etc/selinux/config'
     stdout:
@@ -16,16 +17,13 @@ command:
       workstation: 1
       CIS_ID:
       - 1.3.1.3
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
   selinux_sestatus:
     title: 1.3.1.3 | Ensure SELinux policy is configured | sestatus
+    skip: {{ .Vars.rhel9cis_selinux_disable }}
+    skip-reason: SELinux is disabled by the operator, rhel9cis_selinux_disable is true
     exit-status: 0
     exec: "sestatus | grep 'Loaded policy'"
     stdout:
@@ -35,14 +33,8 @@ command:
       workstation: 1
       CIS_ID:
       - 1.3.1.3
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
-    {{ end }}
   {{ end }}
 {{ end }}

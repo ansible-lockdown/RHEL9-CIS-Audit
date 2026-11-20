@@ -2,27 +2,28 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_5_3 }}
-command:
-  procmaxsize_coredump_conf:
-    title: 1.5.3 | Ensure core dump backtraces are disabled
-    exec: grep -i ProcessSizeMax /etc/systemd/coredump.conf /etc/systemd/coredump.conf.d
-    exit-status:
-      or:
-      - 0
-      - 2
-    stdout:
-    - '/^*.conf:ProcessSizeMax=0/'
-    - '!/^*.conf:ProcessSizeMax=[1-9].*/'
+kernel-param:
+  fs.suid_dumpable:
+    title: 1.5.3 | Ensure fs.suid_dumpable is configured | running
+    value: '0'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.3
-      CISv8:
-      - N/A
-      CISv8_IG1: N/A
-      CISv8_IG2: N/A
-      CISv8_IG3: N/A
+      NIST800-53R5: CM-6
+command:
+  fs_suid_dumpable_persistent:
+    title: 1.5.3 | Ensure fs.suid_dumpable is configured | effective persistent setting
+    exec: "/usr/lib/systemd/systemd-sysctl --cat-config | grep -Eo '^[[:space:]]*fs[.]suid_dumpable[[:space:]]*=[[:space:]]*[^[:space:]]+' | tail -n 1"
+    exit-status: 0
+    stdout:
+    - '/^\s*fs\.suid_dumpable\s*=\s*0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.3
       NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

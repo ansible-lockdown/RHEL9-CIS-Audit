@@ -3,22 +3,22 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_4_1_4 }}
 file:
-  cron_daily_perms:
-    title: 2.4.1.4 | Ensure permissions on /etc/cron.daily are configured
+  cis_2_4_1_4_cron_daily:
+    title: 2.4.1.4 | Ensure access to /etc/cron.daily is configured
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
     path: /etc/cron.daily
     exists: true
+    filetype: directory
     owner: root
     group: root
-    mode: "0700"
+    mode:
+      match-regexp: '^0[0-7]00$'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.4.1.4
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

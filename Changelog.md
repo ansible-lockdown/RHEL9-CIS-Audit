@@ -1,5 +1,82 @@
 # Changes to RHEL9-CIS-Audit
 
+## CIS Benchmark 3.0.0
+## November 2026 - QA fixes
+
+- run_audit.sh uses syver v0.20.0 by default
+- run_audit.sh: AUDIT_FILE syver.yml, OS metadata default when /etc/os-release is missing
+- goss.yml renamed syver.yml - syverfile:, syver-version: 0.20.0
+- 1.4.2, 1.6.4-1.6.6: typed file resources instead of command
+- 2.1.19: postfix main.cf file test when postfix is installed
+- vars: rhel9cis_mta_postfix_installed
+- CISv8 metadata removed
+- discovery: separate partitions, cronie, at, cron.yearly, backup and opasswd files, chronyd running
+- host-state and opt-out tests report skipped with a reason
+- masked services checked with service masked
+- 1.1.1.x modules checked with modprobe --showconfig and /sys/module
+- 1.1.1.11: unused filesystem modules test, manual review
+- 1.1.2.x: mount option tests skipped when the partition is absent
+- 1.1.2.1.2-4: tmp.mount options read from the last Options= line
+- 1.2.1.1: release key package from the role checked
+- 1.4.2: every file in /boot/grub2 checked
+- 1.6.6: etm@openssh accepted
+- 1.8.x: skipped when no GNOME desktop
+- 2.1.x: RHEL9 package and unit names
+- 2.1.18: nginx-plus package checked
+- 2.1.19: non mail servers checked with postconf, ports 25, 465, 587
+- 2.3.3: chronyd user checked while it runs
+- 3.3.1.1: gated level 2
+- 4.1.8: skipped unless rhel9cis_default_zone is drop
+- 4.1.11: no active zone reported as FAIL
+- 5.4.1.5: existing users scoped to interactive accounts
+- 5.4.3.1: commented nologin lines ignored
+- 6.1.2.x: depends on package rsyslog
+- 6.1.3.1: rhel9cis_logfile_perms_exclude paths skipped
+- 7.1.x: typed file tests, mode or more restrictive
+- 7.1.13: container storage pruned
+- 7.2.9: skipped unless rhel9cis_dotperm_ansiblemanaged
+- 1.1.2.5.1: duplicate NIST800-53R4 meta removed
+- 4.1.x: skipped when rhel9cis_firewall is not firewalld
+- 5.4.2.7: rhel9cis_playbook_user excluded
+- syver.yml includes section 4.1 and 6.2 files without gates
+- 5.3.3.2.1, 5.3.3.2.2: difok and minlen accept any compliant value
+
+## Sept 2026 - benchmark v3.0.0
+
+- BENCHMARK_VER 3.0.0
+- run_audit.sh uses syver v0.13.0 by default
+- README describes syver
+- 5.1.3-5.1.7, 5.1.9, 5.1.18 sshd -T directive match case-insensitive
+- .gitignore aligned to the Lockdown reference set
+- goss files renumbered and moved to the v3.0.0 section folders
+- retired control files removed
+- new control files added
+- goss.yml and standalone.yml globs rewritten for the v3.0.0 layout
+- section 4 firewalld only
+- journald 6.1.1.x tests added
+- 6.2.3.x audit rule tests split per control
+- 3.3.x sysctl tests use the effective systemd-sysctl value
+- sshd tests assert sshd -T output only
+- 1.7.x combined banner file split per control
+- vars - rule toggles regenerated in v3.0.0 order
+- vars - rhel9cis_syslog, nis and xinetd variables removed
+- vars - cockpit, rsyslog TLS and rhel9cis_system_is_log_server added
+- vars - rhel9cis_aide_scan timer
+- 2.1.11, 2.2.3, 2.2.4 workstation meta corrected
+- 6.1.2.3 accepts grep exit 2 when /etc/rsyslog.d is empty
+- tests the role is told not to remediate report skipped - disruption_high, allow_authselect_updates, authselect_pkg_update, crypto_policy_ansiblemanaged, selinux_enforce, config_aide
+- 5.4.1.1, 5.4.1.2 existing-user tests skipped unless force_user_maxdays / force_user_mindays
+- 1.1.2.1.2-4 check tmp.mount when rhel9cis_tmp_svc
+- 5.4.2.7 excludes rhel9cis_system_users_shell accounts
+- vars - 10 remediation gate variables added
+- 5.3.3.3.3 system-auth test indentation fixed
+- LICENSE company name MindPoint Group - A Quantum Sky Company
+- meta NIST800-53R5 aligned to the remediation role
+- meta NIST800-53R5 NA placeholders replaced
+- meta CCI added from the v3.0.0 benchmark references
+- 1.1.2.1.2-4 check the persistent /tmp options from the source systemd reports
+- vars - rhel9cis_tmp_svc removed
+
 ## Based on CIS Benchmark v2.0.0
 ## Oct 2026 - backlog fixes
 

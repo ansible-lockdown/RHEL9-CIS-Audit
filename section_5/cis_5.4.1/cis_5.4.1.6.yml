@@ -5,19 +5,23 @@
 command:
   passwd_chg_past:
     title: 5.4.1.6 | Ensure all users last password change date is in the past
-    exec: 'for usr in `cut -d: -f1 /etc/shadow`; do [[ $(chage --list $usr | grep "^Last password change" | cut -d: -f2) > $(date) ]] && echo "Failed" ; done'
-    exit-status: 1
+    exec: |
+      awk -F: -v l_today="$(( $(date +%s) / 86400 ))" '($2~/^\$.+\$/ && $3 > l_today) {print "FAIL: " $1 " last password change is " $3 - l_today " day(s) in the future"}' /etc/shadow
+      echo "scan_done"
+    exit-status: 0
     stdout:
-    - '!/Failed/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.4.1.6
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

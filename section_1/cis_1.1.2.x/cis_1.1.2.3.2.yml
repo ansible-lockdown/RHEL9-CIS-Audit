@@ -5,6 +5,8 @@
 mount:
   home_nodev_options:
     title: 1.1.2.3.2 | Ensure nodev option set on /home partition
+    skip: {{ not .Discovered.home_mounted }}
+    skip-reason: /home is not a separate partition
     mountpoint: /home
     exists: true
     opts:
@@ -14,32 +16,24 @@ mount:
       workstation: 1
       CIS_ID:
       - 1.1.2.3.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - AC-3
       - MP-2
 file:
   home_nodev_fstab_options:
     title: 1.1.2.3.2 | Ensure nodev option set on /home partition
+    skip: {{ not .Discovered.home_mounted }}
+    skip-reason: /home is not a separate partition
     exists: true
     path: /etc/fstab
     contents:
-    - '/\s\/home.*nodev/'
+    - '/\s\/home\s.*nodev/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.1.2.3.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - AC-3
       - MP-2
   {{ end }}

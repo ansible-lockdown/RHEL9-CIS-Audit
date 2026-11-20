@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_4_5 }}
+command:
+  audit_conf_mode:
+    title: 6.2.4.5 | Ensure audit configuration files mode is configured
+    exec: 'find /etc/audit/ -type f \( -name ''*.conf'' -o -name ''*.rules'' \) -perm /0137 | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.5
+      NIST800-53R5: AU-9
+  {{ end }}
+{{ end }}

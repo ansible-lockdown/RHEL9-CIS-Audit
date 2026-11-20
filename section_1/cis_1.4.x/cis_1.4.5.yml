@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_4_5 }}
+command:
+  grubby_confirm_spawn:
+    title: 1.4.5 | Ensure systemd ability to spawn an interactive boot process is disabled
+    exec: |
+      echo "boot_entries=$(grubby --info=ALL 2>/dev/null | grep -Pc '^\h*args=.*\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)')"
+      echo "kernel_cmdline=$(grep -Ps -- '\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)' /etc/kernel/cmdline | wc -l)"
+      echo "default_grub=$(grep -Psi -- '^\h*GRUB_CMDLINE_LINUX(_DEFAULT)?=.*\bsystemd\.confirm_spawn(?!=(0|no|false|off)\b)' /etc/default/grub | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^boot_entries=0$/'
+    - '/^kernel_cmdline=0$/'
+    - '/^default_grub=0$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.5
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

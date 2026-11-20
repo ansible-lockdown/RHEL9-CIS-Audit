@@ -5,24 +5,18 @@
 command:
   no_dup_uid:
     title: 7.2.4 | Ensure no duplicate UIDs exist
-    exec: "cut -d: -f3 /etc/passwd | sort | uniq -d"
+    exec: |
+      cut -d: -f3 /etc/passwd | sort | uniq -d | sed 's/^/FAIL: duplicate UID /'
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 7.2.4
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: IA-2
   {{ end }}
 {{ end }}

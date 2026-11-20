@@ -1,1 +1,72 @@
+.env
+*.log
+*.retry
+.vagrant
+tests/*redhat-subscription
+tests/Dockerfile
+*.iso
+*.box
+packer_cache
+delete*
+ignore*
+qa_report.md
+prompt.md
+plan.md
+history.md
+*.pdf
+# VSCode
+.vscode
+vagrant
+.cursor
+.claude*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# DS_Store
+.DS_Store
+._*
+
+# Linux Editors
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+*.swo
+rh-creds.env
+travis.env
+
+# Secret/key files
+*.vault
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.credentials
+*vault_pass*
+.vault_pass
+
+# Lockdown-specific
+benchparse/
+*xccdf.xml
+*.retry
+*.pdf
+*history.md
+*plan.md
+*qa_report*
+test_inv
+
+# GitHub Action/Workflow files
 .github/
+
+# ansible-lint
+.ansible/

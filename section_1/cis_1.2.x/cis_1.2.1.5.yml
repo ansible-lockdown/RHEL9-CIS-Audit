@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_1_2_1_5 }}
+command:
+  dnf_install_weak_deps:
+    title: 1.2.1.5 | Ensure weak dependencies are configured
+    exec: grep -Pi -- '^\h*install_weak_deps\h*=' /etc/dnf/dnf.conf
+    timeout: {{ .Vars.timeout_ms }}
+    exit-status: 0
+    stdout:
+    - '/(?i)^\s*install_weak_deps\s*=\s*(0|false|no)\b/'
+    - '!/(?i)^\s*install_weak_deps\s*=\s*(1|true|yes)\b/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.2.1.5
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

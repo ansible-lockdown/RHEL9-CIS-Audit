@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_1 }}
-    {{ if not .Vars.rhel9cis_autofs_services }}
-      {{ if not .Vars.rhel9cis_autofs_mask }}
+    {{ if not .Vars.rhel9cis_autofs_mask }}
 package:
-  autofs_pkg:
-    title: 2.1.1 | Ensure autofs services are not in use | pkg removed
+  cis_2_1_1_autofs_pkg:
+    title: 2.1.1 | Ensure autofs services are not in use | autofs not installed
+    skip: {{ .Vars.rhel9cis_autofs_services }}
+    skip-reason: autofs is required, rhel9cis_autofs_services is true
     name: autofs
     installed: false
     meta:
@@ -14,37 +15,26 @@ package:
       workstation: 2
       CIS_ID:
       - 2.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - SI-3
       - MP-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_autofs_mask }}
-file:
-  autofs_masked:
-    title: 2.1.1 | Ensure autofs services are not in use | masked
-    path: /etc/systemd/system/autofs.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+      - SI-3
+    {{ end }}
+    {{ if .Vars.rhel9cis_autofs_mask }}
+service:
+  cis_2_1_1_autofs_service_masked:
+    title: 2.1.1 | Ensure autofs services are not in use | autofs.service masked
+    skip: {{ .Vars.rhel9cis_autofs_services }}
+    skip-reason: autofs is required, rhel9cis_autofs_services is true
+    name: autofs.service
+    masked: true
     meta:
       server: 1
       workstation: 2
       CIS_ID:
       - 2.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - SI-3
       - MP-7
-      {{ end }}
+      - SI-3
     {{ end }}
   {{ end }}
 {{ end }}

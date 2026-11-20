@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.rhel9cis_level_1 }}
+{{ if .Vars.rhel9cis_level_2 }}
   {{ if .Vars.rhel9cis_rule_5_4_1_2 }}
 file:
   login_defs_min_days:
@@ -8,34 +8,30 @@ file:
     path: /etc/login.defs
     exists: true
     contents:
-    - '/^PASS_MIN_DAYS\s[1-9]/'
-    - '!/^PASS_MIN_DAYS\s0/'
+    - '/^\s*PASS_MIN_DAYS\s+[1-9][0-9]*\b/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 5.4.1.2
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5(1)
 command:
-  check_users_MIN_DAYS:
-    title: 5.4.1.2 | Ensure minimum password days is configured | check users
-    exec: awk -F':' '($2 ~ /^\$.+\$/) && ($4 < 1) {print $1 ":" $4}' /etc/shadow
+  check_users_min_days:
+    title: 5.4.1.2 | Ensure minimum password days is configured | existing users
+    exec: |
+      awk -F: '($2~/^\$.+\$/) {if($4 < 1) print "FAIL: " $1 " PASS_MIN_DAYS: " $4}' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
+    skip: {{ not .Vars.rhel9cis_force_user_mindays }}
+    skip-reason: rhel9cis_force_user_mindays is false, existing accounts are not changed by the role
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 5.4.1.2
-      CISv8: 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5(1)
   {{ end }}
 {{ end }}

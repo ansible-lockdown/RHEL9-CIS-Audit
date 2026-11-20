@@ -2,11 +2,12 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_15 }}
-    {{ if not .Vars.rhel9cis_telnet_server }}
-      {{ if not .Vars.rhel9cis_telnet_mask }}
+    {{ if not .Vars.rhel9cis_telnet_mask }}
 package:
-  telnet_pkg:
-    title: 2.1.15 | Ensure telnet server services are not in use | pkg removed
+  cis_2_1_15_telnet_server_pkg:
+    title: 2.1.15 | Ensure telnet server services are not in use | telnet-server not installed
+    skip: {{ .Vars.rhel9cis_telnet_server }}
+    skip-reason: a telnet server is required, rhel9cis_telnet_server is true
     name: telnet-server
     installed: false
     meta:
@@ -14,56 +15,26 @@ package:
       workstation: 1
       CIS_ID:
       - 2.1.15
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - CM-11
-      {{ end }}
-      {{ if .Vars.rhel9cis_telnet_mask }}
-file:
-  telnet_service_masked:
-    title: 2.1.15 | Ensure telnet server services are not in use | masked
-    path: /etc/systemd/system/telnetd-hpa.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+      - CM-7
+    {{ end }}
+    {{ if .Vars.rhel9cis_telnet_mask }}
+service:
+  cis_2_1_15_telnet_socket_masked:
+    title: 2.1.15 | Ensure telnet server services are not in use | telnet.socket masked
+    skip: {{ .Vars.rhel9cis_telnet_server }}
+    skip-reason: a telnet server is required, rhel9cis_telnet_server is true
+    name: telnet.socket
+    masked: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.1.15
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - CM-7
       - CM-11
-  telnet_socket_masked:
-    title: 2.1.15 | Ensure telnet server services are not in use | masked
-    path: /etc/systemd/system/telnet.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 2.1.15
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
       - CM-7
-      - CM-11
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

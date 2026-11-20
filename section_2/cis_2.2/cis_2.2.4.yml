@@ -1,25 +1,19 @@
 ---
 
 {{ if .Vars.rhel9cis_level_1 }}
-  {{ if not .Vars.rhel9cis_telnet_required }}
-    {{ if .Vars.rhel9cis_rule_2_2_4 }}
+  {{ if .Vars.rhel9cis_rule_2_2_4 }}
 package:
-  telnet_client:
-    title: 2.2.4 | Ensure telnet client is not installed
+  cis_2_2_4_tftp_pkg:
+    title: 2.2.4 | Ensure tftp client is not installed | tftp not installed
+    skip: {{ .Vars.rhel9cis_tftp_client }}
+    skip-reason: a TFTP client is required, rhel9cis_tftp_client is true
+    name: tftp
     installed: false
-    name: telnet
     meta:
       server: 1
-      workstation: NA
+      workstation: 1
       CIS_ID:
       - 2.2.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-    {{ end }}
+      NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

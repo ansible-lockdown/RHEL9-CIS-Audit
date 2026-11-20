@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_3_4 }}
+command:
+  aide_report_url_syslog:
+    title: 6.3.4 | Ensure report_url is configured
+    exec: 'grep -P ''^\h*report_url'' /etc/aide.conf'
+    exit-status: 0
+    stdout:
+    - '/^\s*report_url\s*=\s*syslog:\S+/'
+    skip: {{ not .Vars.rhel9cis_config_aide }}
+    skip-reason: AIDE is not managed (rhel9cis_config_aide is false)
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.4
+      NIST800-53R5:
+      - SI-7
+      - SI-7(2)
+  {{ end }}
+{{ end }}

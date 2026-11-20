@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_10 }}
+command:
+  rsyslog_tls_driver_installed:
+    title: 6.1.2.10 | Ensure a rsyslog TLS network stream driver is installed
+    skip: {{ not (and .Vars.rhel9cis_remote_log_server .Vars.rhel9cis_remote_log_tls) }}
+    skip-reason: TLS log forwarding is not configured (rhel9cis_remote_log_server and rhel9cis_remote_log_tls are not both true)
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
+    exec: 'rpm -q rsyslog-gnutls rsyslog-openssl'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^rsyslog-(gnutls|openssl)-\d/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.10
+      NIST800-53R5: SC-8
+  {{ end }}
+{{ end }}

@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_6_2_4_8 }}
+command:
+  audit_tools_mode:
+    title: 6.2.4.8 | Ensure audit tools mode is configured
+    exec: 'find -L /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules -maxdepth 0 -perm /0022 2>/dev/null | wc -l'
+    exit-status: 0
+    stdout:
+    - '/^0$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.8
+      NIST800-53R5: AU-9
+  {{ end }}
+{{ end }}

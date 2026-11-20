@@ -2,54 +2,34 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_2_1 }}
-file:
-  passwd_auth_authselect_modules:
-    title: 5.3.2.1 | Ensure active authselect profile includes pam modules
-    path: /etc/authselect/custom/{{ .Vars.rhel9cis_authselect_custom_profile_name }}/password-auth
-    exists: true
-    contents:
-    - '/auth\s*required\s*pam_faillock.so\s*preauth silent\s*{include if "with-faillock"}/'
-    - '/auth\s*sufficient\s*pam_unix.so\s*{if not "without-nullok":nullok}/'
-    - '/auth\s*required\s*pam_faillock.so\s*authfail\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_faillock.so\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_unix.so/'
-    - '/password\s*requisite\s*pam_pwquality.so\s*local_users_only/'
-    - '/password\s*(required|requisite)\s*pam_pwhistory.so\s*use_authtok/'
-    - '/password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*{if not "without-nullok":nullok} use_authtok/'
-    - '/session\s*required\s*pam_unix.so/'
+command:
+  authselect_current_profile:
+    title: 5.3.2.1 | Ensure PAM is managed by an active authselect profile | active profile
+    exec: authselect current
+    exit-status: 0
+    stdout:
+    - '/^Profile ID: \S+/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.2.1
-      CISv8: 16.2
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
-  system_auth_authselect_modules:
-    title: 5.3.2.1 | Ensure active authselect profile includes pam modules
-    path: /etc/authselect/custom/{{ .Vars.rhel9cis_authselect_custom_profile_name }}/system-auth
-    exists: true
-    contents:
-    - '/auth\s*required\s*pam_faillock.so\s*preauth silent\s*{include if "with-faillock"}/'
-    - '/auth\s*sufficient\s*pam_unix.so\s*{if not "without-nullok":nullok}/'
-    - '/auth\s*required\s*pam_faillock.so\s*authfail\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_faillock.so\s*{include if "with-faillock"}/'
-    - '/account\s*required\s*pam_unix.so/'
-    - '/password\s*requisite\s*pam_pwquality.so\s*local_users_only/'
-    - '/password\s*(required|requisite)\s*pam_pwhistory.so\s*use_authtok/'
-    - '/password\s*sufficient\s*pam_unix.so\s*sha512\s*shadow\s*{if not "without-nullok":nullok} use_authtok/'
-    - '/session\s*required\s*pam_unix.so/'
+      NIST800-53R5: IA-5
+  authselect_check_5_3_2_1:
+    title: 5.3.2.1 | Ensure PAM is managed by an active authselect profile | authselect check
+    exec: authselect check
+    exit-status: 0
+    stdout:
+    - '/Current configuration is valid/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.2.1
-      CISv8: 16.2
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: NA
+      NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

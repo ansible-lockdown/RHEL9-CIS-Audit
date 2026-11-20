@@ -2,10 +2,9 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_4_2 }}
-    {{ if .Vars.rhel9cis_legacy_boot }}
 file:
-  grub_bootloaders_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | grub.cfg
+  grub_cfg_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | grub.cfg
     path: /boot/grub2/grub.cfg
     exists: true
     owner: root
@@ -16,14 +15,9 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
+      NIST800-53R5: CM-6
   grubenv_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | grubenv
+    title: 1.4.2 | Ensure access to bootloader config is configured | grubenv
     path: /boot/grub2/grubenv
     exists: true
     owner: root
@@ -34,14 +28,11 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-  grub_user_perms:
-    title: 1.4.2 | Ensure access to bootloader config is configured | file_perms | user.cfg
+      NIST800-53R5: CM-6
+  grub_user_cfg_perms:
+    title: 1.4.2 | Ensure access to bootloader config is configured | user.cfg
+    skip: {{ not .Vars.rhel9cis_set_boot_pass }}
+    skip-reason: no bootloader password is set, rhel9cis_set_boot_pass is false
     path: /boot/grub2/user.cfg
     exists: true
     owner: root
@@ -52,34 +43,29 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-    {{ end }}
-    {{ if not .Vars.rhel9cis_legacy_boot }}
+      NIST800-53R5: CM-6
 command:
   efi_boot_opts:
-    exec: grep "^[^#;]" /etc/fstab | grep '/boot/efi' | awk -F" " '{print $4}'
+    title: 1.4.2 | Ensure access to bootloader config is configured | /boot/efi mount options
+    exec: |
+      l_opts="$(awk '$1 !~ /^#/ && $2 == "/boot/efi" {print $4}' /etc/fstab)"
+      if [ -z "$l_opts" ]; then
+        echo "efi_not_in_fstab"
+      else
+        for l_opt in fmask=0077 uid=0 gid=0; do
+          echo ",$l_opts," | grep -q ",$l_opt," || echo "efi_missing: $l_opt"
+        done
+        echo "efi_options_checked"
+      fi
     exit-status: 0
     stdout:
-    - 'umask=0077'
-    - 'fmask=0077'
-    - 'uid=0'
-    - 'gid=0'
+    - '/^(efi_not_in_fstab|efi_options_checked)$/'
+    - '!/^efi_missing: /'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.4.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: AC-3
-    {{ end }}
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

@@ -2,65 +2,47 @@
 
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_1_11 }}
-    {{ if not .Vars.rhel9cis_print_server }}
-      {{ if not .Vars.rhel9cis_print_mask }}
+    {{ if not .Vars.rhel9cis_print_mask }}
 package:
-  cups_pkg:
-    title: 2.1.11 | Ensure print server services are not in use | pkg removed
+  cis_2_1_11_cups_pkg:
+    title: 2.1.11 | Ensure print server services are not in use | cups not installed
+    skip: {{ .Vars.rhel9cis_print_server }}
+    skip-reason: a print server is required, rhel9cis_print_server is true
     name: cups
     installed: false
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
-      {{ if .Vars.rhel9cis_print_mask }}
-file:
-  cups_service_masked:
-    title: 2.1.11 | Ensure print server services are not in use | masked
-    path: /etc/systemd/system/cups.service
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+      NIST800-53R5: CM-7
+    {{ end }}
+    {{ if .Vars.rhel9cis_print_mask }}
+service:
+  cis_2_1_11_cups_socket_masked:
+    title: 2.1.11 | Ensure print server services are not in use | cups.socket masked
+    skip: {{ .Vars.rhel9cis_print_server }}
+    skip-reason: a print server is required, rhel9cis_print_server is true
+    name: cups.socket
+    masked: true
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-  cups_socket_masked:
-    title: 2.1.11 | Ensure print server services are not in use | masked
-    path: /etc/systemd/system/cups.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
+      NIST800-53R5: CM-7
+  cis_2_1_11_cups_service_masked:
+    title: 2.1.11 | Ensure print server services are not in use | cups.service masked
+    skip: {{ .Vars.rhel9cis_print_server }}
+    skip-reason: a print server is required, rhel9cis_print_server is true
+    name: cups.service
+    masked: true
     meta:
       server: 1
-      workstation: 1
+      workstation: NA
       CIS_ID:
       - 2.1.11
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - CM-7
-      {{ end }}
+      NIST800-53R5: CM-7
     {{ end }}
   {{ end }}
 {{ end }}

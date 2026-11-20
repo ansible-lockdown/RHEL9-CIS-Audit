@@ -3,37 +3,31 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_1_1_1_4 }}
 command:
-  hfsplus_modprobe:
-    title: 1.1.1.4 | Ensure hfsplus kernel module is not available | disabled
+  modprobe_hfsplus:
+    title: 1.1.1.4 | Ensure hfsplus kernel module is not available | not loadable
+    exec: modprobe --showconfig | grep -P -- '\b(install|blacklist)\h+hfsplus\b'
     exit-status: 0
-    exec: "modprobe -n -v hfsplus | grep -E '(hfsplus|install)'"
     stdout:
-    - install /bin/true
+    - '/^blacklist hfsplus$/'
+    - '/^install hfsplus (\/usr)?\/bin\/(true|false)$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
-  blacklist_hfsplus:
-    title: 1.1.1.4 | Ensure hfsplus kernel module is not available | blacklist
-    exit-status: 0
-    exec: grep hfsplus /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist hfsplus/'
+      CCI:
+      - CCI-000381
+file:
+  sys_module_hfsplus:
+    title: 1.1.1.4 | Ensure hfsplus kernel module is not available | not loaded
+    path: /sys/module/hfsplus
+    exists: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 1.1.1.4
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: CM-7
+      CCI:
+      - CCI-000381
   {{ end }}
 {{ end }}

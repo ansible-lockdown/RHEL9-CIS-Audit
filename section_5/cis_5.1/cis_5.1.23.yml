@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_5_1_23 }}
+command:
+  ssh_usepam_live:
+    title: 5.1.23 | Ensure sshd UsePAM is enabled
+    exec: sshd -T 2>/dev/null | grep -i -- '^usepam\s'
+    exit-status: 0
+    stdout:
+    - '/(?i)^usepam yes$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.23
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

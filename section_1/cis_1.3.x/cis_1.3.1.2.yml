@@ -1,27 +1,30 @@
 ---
 
-{{ if not .Vars.rhel9cis_selinux_disable }}
-  {{ if .Vars.rhel9cis_level_1 }}
-    {{ if .Vars.rhel9cis_rule_1_3_1_2 }}
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_1_3_1_2 }}
 command:
   selinux_disabled_boot:
     title: 1.3.1.2 | Ensure SELinux is not disabled in bootloader configuration
-    exit-status: 1
-    exec: 'grep "^\s*linux" /boot/grub2/grubenv | grep -E "(selinux|enforcing)=0"'
-    stdout: ['!/./']
+    skip: {{ .Vars.rhel9cis_selinux_disable }}
+    skip-reason: SELinux is disabled by the operator, rhel9cis_selinux_disable is true
+    exec: |
+      echo "boot_entries=$(grubby --info=ALL 2>/dev/null | grep -Pc '^\h*args=.*\b(selinux|enforcing)=0\b')"
+      echo "kernelopts=$(grep -PrsI -- '^\h*([^#\n\r]+\h+)?kernelopts=([^#\n\r]+\h+)?(selinux|enforcing)=0\b' /boot/grub2 /boot/efi | wc -l)"
+      echo "kernel_cmdline=$(grep -Ps -- '\b(selinux|enforcing)=0\b' /etc/kernel/cmdline | wc -l)"
+      echo "default_grub=$(grep -Psi -- '^\h*GRUB_CMDLINE_LINUX(_DEFAULT)?=.*\b(selinux|enforcing)=0\b' /etc/default/grub | wc -l)"
+    exit-status: 0
+    stdout:
+    - '/^boot_entries=0$/'
+    - '/^kernelopts=0$/'
+    - '/^kernel_cmdline=0$/'
+    - '/^default_grub=0$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.3.1.2
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
-    {{ end }}
   {{ end }}
 {{ end }}

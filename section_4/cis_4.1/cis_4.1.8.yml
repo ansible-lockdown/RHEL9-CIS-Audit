@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.rhel9cis_level_2 }}
+  {{ if .Vars.rhel9cis_rule_4_1_8 }}
+command:
+  cis_4_1_8_default_zone_drop:
+    title: 4.1.8 | Ensure firewalld default zone is set to drop
+    skip: {{ or (ne .Vars.rhel9cis_firewall "firewalld") (ne .Vars.rhel9cis_default_zone "drop") }}
+    skip-reason: {{ if ne .Vars.rhel9cis_firewall "firewalld" }}rhel9cis_firewall is not firewalld, the role skips section 4.1{{ else }}the role sets the default zone to {{ .Vars.rhel9cis_default_zone }} (rhel9cis_default_zone), set it to drop to conform{{ end }}
+    exec: firewall-cmd --get-default-zone
+    exit-status: 0
+    stdout:
+    - '/^drop$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.8
+      NIST800-53R5: CA-9
+  {{ end }}
+{{ end }}

@@ -3,37 +3,48 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_5_3_2_3 }}
 file:
-  passwd_auth_pwquality:
-    title: 5.3.2.3 | Ensure pam_pwquality module is enabled
-    path: /etc/pam.d/password-auth
-    exists: true
-    contents:
-    - '/password\s+requisite\s+pam_pwquality.so local_users_only/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.3.2.3
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: IA-5
-  system_auth_pwquality:
-    title: 5.3.2.3 | Ensure pam_pwquality module is enabled
+  pam_pwquality_enabled_system_auth:
+    title: 5.3.2.3 | Ensure pam_pwquality module is enabled | system-auth
     path: /etc/pam.d/system-auth
     exists: true
     contents:
-    - '/password\s+requisite\s+pam_pwquality.so local_users_only/'
+    - '/^\s*password\s+(requisite|required)\s+pam_pwquality\.so/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.2.3
-      CISv8: 5.2
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: IA-5
+      NIST800-53R5: CM-6
+  pam_pwquality_enabled_password_auth:
+    title: 5.3.2.3 | Ensure pam_pwquality module is enabled | password-auth
+    path: /etc/pam.d/password-auth
+    exists: true
+    contents:
+    - '/^\s*password\s+(requisite|required)\s+pam_pwquality\.so/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.3
+      NIST800-53R5: CM-6
+command:
+  authselect_check_5_3_2_3:
+    title: 5.3.2.3 | Ensure pam_pwquality module is enabled | authselect check
+    exec: authselect check
+    exit-status: 0
+    stdout:
+    - '/Current configuration is valid/'
+    skip: {{ or (not .Vars.rhel9cis_disruption_high) (not .Vars.rhel9cis_allow_authselect_updates) }}
+    skip-reason: rhel9cis_disruption_high or rhel9cis_allow_authselect_updates is false, authselect is not managed by the role
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.3
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

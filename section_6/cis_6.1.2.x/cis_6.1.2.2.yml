@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.rhel9cis_level_1 }}
+  {{ if .Vars.rhel9cis_rule_6_1_2_2 }}
+service:
+  rsyslog:
+    title: 6.1.2.2 | Ensure rsyslog service is enabled and active
+    {{ if and .Vars.rhel9cis_level_1 .Vars.rhel9cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.2
+      NIST800-53R5:
+      - AU-12
+      - AU-2
+      - AU-3
+  {{ end }}
+{{ end }}

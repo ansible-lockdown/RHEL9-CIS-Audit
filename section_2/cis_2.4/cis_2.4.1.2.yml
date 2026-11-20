@@ -3,22 +3,21 @@
 {{ if .Vars.rhel9cis_level_1 }}
   {{ if .Vars.rhel9cis_rule_2_4_1_2 }}
 file:
-  crontab_perms:
-    title: 2.4.1.2 | Ensure permissions on /etc/crontab are configured
+  cis_2_4_1_2_crontab:
+    title: 2.4.1.2 | Ensure access to /etc/crontab is configured
+    skip: {{ not .Discovered.cronie_installed }}
+    skip-reason: cron is not installed, cronie package absent
     path: /etc/crontab
     exists: true
     owner: root
     group: root
-    mode: "0600"
+    mode:
+      match-regexp: '^0[0-7]00$'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 2.4.1.2
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
